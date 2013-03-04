@@ -1,3 +1,9 @@
+# Label tabs in iTerm2
+# Usage: nametab My Project
+function nametab() {
+  echo -ne "\033]1;$@\007"
+}
+
 # From http://dotfiles.org/~_why/.zshrc
 # Sets the window title nicely no matter where you are
 function title() {
