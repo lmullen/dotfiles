@@ -38,7 +38,11 @@ setopt HIST_REDUCE_BLANKS
 #   like: git comm-[tab]
 setopt complete_aliases
 
-zle -N newtab
+# Vim key bindings and Vim-like line editor
+bindkey -v
+autoload -U   edit-command-line
+zle -N        edit-command-line
+bindkey -M vicmd v edit-command-line
 
 bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
@@ -57,6 +61,3 @@ bindkey '^N' history-search-forward
 unsetopt nomatch
 
 cdpath=( . ~/ )
-
-# emacs key bindings
-bindkey -e
