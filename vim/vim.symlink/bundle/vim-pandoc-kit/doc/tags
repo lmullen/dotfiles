@@ -1,0 +1,4 @@
+pandoc	pandoc.txt	/*pandoc*
+pandoc-syntax	pandoc.txt	/*pandoc-syntax*
+pandoc-syntax-intro	pandoc.txt	/*pandoc-syntax-intro*
+pandocsyntax	pandoc.txt	/*pandocsyntax*

@@ -1,0 +1,51 @@
+[submodule "vim/vim.symlink/bundle/ctrlp"]
+	path = vim/vim.symlink/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/nerdtree"]
+	path = vim/vim.symlink/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
+[submodule "vim/vim.symlink/bundle/tlib"]
+	path = vim/vim.symlink/bundle/tlib
+	url = git://github.com/tomtom/tlib_vim.git
+[submodule "vim/vim.symlink/bundle/ultisnips"]
+	path = vim/vim.symlink/bundle/ultisnips
+	url = git://github.com/guns/ultisnips.git
+[submodule "vim/vim.symlink/bundle/vim-ack"]
+	path = vim/vim.symlink/bundle/vim-ack
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/vim.symlink/bundle/vim-addon-mw-utils"]
+	path = vim/vim.symlink/bundle/vim-addon-mw-utils
+	url = git://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/vim.symlink/bundle/vim-colors-solarized"]
+	path = vim/vim.symlink/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/vim-commentary"]
+	path = vim/vim.symlink/bundle/vim-commentary
+	url = git://github.com/tpope/vim-commentary.git
+[submodule "vim/vim.symlink/bundle/vim-eunuch"]
+	path = vim/vim.symlink/bundle/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
+[submodule "vim/vim.symlink/bundle/vim-fugitive"]
+	path = vim/vim.symlink/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/vim.symlink/bundle/vim-pathogen"]
+	path = vim/vim.symlink/bundle/vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "vim/vim.symlink/bundle/vim-rake"]
+	path = vim/vim.symlink/bundle/vim-rake
+	url = git://github.com/tpope/vim-rake.git
+[submodule "vim/vim.symlink/bundle/vim-ruby"]
+	path = vim/vim.symlink/bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "vim/vim.symlink/bundle/vim-speeddating"]
+	path = vim/vim.symlink/bundle/vim-speeddating
+	url = git://github.com/tpope/vim-speeddating.git
+[submodule "vim/vim.symlink/bundle/vim-surround"]
+	path = vim/vim.symlink/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/vim.symlink/bundle/vim-textobj-rubyblock"]
+	path = vim/vim.symlink/bundle/vim-textobj-rubyblock
+	url = git://github.com/nelstrom/vim-textobj-rubyblock.git
+[submodule "vim/vim.symlink/bundle/vim-textobj-user"]
+	path = vim/vim.symlink/bundle/vim-textobj-user
+	url = git://github.com/kana/vim-textobj-user.git

@@ -1,0 +1,23 @@
+vim-pandoc-kit.txt*   For Vim version 7.3.  Last change: 2011 Mar 9
+
+
+                  PANDOC SYNTAX FOR VIM by Ethan Schoonover
+
+
+Editing files                          *pandoc* *pandoc-syntax* *pandocsyntax*
+
+1.  Introduction                |pandoc-syntax-intro|
+2.  Main Options                |pandoc-syntax-options|
+3.  Folding                     |pandoc-syntax-folding|
+4.  Conceal                     |pandoc-syntax-conceal|
+
+==============================================================================
+1. Introduction                                         *pandoc-syntax-intro*
+
+Editing a file with Vim means:
+
+1. reading the file into a buffer
+2. changing the buffer with editor commands
+3. writing the buffer into a file
+
+vim:tw=78:ts=8:ft=help:norl:

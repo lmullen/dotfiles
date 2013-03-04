@@ -1,0 +1,61 @@
+<h1 id="additional-markdown-reader-tests">Additional markdown reader tests</h1>
+<h2 id="blank-line-before-url-in-link-reference">Blank line before URL in link reference</h2>
+<p><a href="/url">foo</a> and <a href="/url" title="title">bar</a></p>
+<p>: test</p>
+<h2 id="raw-context-environments">Raw ConTeXt environments</h2>
+
+
+
+<h2 id="urls-with-spaces">URLs with spaces</h2>
+<p><a href="/bar%20and%20baz">foo</a> <a href="/bar%20and%20baz">foo</a> <a href="/bar%20and%20baz">foo</a> <a href="bar%20baz" title="title">foo</a></p>
+<p><a href="/foo%20foo">baz</a> <a href="/foo%20fee">bam</a> <a href="/foo/zee%20zob" title="title">bork</a></p>
+<h2 id="horizontal-rules-with-spaces-at-end">Horizontal rules with spaces at end</h2>
+<hr />
+<hr />
+<h2 id="raw-html-before-header">Raw HTML before header</h2>
+<a></a>
+<h3 id="my-header">my header</h3>
+<h2 id="in-math">$ in math</h2>
+<p><span class="math">$2 + $3</span></p>
+<h2 id="commented-out-list-item">Commented-out list item</h2>
+<ul>
+<li>one <!--
+- two
+--></li>
+<li>three</li>
+</ul>
+<h2 id="backslash-newline">Backslash newline</h2>
+<p>hi<br />there</p>
+<h2 id="code-spans">Code spans</h2>
+<p><code>hxxxi\</code></p>
+<p><code>hi there</code></p>
+<p><code>hi````there</code></p>
+<p>`hi</p>
+<p>there`</p>
+<h2 id="multilingual-urls">Multilingual URLs</h2>
+<p><a href="http://%E6%B5%8B.com?%E6%B5%8B=%E6%B5%8B"><code class="url">http://测.com?测=测</code></a></p>
+<p><a href="/bar/%E6%B5%8B?x=%E6%B5%8B" title="title">foo</a></p>
+<p><script type="text/javascript">
+<!--
+h='&#102;&#x6f;&#x6f;&#46;&#x25;&#x65;&#54;&#x25;&#98;&#x35;&#x25;&#56;&#98;&#46;&#98;&#x61;&#122;';a='&#64;';n='&#x25;&#x65;&#54;&#x25;&#98;&#x35;&#x25;&#56;&#98;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'测@foo.测.baz'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x6d4b;&#64;&#102;&#x6f;&#x6f;&#46;&#x6d4b;&#46;&#98;&#x61;&#122;&#32;&#40;&#x25;&#x65;&#54;&#x25;&#98;&#x35;&#x25;&#56;&#98;&#32;&#x61;&#116;&#32;&#102;&#x6f;&#x6f;&#32;&#100;&#x6f;&#116;&#32;&#x25;&#x65;&#54;&#x25;&#98;&#x35;&#x25;&#56;&#98;&#32;&#100;&#x6f;&#116;&#32;&#98;&#x61;&#122;&#x29;</noscript></p>
+<h2 id="numbered-examples">Numbered examples</h2>
+<ol style="list-style-type: example">
+<li>First example.</li>
+<li>Second example.</li>
+</ol>
+<p>Explanation of examples (2) and (3).</p>
+<ol start="3" style="list-style-type: example">
+<li>Third example.</li>
+</ol>
+<h2 id="macros">Macros</h2>
+<p><span class="math">⟨<em>x</em>, <em>y</em>⟩</span></p>
+<h2 id="case-insensitive-references">Case-insensitive references</h2>
+<p><a href="/fum">Fum</a></p>
+<p><a href="/fum">FUM</a></p>
+<p><a href="/bat">bat</a></p>
+<h2 id="curly-smart-quotes">Curly smart quotes</h2>
+<p>“Hi”</p>
+<p>‘Hi’</p>
