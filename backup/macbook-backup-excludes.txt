@@ -1,0 +1,16 @@
+.Spotlight-*/
+.Trashes
+/tmp/*
+/Network/*
+/cores/*
+/afs/*
+/automount/*
+/private/tmp/*
+/private/var/run/*
+/private/var/spool/postfix/*
+/private/var/vm/*
+/Previous Systems.localized
+/Volumes/*
+*/.Trash
+*.DS_Store
+.DS_Store

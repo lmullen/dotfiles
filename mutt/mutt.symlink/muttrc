@@ -1,0 +1,172 @@
+# Mutt settings for Lincoln Mullen
+
+# ----- Account information -----
+
+set realname = "Lincoln Mullen"
+set from = "lincoln@lincolnmullen.com"
+alternates "^(lincoln@lincolnmullen\.com)|(lmullen@brandeis\.edu)$"
+
+# use the file with account credentials
+source ~/.mutt/accounts
+
+# ----- Source bindings, hooks, colors -----
+source ~/.mutt/muttrc.bindings
+source ~/.mutt/muttrc.hooks
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+
+# ----- Storage settings -----
+set folder		= "imaps://imap.gmail.com:993"
+set spoolfile	= "+INBOX"
+set postponed	= "+[Gmail]/Drafts"
+set mbox		= "imaps://imap.gmail.com/[Gmail]/All Mail"
+set imap_check_subscribed
+set net_inc		= 1
+set read_inc = 1
+set write_inc = 1
+set time_inc = 1
+unset record
+
+# mailboxes to check
+mailboxes =INBOX =H-AMREL =H-OIEAHC =H-SHEAR =journals =EARAM-L =H-JUDAIC =H-NEWENGLAND =H-SOUTHERN-RELIGION =H-GRAD =H-ANNOUNCE =lists--institutional =lists--tech ![Gmail]/Starred
+
+# ----- Send mail settings -----
+#set sendmail		= msmtp
+set sendmail_wait	= -1
+
+# ----- Where to store data -----
+
+set header_cache		= ~/.cache/mutt/headers
+set message_cachedir	= ~/.cache/mutt/bodies
+set certificate_file	= ~/.cache/mutt/certificates
+set mailcap_path		= ~/.mutt/mailcap
+#set signature			= ~/.mutt/signature
+set tmpdir				= ~/.cache/mutt/tmp
+
+# ----- Headers -----
+ignore		*
+unignore	from: to: cc: date: subject:
+unhdr_order	*
+hdr_order	from: to: cc: date: subject:
+#my_hdr Reply-To: Lincoln Mullen <lincoln@lincolnmullen.com>
+
+
+# ----- Writing mail -----
+
+set reverse_name  # send mail from the address it was sent to
+#set editor = "vim +:silent+?^$ +:noh" # use vim and skip to last blank line
+set editor = "vim +:silent +:8" # use vim and skip to last blank line
+set edit_headers			# edit mail headers directly
+set include=yes		# include the original in replies
+set sendmail_wait=-1		# no delays after sending mail
+set use_envelope_from=yes # make the envelope have the same from as the header
+set auto_tag
+unset confirmappend
+set delete
+set mail_check = 300
+set maildir_trash = yes
+folder-hook imaps://imap.gmail.com 'set trash="=[Gmail]/Trash"'
+unset markers
+unset mark_old
+unset move
+set pager_context = 5
+set pager_stop
+set reverse_alias
+set sort_alias = alias			# sort by alias
+set delete=yes			# don't ask before deleting
+set sort=reverse-threads
+set sort_aux=last-date-received
+unset sort_re
+set thorough_search
+set thread_received
+set tilde
+set timeout = 1
+set quit
+set wait_key = no
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+set fast_reply
+set askcc
+set forward_format = "Fwd: %s"
+set forward_quote
+set reply_to
+set sig_on_top
+set user_agent
+set mime_forward=no
+set mime_forward_decode
+set text_flowed=yes
+
+
+# ----- Aliases -----
+
+set alias_file = ~/.mutt/muttrc.aliases 	# alias file
+source $alias_file				# autoload aliases
+
+# ----- Reading mail -----
+
+
+# sort by thread, and list the threads by last-date-received
+
+# follow urls with a macro
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# ----- Macros -----
+bind editor <space> noop
+macro index,pager e "<save-message>=[Gmail]/All Mail<enter><sync-mailbox>" "Archive message"
+macro index E "<tag-pattern>!~F ~R<enter><save-message>=[Gmail]/All Mail<enter><sync-mailbox>" "Archive all read non-flagged messages"
+macro index Gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro pager Gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index Ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro pager Ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index Gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
+macro pager Gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
+macro index Gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro pager Gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+
+# ----- Miscellaneous -----
+
+set nobeep				# who wants beeps?
+
+# ----- Load files -----
+
+
+# ----- Unorganized -----
+set timeout=15
+set sleep_time=0
+#auto_view text/html
+
+# ----- Lists -----
+
+lists @H-NET.MSU.EDU 
+lists @lists.brandeis.edu 
+lists @googlegroups.com
+
+subscribe bcf@lists.brandeis.edu
+subscribe currentgrads@lists.brandeis.edu
+subscribe EARAM-L@listserv.kent.edu
+subscribe evangelical-baptist-church@googlegroups.com 
+subscribe gsa@lists.brandeis.edu
+subscribe H-AMREL@h-net.msu.edu
+subscribe H-ANNOUNCE@h-net.msu.edu
+subscribe H-GRAD@h-net.msu.edu
+subscribe H-NEWENGLAND@h-net.msu.edu
+subscribe H-OIEAHC@h-net.msu.edu
+subscribe H-SHEAR@h-net.msu.edu
+subscribe H-SOUTHERN-RELIGION@h-net.msu.edu
+subscribe list@common-place.dreamhost.com 
+subscribe macosx-tex@email.esm.psu.edu
+subscribe pandoc-announce@googlegroups.com
+subscribe pandoc-discuss@googlegroups.com
+subscribe profhacker@googlegroups.com 
+subscribe teachingwithtechnology@lists.brandeis.edu
+subscribe tex-users@lists.brandeis.edu
+subscribe vim_announce@googlegroups.com
+subscribe vim_use@googlegroups.com
+subscribe vim@vim.org
+subscribe xetex@tug.org
+subscribe xetex-announce@tug.org
+subscribe tufte-latex@googlegroups.com
+
+# ---- Goobook ----
+set query_command="goobook query '%s'"
+bind editor Q complete-query
+macro index,pager A "<pipe-message>goobook add<return>" "add the sender address to Google contacts"

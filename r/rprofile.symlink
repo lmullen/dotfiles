@@ -1,0 +1,13 @@
+require(ggplot2)
+options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
+options(device="quartz")
+Sys.setenv(R_HISTSIZE='100000')
+
+.First <- function() {
+}
+
+# Override q() to not save by default.
+# Same as saying q("no")
+q <- function (save="no", ...) {
+  quit(save=save, ...)
+}

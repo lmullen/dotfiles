@@ -1,0 +1,14 @@
+# mailcap file for Mutt
+
+# see http://wcm1.web.rice.edu/mutt-tips.html
+# see http://linsec.ca/Using_mutt_on_OS_X#mailcap
+
+text/html; lynx -dump %s; copiousoutput; nametemplate=%s.html
+text/html; lynx %s
+application/pdf; /Users/lmullen/.mutt/view-attachment.sh %s pdf
+image/jpeg; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+image/png; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+image/gif; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+application/msword; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+application/vnd.openxmlformats-officedocument.wordpressingml.document; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+application/rtf; /Users/lmullen/.mutt/view-attachment.sh %s "-"

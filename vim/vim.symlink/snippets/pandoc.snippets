@@ -1,0 +1,222 @@
+# Markdown
+# Includes octopress (http://octopress.org/) snippets
+snippet [ "["
+[${1:text}](http://${2:address})
+endsnippet
+
+snippet [* "[*"
+[${1:link}](${2:`!v @*`})${3}
+endsnippet
+
+snippet [: "[:"
+[${1:id}]: http://${2:url} "${3:title}"
+endsnippet
+
+snippet [:* "[:*"
+[${1:id}]: ${2:`!v @*`} "${3:title}"
+endsnippet
+
+snippet ![ "!["
+![${1:alttext}](${2:/images/image.jpg})
+endsnippet
+
+snippet ![* "![*"
+![${1:alt}](${2:`!v @*`})${3}
+endsnippet
+
+snippet ![: "![:"
+![${1:id}]: ${2:url}
+endsnippet
+
+snippet ![:* "![:*"
+![${1:id}]: ${2:`!v @*`}
+endsnippet
+
+snippet codeblock "codeblock"
+~~~~~ {${1:.lang} ${2:.numberLines} startFrom="${3:1}"}
+${4:code}
+~~~~~
+endsnippet
+
+snippet === "==="
+`!v repeat('=', strlen(getline(line(".") - 1)))`
+${1}
+endsnippet
+
+snippet --- "---"
+`!v repeat('-', strlen(getline(line(".") - 1)))`
+${1}
+endsnippet
+
+snippet blockquote "blockquote"
+{% blockquote %}
+${1:quote}
+{% endblockquote %}
+endsnippet
+
+snippet blockquote-author "blockquote-author"
+{% blockquote ${1:author}, ${2:title} %}
+${3:quote}
+{% endblockquote %}
+endsnippet
+
+snippet blockquote-link "blockquote-link"
+{% blockquote ${1:author} ${2:URL} ${3:link_text} %}
+${4:quote}
+{% endblockquote %}
+endsnippet
+
+snippet bt-codeblock-short "bt-codeblock-short"
+```!v 
+${1:code_snippet}
+```
+endsnippet
+
+snippet bt-codeblock-full "bt-codeblock-full"
+```!v  ${1:language} ${2:title} ${3:URL} ${4:link_text}
+${5:code_snippet}
+```
+endsnippet
+
+snippet codeblock-short "codeblock-short"
+{% codeblock %}
+${1:code_snippet}
+{% endcodeblock %}
+endsnippet
+
+snippet codeblock-full "codeblock-full"
+{% codeblock ${1:title} lang:${2:language} ${3:URL} ${4:link_text} %}
+${5:code_snippet}
+{% endcodeblock %}
+endsnippet
+
+snippet gist-full "gist-full"
+{% gist ${1:gist_id} ${2:filename} %}
+endsnippet
+
+snippet gist-short "gist-short"
+{% gist ${1:gist_id} %}
+endsnippet
+
+snippet img "img"
+{% img ${1:class} ${2:URL} ${3:width} ${4:height} ${5:title_text} ${6:alt_text} %}
+endsnippet
+
+snippet youtube "youtube"
+{% youtube ${1:video_id} %}
+endsnippet
+
+# The quote should appear only once in the text. It is inherently part of it.
+# See http://octopress.org/docs/plugins/pullquote/ for more info.
+snippet pullquote "pullquote"
+{% pullquote %}
+${1:text} {" ${2:quote} "} ${3:text}
+{% endpullquote %}
+endsnippet
+
+snippet article "BibTeX article"
+~~~~~{.bib}
+@Article{     ${1},
+  author    = {${2}},
+  title     = {${3}},
+  journal   = {${5}},
+  volume    = {${6}},
+  number    = {${7}},
+  year      = {${8}},
+  pages     = {${9}},
+  url       = {${10}},
+  doi       = {${11}},
+}
+~~~~~
+
+endsnippet
+
+snippet book "BibTeX book"
+~~~~~{.bib}
+@Book {         ${1},
+  author      = {${2}},
+  title       = {${3}},
+  editor      = {${4}},
+  address     = {${5}},
+  publisher   = {${6}},
+  year        = {${7}},
+}
+~~~~~
+
+endsnippet
+
+snippet chapter "BibTeX chapter"
+~~~~~{.bib}
+@InCollection {       ${1},
+  author      = {${2}},
+  title       = {${3}},
+  booktitle   = {${4}},
+  editor      = {${5}},
+  address     = {${6}},
+  publisher   = {${7}},
+  year        = {${8}},
+  pages	      = {${9}},
+}
+~~~~~
+
+endsnippet
+
+
+snippet cat "Gitit categories"
+---
+categories: ${0}
+...
+endsnippet
+
+snippet fn "footnote"
+^[${1}] ${2}
+endsnippet
+
+snippet jsrarticle
+---
+layout: article
+title: "${1}"
+author-first: ${2:}
+author-last: ${3:}
+author: $2 $3
+author-note: "${4}"
+vol: ${5:14}
+year: ${6:2012}
+
+---
+
+${7}
+endsnippet
+
+snippet jsrreview
+---
+layout: article
+title: "review: ${1}"
+author-first: ${2:}
+author-last: ${3:}
+author: $2 $3
+author-note: "${4}"
+vol: ${5:14}
+year: ${6:2012}
+book-reviewed: "${7}"
+
+---
+
+${8}
+endsnippet
+
+snippet mk "Mark {TODO}"
+{${1:TODO}} ${2}
+endsnippet
+
+snippet mkf "Mark {FACT}"
+{FACT} ${1}
+endsnippet
+
+snippet mkn "Mark {NEXT}"
+{NEXT} ${1}
+endsnippet
+
+snippet mkp "Mark {PAGE}"
+{PAGE} ${1}
+endsnippet

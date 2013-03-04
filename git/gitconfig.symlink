@@ -1,0 +1,32 @@
+# gitconfig
+
+[hub]
+        protocol = https
+[user]
+	name = Lincoln Mullen
+        email = lincoln@lincolnmullen.com
+[credential]
+        helper = osxkeychain
+[github]
+        user = lmullen
+[alias]
+        co = checkout
+        count   = !git shortlog -sn
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+[core]
+        excludesfile = ~/.gitignore
+        editor = vim
+[apply]
+        whitespace = nowarn
+[mergetool]
+        keepBackup = false
+[difftool]
+        prompt = false
+[help]
+        autocorrect = 1
+[push]
+	      default = matching

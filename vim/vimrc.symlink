@@ -1,0 +1,235 @@
+" ---------------------------------------------------------------------
+" Vim configuration for
+" Lincoln Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
+
+" General -------------------------------------------------------------
+source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()                      " pathogen loads plugins
+" call pathogen#helptags()                    " pathogen loads help files
+set nocompatible                            " not compatible with vi
+set modelines=0                             " security
+set encoding=utf-8
+set showmode
+set showcmd
+set hidden                                  " buffers
+set ttyfast
+set ruler
+set backspace=indent,eol,start              " allow backspacing in insert mode
+" set showmatch                               " show matching parenthesis
+set smarttab
+set history=1000                            " remember commands and searches
+set undolevels=1000                         " use many levels of undo
+set visualbell                              " don't beep
+set noerrorbells                            " don't beep
+au FocusLost * :wa                          " save when losing focus
+set mouse=a                                 " use mouse in console
+set autoread                                " read a file changed on disk
+set clipboard=unnamed                       " use Mac system clipboard
+filetype plugin indent on                   " detect filetypes
+
+" viminfo -------------------------------------------------------------
+set viminfo='300,f1,<300,:500,/500,n~/.viminfo
+
+" Display -------------------------------------------------------------
+syntax on                                   " syntax highlighting
+set background=dark
+set guifont=DejaVu\ Sans\ Mono:h14
+"set term=color_xterm
+set t_Co=256                                " color terminal
+if &t_Co >= 256 || has("gui_running")
+  let g:solarized_termtrans = 1
+  colorscheme solarized
+endif
+set display+=lastline                       " show partial last lines
+set nolist                                  " don't display space chars
+set listchars=tab:▸\ ,eol:¬,nbsp:·          " TextMate style space chars
+nmap <silent> <leader>l :set list!<CR>
+set scrolloff=5                             " cursor 5 lines from top or bottom
+" set cursorline                              " highlight current line
+set nofoldenable
+set foldcolumn=0                            " show where the folds are
+set number
+    " au InsertEnter * :set nu
+    " au InsertLeave * :set rnu
+    " au FocusLost * :set nu
+    " au FocusGained * :set rnu
+" Status line ---------------------------------------------------------
+set laststatus=2                            " always show a status line
+set statusline=""
+set statusline+=%t                          " tail/filename
+set statusline+=%m%r%h                      " modified/read only/help
+set statusline+=\ [%{&ff}/%Y]               " line endings/type of file
+set statusline+=\ %{fugitive#statusline()}  " Git status
+set statusline+=\ [L\:%l\/%L,\%p%%\ C\:%c]  " line/total lines percentage/column
+
+" Search --------------------------------------------------------------
+set incsearch                               " show search matches as you type
+set ignorecase
+set smartcase                               " smart about case sensitivity
+set hlsearch                                " highlight search terms
+                                            " clear search highlighting
+nmap <silent> ,/ :nohlsearch<CR>
+                                            " use very magic mode
+" cnoremap s/ s/\v
+" cnoremap %s/ %s/\v
+" nnoremap / /\v
+" vnoremap / /\v
+cnoremap ack Ack
+
+" Keyboard shortcuts --------------------------------------------------
+let mapleader=","
+let maplocalleader=","
+nnoremap ; :
+inoremap jj <ESC>
+                                            " faster change case
+nnoremap K ~
+                                            " shift-E to end of a word
+nmap E ge
+" change global current directory to the directory of working file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" change local current directory to the directory of working file
+nnoremap <leader>lcd :lcd %:p:h<CR>:pwd<CR>
+                                            " reselect visual after indent
+vnoremap < <gv
+vnoremap > >gv
+                                            " move between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+                                            " disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+                                            " move by display not logical lines
+nnoremap j gj
+nnoremap k gk
+
+if has('wildmenu')
+  set wildmenu                                " tab completion
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.git/*,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
+endif
+
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+nnoremap [l :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+nnoremap [b :bprev<CR>
+nnoremap ]b :bnext<CR>
+nnoremap ]t :tabnext<CR>
+nnoremap [t :tabprev<CR>
+nnoremap [<space> O<ESC>j
+nnoremap ]<space> o<ESC>k
+nnoremap ]f /\V[^\d\+]<CR>
+nnoremap [f ?\V[^\d\+]<CR>
+
+" Word count ----------------------------------------------------------
+nmap <silent> <leader>wc g<C-G>
+                                            " for LaTeX documents
+nmap <silent> <leader>lwc :w<CR> :!detex % \| wc -w<CR>
+
+" Spell check ---------------------------------------------------------
+set spelllang=en_us                         " US English
+set spell                                   " spell check on
+set spellsuggest=10                         " only suggest 10 words
+nnoremap <silent> <leader>sp :set spell!<CR>
+
+" Abbreviations -------------------------------------------------------
+source $HOME/.vim/abbreviations.vim         " load abbreviations list
+
+" Text formatting -----------------------------------------------------
+set wrap                                    " soft wrap long lines
+set textwidth=72                            " optimal width
+set tabstop=2                               " a tab is four spaces
+set softtabstop=2                           " soft tab is four spaces
+set shiftwidth=2                            " # of spaces for autoindenting
+set expandtab                               " insert spaces not tabs
+set autoindent                              " always set autoindenting on
+set copyindent                              " copy prev indentation
+set shiftround                              " use shiftwidth when indenting
+                                            " Use Q to format paragraph
+vmap Q gq
+nmap Q gwap
+set formatoptions=tqcwn                     " see :help fo-table
+
+" Behind the scenes ---------------------------------------------------
+                                            " quickly edit/reload vimrc
+nmap <leader>ev :sp $MYVIMRC<CR>
+nmap <silent> <leader>sv :source $MYVIMRC<CR>
+set backup                                  " backups and swaps
+set backupdir=$HOME/.cache/vim/backup/
+set directory=$HOME/.cache/vim/swap/
+autocmd FileType vim setlocal nowrap
+
+" Pandoc ------------- ------------------------------------------------
+nmap <leader>eb :e ~/bib/history.bib<CR>G
+au BufNewFile,BufRead *.markdown,*.md,*.mkd,*.pd,*.pdc,*.pdk,*.pandoc,*.text,*.txt,*.page   set filetype=pandoc
+
+" Ctrl-P -------------------------------------------------------------
+let g:ctrlp_open_new_file = 'r'             " open new files in same window
+nmap <C-B> :CtrlPBuffer<CR>
+let g:ctrlp_use_caching = 0                 " turn on caching
+let g:ctrlp_clear_cache_on_exit = 0         " cache persists across sessions
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_dotfiles = 0                    " ignore dotifles and dotdirs
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\.git$\|\_site$'
+  \ }
+
+" Commentary.vim ---------------------------------------------------
+autocmd FileType apache set commentstring=#\ %s   "comments for Apache
+autocmd FileType R set commentstring=#\ %s        "comments for R
+autocmd FileType pandoc set commentstring=<!--\ %s\ -->   "comments for pandoc
+" Functions ---------------------------------------------------------
+source $HOME/.vim/functions.vim
+
+" BibTeX key completion ---------------------------------------------
+set dictionary+=$HOME/bib/citekeys.txt
+set complete+=k
+
+" Temporary ---------------------------------------------------------
+runtime macros/matchit.vim
+nnoremap <leader># :set number!<CR>
+nnoremap <leader>ma :silent !open -a Marked.app '%:p'<cr> :redraw!<CR>
+set notimeout
+set ttimeout
+set timeoutlen=50
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
+set guioptions-=l                               " remove scrollbars
+set guioptions-=L                               " remove scrollbars
+set guioptions-=r                               " remove scrollbars
+set guioptions-=R                               " remove scrollbars
+                                                " find the first line 
+                                                " before footnotes
+nnoremap <leader><space> /\v^$\n[\^1\]:<CR>:let @/ = ""<CR>
+set showtabline=2 "always show tabs, even if there is only one
+
+" Highlight two or more spaces at the end of a line, except when typing
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\{2,}\%#\@<!$/
+
+
+" Add the character ^ to the definition of a word, so that in Pandoc 
+" files you can jump from footnote mark to footnote text.
+" set iskeyword+=\^
+"
+
+" UltiSnips
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+let vimrplugin_screenplugin=0
