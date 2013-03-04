@@ -244,9 +244,9 @@
 	<key>NSWindow Frame com.apple.typography_panel_BitstreamVeraSansMono-Roman</key>
 	<string>294 531 260 42 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>310 16 970 762 0 0 1280 778 </string>
+	<string>310 0 970 778 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>341 274 532 440 0 0 1280 778 </string>
+	<string>310 0 970 778 0 0 1280 778 </string>
 	<key>NeverWarnAboutShortLivedSessions_C5A83ECC-7CAE-4A94-9EDE-E10E59A3066B</key>
 	<true/>
 	<key>New Bookmarks</key>
