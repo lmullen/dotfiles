@@ -49,3 +49,6 @@
 [submodule "vim/vim.symlink/bundle/vim-textobj-user"]
 	path = vim/vim.symlink/bundle/vim-textobj-user
 	url = git://github.com/kana/vim-textobj-user.git
+[submodule "vim/vim.symlink/bundle/delimitMate"]
+	path = vim/vim.symlink/bundle/delimitMate
+	url = git://github.com/Raimondi/delimitMate.git
