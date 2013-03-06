@@ -81,3 +81,7 @@ nnoremap _bib :call MakeBib()<CR>
 function! MakeBib()
   :!cd ~/bib && make
 endfunction
+
+" Find related footnote numbers
+function! FindFootnote()
+endfunction

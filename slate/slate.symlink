@@ -132,7 +132,7 @@ alias macbook-bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSi
 
 # Dell monitor
 alias dell-full move screenOriginX;screenOriginY screenSizeX;screenSizeY ${monitor-dell}
-alias dell-lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY ${monitor-dell}
+alias dell-lefthalf move screenOriginX;screenOriginY (screenSizeX/2)-3;screenSizeY ${monitor-dell}
 alias dell-righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY ${monitor-dell}
 alias dell-leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY ${monitor-dell}
 alias dell-righttwothirds move screenOriginX+screenSizeX/3;screenOriginY 2*screenSizeX/3;screenSizeY ${monitor-dell}
@@ -156,9 +156,6 @@ layout 2monitors 'nvALT':REPEAT ${dell-righthalf}
 # Bind a key to trigger this layout
 bind pad*:${hyper} layout 2monitors
 
-# Trigger this layout automatically when 2 monitors are present
-default 2monitors resolutions:${monitor-macbook};${monitor-dell}
-
 # ONE MONITOR LAYOUT
 # -------------------------------------------------------------------
 
@@ -177,12 +174,13 @@ bind /:${hyper} layout 1monitors
 # Trigger this layout automatically when 1 monitors are present
 default 1monitors resolutions:${monitor-macbook}
 
-# SYNERGY MONITOR LAYOUT
+# STANDING DESK LAYOUT
 # -------------------------------------------------------------------
 
-layout Smonitors ${editor}:MAIN_FIRST ${dell-full}
-layout Smonitors ${terminal}:MAIN_FIRST ${macbook-full}
-layout Smonitors ${browser}:REPEAT ${macbook-full}
+layout Smonitors ${editor}:MAIN_FIRST ${dell-lefthalf}
+layout Smonitors ${terminal}:MAIN_FIRST ${dell-righthalf}
+layout Smonitors ${browser}:REPEAT ${macbook-rightfourfifths}
+layout Smonitors 'Preview':REPEAT ${dell-righthalf}
 layout Smonitors 'Twitter':REPEAT ${macbook-leftfifth}
 layout Smonitors 'TweetDeck':REPEAT ${macbook-full}
 layout Smonitors 'Things':REPEAT ${macbook-lefthalf}
@@ -190,6 +188,9 @@ layout Smonitors 'nvALT':REPEAT ${macbook-righthalf}
 
 # Bind a key to trigger this layout
 bind pad-:${hyper} layout Smonitors
+
+# Trigger this layout automatically when 2 monitors are present
+default Smonitors resolutions:${monitor-macbook};${monitor-dell}
 
 # BINDINGS
 # -------------------------------------------------------------------
