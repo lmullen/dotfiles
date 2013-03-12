@@ -22,3 +22,5 @@ alias diss='cd ~/acad/dissertation/'
 alias home='cd ~'
 alias posts="mvim -c ':cd ~/dev/lincolnmullen.com/source/_posts/'"
 alias jsr="mvim -c ':cd ~/dev/jsr'"
+alias brewu="brew update && brew outdated"
+alias R="R --no-restore"
