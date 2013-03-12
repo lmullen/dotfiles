@@ -6,6 +6,8 @@ Sys.setenv(R_HISTSIZE='100000')
 .First <- function() {
 }
 
+.Last <- function() {
+}
 # Override q() to not save by default.
 # Same as saying q("no")
 q <- function (save="no", ...) {
