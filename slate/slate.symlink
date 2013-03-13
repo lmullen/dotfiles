@@ -126,7 +126,7 @@ alias macbook-righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSiz
 alias macbook-leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY ${monitor-macbook}
 alias macbook-righttwothirds move screenOriginX+screenSizeX/3;screenOriginY 2*screenSizeX/3;screenSizeY ${monitor-macbook}
 alias macbook-leftfifth move screenOriginX;screenOriginY screenSizeX/5;screenSizeY ${monitor-macbook}
-alias macbook-rightfourfifths move (screenOriginX+screenSizeX/5)+45;screenOriginY (4*screenSizeX/5)-45;screenSizeY ${monitor-macbook}
+alias macbook-rightfourfifths move (screenOriginX+screenSizeX/5)+25;screenOriginY (4*screenSizeX/5)-25;screenSizeY ${monitor-macbook}
 alias macbook-tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2 ${monitor-macbook}
 alias macbook-bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2 ${monitor-macbook}
 
@@ -163,6 +163,7 @@ layout 1monitors ${editor}:MAIN_FIRST ${macbook-lefthalf}
 layout 1monitors ${terminal}:MAIN_FIRST ${macbook-righthalf}
 layout 1monitors ${browser}:REPEAT ${macbook-full}
 layout 1monitors 'Twitter':REPEAT ${macbook-leftfifth}
+layout 1monitors 'Preview':REPEAT ${macbook-righthalf}
 layout 1monitors 'TweetDeck':REPEAT ${macbook-lefthalf}
 layout 1monitors 'Things':REPEAT ${macbook-lefthalf}
 layout 1monitors 'nvALT':REPEAT ${macbook-righthalf}
