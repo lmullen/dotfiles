@@ -33,6 +33,7 @@ alias monitor-dell 1440x900
 
 alias editor 'MacVim'
 bind z:alt;shift focus ${editor}
+bind a:alt;shift focus 'Sublime Text 2'
 
 alias terminal 'iTerm'
 bind x:alt;shift focus ${terminal}
@@ -51,13 +52,13 @@ bind v:alt;shift focus 'Preview'
 # -------------------------------------------------------------------
 
 # Show quick key overlays for each window
-config windowHintsShowIcons true
-config windowHintsSpread true
-config windowHintsIgnoreHiddenWindows false
-bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
+# config windowHintsShowIcons true
+# config windowHintsSpread true
+# config windowHintsIgnoreHiddenWindows false
+# bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
 
 # Show a positioning grid for each monitor
-bind g:cmd grid padding:5 0:6,2 1:8,3
+# bind g:cmd grid padding:5 0:6,2 1:8,3
 
 # Better application switcher
 # bind tab:cmd switch
@@ -146,6 +147,7 @@ alias dell-bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX
 # -------------------------------------------------------------------
 
 layout 2monitors ${editor}:MAIN_FIRST ${macbook-lefthalf}
+layout 2monitors 'Sublime Text 2':MAIN_FIRST ${macbook-lefthalf}
 layout 2monitors ${terminal}:MAIN_FIRST ${macbook-righthalf}
 layout 2monitors ${browser}:REPEAT ${dell-rightfourfifths}
 layout 2monitors 'Twitter':REPEAT ${dell-leftfifth}
@@ -160,6 +162,7 @@ bind pad*:${hyper} layout 2monitors
 # -------------------------------------------------------------------
 
 layout 1monitors ${editor}:MAIN_FIRST ${macbook-lefthalf}
+layout 1monitors 'Sublime Text 2':MAIN_FIRST ${macbook-lefthalf}
 layout 1monitors ${terminal}:MAIN_FIRST ${macbook-righthalf}
 layout 1monitors ${browser}:REPEAT ${macbook-full}
 layout 1monitors 'Twitter':REPEAT ${macbook-leftfifth}
@@ -179,6 +182,7 @@ default 1monitors resolutions:${monitor-macbook}
 # -------------------------------------------------------------------
 
 layout Smonitors ${editor}:MAIN_FIRST ${dell-lefthalf}
+layout Smonitors 'Sublime Text 2':MAIN_FIRST ${dell-lefthalf}
 layout Smonitors ${terminal}:MAIN_FIRST ${dell-righthalf}
 layout Smonitors ${browser}:REPEAT ${macbook-rightfourfifths}
 layout Smonitors 'Preview':REPEAT ${dell-righthalf}
@@ -199,29 +203,29 @@ default Smonitors resolutions:${monitor-macbook};${monitor-dell}
 # https://github.com/jigish/slate/blob/master/Slate/default.slate
 
 # Focus 
-bind right:cmd;ctrl    focus right
-bind left:cmd;ctrl     focus left
-bind up:cmd;ctrl       focus behind
-bind down:cmd;ctrl     focus behind
-bind ]:alt;shift       focus right
-bind [:alt;shift       focus left
-bind =:alt;shift       focus behind
+# bind right:cmd;ctrl    focus right
+# bind left:cmd;ctrl     focus left
+# bind up:cmd;ctrl       focus behind
+# bind down:cmd;ctrl     focus behind
+# bind ]:alt;shift       focus right
+# bind [:alt;shift       focus left
+# bind =:alt;shift       focus behind
 
 # Throw
 bind ]:${hyper} throw right resize full
 bind [:${hyper}  throw left resize full
 
 # Resize 
-bind right:alt;cmd       resize +5% +0
-bind left:alt;cmd        resize -5% +0
-bind up:alt;cmd          resize +0   -5%
-bind down:alt;cmd        resize +0   +5%
+# bind right:alt;cmd       resize +5% +0
+# bind left:alt;cmd        resize -5% +0
+# bind up:alt;cmd          resize +0   -5%
+# bind down:alt;cmd        resize +0   +5%
 
 # Nudge 
-bind right:${hyper} nudge +10% +0
-bind left:${hyper}  nudge -10% +0
-bind up:${hyper}    nudge +0   -10%
-bind down:${hyper}  nudge +0   +10%
+# bind right:${hyper} nudge +10% +0
+# bind left:${hyper}  nudge -10% +0
+# bind up:${hyper}    nudge +0   -10%
+# bind down:${hyper}  nudge +0   +10%
 
 # Push 
 # bind right:ctrl;cmd  push right bar-resize:screenSizeX/3
