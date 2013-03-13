@@ -232,5 +232,5 @@ nnoremap <leader>eu :UltiSnipsEdit<CR>
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
-
-let vimrplugin_screenplugin=0
+let NERDTreeHijackNetrw=1
+let NERDTreeShowBookmarks=1
