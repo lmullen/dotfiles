@@ -17,6 +17,8 @@
 *.pdfsync
 *.rbc
 *.run.xml
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.synctex.gz
 *.toc
