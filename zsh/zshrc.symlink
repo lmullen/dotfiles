@@ -7,6 +7,9 @@ export TERM="xterm-256color"
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/dev
 
+# your writing folder that we can `a [tab]` to
+export WRITING=~/acad
+
 # source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) [[ "$(basename $config_file)" == "completion.zsh" ]] || source $config_file
 
