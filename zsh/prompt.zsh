@@ -83,14 +83,35 @@ directory_name(){
 #   echo "%{$fg[yellow]%}%n@%M%{$reset_color%}"
 # }
 
-set_prompt () {
+# A full, but slow version of the prompt
+set_busy_prompt () {
   export PROMPT=$'\n$(directory_name) $(git_dirty)$(need_push) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
-  # export PROMPT=$'\n$(directory_name) '
-  # show exit code only if it is non-zero
   RPROMPT='%(?.. %?)'
 }
 
+# A speedy version of the prompt
+set_prompt () {
+  export PROMPT=$'\n$(directory_name)\n%{$fg[red]%}›%{$reset_color%} '
+  RPROMPT='%(?.. %?)'
+}
+
+# Use the speedy prompt by default
+busy_prompt=false
+
+# Flip the switch between prompts
+toggle_prompt () {
+  if [[ $busy_prompt == false ]] then
+    busy_prompt=true
+  else
+    busy_prompt=false
+  fi
+}
+
+# Set the correct prompt
 precmd() {
-  # title "zsh" "%m" "%55<...<%~"
-  set_prompt
+  if [[ $busy_prompt == true ]] then
+    set_busy_prompt
+  else
+    set_prompt
+  fi
 }
