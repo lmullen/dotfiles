@@ -32,6 +32,13 @@ snippet ![:* "![:*"
 ![${1:id}]: ${2:`!v @*`}
 endsnippet
 
+snippet codeb "Simple codeblock"
+~~~~~ {.${1:ruby}}
+$0
+~~~~~
+
+endsnippet
+
 snippet codeblock "codeblock"
 ~~~~~ {${1:.lang} ${2:.numberLines} startFrom="${3:1}"}
 ${4:code}
@@ -168,7 +175,7 @@ categories: ${0}
 ...
 endsnippet
 
-snippet fn "footnote"
+snippet fn "Footnote"
 ^[${1}] ${2}
 endsnippet
 
@@ -225,4 +232,44 @@ snippet % "Pandoc header" !b
 % ${1:Title}
 % ${2:Lincoln A. Mullen}
 % ${3:`!v strftime("%d %B %Y")`}
+endsnippet
+
+snippet reph "Republish ProfHacker post" !b
+---
+layout: post
+title: "${1:Title}"
+date: ${2:YYYY-MM-DD} 12:00
+comments: true
+categories: 
+- ProfHacker$3
+tags: 
+- ProfHacker$4
+---
+
+*[This post originally appeared at [ProfHacker][].]*
+
+  [ProfHacker]: $5
+
+$0
+endsnippet
+
+snippet jsrpodcast "JSR podcast metadata" !b
+---
+title: $1
+layout: podcast
+categories:
+- new-media
+- podcast
+author: ${2:Art Remillard}
+podcast-filename: "jsr.ep${3:000}.${4:title}.mp3"
+podcast-filesize: $5
+podcast-running-time: "${6:00:00}"
+podcast-episode: ${7:00}
+---
+
+$0
+endsnippet
+
+snippet more "More link" !b
+<!--more-->
 endsnippet

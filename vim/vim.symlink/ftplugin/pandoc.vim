@@ -1,5 +1,5 @@
 " filter text through pandoc to clean markdown, using reference links and atx headers
-setlocal equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers
+setlocal equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --standalone
 
 " drop a mark p, go to the beginning of the document, find the first 
 " line that begins with a word or a header (to avoid Pandoc title block, 

@@ -95,7 +95,7 @@ set_prompt () {
   RPROMPT='%(?.. %?)'
 }
 
-# Use the speedy prompt by default
+# Which prompt to use by default
 busy_prompt=false
 
 # Flip the switch between prompts

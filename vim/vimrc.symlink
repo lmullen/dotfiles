@@ -23,7 +23,7 @@ set noerrorbells                            " don't beep
 au FocusLost * :wa                          " save when losing focus
 set mouse=a                                 " use mouse in console
 set autoread                                " read a file changed on disk
-set clipboard=unnamed                       " use Mac system clipboard
+" set clipboard=unnamed                       " use Mac system clipboard
 filetype plugin indent on                   " detect filetypes
 
 " viminfo -------------------------------------------------------------
@@ -158,8 +158,9 @@ set formatoptions=tqcwn                     " see :help fo-table
 
 " Behind the scenes ---------------------------------------------------
                                             " quickly edit/reload vimrc
-nmap <leader>ev :sp $MYVIMRC<CR>
-nmap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <leader>ab :sp $HOME/.vim/abbreviations.vim<CR>
 set backup                                  " backups and swaps
 set backupdir=$HOME/.cache/vim/backup/
 set directory=$HOME/.cache/vim/swap/

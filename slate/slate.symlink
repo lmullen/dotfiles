@@ -167,7 +167,7 @@ layout 1monitors ${terminal}:MAIN_FIRST ${macbook-righthalf}
 layout 1monitors ${browser}:REPEAT ${macbook-full}
 layout 1monitors 'Twitter':REPEAT ${macbook-leftfifth}
 layout 1monitors 'Preview':REPEAT ${macbook-righthalf}
-layout 1monitors 'TweetDeck':REPEAT ${macbook-lefthalf}
+layout 1monitors 'TweetDeck':REPEAT ${macbook-full}
 layout 1monitors 'Things':REPEAT ${macbook-lefthalf}
 layout 1monitors 'nvALT':REPEAT ${macbook-righthalf}
 
