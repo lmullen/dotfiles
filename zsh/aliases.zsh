@@ -24,3 +24,12 @@ alias posts="mvim -c ':cd ~/dev/lincolnmullen.com/source/_posts/'"
 alias jsr="mvim -c ':cd ~/dev/jsr'"
 alias brewu="brew update && brew outdated"
 alias R="R --no-restore"
+
+alias ll="ls -l"
+
+# Gists
+# -------------------------------------------------------------------
+# paste copy of clipboard to public Gist
+alias pastegist="jist -Ppo"
+alias jist="jist -o"
+
