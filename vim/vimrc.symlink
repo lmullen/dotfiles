@@ -48,7 +48,7 @@ endif
 set display+=lastline                       " show partial last lines
 set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,nbsp:·          " TextMate style space chars
-nmap <silent> <leader>l :set list!<CR>
+" nmap <silent> <leader>l :set list!<CR>
 set scrolloff=5                             " cursor 5 lines from top or bottom
 " set cursorline                              " highlight current line
 set nofoldenable
