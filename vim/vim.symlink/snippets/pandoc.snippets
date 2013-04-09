@@ -8,6 +8,10 @@ snippet [* "[*"
 [${1:link}](${2:`!v @*`})${3}
 endsnippet
 
+snippet []* "[]*"
+[${1:link}](${2:`!v @*`})${3}
+endsnippet
+
 snippet [: "[:"
 [${1:id}]: http://${2:url} "${3:title}"
 endsnippet
@@ -272,4 +276,26 @@ endsnippet
 
 snippet more "More link" !b
 <!--more-->
+endsnippet
+
+snippet c) "Copyright symbol"
+©
+endsnippet
+
+snippet bib "BibTeX codeblock" !b
+~~~~~{.bib}
+$1
+~~~~~
+$0
+endsnippet
+
+snippet bib* "BibTeX codeblock" !b
+~~~~~{.bib}
+`!v @*`
+~~~~~
+$0
+endsnippet
+
+snippet dtag 
+diss-ch6, secondary
 endsnippet

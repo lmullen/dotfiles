@@ -70,18 +70,55 @@ function! Patristics()
 endfunction
 
 " Commit all changes in research wiki
+command! -nargs=0 Wiki call CommitToWiki()
 nnoremap _wc :call CommitToWiki()<CR>
 function! CommitToWiki()
-  :lcd ~/acad/research/wikidata
-  :!git --git-dir=/Users/lmullen/acad/research/wikidata/.git --no-pager add *.page && git --git-dir=/Users/lmullen/acad/research/wikidata/.git commit -a -m "Automatic commit from Vim" 
+  :!cd ~/acad/research/wiki/wikidata && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
 endfunction
 
 " Make the BibTeX bibliography
+command! -nargs=0 Bib call MakeBib()
 nnoremap _bib :call MakeBib()<CR>
 function! MakeBib()
-  :!cd ~/bib && make
+  :silent !cd ~/acad/research/bib && Rake
+  :redraw!
 endfunction
 
-" Find related footnote numbers
-function! FindFootnote()
+" Find related Pandoc footnote numbers
+" -------------------------------------------------------------------
+" Vim's * key searches for the next instance of the word under the 
+" cursor; Vim decides what counts as the boundary of a word with the 
+" iskeyword option. This function toggles the special characters of a 
+" Pandoc footnote in the form [^1] to allow you to jump between 
+" footnotes with the * key.
+nnoremap _fn :call ToggleFootnoteJumping()<CR>
+function! ToggleFootnoteJumping()
+  if exists("g:FootnoteJumping") 
+    if g:FootnoteJumping == 1
+      set iskeyword-=[
+      set iskeyword-=]
+      set iskeyword-=^
+      let g:FootnoteJumping = 0
+    else
+      set iskeyword+=[
+      set iskeyword+=]
+      set iskeyword+=^
+      let g:FootnoteJumping = 1
+    endif
+  else 
+    set iskeyword+=[
+    set iskeyword+=]
+    set iskeyword+=^
+    let g:FootnoteJumping = 1
+  endif
+endfunction
+
+command! -nargs=0 BG call ToggleBackground()
+nnoremap <leader>bg :call ToggleBackground()<cr>
+function! ToggleBackground()
+  if &background == "dark"
+    set background=light
+  else
+    set background=dark
+  endif
 endfunction

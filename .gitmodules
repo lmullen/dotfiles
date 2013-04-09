@@ -55,3 +55,9 @@
 [submodule "vim/vim.symlink/bundle/vim-bundler"]
 	path = vim/vim.symlink/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
+[submodule "vim/vim.symlink/bundle/vim-obsession"]
+	path = vim/vim.symlink/bundle/vim-obsession
+	url = git://github.com/tpope/vim-obsession.git
+[submodule "vim/vim.symlink/bundle/vim-rbenv"]
+	path = vim/vim.symlink/bundle/vim-rbenv
+	url = git://github.com/tpope/vim-rbenv.git

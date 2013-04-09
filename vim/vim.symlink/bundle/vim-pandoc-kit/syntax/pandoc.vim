@@ -215,9 +215,9 @@ syn cluster metadataElements          contains=
 "---------------------------------------------------------------------- }}}
 " Pandoc Block Elements                                                 {{{
 "----------------------------------------------------------------------
-syn region  pandocNormalBlock       start="\%(^\s*\_s\|\%^\)\@<=.*\S" end="^\s*\_$"               keepend contains=@pandocEmbeddedCode,@pandocInlineElements,@pandocStyles,@pandocSmartType
-syn region  pandocTitleBlock        start="^%" skip="^  \S.*$" end="\%(\_^\s*\_$\_s[^%]\)\@=" keepend contains=@pandocInlineElements,@pandocStyles,pandocTitleBlockTitle,@pandocSmartType,pandocComment
-syn region  pandocTitleBlockTitle   start="\%(\%^\|\_^\s*\_s\_^\)\@<=%%\@!" end="$" keepend oneline contained contains=@pandocInlineElements,@pandocStyles,@pandocSmartType
+syn region  pandocNormalBlock       start="\%(^\s*\_s\|\%^\)\@<=.*\S" end="^\s*\_$"               keepend contains=@pandocEmbeddedCode,@pandocInlineElements,@pandocStyles,@pandocSmartType,@spell
+syn region  pandocTitleBlock        start="^%" skip="^  \S.*$" end="\%(\_^\s*\_$\_s[^%]\)\@=" keepend contains=@pandocInlineElements,@pandocStyles,pandocTitleBlockTitle,@pandocSmartType,pandocComment,@spell
+syn region  pandocTitleBlockTitle   start="\%(\%^\|\_^\s*\_s\_^\)\@<=%%\@!" end="$" keepend oneline contained contains=@pandocInlineElements,@pandocStyles,@pandocSmartType,@spell
 
 "----------------------------------------------------------------------
 " Pandoc Comment Match & Option Setting
@@ -388,9 +388,9 @@ else
 endif
 exe 'syn region  pandocFootnoteLink     matchgroup=pandocLinkDelim  start="\[\^\@=" end="\]" '.s:pandoc_conceal_footnotes_ends.' contained'
 exe 'syn region  pandocFootnoteDefLink  matchgroup=pandocLinkDelim  start="^\[\^\@=" end="\]" '.s:pandoc_conceal_footnotes_ends.' contained'
-syn region  pandocFootnoteInline        matchgroup=pandocLinkDelim  start="\^\[" end="\]" keepend contained contains=@pandocStyles,@pandocInlineElements
-syn region  pandocFootnote              start="\%(^\[\^.\{-}\]\):" end="\%(\n \{0,3}\[.\{-}\]:\|\n\S\)\@=" keepend contains=@pandocStyles,@pandocInlineElements,pandocVerbatimBlockDeep,pandocFootnoteDefLink
-syn region  pandocFootnote              start="\%(^\[\^.\{-}\]\):" end="\_^\s*\_$\%(\_s\S\)\@=" keepend contains=@pandocStyles,@pandocInlineElements,pandocVerbatimBlockDeep,pandocFootnoteDefLink
+syn region  pandocFootnoteInline        matchgroup=pandocLinkDelim  start="\^\[" end="\]" keepend contained contains=@pandocStyles,@pandocInlineElements,@spell
+syn region  pandocFootnote              start="\%(^\[\^.\{-}\]\):" end="\%(\n \{0,3}\[.\{-}\]:\|\n\S\)\@=" keepend contains=@pandocStyles,@pandocInlineElements,pandocVerbatimBlockDeep,pandocFootnoteDefLink,@spell
+syn region  pandocFootnote              start="\%(^\[\^.\{-}\]\):" end="\_^\s*\_$\%(\_s\S\)\@=" keepend contains=@pandocStyles,@pandocInlineElements,pandocVerbatimBlockDeep,pandocFootnoteDefLink,@spell
 exe 'syn match   pandocFootnoteIndctr   "\%1v." contained '.s:pandoc_conceal_footnotes.' cchar=⫶'
 
 if s:pandoc_conceal =~ "c"

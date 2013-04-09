@@ -45,12 +45,12 @@ rb_prompt(){
   if $(which rbenv &> /dev/null)
   then
     rb_v=$(rbenv version |awk '{print $1}')
-    if [[ $rb_v  == $(rbenv global) ]]
-    then
-      echo ""
-    else
-      echo "%{$fg[yellow]%}$rb_v%{$reset_color%}"
-    fi
+    # if [[ $rb_v  == $(rbenv global) ]]
+    # then
+    #   echo ""
+    # else
+      echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
+    # fi
   else
     echo ""
   fi
@@ -88,6 +88,14 @@ set_busy_prompt () {
   export PROMPT=$'\n$(directory_name) $(git_dirty)$(need_push) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
+
+# A full but slow prompt that uses zsh-git-prompt from olivierverdier
+# git://github.com/olivierverdier/zsh-git-prompt.git
+# source ~/dev/dotfiles/zsh/git-prompt/zshrc.sh
+# set_busy_prompt () {
+#   export PROMPT=$'\n$(directory_name) $(git_super_status) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
+#   RPROMPT='%(?.. %?)'
+# }
 
 # A speedy version of the prompt
 set_prompt () {

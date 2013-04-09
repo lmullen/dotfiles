@@ -1,10 +1,15 @@
 " Vim configuration for
 " Lincoln Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 
-" General -------------------------------------------------------------
+" Pathogen ----------------------------------------------------------
 source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()                      " pathogen loads plugins
 " call pathogen#helptags()                    " pathogen loads help files
+
+" Functions ---------------------------------------------------------
+source $HOME/.vim/functions.vim
+
+" General -----------------------------------------------------------
 set nocompatible                            " not compatible with vi
 set modelines=0                             " security
 set encoding=utf-8
@@ -31,6 +36,7 @@ set viminfo='300,f1,<300,:500,/500,n~/.viminfo
 
 " Display -------------------------------------------------------------
 syntax on                                   " syntax highlighting
+syntax spell toplevel
 set background=dark
 set guifont=DejaVu\ Sans\ Mono:h14
 "set term=color_xterm
@@ -65,7 +71,7 @@ set statusline+=\ [L\:%l\/%L,\%p%%\ C\:%c]  " line/total lines percentage/column
 set incsearch                               " show search matches as you type
 set ignorecase
 set smartcase                               " smart about case sensitivity
-set hlsearch                                " highlight search terms
+" set hlsearch                                " highlight search terms
                                             " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
                                             " use very magic mode
@@ -73,7 +79,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " cnoremap %s/ %s/\v
 " nnoremap / /\v
 " vnoremap / /\v
-cnoremap ack Ack
+" cnoremap ack Ack
 
 " Keyboard shortcuts --------------------------------------------------
 let mapleader="\\"
@@ -160,14 +166,15 @@ set formatoptions=tqcwn                     " see :help fo-table
                                             " quickly edit/reload vimrc
 nnoremap <leader>ev :sp $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
-nnoremap <silent> <leader>ab :sp $HOME/.vim/abbreviations.vim<CR>
+nnoremap <silent> <leader>ea :sp $HOME/.vim/abbreviations.vim<CR>
+nnoremap <silent> <leader>ef :sp $HOME/.vim/functions.vim<CR>
 set backup                                  " backups and swaps
 set backupdir=$HOME/.cache/vim/backup/
 set directory=$HOME/.cache/vim/swap/
 autocmd FileType vim setlocal nowrap
 
 " Pandoc ------------- ------------------------------------------------
-nmap <leader>eb :e ~/bib/history.bib<CR>G
+nmap <leader>eb :e ~/bib/master.bib<CR>G
 au BufNewFile,BufRead *.markdown,*.md,*.mkd,*.pd,*.pdc,*.pdk,*.pandoc,*.text,*.txt,*.page   set filetype=pandoc
 
 " Ctrl-P -------------------------------------------------------------
@@ -185,11 +192,9 @@ let g:ctrlp_custom_ignore = {
 autocmd FileType apache set commentstring=#\ %s   "comments for Apache
 autocmd FileType R set commentstring=#\ %s        "comments for R
 autocmd FileType pandoc set commentstring=<!--\ %s\ -->   "comments for pandoc
-" Functions ---------------------------------------------------------
-source $HOME/.vim/functions.vim
 
 " BibTeX key completion ---------------------------------------------
-set dictionary+=$HOME/bib/citekeys.txt
+set dictionary+=$HOME/acad/research/bib/citekeys.txt
 set complete+=k
 
 " Temporary ---------------------------------------------------------
@@ -217,11 +222,6 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\{2,}\%#\@<!$/
 
 
-" Add the character ^ to the definition of a word, so that in Pandoc 
-" files you can jump from footnote mark to footnote text.
-" set iskeyword+=\^
-"
-
 " UltiSnips
 let g:UltiSnipsEditSplit = 'horizontal'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -235,3 +235,17 @@ nnoremap <leader>eu :UltiSnipsEdit<CR>
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeHijackNetrw=1
 let NERDTreeShowBookmarks=1
+
+autocmd BufNewFile,BufRead *.rb set keywordprg=ri
+
+let g:pandoc_conceal = ""
+
+autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_us
+" autocmd BufNewFile,BufRead *.md setlocal formatprg=par
+
+map <C-c> gcc
+map <C-\> gcc
+
+" autocomplete citations
+inoremap <S-tab> <C-x><C-k>
+
