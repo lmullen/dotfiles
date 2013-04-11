@@ -6,8 +6,8 @@ alias notes="mvim -c ':cd ~/notes'"   # General notes
 # Research and writing
 alias bib="mvim -c ':cd ~/bib' ~/bib/history.bib"
 alias diss="mvim -c ':cd ~/acad/dissertation/'"
-alias research="mvim -c ':cd ~/acad/research/wikidata'"
-alias runwiki='cd ~/acad/research && gitit -f my.conf > /dev/null 2>&1 &'
+alias research="mvim -c ':cd ~/acad/research/wiki/wikidata'"
+alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 # Blog
 alias blog="mvim -c ':cd ~/dev/lincolnmullen.com/'"
 # American Converts Database

@@ -122,3 +122,9 @@ function! ToggleBackground()
     set background=dark
   endif
 endfunction
+
+command! -nargs=0 Omeka call OmekaSetup()
+function! OmekaSetup()
+  set tags+=~/dev/Omeka/.git/tags
+endfunction
+

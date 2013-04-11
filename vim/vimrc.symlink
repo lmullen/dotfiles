@@ -85,8 +85,6 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 let mapleader="\\"
 let maplocalleader="\\"
 " nnoremap ; :
-inoremap jj <ESC>
-                                            " faster change case
 nnoremap K ~
                                             " shift-E to end of a word
 nmap E ge
@@ -113,7 +111,7 @@ nnoremap k gk
 
 if has('wildmenu')
   set wildmenu                                " tab completion
-  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.git/*,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
 endif
 
 nnoremap [q :cprev<CR>
@@ -126,8 +124,8 @@ nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
 nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
-nnoremap ]t :tabnext<CR>
-nnoremap [t :tabprev<CR>
+nnoremap ]t :tNext<CR>
+nnoremap [t :tPrev<CR>
 nnoremap [<space> O<ESC>j
 nnoremap ]<space> o<ESC>k
 nnoremap ]f /\V[^\d\+]<CR>
@@ -247,5 +245,5 @@ map <C-c> gcc
 map <C-\> gcc
 
 " autocomplete citations
-inoremap <S-tab> <C-x><C-k>
+" inoremap <S-tab> <C-x><C-k>
 
