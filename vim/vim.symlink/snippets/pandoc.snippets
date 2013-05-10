@@ -5,11 +5,11 @@ snippet [ "["
 endsnippet
 
 snippet [* "[*"
-[${1:link}](${2:`!v @*`})${3}
+[$0](`!v @*`)
 endsnippet
 
 snippet []* "[]*"
-[${1:link}](${2:`!v @*`})${3}
+[$0](`!v @*`)
 endsnippet
 
 snippet [: "[:"
@@ -151,6 +151,18 @@ snippet book "BibTeX book"
   address     = {${5}},
   publisher   = {${6}},
   year        = {${7}},
+}
+~~~~~
+
+endsnippet
+
+snippet thesis "BibTeX thesis"
+~~~~~{.bib}
+@PhDThesis {   ${1},
+  author      = {${2}},
+  title       = {${3}},
+  school      = {${4}},
+  year        = {${5}},
 }
 ~~~~~
 
@@ -298,4 +310,44 @@ endsnippet
 
 snippet dtag 
 diss-ch6, secondary
+endsnippet
+
+snippet archival "Gitit categories for archival collection"
+---
+categories: diss-ch${1:X}, archival-collection, primary
+...
+
+# Metadata
+
+[Catalog]($2)
+
+Call number: $3
+
+Description:
+
+> 
+
+${0}
+endsnippet
+
+snippet catalog "Catalog link"
+[Catalog record](`!v @*`)
+endsnippet
+
+snippet PDF "Link to PDF"
+[PDF](/research-files/`!v expand("%:r")`.pdf)
+endsnippet
+
+snippet GB "Link to Google Books"
+[Google Books](`!v @*`)
+$0
+endsnippet
+
+snippet HT "Link to Hathi Trust"
+[Hathi Trust](`!v @*`)
+$0
+endsnippet
+
+snippet note "**Note**: "
+**Note**: 
 endsnippet

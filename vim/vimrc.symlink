@@ -28,7 +28,7 @@ set noerrorbells                            " don't beep
 au FocusLost * :wa                          " save when losing focus
 set mouse=a                                 " use mouse in console
 set autoread                                " read a file changed on disk
-" set clipboard=unnamed                       " use Mac system clipboard
+set clipboard=unnamed                       " use Mac system clipboard
 filetype plugin indent on                   " detect filetypes
 
 " viminfo -------------------------------------------------------------
@@ -126,6 +126,10 @@ nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
 nnoremap ]t :tNext<CR>
 nnoremap [t :tPrev<CR>
+nnoremap [a :prev<CR>
+nnoremap ]a :next<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
 nnoremap [<space> O<ESC>j
 nnoremap ]<space> o<ESC>k
 nnoremap ]f /\V[^\d\+]<CR>
@@ -246,4 +250,3 @@ map <C-\> gcc
 
 " autocomplete citations
 " inoremap <S-tab> <C-x><C-k>
-

@@ -344,7 +344,7 @@ syn match   pandocHeadingMarkerChar "^#\{4}#\@!" contained conceal cchar=4
 syn match   pandocHeadingMarkerChar "^#\{5}#\@!" contained conceal cchar=5
 syn match   pandocHeadingMarkerChar "^#\{6}#\@!" contained conceal cchar=6
 else
-syn region  pandocHeading           matchgroup=pandocHeadingMarker start="\%(^\s*\n\|\%^\)\@<=#\{1,6}[#.]\@!" end="#*\s*$" keepend oneline contains=@pandocInlineElements,@pandocStylesHeading,pandocHeadingMarkerChar
+syn region  pandocHeading           matchgroup=pandocHeadingMarker start="\%(^\s*\n\|\%^\)\@<=#\{1,6}[#.]\@!" end="#*\s*$" keepend oneline contains=@pandocInlineElements,@pandocStylesHeading,pandocHeadingMarkerChar,@spell
 endif
 syn region  pandocHeading           start="\%(^\s*\n\|\%^\)\@<=\%(\S.*\n[\-=]\+\s*$\)\@="   end="^[\-=]\+\s*$" keepend contains=@pandocInlineElements,@pandocStylesHeading,pandocHeadingMarker
 syn match   pandocHeadingMarker     "^[\-=]\+\s*$" contained contains=pandocHeadingMarkerChar

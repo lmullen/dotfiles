@@ -1,4 +1,5 @@
 require(ggplot2)
+require(knitr)
 options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
 options(device="quartz")
 Sys.setenv(R_HISTSIZE='100000')

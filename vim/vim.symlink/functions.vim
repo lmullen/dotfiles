@@ -73,7 +73,7 @@ endfunction
 command! -nargs=0 Wiki call CommitToWiki()
 nnoremap _wc :call CommitToWiki()<CR>
 function! CommitToWiki()
-  :!cd ~/acad/research/wiki/wikidata && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
+  :silent !cd ~/acad/research/wiki/wikidata && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/Users/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
 endfunction
 
 " Make the BibTeX bibliography
@@ -123,8 +123,22 @@ function! ToggleBackground()
   endif
 endfunction
 
+" Add Omeka's tags
 command! -nargs=0 Omeka call OmekaSetup()
 function! OmekaSetup()
   set tags+=~/dev/Omeka/.git/tags
+endfunction
+
+" Open the current note file in the browser
+command! -nargs=0 Wo call OpenCurrentNoteInWiki()
+function! OpenCurrentNoteInWiki()
+ silent !open "http://mullen-mac.local:5001/%:r"
+endfunction
+
+
+" Copy the current filename without extension
+command! -nargs=0 FN call CopyFilename()
+function! CopyFilename()
+ let @* = expand("%:r") 
 endfunction
 
