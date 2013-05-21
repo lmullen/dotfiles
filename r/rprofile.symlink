@@ -2,6 +2,7 @@ require(ggplot2)
 require(knitr)
 options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
 options(device="quartz")
+options(prompt = "$ ")
 Sys.setenv(R_HISTSIZE='100000')
 
 .First <- function() {
@@ -9,8 +10,21 @@ Sys.setenv(R_HISTSIZE='100000')
 
 .Last <- function() {
 }
+
 # Override q() to not save by default.
 # Same as saying q("no")
 q <- function (save="no", ...) {
   quit(save=save, ...)
+}
+
+# A function that tells me which packages are out of date
+check.packages <- function() {
+    if (!is.null(utils::old.packages())) {
+        old_packages <- utils::old.packages()
+        cat("Notification:", dim(old_packages)[1], "packages are out of date \n")
+        cat(unname(old_packages[, 1]), sep = ",", "\n")
+    }
+    if (is.null(utils::old.packages())) {
+        cat("All packages are current \n")
+    }
 }

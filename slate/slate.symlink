@@ -116,6 +116,7 @@ layout 1monitors ${editor}:REPEAT ${macbook-lefthalf}
 layout 1monitors 'Sublime Text 2':REPEAT ${macbook-lefthalf}
 layout 1monitors ${terminal}:REPEAT ${macbook-righthalf}
 layout 1monitors ${browser}:REPEAT ${macbook-full}
+layout 1monitors 'Sublime Text 2':REPEAT ${macbook-full}
 layout 1monitors 'Twitter':REPEAT ${macbook-leftfifth}
 layout 1monitors 'Preview':REPEAT ${macbook-righthalf}
 layout 1monitors 'TweetDeck':REPEAT ${macbook-full}
@@ -140,6 +141,7 @@ layout 2monitors 'Twitter':REPEAT ${macbook-leftfifth}
 layout 2monitors 'TweetDeck':REPEAT ${macbook-full}
 layout 2monitors 'Things':REPEAT ${macbook-lefthalf}
 layout 2monitors 'nvALT':REPEAT ${macbook-righthalf}
+layout 2monitors 'Sublime Text 2':REPEAT ${dell-full}
 
 # Bind a key to trigger this layout
 bind pad*:${hyper} layout 2monitors

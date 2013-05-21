@@ -4,6 +4,7 @@ pathdirs=(
   $HOME/.rbenv/shims
   /usr/local/bin
   /usr/local/sbin
+  /usr/local/share/python3
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
