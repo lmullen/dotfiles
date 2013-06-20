@@ -20,7 +20,7 @@ alias monitor-dell 1440x900
 
 # APPLICATION ALIASES AND BINDINGS
 # -------------------------------------------------------------------
-alias editor 'MacVim'
+alias editor 'Sulime Text 2'
 bind z:alt;shift focus ${editor}
 bind a:alt;shift focus 'Sublime Text 2'
 alias terminal 'iTerm'
@@ -113,7 +113,6 @@ alias dell-bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX
 # ONE MONITOR LAYOUT
 # -------------------------------------------------------------------
 layout 1monitors ${editor}:REPEAT ${macbook-lefthalf}
-layout 1monitors 'Sublime Text 2':REPEAT ${macbook-lefthalf}
 layout 1monitors ${terminal}:REPEAT ${macbook-righthalf}
 layout 1monitors ${browser}:REPEAT ${macbook-full}
 layout 1monitors 'Sublime Text 2':REPEAT ${macbook-full}
@@ -133,10 +132,9 @@ default 1monitors resolutions:${monitor-macbook}
 # STANDING DESK LAYOUT
 # -------------------------------------------------------------------
 layout 2monitors ${editor}:REPEAT ${dell-lefthalf}
-layout 2monitors 'Sublime Text 2':REPEAT ${dell-lefthalf}
-layout 2monitors ${terminal}:REPEAT ${dell-righthalf}
+layout 2monitors ${terminal}:REPEAT ${macbook-full}
 layout 2monitors ${browser}:REPEAT ${macbook-full}
-layout 2monitors 'Preview':REPEAT ${dell-righthalf}
+layout 2monitors 'Preview':REPEAT ${dell-full}
 layout 2monitors 'Twitter':REPEAT ${macbook-leftfifth}
 layout 2monitors 'TweetDeck':REPEAT ${macbook-full}
 layout 2monitors 'Things':REPEAT ${macbook-lefthalf}

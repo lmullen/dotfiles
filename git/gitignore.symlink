@@ -26,5 +26,7 @@
 .DS_Store
 .DS_store
 .svn
+.tags
+.tags_sorted_by_file
 Session.vim
 vc.tex

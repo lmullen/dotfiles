@@ -1,20 +1,25 @@
 # Project aliases
 # -------------------------------------------------------------------
-alias dot="mvim -c ':cd ~/dev/dotfiles'"
-alias home='cd ~'
-alias notes="mvim -c ':cd ~/notes'"   # General notes
-# Research and writing
-alias bib="mvim -c ':cd ~/bib' ~/bib/history.bib"
-alias diss="mvim -c ':cd ~/acad/dissertation/'"
-alias research="mvim -c ':cd ~/acad/research/wiki/wikidata'"
+alias bib="subl --new-window --project ~/Dropbox/Sublime\ projects/bib.sublime-project"
+alias blog="subl --new-window --project ~/Dropbox/Sublime\ projects/lincolnmullen.com.sublime-project"
+alias demographics="subl --new-window --project ~/Dropbox/Sublime\ projects/Demographics\ of\ Religion.sublime-project"
+alias diss="subl --new-window --project ~/Dropbox/Sublime\ projects/dissertation.sublime-project"
+alias dot="subl --new-window --project ~/Dropbox/Sublime\ projects/dotfiles.sublime-project"
+alias jsr="subl --new-window --project ~/Dropbox/Sublime\ projects/JSR.sublime-project"
+alias research="subl --new-window --project ~/Dropbox/Sublime\ projects/research-notes.sublime-project"
+
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
-# Blog
-alias blog="mvim -c ':cd ~/dev/lincolnmullen.com/'"
-# American Converts Database
-alias ccontrol="mvim -c ':cd ~/dev/converts-control/'"
-alias ctheme="mvim -c ':cd ~/dev/converts-theme/'"
-# JSR
-alias jsr="mvim -c ':cd ~/dev/jsr'"
+
+# alias dot="mvim -c ':cd ~/dev/dotfiles'"
+# alias notes="mvim -c ':cd ~/notes'"   # General notes
+# alias bib="mvim -c ':cd ~/bib' ~/bib/history.bib"
+# alias diss="mvim -c ':cd ~/acad/dissertation/'"
+# alias research="mvim -c ':cd ~/acad/research/wiki/wikidata'"
+# alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
+# alias blog="mvim -c ':cd ~/dev/lincolnmullen.com/'"
+# alias ccontrol="mvim -c ':cd ~/dev/converts-control/'"
+# alias ctheme="mvim -c ':cd ~/dev/converts-theme/'"
+# alias jsr="mvim -c ':cd ~/dev/jsr'"
 
 # Change application behavior
 # -------------------------------------------------------------------
@@ -37,7 +42,6 @@ alias more='more -R'                # give more colors
 alias mute="osascript -e 'set volume output muted true'"
 alias ql="qlmanage -p &>/dev/null"  # open file in Quick Look
 alias zshreload='source ~/.zshrc'
-
 
 # Gists
 # -------------------------------------------------------------------
