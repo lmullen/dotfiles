@@ -1,8 +1,11 @@
 require(ggplot2)
 require(knitr)
+require(ggmap)
 options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
 options(device="quartz")
 options(prompt = "$ ")
+options("help_type" = "html")
+options("width" = 160)
 Sys.setenv(R_HISTSIZE='100000')
 
 .First <- function() {
