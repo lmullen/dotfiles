@@ -5,8 +5,6 @@
 [user]
 	name = Lincoln Mullen
         email = lincoln@lincolnmullen.com
-[credential]
-        helper = osxkeychain
 [github]
         user = lmullen
 [alias]
