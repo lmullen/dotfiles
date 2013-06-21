@@ -38,7 +38,7 @@ set viminfo='300,f1,<300,:500,/500,n~/.viminfo
 syntax on                                   " syntax highlighting
 syntax spell toplevel
 set background=dark
-set guifont=DejaVu\ Sans\ Mono:h14
+" set guifont=DejaVu\ Sans\ Mono:h14
 "set term=color_xterm
 set t_Co=256                                " color terminal
 if &t_Co >= 256 || has("gui_running")

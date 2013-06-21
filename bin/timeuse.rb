@@ -9,7 +9,7 @@ require "optparse"
 
 # Default options
 options = {:billable => FALSE, 
-  :log_file => "/Users/lmullen/Dropbox/Elements/time-use-journal.txt"}
+  :log_file => "/home/lmullen/Dropbox/Elements/time-use-journal.txt"}
 
 # Get the options
 ARGV.options do |opts|

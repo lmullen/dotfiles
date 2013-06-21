@@ -1,5 +1,5 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/dev/dotfiles
+export ZSH=$HOME/dotfiles
 
 # get some color
 export TERM="xterm-256color"
@@ -19,6 +19,11 @@ if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
+
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
