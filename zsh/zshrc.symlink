@@ -1,5 +1,5 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/dotfiles
+export ZSH=$HOME/dev/dotfiles
 
 # get some color
 export TERM="xterm-256color"
