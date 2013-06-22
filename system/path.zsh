@@ -1,10 +1,10 @@
 pathdirs=(
   ./bin
   $ZSH/bin
-  $HOME/.rbenv/shims
   /usr/local/bin
   /usr/local/sbin
-  /usr/local/share/python3
+  $HOME/.rbenv/shims
+  $HOME/.rbenv/bin
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
