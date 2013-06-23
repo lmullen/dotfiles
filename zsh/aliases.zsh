@@ -26,10 +26,11 @@ alias ip="curl icanhazip.com"       # get current public IP
 alias ll="ls -l -F --color"
 alias ls="ls -F --color"
 alias more='more -R'                # give more colors
+alias process="ps aux | grep"
 alias synaptic="sudo synaptic"
+alias tn="new-todo.rb"
 alias tu="timeuse.rb"
 alias zshreload='source ~/.zshrc'
-alias process="ps aux | grep"
 
 # Gists
 # -------------------------------------------------------------------
