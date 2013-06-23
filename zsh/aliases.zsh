@@ -18,7 +18,6 @@ alias chrome="open -a \"Google Chrome\""
 # File and system management
 # -------------------------------------------------------------------
 alias ack="ack-grep"
-# alias cpu='top -a -o cpu'           # sort processes by cpu usage
 alias cpwd='pwd|tr -d "\n"|pbcopy'  # copy the working directory path
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
@@ -26,10 +25,11 @@ alias findf="find . -type f -iname" # find a file
 alias ip="curl icanhazip.com"       # get current public IP
 alias ll="ls -l -F --color"
 alias ls="ls -F --color"
-# alias mem='top -a -o rsize'         # sort processes by memory usage
 alias more='more -R'                # give more colors
-alias zshreload='source ~/.zshrc'
+alias synaptic="sudo synaptic"
 alias tu="timeuse.rb"
+alias zshreload='source ~/.zshrc'
+alias process="ps aux | grep"
 
 # Gists
 # -------------------------------------------------------------------
