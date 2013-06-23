@@ -1,0 +1,16 @@
+%%
+%% This is file `T5MinionPro-TOsF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `T5,tosf,fd')
+%% 
+%% These files are public domain.
+%% 
+ \ProvidesFile{T5MinionPro-TOsF.fd}  [2005/01/23 v2.0 font definitions for T5/MinionPro-TOsF.]
+\input{MinionPro-FontDef.sty}%
+        \Mn@DeclareLargeFontFamily       {T5} {MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `T5MinionPro-TOsF.fd'.

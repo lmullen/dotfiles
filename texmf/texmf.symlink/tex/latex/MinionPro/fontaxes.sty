@@ -1,0 +1,373 @@
+%%
+%% This is file `fontaxes.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% fontaxes.dtx  (with options: `package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from fontaxes.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file fontaxes.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fontaxes}
+[2007/03/31 v0.2b Font selection axes]
+\DeclareRobustCommand\upshape{\not@math@alphabet\upshape\relax
+  \fontprimaryshape\updefault\selectfont}
+\DeclareRobustCommand\itshape{\not@math@alphabet\itshape\mathit
+  \fontprimaryshape\itdefault\selectfont}
+\DeclareRobustCommand\slshape{\not@math@alphabet\slshape\relax
+  \fontprimaryshape\sldefault\selectfont}
+\DeclareRobustCommand\swshape{\not@math@alphabet\swshape\relax
+  \fontprimaryshape\swdefault\selectfont}
+\DeclareRobustCommand\scshape{\not@math@alphabet\scshape\relax
+  \fontsecondaryshape\scdefault\selectfont}
+\DeclareRobustCommand\sscshape{\not@math@alphabet\sscshape\relax
+  \fontsecondaryshape\sscdefault\selectfont}
+\DeclareRobustCommand\ulcshape{\not@math@alphabet\ulcshape\relax
+  \fontsecondaryshape\ulcdefault\selectfont}
+\providecommand\swdefault{sw}
+\providecommand\ulcdefault{ulc}
+\providecommand\sscdefault{ssc}
+\DeclareTextFontCommand{\textsw}{\swshape}
+\DeclareTextFontCommand{\textssc}{\sscshape}
+\DeclareTextFontCommand{\textulc}{\ulcshape}
+\def\txfigures{\@nomath\txfigures
+  \fontfigurestyle{text}\selectfont}
+\def\lnfigures{\@nomath\lnfigures
+  \fontfigurestyle{lining}\selectfont}
+\def\tbfigures{\@nomath\tbfigures
+  \fontfigurealignment{tabular}\selectfont}
+\def\prfigures{\@nomath\prfigures
+   \fontfigurealignment{proportional}\selectfont}
+\newcommand\fa@fv@prefix{fa@fv@switch@}
+\newcommand*\fa@fv@newoption[1]
+  {\expandafter\newcommand\csname\fa@fv@prefix #1\endcsname}
+\fa@fv@newoption{text}        {\txfigures}
+\fa@fv@newoption{osf}         {\txfigures}
+\fa@fv@newoption{lining}      {\lnfigures}
+\fa@fv@newoption{lf}          {\lnfigures}
+\fa@fv@newoption{tabular}     {\tbfigures\tabularmath}
+\fa@fv@newoption{tab}         {\tbfigures\tabularmath}
+\fa@fv@newoption{proportional}{\prfigures\proportionalmath}
+\fa@fv@newoption{prop}        {\prfigures\proportionalmath}
+\newcommand\fa@fv@list{}
+\newcommand\fa@fv{}
+\DeclareRobustCommand*\figureversion[1]{%
+  \edef\fa@fv@list{\zap@space#1 \@empty}%
+  \@for\fa@fv:=\fa@fv@list\do{%
+    \@ifundefined{\fa@fv@prefix\fa@fv}{%
+      \PackageWarning{fontaxes}%
+      {Unknown figure style `\fa@fv'\MessageBreak
+       specified as the argument to \string\figureversion.\MessageBreak
+       Figure style not changed}%
+    }{%
+      \@nameuse{\fa@fv@prefix\fa@fv}%
+    }%
+  }%
+}
+\AtBeginDocument{
+  \@ifpackageloaded{hyperref}{%
+    \pdfstringdefDisableCommands{%
+      \let\figureversion\@gobble
+      \let\textfigures\@firstofone
+      \let\liningfigures\@firstofone
+      \let\tabularfigures\@firstofone
+      \let\proportionalfigures\@firstofone
+      \let\textsw\@firstofone
+      \let\textssc\@firstofone
+      \let\textulc\@firstofone
+    }%
+  }{}%
+}
+\DeclareTextFontCommand{\textfigures}{\txfigures}
+\DeclareTextFontCommand{\liningfigures}{\lnfigures}
+\DeclareTextFontCommand{\tabularfigures}{\tbfigures\tabularmath}
+\DeclareTextFontCommand{\proportionalfigures}
+  {\prfigures\proportionalmath}
+\def\boldmath{\@nomath\boldmath
+  \mathweight{bold}}
+\def\unboldmath{\@nomath\unboldmath
+  \mathweight{normal}}
+\def\tabularmath{\@nomath\tabularmath
+  \mathfigurealignment{tabular}}
+\def\proportionalmath{\@nomath\proportionalmath
+  \mathfigurealignment{proportional}}
+\DeclareRobustCommand\mathweight[1]{%
+  \fa@get@math \edef\fa@math@weight{#1}\fa@set@math}
+\DeclareRobustCommand\mathfigurealignment[1]{%
+  \fa@get@math \edef\fa@math@align{#1}\fa@set@math}
+\DeclareRobustCommand\fontfigurestyle[1]{%
+  \fa@get@family \edef\fa@figure@style{#1}\fa@set@family}
+\DeclareRobustCommand\fontfigurealignment[1]{%
+  \fa@get@family \edef\fa@figure@align{#1}\fa@set@family}
+\DeclareRobustCommand\fontbasefamily[1]{%
+  \fa@get@family \edef\fa@family@base{#1}\fa@set@family}
+\DeclareRobustCommand\fontprimaryshape[1]{%
+  \fa@get@shape \edef\fa@shape@one{#1}\fa@set@shape}
+\DeclareRobustCommand\fontsecondaryshape[1]{%
+  \fa@get@shape \edef\fa@shape@two{#1}\fa@set@shape}
+\newcommand*\fa@math@weight{normal}
+\newcommand*\fa@math@align{proportional}
+\newcommand*\fa@family@base{MinionPro}
+\newcommand*\fa@figure@style{text}
+\newcommand*\fa@figure@align{proportional}
+\newcommand*\fa@shape@one{n}
+\newcommand*\fa@shape@two{ulc}
+\newcommand*\fa@set@math{%
+  \fa@encode@math
+  \mathversion{\fa@code}%
+  \fa@save\math@version}
+\newcommand*\fa@set@family{%
+  \fa@encode@family
+  \fontfamily{\fa@code}%
+  \fa@save\f@family}
+\newcommand*\fa@set@shape{%
+  \fa@encode@shape
+  \fontshape{\fa@code}%
+  \fa@save\f@shape}
+\newcommand*\fa@get@math{%
+  \iffa@changed\math@version{%
+    \fa@decode@{math}{\math@version}%
+    \ifx\fa@edoc\relax\else
+      \edef\fa@math@weight{\expandafter\@firstoftwo\fa@edoc}%
+      \edef\fa@math@align{\expandafter\@secondoftwo\fa@edoc}%
+    \fi
+    \fa@save\math@version
+  }{}%
+}
+\newcommand*\fa@get@family{%
+  \iffa@changed\f@family{%
+    \let\fa@edoc\relax
+    \expandafter\fa@split@family\f@family--\@nnil
+    \ifx\fa@split@suffix\relax\else
+      \fa@decode@{figures}{\fa@split@suffix}%
+    \fi
+    \ifx\fa@edoc\relax
+      \expandafter\fa@split@familyalt\f@family
+        \@empty\@empty\@empty\@empty\@nnil
+      \ifx\fa@split@suffix\relax\else
+        \fa@decode@{figuresalt}{\fa@split@suffix}%
+      \fi
+      \ifx\fa@edoc\relax
+        \fa@warn@undecodable{family `\f@family'}%
+        \edef\fa@family@base{\f@family}%
+      \else
+        \edef\fa@family@base{\fa@split@prefix}%
+        \edef\fa@figure@style{\expandafter\@firstoftwo\fa@edoc}%
+      \fi
+    \else
+      \edef\fa@family@base{\fa@split@prefix}%
+      \edef\fa@figure@style{\expandafter\@firstoftwo\fa@edoc}%
+      \edef\fa@figure@align{\expandafter\@secondoftwo\fa@edoc}%
+    \fi
+  }{}%
+}
+\newcommand*\fa@get@shape{%
+  \iffa@changed\f@shape{%
+    \fa@decode@{shape}{\f@shape}%
+    \ifx\fa@edoc\relax\else
+      \edef\fa@shape@one{\expandafter\@firstoftwo\fa@edoc}%
+      \edef\fa@shape@two{\expandafter\@secondoftwo\fa@edoc}%
+    \fi
+    \fa@save\f@shape
+  }{}%
+}
+\newcommand*\fa@encode@math{%
+  \fa@encode@{math}{{\fa@math@weight}{\fa@math@align}}%
+}
+\newcommand*\fa@encode@math@default{%
+  \edef\fa@code{\fa@math@weight\fa@math@align}}
+\newcommand*\fa@encode@family{%
+  \fa@encode@{family}
+    {{\fa@family@base}{\fa@figure@style}{\fa@figure@align}}%
+}
+\newcommand*\fa@encode@family@default{%
+  \fa@encode@figures
+  \edef\fa@code{\fa@family@base-\fa@code}%
+  \fa@check@family\fa@code
+  \iffa@exists\else
+    \fa@encode@figuresalt
+    \edef\fa@code{\fa@family@base\fa@code}%
+    \fa@check@family\fa@code
+    \iffa@exists\else
+      \edef\fa@code{\fa@family@base}%
+    \fi
+  \fi
+}
+\newcommand*\fa@encode@figures{%
+  \fa@encode@{figures}{{\fa@figure@style}{\fa@figure@align}}%
+}
+\newcommand*\fa@encode@figures@default{%
+  \edef\fa@code{OsF}%
+  \PackageWarning{fontaxes}{Unknown figure version
+    `\fa@figure@style\space + \fa@figure@align'\MessageBreak
+    Encoding to `\fa@code'}%
+}
+\newcommand*\fa@encode@figuresalt{%
+  \fa@encode@{figuresalt}{{\fa@figure@style}{\fa@figure@align}}%
+}
+\newcommand*\fa@encode@figuresalt@default{%
+  \PackageWarning{fontaxes}{Unknown figure version
+    `\fa@figure@style\space + \fa@figure@align'\MessageBreak
+    Encoding to `\fa@code'}%
+  \edef\fa@code{j}%
+}
+\newcommand*\fa@encode@shape{%
+  \fa@encode@{shape}{{\fa@shape@one}{\fa@shape@two}}%
+}
+\newcommand*\fa@encode@shape@default{%
+  \edef\fa@code{\fa@shape@two\fa@shape@one}%
+}
+\newcommand*\fa@encode@[2]{%
+  \@ifundefined{fa@encode@#1#2}
+    {\@nameuse{fa@encode@#1@default}}
+    {\edef\fa@code{\@nameuse{fa@encode@#1#2}}}%
+}
+\newcommand*\fa@naming@exception[3]{%
+  \expandafter\edef\csname fa@encode@#1#2\endcsname{#3}%
+}
+\fa@naming@exception{shape}{{n}{ulc}}{n}
+\fa@naming@exception{shape}{{n}{sc}}{sc}
+\fa@naming@exception{shape}{{n}{ssc}}{ssc}
+\fa@naming@exception{shape}{{it}{ulc}}{it}
+\fa@naming@exception{shape}{{sl}{ulc}}{sl}
+\fa@naming@exception{shape}{{sw}{ulc}}{sw}
+\fa@naming@exception{math}{{normal}{proportional}}{normal}
+\fa@naming@exception{math}{{normal}{tabular}}{tabular}
+\fa@naming@exception{math}{{bold}{proportional}}{bold}
+\fa@naming@exception{figures}{{text}{proportional}}{OsF}
+\fa@naming@exception{figures}{{text}{tabular}}{TOsF}
+\fa@naming@exception{figures}{{lining}{proportional}}{LF}
+\fa@naming@exception{figures}{{lining}{tabular}}{TLF}
+\fa@naming@exception{figuresalt}{{text}{proportional}}{j}
+\fa@naming@exception{figuresalt}{{text}{tabular}}{j}
+\fa@naming@exception{figuresalt}{{lining}{proportional}}{x}
+\fa@naming@exception{figuresalt}{{lining}{tabular}}{x}
+\newcommand*\fa@figure@style@domain{text,lining}
+\newcommand*\fa@figure@align@domain{proportional,tabular}
+\newcommand*\fa@shape@one@domain{n,it,sl,sw}
+\newcommand*\fa@shape@two@domain{ulc,sc,ssc}
+\newcommand*\fa@math@weight@domain{normal,bold}
+\newcommand*\fa@math@align@domain{proportional,tabular}
+\newcommand*\fa@create@decode@table[2]{%
+  \begingroup
+  \fa@foreach{#2}{%
+    \@nameuse{fa@encode@#1}%
+    \global\expandafter
+    \edef\csname fa@decode@#1{\fa@code}\endcsname{#2}%
+  }%
+  \endgroup
+}
+\AtEndOfPackage{
+  \fa@create@decode@table{figures}
+    {{\fa@figure@style}{\fa@figure@align}}
+  \fa@create@decode@table{figuresalt}
+    {{\fa@figure@style}{\fa@figure@align}}
+  \fa@create@decode@table{shape}
+    {{\fa@shape@one}{\fa@shape@two}}
+  \fa@create@decode@table{math}
+    {{\fa@math@weight}{\fa@math@align}}
+}
+\newcommand*\fa@warn@undecodable[1]{%
+  \PackageWarning{fontaxes}{I don't know how to decode\MessageBreak #1}}
+\newcommand*\fa@decode@[2]{%
+  \@ifundefined{fa@decode@#1{#2}}{%
+    \let\fa@edoc\relax
+    \fa@warn@undecodable{#1 `#2'}%
+  }{\edef\fa@edoc{\@nameuse{fa@decode@#1{#2}}}}%
+}
+\newcommand*\iffa@changed[1]{%
+  \expandafter\ifx\csname fa@last@\string#1\endcsname#1%
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi
+}
+\newcommand*\fa@save[1]{%
+  \expandafter\let\csname fa@last@\string#1\endcsname#1%
+}
+\AtBeginDocument{%
+  \fa@provide@mv@copy{tabular}{normal}%
+  \fa@provide@mv@copy{boldtabular}{bold}%
+}
+\newcommand*\fa@provide@mv@copy[2]{%
+  \@ifundefined{mv@#1}{%
+    \DeclareMathVersion{#1}%
+    \expandafter\let\csname mv@#1\expandafter\endcsname
+      \csname mv@#2\endcsname
+  }{}%
+}
+\newif\iffa@exists
+\newcommand*\fa@check@family[1]{%
+  \begingroup
+  \fontfamily{#1}\try@load@fontshape
+  \expandafter
+  \ifx\csname\curr@fontshape\endcsname\relax
+    \aftergroup\fa@existsfalse
+  \else
+    \aftergroup\fa@existstrue
+  \fi
+  \endgroup
+}
+\newcommand*\fa@split@prefix{}
+\newcommand*\fa@split@suffix{}
+\newcommand*\fa@split@family{}
+\def\fa@split@family#1-#2-#3\@nnil{%
+  \let\fa@split@prefix\relax
+  \let\fa@split@suffix\relax
+  \def\@tempa{#3}%
+  \ifx\@tempa\@empty\else
+    \def\fa@split@suffix{#2}%
+    \ifx\fa@split@suffix\@empty
+      \let\fa@split@suffix\relax
+    \else
+      \def\fa@split@prefix{#1}%
+    \fi
+  \fi
+}
+\newcommand*\fa@split@familyalt{}
+\def\fa@split@familyalt#1#2#3#4#5\@nnil{%
+  \let\fa@split@prefix\relax
+  \let\fa@split@suffix\relax
+  \edef\@tempa{#5}%
+  \ifx\@tempa\@empty
+    \ifx\@empty#4\else
+      \def\fa@split@prefix{#1#2#3}%
+      \def\fa@split@suffix{#4}%
+    \fi
+  \fi
+}
+\newcommand\fa@foreach[2]{%
+  \begingroup
+  \def\fa@foreach@{#2}%
+  \@tfor\@tempa:=#1\do{%
+    \@temptokena\expandafter{\fa@foreach@}%
+    \edef\fa@foreach@{%
+      \noexpand\@for
+      \expandafter\noexpand\@tempa:=%
+      \expandafter\noexpand\csname
+        \expandafter\expandafter
+        \expandafter\@gobble
+        \expandafter\string\@tempa
+        @domain%
+      \endcsname
+      \noexpand\do{\the\@temptokena}%
+    }%
+  }%
+  \expandafter\endgroup\fa@foreach@
+}
+\endinput
+%%
+%% End of file `fontaxes.sty'.

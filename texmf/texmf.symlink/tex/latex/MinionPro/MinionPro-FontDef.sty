@@ -1,0 +1,265 @@
+%%
+%% This is file `MinionPro-FontDef.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `fontdef')
+%% 
+%% These files are public domain.
+%% 
+ \ProvidesFile{MinionPro-FontDef.sty}[2007/02/01 v2.2 font definition macros]
+\ifx\Mn@DeclareFontShape\@undefined\else\endinput\fi
+\ifx\@nodocument\relax
+  \input{otfontdef.sty}
+\else
+  \NeedsTeXFormat{LaTeX2e}
+  \RequirePackage{otfontdef}
+\fi
+\ifx\@nodocument\relax
+  \begingroup\escapechar`\\
+\fi
+\newcommand\Mn@option@opticals{noopticals}
+\newcommand\Mn@option@fontset{smallfamily}
+\newdimen\Mn@option@normalsize
+\global\Mn@option@normalsize10pt
+\newif\ifMn@option@normalsize
+\Mn@option@normalsizetrue
+\ifx\@nodocument\relax\else
+  \DeclareOption{slides}     {\let\Mn@option@opticals\CurrentOption}
+  \DeclareOption{opticals}   {\let\Mn@option@opticals\CurrentOption}
+  \DeclareOption{noopticals} {\let\Mn@option@opticals\CurrentOption}
+  \DeclareOption{smallfamily}{\let\Mn@option@fontset\CurrentOption}
+  \DeclareOption{medfamily}  {\let\Mn@option@fontset\CurrentOption}
+  \DeclareOption{fullfamily} {\let\Mn@option@fontset\CurrentOption}
+  \DeclareOption{normalsize}  {\Mn@option@normalsizetrue}
+  \DeclareOption{nonormalsize}{\Mn@option@normalsizefalse}
+  \ExecuteOptions{smallfamily,noopticals,normalsize}
+  \ProcessOptions\relax
+\fi
+\ifMn@option@normalsize
+  \begingroup
+  \def\set@fontsize#1#2#3#4\@nil{%
+    \@defaultunits\global\Mn@option@normalsize#2pt\relax\@nnil}%
+  \normalsize\@nil
+  \endgroup
+\fi
+\otf@makeglobal{Mn@option@opticals}
+\otf@makeglobal{Mn@option@fontset}
+\ifx\@nodocument\relax\else
+  \PackageInfo{MinionPro-FontDef}{%
+    Configuration:\space\Mn@option@fontset,\space\Mn@option@opticals,\space
+    normalsize=\the\Mn@option@normalsize}%
+\fi
+\newcount\Mn@config@cnt
+\Mn@config@cnt=0
+\newcommand\Mn@curr@config{Mn@config@\romannumeral\Mn@config@cnt}
+\newcommand\Mn@AddToConfig{%
+  \begingroup
+  \nfss@catcodes
+  \expandafter\endgroup
+  \Mn@AddToConfig@
+}
+\newcommand\Mn@AddToConfig@[3]{%
+  \advance\Mn@config@cnt\@ne
+  \@namedef{\Mn@curr@config}{#3}%
+  \otf@makeglobal{\Mn@curr@config}
+  \@for\Mn@tempa:=#2\do{%
+    \@ifundefined{Mn@config@#1@\Mn@tempa}{%
+      \@temptokena{}%
+    }{%
+      \@temptokena\expandafter\expandafter\expandafter
+        {\csname Mn@config@#1@\Mn@tempa\endcsname}%
+    }%
+    \@expandtwoargs\@namedef{Mn@config@#1@\Mn@tempa}{%
+      \the\@temptokena
+      \expandafter\noexpand\csname\Mn@curr@config\endcsname
+    }%
+    \otf@makeglobal{Mn@config@#1@\Mn@tempa}% perhaps defer to only execute once
+  }%
+}
+\newcommand*\Mn@UseConfig[2]{%
+  \Mn@UseConfigOrDefault{#1}{#2}{}%
+}
+\newcommand*\Mn@UseConfigOrDefault[3]{%
+  \@ifundefined{Mn@config@#1@#2}{#3}%
+    {\@nameuse{Mn@config@#1@#2}}%
+}
+\newcommand*\Mn@TheConfig[2]{%
+  \@ifundefined{Mn@config@#1@#2}{}{%
+    \expandafter\noexpand\csname Mn@config@#1@#2\endcsname
+  }%
+}
+\otf@makeglobal{Mn@UseConfig}
+\otf@makeglobal{Mn@UseConfigOrDefault}
+\otf@makeglobal{Mn@TheConfig}
+\Mn@AddToConfig{opticals}{opticals}{
+      <-8.5>  otf* [optical=Capt]
+   <8.5-13.1> otf* [optical=Text]
+  <13.1-20>   otf* [optical=Subh]
+    <20->     otf* [optical=Disp]
+}
+\Mn@AddToConfig{opticals}{noopticals}{
+      <->     otf* [optical=Text]
+}
+\Mn@AddToConfig{opticals}{slides}{
+      <->     otf* [optical=Capt]
+}
+\ifdim\Mn@option@normalsize<10.1pt
+  \Mn@AddToConfig{fontset/weight}{fullfamily/m}{
+        <-6>    otf* [weight=Semibold]
+       <6-8.5>  otf* [weight=Medium]
+     <8.5->     otf* [weight=Regular]
+  }
+\else
+  \Mn@AddToConfig{fontset/weight}{fullfamily/m}{
+        <-6>    otf* [weight=Semibold]
+       <6-10.1> otf* [weight=Medium]
+    <10.1->     otf* [weight=Regular]
+  }
+\fi
+\Mn@AddToConfig{fontset/weight}{medfamily/m}{
+      <-6>    otf* [weight=Semibold]
+     <6->     otf* [weight=Regular]
+}
+\Mn@AddToConfig{fontset/weight}{smallfamily/m}{
+      <->     otf* [weight=Regular]
+}
+\Mn@AddToConfig{fontset/weight}{fullfamily/b,medfamily/b}{
+      <-6>    otf* [weight=Bold]
+     <6->     otf* [weight=Semibold]
+}
+\Mn@AddToConfig{fontset/weight}{smallfamily/b}{
+      <->     otf* [weight=Bold]
+}
+\Mn@AddToConfig{weight}{eb}{
+      <->     otf* [weight=Bold]
+}
+\Mn@AddToConfig{shape}{ssc,sscit}{
+      <->     otf* [spacing=l2]
+}
+\Mn@AddToConfig{shape}{n,it,sw,sc,scit}{
+      <-8>    otf* [spacing=l1]
+}
+\Mn@AddToConfig{encoding/shape}{U/n,U/it}{
+      <->     otf* [spacing=]
+}
+\Mn@AddToConfig{shape}{sc,ssc,scit,sscit}{
+      <->     otf* [variant=sc]
+}
+\Mn@AddToConfig{shape}{sw}{
+      <->     otf* [variant=swash]
+}
+\Mn@AddToConfig{shape}{it,scit,sscit,sw}{
+      <->     otf* MinionPro-It
+}
+\Mn@AddToConfig{shape}{n,sc,ssc}{
+      <->     otf* MinionPro
+}
+\Mn@AddToConfig{encoding/shape}{OML/it}{
+      <->     otf* [figures=] MinionPro-Mixed
+}
+\Mn@AddToConfig{encoding/shape}{OML/n}{
+      <->     otf* [figures=] MinionPro-French
+}
+\Mn@AddToConfig{sub:series} {sb}    {b}
+\Mn@AddToConfig{sub:series} {bx}    {b}
+\Mn@AddToConfig{sub:shape}  {sl}    {it}
+\Mn@AddToConfig{sub:shape}  {scsl}  {scit}
+\Mn@AddToConfig{sub:shape}  {sscsl} {sscit}
+\Mn@AddToConfig{sub:shape}  {scsw}  {scit}
+\Mn@AddToConfig{sub:shape}  {sscsw} {sscit}
+\Mn@AddToConfig{sub:encoding/shape}{TS1/sw}{it}
+\Mn@AddToConfig{code:shape}{sw}{
+  \skewchar\font='337
+}
+\newcommand*\Mn@DeclareFontShape[6][]{%
+  \edef\@tempa{%
+    \Mn@UseConfig{sub:series}{#4}%
+    \Mn@UseConfigOrDefault{sub:encoding/shape}{#2/#5}{%
+      \Mn@UseConfig{sub:shape}{#5}}%
+  }%
+  \ifx\@tempa\@empty
+    \@temptokena={%
+      \DeclareFontShape{#2}{#3-#6}{#4}{#5}{%
+        \Mn@UseConfig{opticals}      {\Mn@option@opticals}%
+        \Mn@UseConfig{fontset/weight}{\Mn@option@fontset/#4}%
+        \Mn@UseConfig{weight}        {#4}%
+        \Mn@UseConfig{encoding/shape}{#2/#5}%
+        \Mn@UseConfig{shape}         {#5}%
+      }}%
+    \edef\@tempa{\the\@temptokena{\Mn@TheConfig{code:shape}{#5}}}%
+    \@tempa
+  \else
+    \DeclareFontShape{#2}{#3-#6}{#4}{#5}{%
+      <->ssub*#3-#6%
+      /\Mn@UseConfigOrDefault{sub:series}{#4}{#4}%
+      /\Mn@UseConfigOrDefault{sub:encoding/shape}{#2/#5}{%
+        \Mn@UseConfigOrDefault{sub:shape}{#5}{#5}}%
+    }{}%
+  \fi
+}
+\otf@makeglobal{Mn@DeclareFontShape}
+\otf@makeglobal{\string\Mn@DeclareFontShape}
+\newcommand*\Mn@DeclareLargeFontFamily[3][LF,OsF,TLF,TOsF]{%
+  \Mn@DeclareFontFamily{#1}{#2}{#3}
+    {m,sb,b,bx,eb} {n,it,sc,ssc,scit,sscit,sw,scsl,scsw,sscsl,sscsw,sl}%
+}
+\newcommand*\Mn@DeclareSmallFontFamily[3][LF,OsF,TLF,TOsF]{%
+  \Mn@DeclareFontFamily{#1}{#2}{#3}
+    {m,sb,b,bx,eb} {n,it,sl}%
+}
+\newcommand*\Mn@DeclareMathFontFamily[3][TOsF]{%
+  \Mn@DeclareFontFamily[\skewchar\font=255]{#1}{#2}{#3}
+    {m,sb,b,bx,eb} {n,it}%
+}
+\otf@makeglobal{Mn@DeclareLargeFontFamily}
+\otf@makeglobal{\string\Mn@DeclareLargeFontFamily}
+\otf@makeglobal{Mn@DeclareSmallFontFamily}
+\otf@makeglobal{\string\Mn@DeclareSmallFontFamily}
+\otf@makeglobal{Mn@DeclareMathFontFamily}
+\otf@makeglobal{\string\Mn@DeclareMathFontFamily}
+\newcommand*\Mn@DeclareFontFamily[6][]{%
+  \@for\Mn@variant:=#2\do{%
+    \DeclareFontFamily {#3}{#4-\Mn@variant}{#1}%
+  }%
+  \Mn@DeclareFontShapes{#3}{#4}
+    {#5} {#6} {#2}%
+}
+\otf@makeglobal{Mn@DeclareFontFamily}
+\otf@makeglobal{\string\Mn@DeclareFontFamily}
+\newcommand*\Mn@DeclareFontShapes[5]{%
+  \@for\Mn@series:=#3\do{%
+    \@for\Mn@shape:=#4\do{%
+      \@for\Mn@variant:=#5\do{%
+        \Mn@DeclareFontShape{#1}{#2}{\Mn@series}{\Mn@shape}{\Mn@variant}%
+      }%
+    }%
+  }%
+}
+\otf@makeglobal{Mn@DeclareFontShapes}
+\newdimen\Mn@fontdimen
+\newcommand*\Mn@adjust@fontdimen[2]{%
+  \Mn@fontdimen=\fontdimen#1\font
+  #2%
+  \fontdimen#1\font=\Mn@fontdimen
+}
+\otf@makeglobal{Mn@adjust@fontdimen}
+\ifx\@nodocument\relax
+  \endgroup
+\fi
+\gdef\Mn@MicroType@Aliases{%
+  \DeclareMicrotypeAlias{MinionPro-LF}{MinionPro}%
+  \DeclareMicrotypeAlias{MinionPro-OsF}{MinionPro}%
+  \DeclareMicrotypeAlias{MinionPro-TLF}{MinionPro}%
+  \DeclareMicrotypeAlias{MinionPro-TOsF}{MinionPro}%
+}
+\@ifundefined{Microtype@Hook}{%
+  \global\let\Microtype@Hook\Mn@MicroType@Aliases
+}{%
+  \g@addto@macro\Microtype@Hook{\Mn@Microtype@Aliases}%
+}%
+\@ifundefined{DeclareMicroTypeAlias}{}{\Mn@MicroType@Aliases}%
+%% vim:set ft=tex:
+%%
+%% End of file `MinionPro-FontDef.sty'.

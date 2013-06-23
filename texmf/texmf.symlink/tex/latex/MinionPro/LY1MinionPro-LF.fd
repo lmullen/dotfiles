@@ -1,0 +1,16 @@
+%%
+%% This is file `LY1MinionPro-LF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `LY1,lf,fd')
+%% 
+%% These files are public domain.
+%% 
+  \ProvidesFile{LY1MinionPro-LF.fd}   [2005/01/23 v2.0 font definitions for LY1/MinionPro-LF.]
+\input{MinionPro-FontDef.sty}%
+       \Mn@DeclareLargeFontFamily       {LY1}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `LY1MinionPro-LF.fd'.

@@ -1,0 +1,24 @@
+%%
+%% This is file `OMLMinionPro-LF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `OML,lf,fd')
+%% 
+%% These files are public domain.
+%% 
+  \ProvidesFile{OMLMinionPro-LF.fd}   [2007/02/01 v2.1 font definitions for OML/MinionPro-LF.]
+\input{MinionPro-FontDef.sty}%
+  \@for\Mn@variant:=LF,TLF,OsF\do{%
+    \DeclareFontFamily{OML}{MinionPro-\Mn@variant}{\skewchar\font=255}
+    \@for\Mn@series:=m,sb,b,bx,eb\do{%
+      \@for\Mn@shape:=n,it\do{%
+        \DeclareFontShape{OML}{MinionPro-\Mn@variant}{\Mn@series}{\Mn@shape}%
+          { <-> ssub*MinionPro-TOsF/\Mn@series/\Mn@shape }{}
+      }%
+    }%
+  }%
+%% vim:set ft=tex:
+%%
+%% End of file `OMLMinionPro-LF.fd'.

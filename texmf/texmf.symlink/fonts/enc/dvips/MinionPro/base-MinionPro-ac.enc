@@ -1,0 +1,52 @@
+% encoding files for MinionPro version 2.000
+% CODINGSCHEME FONTSPECIFIC
+/MinionPro-Base-Encoding-ac [
+% 0x00
+ /A.swash /Aacute.swash /Abreve.swash /Acircumflex.swash /Adieresis.swash /Agrave.swash /Aogonek.swash /Aring.swash
+ /Atilde.swash /B.swash /C.swash /Cacute.swash /Ccaron.swash /Ccedilla.swash /D.swash /Dcaron.swash
+% 0x10
+ /Dcroat.swash /E.swash /Eacute.swash /Ecaron.swash /Ecircumflex.swash /Edieresis.swash /Egrave.swash /Eng.swash
+ /Eogonek.swash /Eth.swash /F.swash /G.swash /Gbreve.swash /H.swash /I.swash /IJ.swash
+% 0x20
+ /Iacute.swash /Icircumflex.swash /Idieresis.swash /Idotaccent.swash /Igrave.swash /Itilde.swash /J.swash /K.swash
+ /L.swash /Lacute.swash /Lcaron.swash /M.swash /N.swash /Nacute.swash /Ncaron.swash /Ntilde.swash
+% 0x30
+ /O.swash /Oacute.swash /Ocircumflex.swash /Odieresis.swash /Ograve.swash /Ohorn.swash /Ohungarumlaut.swash /Oslash.swash
+ /Otilde.swash /P.swash /Q.swash /R.swash /Racute.swash /Rcaron.swash /S.swash /Sacute.swash
+% 0x40
+ /Scaron.swash /Scedilla.swash /T.swash /T_h.swash /Tcaron.swash /Tcommaaccent.swash /U.swash /Uacute.swash
+ /Ucircumflex.swash /Udieresis.swash /Ugrave.swash /Uhorn.swash /Uhungarumlaut.swash /Uring.swash /Utilde.swash /V.swash
+% 0x50
+ /W.swash /X.swash /Y.swash /Yacute.swash /Ydieresis.swash /Ygrave.swash /Z.swash /Zacute.swash
+ /Zcaron.swash /Zdotaccent.swash /a.sc /aacute.sc /abreve.sc /acircumflex.sc /acute.sc /adieresis.sc
+% 0x60
+ /ae.sc /agrave.sc /ampersand.sc /aogonek.sc /aring.sc /atilde.sc /b.sc /breve.sc
+ /c.sc /cacute.sc /caron.sc /ccaron.sc /ccedilla.sc /cedilla.sc /circumflex.sc /d.sc
+% 0x70
+ /dcaron.sc /dcroat.sc /dieresis.sc /dotaccent.sc /dotlessi.sc /e.sc /eacute.sc /ecaron.sc
+ /ecircumflex.sc /edieresis.sc /egrave.sc /eng.sc /eogonek.sc /eth.sc /exclam.sc /exclamdown.sc
+% 0x80
+ /f.sc /g.sc /gbreve.sc /grave.sc /h.sc /hungarumlaut.sc /i.sc /iacute.sc
+ /icircumflex.sc /idieresis.sc /igrave.sc /ij.sc /itilde.sc /j.sc /k.sc /l.sc
+% 0x90
+ /lacute.sc /lcaron.sc /lslash.sc /m.sc /macron.sc /n.sc /nacute.sc /ncaron.sc
+ /ntilde.sc /o.sc /oacute.sc /ocircumflex.sc /odieresis.sc /oe.sc /ogonek.sc /ograve.sc
+% 0xA0
+ /ohungarumlaut.sc /oslash.sc /otilde.sc /p.sc /q.sc /question.sc /questiondown.sc /r.sc
+ /racute.sc /rcaron.sc /ring.sc /s.sc /sacute.sc /scaron.sc /scedilla.sc /space_dotbelowcomb.sc
+% 0xB0
+ /space_hookabovecomb.sc /t.sc /tcaron.sc /tcommaaccent.sc /thorn.sc /tilde.sc /u.sc /uacute.sc
+ /ucircumflex.sc /udieresis.sc /ugrave.sc /uhungarumlaut.sc /uni1EA0.swash /uni1EA2.swash /uni1EA4.swash /uni1EA6.swash
+% 0xC0
+ /uni1EA8.swash /uni1EAA.swash /uni1EAC.swash /uni1EAE.swash /uni1EB0.swash /uni1EB2.swash /uni1EB4.swash /uni1EB6.swash
+ /uni1EB8.swash /uni1EBA.swash /uni1EBC.swash /uni1EBE.swash /uni1EC0.swash /uni1EC2.swash /uni1EC4.swash /uni1EC6.swash
+% 0xD0
+ /uni1EC8.swash /uni1ECA.swash /uni1ECC.swash /uni1ECE.swash /uni1ED0.swash /uni1ED2.swash /uni1ED4.swash /uni1ED6.swash
+ /uni1ED8.swash /uni1EDA.swash /uni1EDC.swash /uni1EDE.swash /uni1EE0.swash /uni1EE2.swash /uni1EE4.swash /uni1EE6.swash
+% 0xE0
+ /uni1EE8.swash /uni1EEA.swash /uni1EEC.swash /uni1EEE.swash /uni1EF0.swash /uni1EF4.swash /uni1EF6.swash /uni1EF8.swash
+ /uring.sc /utilde.sc /v.sc /w.sc /x.sc /y.sc /yacute.sc /ydieresis.sc
+% 0xF0
+ /ygrave.sc /z.sc /zacute.sc /zcaron.sc /zdotaccent.sc /.notdef /.notdef /.notdef
+ /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def

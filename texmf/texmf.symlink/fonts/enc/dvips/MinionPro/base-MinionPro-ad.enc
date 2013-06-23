@@ -1,0 +1,52 @@
+% encoding files for MinionPro version 2.000
+% CODINGSCHEME FONTSPECIFIC
+/MinionPro-Base-Encoding-ad [
+% 0x00
+ /integral /Euro /Euro.fitted /Euro.oldstyle /Euro.taboldstyle /afii10017 /afii10018 /afii10019
+ /afii10020 /afii10021 /afii10022 /afii10023 /afii10024 /afii10025 /afii10026 /afii10027
+% 0x10
+ /afii10028 /afii10029 /afii10030 /afii10031 /afii10032 /afii10033 /afii10034 /afii10035
+ /afii10036 /afii10037 /afii10038 /afii10039 /afii10040 /afii10041 /afii10042 /afii10043
+% 0x20
+ /afii10044 /afii10045 /afii10046 /afii10047 /afii10048 /afii10049 /afii10050 /afii10051
+ /afii10053 /afii10054 /afii10055 /afii10056 /afii10057 /afii10058 /afii10059 /afii10060
+% 0x30
+ /afii10062 /afii10065 /afii10066 /afii10067 /afii10068 /afii10069 /afii10070 /afii10071
+ /afii10072 /afii10074 /afii10075 /afii10076 /afii10077 /afii10078 /afii10079 /afii10080
+% 0x40
+ /afii10081 /afii10082 /afii10083 /afii10084 /afii10085 /afii10086 /afii10087 /afii10088
+ /afii10089 /afii10090 /afii10091 /afii10092 /afii10093 /afii10094 /afii10096 /afii10097
+% 0x50
+ /afii10098 /afii10099 /afii10101 /afii10102 /afii10103 /afii10104 /afii10105 /afii10106
+ /afii10107 /afii10108 /afii10110 /afii10145 /afii10146 /afii10147 /afii10148 /afii10193
+% 0x60
+ /afii10194 /afii10195 /afii10196 /afii10846 /breve.cyr /dollar /dollar.fitted /dollar.oldstyle
+ /dollar.taboldstyle /numbersign /numbersign.fitted /numbersign.oldstyle /numbersign.taboldstyle /acute.cap /blackdiamond /blackleftpointingtriangle
+% 0x70
+ /blackrightpointingtriangle /blacksquare /breve.cap /caron.cap /cedilla.cap /cent /cent.fitted /cent.oldstyle
+ /cent.taboldstyle /circumflex.cap /colonmonetary /colonmonetary.fitted /colonmonetary.oldstyle /colonmonetary.taboldstyle /comma.denominator /comma.numerator
+% 0x80
+ /comma.superior /dieresis.cap /dong /dotaccent.cap /eight.denominator /eight.inferior /eight.numerator /eight.superior
+ /estimated /estimated.oldstyle /fisheye /five.denominator /five.inferior /five.numerator /five.superior /florin
+% 0x90
+ /florin.fitted /florin.oldstyle /florin.taboldstyle /four.denominator /four.inferior /four.numerator /four.superior /grave.cap
+ /hungarumlaut.cap /hyphen.superior /lira /lira.fitted /lira.oldstyle /lira.taboldstyle /macron.cap /nine.denominator
+% 0xA0
+ /nine.inferior /nine.numerator /nine.superior /ogonek.cap /one.denominator /one.inferior /one.numerator /orn.001
+ /orn.002 /orn.003 /orn.004 /orn.005 /orn.006 /orn.007 /orn.008 /orn.009
+% 0xB0
+ /orn.010 /orn.011 /orn.012 /orn.013 /orn.016 /orn.017 /orn.018 /orn.019
+ /orn.020 /orn.021 /orn.022 /orn.023 /orn.024 /orn.025 /orn.028 /orn.030
+% 0xC0
+ /orn.031 /orn.032 /orn.033 /orn.034 /orn.036 /parenleft.denominator /parenleft.numerator /parenleft.superior
+ /parenright.denominator /parenright.numerator /parenright.superior /period.denominator /period.numerator /period.superior /peseta /radical
+% 0xD0
+ /ring.cap /seven.denominator /seven.inferior /seven.numerator /seven.superior /six.denominator /six.inferior /six.numerator
+ /six.superior /sterling /sterling.fitted /sterling.oldstyle /sterling.taboldstyle /three.denominator /three.inferior /three.numerator
+% 0xE0
+ /tilde.cap /two.denominator /two.inferior /two.numerator /uni2014.alt /uni2190 /uni2190.alt1 /uni2190.alt2
+ /uni2192 /uni2192.alt1 /uni2192.alt2 /uni2610 /uni2611 /uni2713 /uni2733 /uni2734
+% 0xF0
+ /uni2766 /uni2767 /uni27A2 /whiteleftpointingtriangle /whiterightpointingtriangle /yen /yen.fitted /yen.oldstyle
+ /yen.taboldstyle /zero.denominator /zero.inferior /zero.numerator /zero.superior /.notdef /.notdef /.notdef
+] def

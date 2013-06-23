@@ -1,0 +1,16 @@
+%%
+%% This is file `T2CMinionPro-TOsF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `T2C,tosf,fd')
+%% 
+%% These files are public domain.
+%% 
+\ProvidesFile{T2CMinionPro-TOsF.fd} [2005/01/23 v2.0 font definitions for T2C/MinionPro-TOsF.]
+\input{MinionPro-FontDef.sty}%
+       \Mn@DeclareSmallFontFamily       {T2C}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `T2CMinionPro-TOsF.fd'.

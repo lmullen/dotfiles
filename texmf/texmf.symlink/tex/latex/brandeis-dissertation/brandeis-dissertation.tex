@@ -1,0 +1,64 @@
+%%
+%% This is file `brandeis-dissertation.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% brandeis-dissertation.dtx  (with options: `driver')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from brandeis-dissertation.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file brandeis-dissertation.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%% \RCS$Id: brandeis-dissertation.dtx,v 1.9 2004/10/27 00:47:04 turtle Exp $
+%% \RCS$Revision: 1.95 $
+%% \RCS$Date: 2008/01/14 00:47:04 $
+%%
+%%  (C) 2000 Andy Garland (aeg@cs.brandeis.edu)
+%%  (C) 2001 Pablo Funes (pablo@cs.brandeis.edu)
+%%  (C) 2004 Peter Møller Neergaard
+%%
+%%   This program may be distributed and/or modified under the
+%%   conditions of the LaTeX Project Public License, either version 1.2
+%%   of this license or (at your option) any later version.
+%%   The latest version of this license is in
+%%     http://www.latex-project.org/lppl.txt
+%%   and version 1.2 or later is part of all distributions of LaTeX
+%%   version 1999/12/01 or later.
+\documentclass{ltxdoc}
+\usepackage{url}
+\usepackage{alltt}
+ \OnlyDescription % Comment this line out for full documentation
+ % \EnableCrossrefs % Uncomment for full documentation
+ % \RecordChanges
+ \typeout{Expect some Under- and overfull boxes}
+\makeatletter
+\def\RCS$#1: #2 ${\@namedef{RCS#1}{#2}}
+\let\bd@saved@cmd\cmd
+\renewcommand{\cmd}{\bgroup\makeatletter\bd@cmd@i}
+\newcommand{\bd@cmd@i}[1]{\bd@saved@cmd{#1}\egroup}
+\newcommand{\mcmd}{\bgroup\makeatletter\mcmd@i}
+\newcommand{\mcmd@i}[1]{\textbf{\hbox{\bd@saved@cmd#1}}\egroup}
+\newcommand{\mcs}[1]{\textbf{\hbox{\cs{#1}}}}
+\let\org@marg\marg
+\renewcommand{\marg}[1]{\textbf{\org@marg{#1}}}
+\newcommand{\ostar}{\texttt{*}}
+\newcommand{\package}[1]{\textsf{#1}}
+\makeatother
+\begin{document}
+  \DocInput{brandeis-dissertation.dtx}
+\end{document}
+
+\endinput
+%%
+%% End of file `brandeis-dissertation.tex'.

@@ -1,0 +1,16 @@
+%%
+%% This is file `OMLMinionPro-TOsF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `OML,tosf,fd')
+%% 
+%% These files are public domain.
+%% 
+\ProvidesFile{OMLMinionPro-TOsF.fd} [2005/01/23 v2.0 font definitions for OML/MinionPro-TOsF.]
+\input{MinionPro-FontDef.sty}%
+  \Mn@DeclareMathFontFamily        {OML}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `OMLMinionPro-TOsF.fd'.

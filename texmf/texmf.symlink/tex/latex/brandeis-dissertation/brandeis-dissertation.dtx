@@ -1,0 +1,1262 @@
+%\iffalse -*- doctex -*- \fi
+%
+%% \RCS$Id: brandeis-dissertation.dtx,v 1.9 2004/10/27 00:47:04 turtle Exp $
+%% \RCS$Revision: 1.95 $
+%% \RCS$Date: 2008/01/14 00:47:04 $
+%
+%\iffalse metacomment
+% -*- latex-mode -*-
+%%
+%%  (C) 2000 Andy Garland (aeg@cs.brandeis.edu)
+%%  (C) 2001 Pablo Funes (pablo@cs.brandeis.edu)
+%%  (C) 2004 Peter Møller Neergaard
+%%  
+%%   This program may be distributed and/or modified under the
+%%   conditions of the LaTeX Project Public License, either version 1.2
+%%   of this license or (at your option) any later version.
+%%   The latest version of this license is in
+%%     http://www.latex-project.org/lppl.txt
+%%   and version 1.2 or later is part of all distributions of LaTeX 
+%%   version 1999/12/01 or later.
+%
+% This program consists of the file brandeis-dissertation.cls.
+% 
+%\fi
+%
+% \CheckSum{667}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \MakeShortVerb{\"}
+% \DeleteShortVerb{\|}
+%
+% \title{The \package{brandeis-dissertation} class\thanks
+%   {This file has CVS revision \RCSRevision, dated \RCSDate. The
+%   class has been redesigned by the author based on previous 
+%   work by Pablo Funes, Andy Garland, LFBrown 30Aug87, and RJLuoma. Some final fiddling by John %  Burt.}} 
+% \author{%
+%   Peter M{\o}ller Neergaard\thanks{\texttt{turtle@achilles.linearity.org}}}
+% \maketitle
+%
+% \begin{abstract}
+%   This \LaTeXe-class file contains to design to typeset your
+%   dissertation according to the guidelines of GSAS of Brandeis University.
+% \end{abstract}
+%
+% \newif\ifmulticols
+% \IfFileExists{multicol.sty}{\multicolstrue}{}
+%
+% \ifmulticols
+% \begin{multicols}{2}
+% \fi
+% {\parskip 0pt                ^^A We have to reset \parskip
+%                              ^^A (bug in \LaTeX)
+% \tableofcontents
+% }
+% \ifmulticols
+% \end{multicols}
+% \fi
+%
+% You have done all the research.  The ideas are in your
+% head.  All you are missing is that little thing called a
+% dissertation, which you are gung-ho on writing using \LaTeX. This is
+% where this class file enters: it allows you to use \LaTeX\ while
+% adhering to the formatting guidelines of Brandeis University
+% Graduate School of Arts and Sciences (GSAS).   In
+% particular, it allows you to get the front matter correct.
+%
+% The features are as follows:
+% \begin{itemize}
+% \item It provides correct margins for either single-paged
+%   output or double-paged output.
+% \item It typesets the text with double-spaced line.  However, footnotes,
+%   long quotations (the environment "quotation"), the bibliography, and
+%   the index is singe-spaced.
+% \item It provides commands to produce the front matter.
+% \end{itemize}
+%
+% To use the class, you should begin your document file with
+% \begin{verbatim}
+% \documentclass{brandeis-dissertation}\end{verbatim}
+% instead of your usual document class declaration.  The various
+% options are described below in section~\ref{sec:class-options}.
+%
+% \section{Front Matter}
+%
+% The front matter is all the pages that comes before the main text of
+% your dissertation, e.g., title page, dedication, abstract, table of
+% contents. For the class to typeset the front matter, you should
+% specify the formalities regarding your dissertation in the preamble
+% of your document.  You do this with the following commands.
+% \begin{description}
+% \item[\cmd{\title}\marg{title}:]\DescribeMacro{\title}
+%    The title of your dissertation.
+% \item[\cmd{\author}\marg{name}:]\DescribeMacro{\author}
+%   Your full name. 
+% \item[\cmd{\department}\marg{department}:]\DescribeMacro{\department}
+%   Your department.
+% \item[\cmd{\advisor}\meta{advisor}:]\DescribeMacro{\advisor}
+%    The full name of you advisor (chair of your
+%   committee) . 
+% \item[\cmd{\reader}\meta{reader}:]\DescribeMacro{\reader} Adds
+%   \meta{reader} to your committee.  You should have one
+%   \cmd{\reader}-command for each reader on the committee. You should
+%   provide them in the order you want them to appear on the signature
+%   page. 
+% \item[\cmd{\dean}\meta{name}:]\DescribeMacro{\dean}
+%    The full name of the dean who eventually
+%   signs off on the dissertation.
+% \item[\cmd{\graduationyear}\meta{year}:]\DescribeMacro{\graduationyear}
+%    The year of your dissertation.
+% \item[\cmd{\graduationmonth}\meta{month}:]\DescribeMacro{\graduationmonth}
+%    The month of your dissertation.
+% \item[\cmd{\othercopyright}\meta{text} (optional):] Uses \meta{text}
+%   to  acknowledge other people's copyright on your copyright page.
+%   This is only printed if you print a copyright page.
+% \end{description}
+% As an example, the following is an except from the preamble of my
+% dissertation:
+% \begin{verbatim}
+% \title{Complexity Aspects of Programming Language Design}
+% \author{Peter M{\o}ller Neergaard}
+% \dean{Adam B. Jaffe}
+% \advisor{Harry G. Mairson}
+% \department{Michtom School of Computer Science}
+% \reader{Peter Clote}
+% \reader{Simone Martini}
+% \reader{Timothy J. Hickey}\end{verbatim}
+%
+% \DescribeMacro{\thesisfront}The command
+% \cmd{\thesisfront}\oarg{options} should be used at the very
+% beginning of your document to produce all the front
+% matter for you, e.g.,
+% \begin{verbatim}
+% \begin{document}
+% \thesisfront\end{verbatim}
+% 
+% You need to specify the abstract and possible also the preface,
+% dedication, and acknowledgments using the following commands:
+% \begin{description}
+% \item[\mcmd{\thesisabstract}\marg{text}:]\DescribeMacro{\thesisabstract}
+%    Uses \meta{text} as your abstract.
+% \item[\mcmd{\dedication}\marg{dedication} (optional):]\DescribeMacro{\dedication}
+%    The dedication of your dissertation to \meta{dedication} appears
+%    on separate page. 
+% \item[\mcmd{\acknowledgments}\marg{text}
+%   (optional):]\DescribeMacro{\acknowledgments}
+%   \meta{text} is used as your acknowledgment.
+% \item[\cmd{\preface}\marg{text} (optional):]\DescribeMacro{\preface}
+%    The preface of your dissertation.
+% \end{description}
+% As the abstract, preface and acknowledgments might by fairly long,
+% it can be convenient to keep them in a separate file and include
+% them using \cmd{\input}, e.g.
+% \begin{verbatim}
+%   \thesisabstract{\input{abstract}}\end{verbatim}
+% where the abstract in stored in the file "abstract.tex".
+%
+% \label{p:thesisfront-options}
+% You can fine tune the behavior of \cmd{\thesisfront} with the following
+% options.  You provide them in an optional argument as a
+% comma-separated list:
+% \begin{description}
+% \item[\texttt{onlinesubmission}:] The signature page is typeset for
+%   online submission (default).
+% \item[\texttt{papersubmission}:] The signature page is typeset for
+%   paper submission.
+% \item[\texttt{copyright}:] Print a copyright page (default).
+% \item[\texttt{nocopyright}:] Do not print a copyright page.
+% \item[\texttt{lot}:] Print a list of tables.
+% \item[\texttt{nolot}:] Do not print a list of tables (default)
+% \item[\texttt{lof}:]  Print a list of figures.
+% \item[\texttt{nolof}:] Do not print a list of figures (default).
+% \end{description}
+% For instance, the command to produce the front matter for a paper
+% submission with a list of tables is:
+% \begin{verbatim}
+% \thesisfront[lot,papersubmission]\end{verbatim}
+%
+% \DescribeMacro{\signaturepage}
+% When submitting online, you need to produce a signature page to be
+% signed before your defense.  You can do this using "\signaturepage*"
+% in front of \cmd{\thesisfront} sometimes before you make the final
+% version. 
+% 
+% \subsection{Your Own Front Matter Layout}
+%
+% Instead of using \cmd{\thesisfront} to produce the front matter, you
+% can build the front matter yourself with the command below.
+% \emph{However, this option is not recommended and you should ensure
+% that you adhere to all the GSAS guidelines}.
+%
+% \begin{description}
+% \item[\mcmd{\thesistitlepage}:]\DescribeMacro{\thesistitlepage} This
+%   command produces the front page of your dissertation.
+%
+% \item[\mcmd{\signaturetitlepage}\ostar:]\DescribeMacro{\signaturepage} 
+%   This produces a signature page.  The unstarred version is for
+%   online submission, while the starred version is for paper submission.
+%
+% \item[\mcmd{\copyrightpage}\marg{your name}\marg{year}:]
+%   \DescribeMacro{\copyrightpage} This produces the copyright page.
+%
+% \item[\mcmd{\dedicationpage}\marg{dedication}:] 
+%   \DescribeMacro{\dedicationpage}This produces a page with the
+%   dedication. 
+% \end{description}
+%
+% \DescribeEnv{optionalpage} 
+% \DescribeEnv{optionalpage*}
+% The environments  "optionalpage" and "optionalpage*" produce other
+% parts of the front matter, for instance the preface.  The part will
+% be typeset as if it was a chapter.  They take the title of the part
+% as a single argument.  You can thus produce a preface as follows:
+% \begin{alltt}\cs{begin}\{optionalpage\}\{Preface\}\par  \(...\)\par\cs{end}\{optionalpage\}\end{alltt}
+% By default an entry is added to the table of contents.  This can be
+% disabled by using the starred form.
+% 
+% When printing double-sided, you might \cmd{\cleardoublepage} to
+% get the pages positioned on a right hand side.
+%
+% \section{Margins and Line-spacing}
+%
+% \begin{table}
+% \caption{The two options for margins}
+% \begin{tabular}{l|r|r}
+%                  & Minimum margins & Consistent 1.5in \\\hline        
+%    Left margin   &  1.5in         & 1.5in \\         
+%    Right margin  &  1in           & 1.5in \\
+%    Top margin    &  1in           & 1.5in \\
+%    Bottom margin &  1in           & 1.5in 
+% \end{tabular}
+% \label{tbl:margins}
+% \end{table}
+%
+% The GSAS guidelines call for the minimum margins given in
+% Table~\ref{tbl:margins}.  This is the default margins for the
+% class.  If you prefer, you can get a consistent 1.5in
+% margins by using the class option "15margins" (see below).
+%
+% The class uses the package \package{geometry} to set the
+% margins. This provides a very simple way to change the paper layout,
+% e.g., to change the margins to 2 inches you just need to use:
+% \begin{verbatim}
+%   \geometry{top=2in, bottom=2in, left=2in, right=2in }\end{verbatim}
+% Note that the \cmd{\geometry} can only be used only in the document
+% preamble.  
+%
+% By default, the dissertation class uses page style "brandeisheadings". This page style will place
+% the chapter title, centered, in slanted type, in the header, and the page number, centered, in 
+% the footer.  If
+% you change the page style (to "headings" or "myheadings") in the preamble, the dissertation class
+% will adjust the margins accordingly.  However, if you use a
+% non-standard heading (for instance from \package{fancyhdr}) you will
+% need to adjust the margins accordingly.
+% 
+% \DescribeEnv{singlespacing}You can use the environment
+% "singlespacing" to single-space a block of text.
+%
+% \section{Class Options}
+% \label{sec:class-options}
+% 
+% The class takes the following options provided as optional arguments
+% to the \cmd{\documentclass} command:
+% \begin{description}
+% \item[\texttt{minmargins}:]  Use the minimum margins called for by
+%   GSAS (default).
+% \item[\texttt{15margins}:] Use a consistent 1.5in margin.
+% \item[\texttt{oneside}:] Single-sided output (from \package{book}
+%   class, default). 
+% \item[\texttt{twoside}:] Double-sided output.  This gives  different
+%   headers on left and right pages.  Some pages might be left blank to have
+%   chapters start on right pages (from the \package{book} class).
+%
+%   You are prone to get some overfull
+%   \cmd{\vbox} warnings when using this option.\footnote{With
+%     double-sided printing, \LaTeX\ attempts to fill every page to 
+%     the bottom to avoid ragged bottoms.  Its main remedy for this is
+%     to stretch the spacing between paragraphs.  When this does not
+%     provide enough extra space, you get an underfull \cmd{\vbox}.}
+%   They can be avoided  by using \cmd{\raggedbottom}, but the result
+%   can be very aesthetically unpleasant as you get facing pages with
+%   different text height.  Therefore, you are recommended to ignore
+%   the overfull boxes if you cannot rearrange the paragraphs to avoid
+%   them. 
+%
+% \item[\texttt{draft}:] Draft version---this marks overfull boxes and might
+%   also effect other packages (from the \package{book} class).
+% \item[\texttt{final}:] Final version (from the \package{book} class, default).
+% \item[\texttt{openright}:] For double-sided printing: chapters
+%   always open on the right page (from the \package{book} class, default).
+% \item[\texttt{openany}:] For double-sided printing: chapters can
+%   open on either a  left or a right page (from the \package{book} class).
+% \item[\texttt{blankcleared}:] For double-sided printing: when a page
+%   is cleared to make a chapter start on a right page, leave out page
+%   number and headers.
+% \item[\texttt{numbercleared}:]For double-sided printing: when a page
+%   is cleared to make a chapter start on a right page, put page
+%   number and headings on the cleared page.
+% \item[\texttt{leqno}:] Equation number are placed to the left (from
+%   \package{book} class). 
+% \item[\texttt{fleqno}:] Equation number are placed flushed to the
+%   left (from the \package{book} class).
+% \item[\texttt{openbib}:] A more open layout of the bibliography (from the \package{book} class).
+% \item[\texttt{12pt}:] The main text is set in 12pt font size (from the \package{book} class, default)
+% \item[\texttt{11pt}:] The main text is set in 11pt font size;
+%   \cmd{\small} and \cmd{\footnotesize} do not change the font size
+%   (essentially from the \package{book} class, \emph{not recommended by
+%   GSAS).} 
+% \item[\texttt{10pt}:] The main text is set in 11pt font size;
+%   \cmd{\small} and \cmd{\footnotesize} do not change the font size
+%   (essentially from the \package{book} class, \emph{not recommended by
+%   GSAS).}
+% \end{description}
+%
+% \section{Issues To Be Aware Of} 
+%
+% The following is a list of issues you should be aware.  It might be
+% a little {\TeX}nichal so skip it, if it does not apply to your
+% dissertation.
+%
+% \subsection{Margin Notes}
+%
+% While the class  allows margin notes set with the \LaTeX\ command
+% \cmd{\marginpar}, the margins are not designed for margin
+% notes. 
+% 
+% If you use margin notes they will comes as close as  .35in from the
+% border of the paper.  If you use them extensively, this is unlikely to
+% be kosher and you should adjust the margin parameters.  You can
+% solve this by including the following in your preamble.
+% \begin{alltt}\cs{geometry}\{marginparwidth=\(w\), marginparsep=\(s\), includemp\}\end{alltt}
+% where~$w$ is the width of your margin notes and $s$ their separation
+% from the text
+%
+% You should check with the GSAS for more guidance.  
+%
+% \StopEventually{}
+%
+% \section{Driver Producing Documentation}
+% 
+% We want to  distribution  the documented class file as a single
+% file even though the file is used for two very different purposes:
+% \begin{enumerate}
+% \item \label{it:documentation}To produce the documentation of the class.
+% \item \label{it:class}To provide the class for users.
+% \end{enumerate} 
+% We accomplish this with a bit of code taken from the
+% \package{doc} package: We test whether a \cmd{\documentclass}-command has
+% already been processed (we exploit that \LaTeX\ binds
+% \cmd{\documentclass} to \cmd{\@twoclasseserror} when it start to
+% process \cmd{\documentclass}).  If so, we know that we are in
+% Case~\ref{it:class}, otherwise we use the driver to produce the
+% documentation.
+%
+% This is implemented with the following trickery.  If the condition
+% below is false, i.e., \cmd{\documentclass} is not bound ot
+% \cmd{\@twoclasseserror}, then a \cs{fi} is constructed on the fly
+% and \LaTeX\ continues processing the code following "\csname fi\endcsname".  On the other hand, if the condition is true, \LaTeX\
+% searches for a \cs{fi}, but has no clue that "\csname fi\endcsname" 
+% stands for \cs{fi}.  Therefore, it skips until it finds the
+% \cs{fi} following "\end{document}".  
+%
+% Additionally, these parts are enclosed in a guard "gobble" to
+% prevent the trickery to end up in files coming out of
+% \package{docstrip}. 
+%    \begin{macrocode}
+%<*driver>
+%<*gobble>
+\makeatletter
+\ifx\documentclass\@twoclasseserror
+\else \makeatother\csname fi\endcsname
+%</gobble>
+%    \end{macrocode}
+% Otherwise we process the following lines which will produced the 
+% formatted the documentation.  
+%
+%    \begin{macrocode}
+\documentclass{ltxdoc}
+\usepackage{url}
+\usepackage{alltt}
+%    \end{macrocode}
+% By default we only want the user documentation:
+%    \begin{macrocode}
+ \OnlyDescription % Comment this line out for full documentation
+%    \end{macrocode}
+%  For the full documentation, the following lines should be uncommented:
+%    \begin{macrocode}
+ % \EnableCrossrefs % Uncomment for full documentation
+ % \RecordChanges 
+%    \end{macrocode}
+% which produces a cross-referenced index of the macros' definitions
+% and usage and a history of changes.
+% 
+% We tell the user not to worry about underfull/overfull boxes.
+%    \begin{macrocode}
+ \typeout{Expect some Under- and overfull boxes}
+%    \end{macrocode}
+% Finally, we define some commands to typeset the documentation: First, a
+% command to typeset the RCS tags generated by the version control.
+% \begin{macro}{\RCS}
+%   \mcmd{\RCS}"$"\meta{ID}": "\meta{description}" $" defines
+%   \cs{RCS\meta{ID}} to expand to \meta{description}.
+%    \begin{macrocode}
+\makeatletter
+\def\RCS$#1: #2 ${\@namedef{RCS#1}{#2}}
+%    \end{macrocode}
+% \end{macro}^^A \RCS
+% 
+% \begin{macro}{\cmd}
+% \begin{macro}{\mcmd}
+% \begin{macro}{\mcs}
+% \begin{macro}{\marg}
+% \begin{macro}{\ostar}
+% \begin{macro}{\package}
+% Second, some commands for formatting the various parts of the
+% documentation: We fix the \cmd{\cmd} so it includes "@" in the
+% command names (necessary when we define commands \cs{if@$\ldots$}),
+% \cmd{\mcmd}\marg{\cs{command}} for the mandatory command name set as
+% with \cmd{\cmd}, \cmd{\mcs}\marg{name} for the mandatory command
+% name set as with \cmd{\cs}, \cmd{\marg}\marg{argument} for a
+% mandatory argument, \cmd{\ostar} for an optional start, and
+% \cmd{\package}\marg{package name} for a package name.
+%    \begin{macrocode}
+\let\bd@saved@cmd\cmd
+\renewcommand{\cmd}{\bgroup\makeatletter\bd@cmd@i}
+\newcommand{\bd@cmd@i}[1]{\bd@saved@cmd{#1}\egroup}
+\newcommand{\mcmd}{\bgroup\makeatletter\mcmd@i}
+\newcommand{\mcmd@i}[1]{\textbf{\hbox{\bd@saved@cmd#1}}\egroup}
+\newcommand{\mcs}[1]{\textbf{\hbox{\cs{#1}}}}
+\let\org@marg\marg
+\renewcommand{\marg}[1]{\textbf{\org@marg{#1}}}
+\newcommand{\ostar}{\texttt{*}}
+\newcommand{\package}[1]{\textsf{#1}}
+\makeatother
+%    \end{macrocode}
+% \end{macro}^^A \package
+% \end{macro}^^A \ostar
+% \end{macro}^^A \marg
+% \end{macro}^^A \mcs
+% \end{macro}^^A \mcmd
+% \end{macro}^^A \cmd
+%
+%    \begin{macrocode}
+\begin{document}
+  \DocInput{brandeis-dissertation.dtx}
+\end{document}
+%<*gobble>
+\fi
+%</gobble>
+%</driver>
+%    \end{macrocode}
+%
+% \section{Class Code}
+%
+%    \begin{macrocode}
+%<*class>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{brandeis-dissertation}%
+  [2004/10/21 v1.0 Brandeis dissertation settings]
+%    \end{macrocode}
+%  We declare the various options along with flags for them.
+%    \begin{macrocode}
+\newif\ifbd@blankclear
+\DeclareOption{blankcleared}{\bd@blankcleartrue}
+\DeclareOption{numbercleared}{\bd@blankclearfalse}
+\newif\ifbd@minmar
+\DeclareOption{minmargins}{\bd@minmartrue}
+\DeclareOption{15margins}{\bd@minmarfalse}
+%    \end{macrocode}
+% \changes{v1.0}{2004/10/25}{Dropped the margin changing options for \package{geometry}}
+%
+% \begin{macro}{\bd@book@size}
+% \begin{macro}{\bd@book@side}
+% \begin{macro}{\bd@book@final}
+% Finally, we shadow a few of the options given by
+% \package{book}. Since \package{book} uses the unstarred
+% "\ProcessOptions", we cannot pass mutually exclusive options like
+% "twoside" and "oneside" to \package{book} as the one declared latest
+% in \package{book} will always take precedence.  We therefore store
+% the choice in flags.  
+%
+% GSAS recommend a 12pt font size, but allow font sizes down to 10pt.  We
+% therefore include the smaller font sizes, but change them so
+% \cmd{\small} and \cmd{\footnotesize} do not reduce the font size.
+%    \begin{macrocode}
+\newif\ifbd@nochange@small@ftnt
+\DeclareOption{12pt}{\def\bd@book@size{12pt}%
+  \bd@nochange@small@ftntfalse}
+\DeclareOption{11pt}{\def\bd@book@size{11pt}%
+  \bd@nochange@small@ftnttrue}
+\DeclareOption{10pt}{\def\bd@book@size{10}%
+  \bd@nochange@small@ftnttrue}
+\DeclareOption{oneside}{\def\bd@book@side{oneside}}
+\DeclareOption{twoside}{\def\bd@book@side{twoside}}
+\DeclareOption{draft}{\def\bd@book@final{draft}}
+\DeclareOption{final}{\def\bd@book@final{final}}
+\DeclareOption{openright}{\def\bd@book@openrght{openright}}
+\DeclareOption{openany}{\def\bd@book@openrght{openany}}
+%    \end{macrocode}
+%  The "leqno", "fleqno", and the "openbib" does not have any
+%  excluding option.
+%    \begin{macrocode}
+\DeclareOption{leqno}{\PassOptionsToClass{book}{\currentoption}}
+\DeclareOption{fleqno}{\PassOptionsToClass{book}{\currentoption}}
+\DeclareOption{openbib}{\PassOptionsToClass{book}{\currentoption}}
+\DeclareOption{openbib}{\def\bd@book@openbib{openbib}}
+%    \end{macrocode}
+% \end{macro}^^A \bd@book@final
+% \end{macro}^^A \bd@book@side
+% \end{macro}^^A \bd@book@size
+%
+% We process the options and we can then load the book class with the
+% the default options of 12pt font and letter paper.
+%    \begin{macrocode}
+\ExecuteOptions{12pt,openright,final,oneside,%
+   minmargins,copyright,nolot,lof}
+\ProcessOptions*
+\LoadClass[letterpaper,\bd@book@size,\bd@book@side,%
+   \bd@book@final,\bd@book@openrght]{book}
+%    \end{macrocode}
+%  
+% After loading the \package{book} class, fonts have been set up.  If
+% needed for font sizes 10pt and 11pt, we now make \cmd{\small} and
+% \cmd{\footnotesize} the same as the normal font size.
+%    \begin{macrocode}
+\ifbd@nochange@small@ftnt
+  \let\small\normalsize
+  \let\footnotesize\normalsize
+\fi
+%    \end{macrocode}
+%
+% \begin{macro}{\bd@cleardoublepageblank}
+% \begin{macro}{\bd@cleardoublepage@save}
+%   The \cmd{\clearblank} is an alternative to
+%   \cmd{\cleardoublepage} that leaves the  facing left-hand page (if
+%   any)   completely blank, i.e., without a page number.   We do so
+%   by temporarily changing the pagestyle to "empty".
+%    \begin{macrocode}
+\let\bd@cleardoublepage@save\cleardoublepage
+\newcommand{\bd@cleardoublepageblank}{%
+  \clearpage
+  \thispagestyle{empty}%
+  \bd@cleardoublepage@save}
+\ifbd@blankclear
+  \AtBeginDocument{\let\cleardoublepage\bd@cleardoublepageblank}
+\fi
+%    \end{macrocode}
+% \end{macro}^^A \bd@cleardoublepage@save
+% \end{macro}^^A \bd@cleardoublepageblank
+%
+% \subsection{Spacing}
+%
+%  From the Brandeis web page: ``Double-space all textual material and
+%  all preliminary pages.''. Switching between single and double
+%  spacing can be painful, but the package \package{setspace} takes
+%  out most of the sting.
+%    \begin{macrocode}
+\RequirePackage[doublespacing]{setspace}
+%    \end{macrocode}
+%
+%  From the Brandeis web page: ``Notes, bibliographic references, and
+%  long quotations may be single-spaced.''.  
+%
+% \begin{environment}{thebibliography}
+% \begin{environment}{theindex}
+% \begin{environment}{quotation}
+% \begin{macro}{\bd@thebibliography}
+% \begin{macro}{\bd@endthebibliography}
+% \begin{macro}{\bd@theindex}
+% \begin{macro}{\bd@endtheindex}
+% \begin{macro}{\bd@quotation}
+% \begin{macro}{\bd@endquotation}
+%    \package{setspace} is smart enough to single-space footnotes for
+%    you.  We adapt
+%    the bibliography, index, and "quotation" environment\footnote{From the
+%    \LaTeX-book: ``The "quotation" environment is used for quotations
+%    of more than one paragraph''} to produce single-spaced output:
+%    \begin{macrocode}
+\let\bd@thebibliography\thebibliography
+\let\bd@endthebibliography\endthebibliography
+\renewenvironment{thebibliography}%
+    {\begin{singlespace}\bd@thebibliography}%
+  {\bd@endthebibliography\end{singlespace}}
+\let\bd@theindex\theindex
+\let\bd@endtheindex\endtheindex
+\renewenvironment{theindex}{%
+    \addcontentsline{toc}{chapter}%
+      {\protect\numberline{}\indexname}%
+    \bd@theindex\begin{singlespace}\small}%
+  {\end{singlespace}\bd@endtheindex}
+\let\bd@quotation\quotation
+\let\bd@endquotation\endquotation
+\renewenvironment{quotation}%
+    {\begin{singlespace}\bd@quotation}%
+  {\bd@endquotation\end{singlespace}}
+%    \end{macrocode}
+% \end{macro}^^A \bd@endquotation
+% \end{macro}^^A \bd@quotation
+% \end{macro}^^A \bd@endtheindex
+% \end{macro}^^A \bd@theindex
+% \end{macro}^^A \bd@endthebibliography
+% \end{macro}^^A \bd@thebibliography
+% \end{environment}^^A quotation
+% \end{environment}^^A theindex
+% \end{environment}^^A thebibliography
+%
+% Finally, we also decrease the line spacing smaller in math displays
+% as displays otherwise look odd.
+%    \begin{macrocode}
+\everydisplay\expandafter{%
+  \the\everydisplay
+  \def\baselinestretch{1.2}\selectfont}
+%    \end{macrocode}
+% Finally, we adjust to skip amounts to reflect the increased line spacing.
+%    \begin{macrocode}
+\smallskipamount=2pt plus 1.5pt minus 1.5pt
+\smallskipamount=4pt plus 3pt minus 3pt
+\bigskipamount=8pt plus 6pt minus 6pt
+%    \end{macrocode}
+% \section{Margins}
+%
+% We simplify matters by using the \package{geometry}. The GSAS
+% guidelines calls for letter paper ($8 \times 11.5$ inch) and the
+% margins given in the table on p.~\pageref{tbl:margins}.
+% Furthermore, the guidelines call for the top margin of the first
+% page of each chapter to be at least 2in.  The latter is more than
+% provided for by the \package{book} class which hard codes a 50pt
+% vertical space on top of the chapter heading.
+%    \begin{macrocode}
+\RequirePackage[letterpaper]{geometry}
+\ifbd@minmar
+  \geometry{left=1.5in, top=1in, right=1in, bottom=1in,
+    marginparwidth=.5in}
+\else
+  \geometry{margin=1.5in,marginparwidth=1in}
+\fi
+%    \end{macrocode}
+% define the brandeisheadings page style
+% \begin{macro}{\ps@brandeisheadings}
+%    \begin{macrocode}
+\if@twoside
+  \def\ps@brandeisheadings{%
+      \def\@evenfoot{\hfil\thepage\hfil}%
+      \def\@oddfoot{\hfil\thepage\hfil}%
+      \def\@evenhead{\hfil{\slhape\leftmark}\hfil}%
+      \def\@oddhead{\hfil{\slshape\rightmark}\hfil}%
+      \let\@mkboth\markboth
+    \def\chaptermark##1{%
+      \markboth {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+            \@chapapp\ \thechapter. \ %
+          \fi
+        \fi
+        ##1}}{}}%
+    \def\sectionmark##1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+          \thesection. \ %
+        \fi
+        ##1}}}}
+\else
+  \def\ps@brandeisheadings{%
+ 
+          \def\@oddfoot{\hfil\thepage\hfil}%
+    \def\@oddhead{\hfil{\slshape\rightmark}\hfil}%
+    \let\@mkboth\markboth
+    \def\chaptermark##1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+            \@chapapp\ \thechapter. \ %
+          \fi
+        \fi
+        ##1}}}}
+\fi
+% \end{macro}{\ps@brandeisheadings}
+%    \end{macrocode}
+% \begin{macro}{\bd@ps@plain@saved}
+% \begin{macro}{\bd@ps@empty@saved}
+% \begin{macro}{\bd@ps@headings@saved}
+% \begin{macro}{\bd@ps@myheadings@saved}
+% \begin{macro}{\bd@ps@brandeisheadings@saved}
+%   To get the margin calculations right, we let the page style commands
+%   change the constraints while we are in the preamble:
+%    \begin{macrocode}
+\let\bd@ps@plain@saved\ps@plain
+\let\bd@ps@empty@saved\ps@empty
+\let\bd@ps@headings@saved\ps@headings
+\let\bd@ps@myheadings@saved\ps@myheadings
+\let\bd@ps@brandeisheadings@saved\ps@brandeisheadings
+\def\ps@plain{\geometry{includehead=false,includefoot}%
+  \bd@ps@plain@saved}
+\def\ps@pempty{\geometry{includehead=false,includefoot=false}%
+  \bd@ps@empty@saved}
+\def\ps@headings{\geometry{includehead,includefoot=false}%
+  \bd@ps@headings@saved}
+\def\ps@myheadings{\geometry{includehead,includefoot=false}%
+  \bd@ps@myheadings@saved}
+\def\ps@brandeisheadings{\geometry{includehead,includefoot}%
+  \bd@ps@brandeisheadings@saved}
+\AtBeginDocument{%
+  \let\ps@plain\bd@ps@plain@saved
+  \let\ps@empty\bd@ps@empty@saved
+  \let\ps@headings\bd@ps@headings@saved
+  \let\ps@myheadings\bd@ps@myheadings@saved
+  \let\ps@brandeisheadings\bd@ps@brandeisheadings@saved
+  \let\bd@ps@plain\@undefined
+  \let\bd@ps@empty\@undefined
+  \let\bd@ps@headings\@undefined
+  \let\bd@ps@myheadings\@undefined
+  \let\bd@ps@brandeisheadings\@undefined}  
+%    \end{macrocode}
+% \end{macro}^^A \bd@ps@brandeisheadings@saved
+% \end{macro}^^A \bd@ps@myheadings@saved
+% \end{macro}^^A \bd@ps@headings@saved
+% \end{macro}^^A \bd@ps@empty@saved
+% \end{macro}^^A \bd@ps@plain@saved
+%
+% We choose the default page style to be brandeisheadings:
+%    \begin{macrocode}
+\pagestyle{brandeisheadings}
+%    \end{macrocode}
+%
+% \section{Front Matter}
+%
+% \begin{macro}{\thesisfront}
+%   \cmd{\thesisfront}\oarg{options} produces the front page based on
+%   the parameters set in the preamble.  \meta{options} is a
+%   comma-separated list of options as described on
+%   p.~\pageref{p:thesisfront-options}. 
+%
+%   We first process the options.  Each valid option is defined below
+%   as a macro \cs{bd@tf@\meta{option}} that is to be executed for the
+%   option.
+%    \begin{macrocode}
+\newcommand{\thesisfront}[1][]{%
+  \@for\bd@option:=#1\do{%
+     \@ifundefined{bd@tf@\bd@option}{%
+       \@latex@error{\@backslashchar thesisfront: option `\bd@option'
+       unknown}%
+       {The option you have specified is unknown.  Check the spelling 
+and \MessageBreak consult the documentation for the\MessageBreak 
+brandeis-dissertation class.}}%
+     {\@nameuse{bd@tf@\bd@option}}}% 
+%    \end{macrocode}
+%  We mark that this is the front matter.
+%    \begin{macrocode}
+  \frontmatter
+%    \end{macrocode}
+%  The pages from the title page and until the acknowledgments should
+%  be counted, but not numbered.  We start a group so we can
+%  change the page style without worries.
+%    \begin{macrocode}
+  \bgroup
+  \pagestyle{empty}
+  \thesistitlepage\cleardoublepage
+%    \end{macrocode}
+%  When submitting online, the signature page only mentions the
+%  committee's names, otherwise we need signature lines.
+%    \begin{macrocode}
+  \if@bd@onlinesubmission{\signaturepage}{\signaturepage*}%
+  \cleardoublepage
+  \if@bd@crpage{\copyrightpage{\@author}{\@graduationyear}%
+      \cleardoublepage}%
+  \ifx\@dedication\@empty\else
+     \dedicationpage{\@dedication}%
+     \cleardoublepage
+  \fi
+  \cleardoublepage
+  \egroup
+  \bd@optpage*{Acknowledgments}{\@acknowledgments}%  
+  \cleardoublepage
+  \bd@abstract{\@thesisabstract}%
+  \cleardoublepage
+  \bd@optpage{Preface}{\@preface}%
+  \cleardoublepage
+  \tableofcontents
+  \cleardoublepage
+  \if@bd@lot{\listoftables\cleardoublepage}%
+  \if@bd@lof{\listoffigures\cleardoublepage}%
+  \mainmatter}
+%    \end{macrocode}
+% \end{macro}^^A \thesisfront
+%
+% We then define the various options:
+% \begin{macro}{\if@bd@onlinesubmission}
+% \begin{macro}{\bd@tf@onlinesubmission}
+% \begin{macro}{\bd@tf@papersubmission}
+%   \cmd{\if@bd@onlinesubmission} is the flag for whether we prepare
+%   for online or paper submission.  The corresponding options are
+%   "onlinesubmission" and "papersubmission"
+%    \begin{macrocode}
+\let\if@bd@onlinesubmission\@firstoftwo
+\newcommand{\bd@tf@onlinesubmission}{%
+  \let\if@bd@onlinesubmission\@firstoftwo}
+\newcommand{\bd@tf@papersubmission}{%
+  \let\if@bd@onlinesubmission\@secondoftwo}
+%    \end{macrocode}
+% \end{macro}^^A \bd@tf@papersubmission
+% \end{macro}^^A \bd@tf@onlinesubmission
+% \end{macro}^^A \if@bd@onlinesubmission
+%
+% \begin{macro}{\if@bd@crpage}
+% \begin{macro}{\bd@tf@copyrightpage}
+% \begin{macro}{\bd@tf@nocopyrightpage}
+%   \cmd{\if@bd@crpage} is the flag for whether we include a copyright
+%   page.  The corresponding options are
+%   "copyrightpage" and "nocopyrightpage".
+%    \begin{macrocode}
+\let\if@bd@crpage\@iden
+\newcommand{\bd@tf@copyrightpage}{\let\if@bd@crpage\@iden}
+\newcommand{\bd@tf@nocopyrightpage}{\let\if@bd@crpage\@gobble}
+%    \end{macrocode}
+% \end{macro}^^A \bd@tf@nocopyrightpage
+% \end{macro}^^A \bd@tf@copyrightpage
+% \end{macro}^^A \if@bd@crpage
+%
+% \begin{macro}{\if@bd@lot}
+% \begin{macro}{\bd@tf@lot}
+% \begin{macro}{\bd@tf@nolot}
+%   \cmd{\if@bd@lot} is the flag for whether we include a list of
+%   tables.  The corresponding options are
+%   "lot" and "nolot".
+%    \begin{macrocode}
+\let\if@bd@lot\@gobble
+\newcommand{\bd@tf@lot}{\let\if@bd@lot\@iden}
+\newcommand{\bd@tf@nolot}{\let\if@bd@lot\@gobble}
+%    \end{macrocode}
+% \end{macro}^^A \bd@tf@nolot
+% \end{macro}^^A \bd@tf@lot
+% \end{macro}^^A \if@bd@lot
+%
+% \begin{macro}{\if@bd@lof}
+% \begin{macro}{\bd@tf@lof}
+% \begin{macro}{\bd@tf@nolof}
+%   \cmd{\if@bd@lof} is the flag for whether we include a list of
+%   figures.  The corresponding options are
+%   "lof" and "nolof".
+%    \begin{macrocode}
+\let\if@bd@lof\@gobble
+\newcommand{\bd@tf@lof}{\let\if@bd@lof\@iden}
+\newcommand{\bd@tf@nolof}{\let\if@bd@lof\@gobble}
+%    \end{macrocode}
+% \end{macro}^^A \bd@tf@nolof
+% \end{macro}^^A \bd@tf@lof
+% \end{macro}^^A \if@bd@lof
+%
+% \begin{macro}{\tableofcontents}
+% \begin{macro}{\listoftables}
+% \begin{macro}{\listoffigures}
+%   We adopt \cmd{\tableofcontents}, \cmd{\listoftables}, and
+%   \cmd{\listoffigures} to typeset the table of contents, list of tables,
+%   and list of figures single-spaced.  We only include chapters sand
+%   sections in the table of contents as in the example in the
+%   dissertation examples.  
+%    \begin{macrocode}
+\setcounter{tocdepth}{1}
+\let\bd@org@tableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{%
+  \begin{singlespace}
+    \bd@org@tableofcontents
+  \end{singlespace}}
+\let\bd@org@listoftables\listoftables
+\renewcommand{\listoftables}{%
+  \begin{singlespace}
+    \bd@org@listoftables
+ \end{singlespace}}
+\let\bd@org@listoffigures\listoffigures
+\renewcommand{\listoffigures}{%
+  \begin{singlespace}
+    \bd@org@listoffigures
+  \end{singlespace}}
+%    \end{macrocode}
+% \end{macro}^^A \listoffigures
+% \end{macro}^^A \listoftables
+%   \changes{07/01/2004}{1.0}{PMN: added Table of Contents to Table of Contents.}
+% \end{macro}^^A \tableofcontents
+%
+% \begin{macro}{\mainmatter}
+%   The dissertation guidelines does not call for a blank page between
+%   front matter and main matter.  We therefore adopt the
+%   \textsf{book}'s definition accordingly.
+%    \begin{macrocode}
+\renewcommand\mainmatter{%
+  \clearpage
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+%    \end{macrocode}
+% \end{macro}^^A \mainmatter
+% 
+% \begin{macro}{\acknowledgments}
+% \begin{macro}{\@acknowledgments}
+% \begin{macro}{\advisor}
+% \begin{macro}{\@advisor}
+% \begin{macro}{\dean}
+% \begin{macro}{\@dean}
+% \begin{macro}{\dedication}
+% \begin{macro}{\@dedication}
+% \begin{macro}{\department}
+% \begin{macro}{\@department}
+% \begin{macro}{\graduationmonth}
+% \begin{macro}{\@graduationmonth}
+% \begin{macro}{\graduationyear}
+% \begin{macro}{\@graduationyear}
+% \begin{macro}{\othercopyright}
+% \begin{macro}{\@othercopyright}
+% \begin{macro}{\preface}
+% \begin{macro}{\@preface}
+% \begin{macro}{\thesisabstract}
+% \begin{macro}{\@thesisabstract}
+%    We define the commands for the formal parameters of the
+%    dissertation.  For each \meta{parameter}, the command
+%    \cs{\meta{parameter}} records \meta{parameter} by storing it in 
+%    \cs{@\meta{parameter}}.
+%    \begin{macrocode}
+\gdef\@acknowledgments{}
+\gdef\@advisor{}
+\gdef\@dean{}
+\gdef\@dedication{}
+\gdef\@department{}     
+\gdef\@graduationmonth{May}
+\xdef\@graduationyear{\the\year}
+\gdef\@othercopyright{}
+\gdef\@preface{}
+\gdef\@thesisabstract{}
+\newcommand{\acknowledgments}[1]{\gdef\@acknowledgments{#1}}
+\newcommand{\advisor}[1]{\gdef\@advisor{#1}}
+\newcommand{\dean}[1]{\gdef\@dean{#1}}
+\newcommand{\dedication}[1]{\gdef\@dedication{#1}}
+\newcommand{\department}[1]{\gdef\@department{#1}}
+\newcommand{\graduationmonth}[1]{\gdef\@graduationmonth{#1}}
+\newcommand{\graduationyear}[1]{\gdef\@graduationyear{#1}}
+\newcommand{\othercopyright}[1]{\gdef\@othercopyright{#1}}
+\newcommand{\preface}[1]{\gdef\@preface{#1}}
+\newcommand{\thesisabstract}[1]{\gdef\@thesisabstract{#1}}
+%    \end{macrocode}
+% \end{macro}^^A \@thesisabstract
+% \end{macro}^^A \thesisabstract
+% \end{macro}^^A \@preface
+% \end{macro}^^A \preface
+% \end{macro}^^A \@othercopyright
+% \end{macro}^^A \othercopyright
+% \end{macro}^^A \@graduationyear
+% \end{macro}^^A \graduationyear
+% \end{macro}^^A \@graduationmonth
+% \end{macro}^^A \graduationmonth
+% \end{macro}^^A \@department
+% \end{macro}^^A \department
+% \end{macro}^^A \@dedication
+% \end{macro}^^A \dedication
+% \end{macro}^^A \@dean
+% \end{macro}^^A \dean
+% \end{macro}^^A \@advisor
+% \end{macro}^^A \advisor
+% \end{macro}^^A \@acknowledgments
+% \end{macro}^^A \acknowledgments
+%
+% \begin{macro}{\reader}
+% \begin{macro}{\@committee}
+%   The \mcmd{\reader}\marg{reader} adds \meta{reader} as a reader to
+%   the committee.  This is done by collection the readers in
+%   \cmd{\@committee} enclosed by \cmd{\do}.
+%    \begin{macrocode}
+\newcommand{\reader}[1]{%
+  \expandafter\gdef
+    \expandafter\@committee
+       \expandafter{\@committee\do{#1}}}
+\gdef\@committee{}
+%    \end{macrocode}
+% \end{macro}^^A \@committee
+% \end{macro}^^A \reader   
+%
+% \section{Title Page}
+%
+% \begin{macro}{\thesistitlepage}
+%   \mcmd{\thesistitlepage} typesets the title page of the
+%   dissertation on a page without page number.
+%    \begin{macrocode}
+\newcommand{\thesistitlepage}{
+  \thispagestyle{empty}%
+  \begin{center}
+    \vspace*{.25in}%
+    {\Huge \bf\baselineskip=.8\baselineskip \@title\\}
+    \vspace*{.5in}%
+    A Dissertation\\
+    \vspace*{.25in}%
+    Presented to\\
+    The Faculty of the Graduate School of Arts and Sciences\\
+    Brandeis University\\
+    \@department\\
+    \@advisor, Advisor\\
+    \vspace*{.5in}
+    In Partial Fulfillment\\
+    of the Requirements for the Degree\\
+    Doctor of Philosophy\\
+    \vspace*{.5in}
+    by\\
+    \@author\\        
+    \@graduationmonth, \@graduationyear\\   
+  \end{center}%
+  \clearpage}
+%    \end{macrocode}
+% \end{macro}^^A \thesistitlepage
+%
+% \section{Copyright Page}
+%
+% \begin{macro}{\copyrightpage}
+%   \mcmd{\copyrightpage}\marg{name}\marg{year} produces the thesis
+%   copyright page on a page with the page number omitted.
+%    \begin{macrocode}
+\newcommand{\copyrightpage}[2]{%
+  \thispagestyle{empty}%
+  \begin{center}
+    \vspace*{2.5in}
+     \copyright Copyright by \\
+    \vspace*{.05in}
+    #1 \\
+    \vspace*{.05in}
+    #2 
+  \end{center}
+  \vspace{0pt}\vfill%
+  \begin{singlespace}
+  \begin{raggedright}
+    \small
+    \@othercopyright
+  \end{raggedright}
+  \end{singlespace}
+  \clearpage}
+%    \end{macrocode}
+%   \changes{07/01/2004}{v0.1}{Added \cmd{\othercopyright}.}
+% \end{macro}^^A \copyrightpage
+% 
+% \begin{macro}{\dedicationpage}
+%   \mcmd{\dedicationpage}\marg{dedication} produces a dedication page
+%   on a page with the page number omitted. 
+%    \begin{macrocode}
+\newcommand{\dedicationpage}[1]{%
+  \thispagestyle{empty}%
+  \vspace*{2.5in}%
+  \begin{center}%
+    #1  
+  \end{center}%
+  \clearpage}
+%    \end{macrocode}
+% \end{macro}^^A \dedicationpage
+% 
+% \section{Abstract}
+%
+% \begin{environment}{abstract}
+%    "abstract" is the environment for typesetting the abstract of the
+%    dissertation.
+%    \begin{macrocode}
+\newenvironment{abstract}{%
+  \addcontentsline{toc}{chapter}{Abstract}
+  \begin{singlespace}
+    \thispagestyle{plain}
+    \begin{center}
+      {\Huge\bf Abstract\\}%
+      \vspace*{.2in}%
+      {\large\bf  \@title \\}%
+      \vspace*{.1in}%
+      \noindent
+      A dissertation presented to the Faculty of \\
+      the Graduate School of Arts and Sciences of \\
+      Brandeis University, Waltham, Massachusetts \\
+      \vspace*{0.1in}
+      by \@author
+    \end{center}
+    \end{singlespace}%
+    \begin{doublespace}
+    \noindent}%
+  {\end{doublespace}%
+  \clearpage}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{macro}{\bd@abstract}
+%   \mcmd{\bd@abstract}\marg{abstract} uses \meta{abstract} as the
+%   abstract of the dissertation.
+%    \begin{macrocode}
+\newcommand{\bd@abstract}[1]{%
+ \begin{abstract}#1\end{abstract}}
+%    \end{macrocode}
+% \end{macro}^^A \bd@abstract
+%
+% \section{Signature Page}
+%
+% \begin{macro}{\signaturepage}
+% \begin{macro}{\bd@sig@page}
+% \begin{macro}{\if@bd@sig@lines}
+%   \mcmd{\signaturepage}\ostar produces the signature page.  
+%
+%   The starred version produces the one to be signed on the day of
+%   the defense while the unstarred version produces the one to appear
+%   in the printed version.  The choice is recorded by
+%   \cmd{\if@bd@sig@lines}. 
+%   \begin{macrocode}
+\let\if@bd@sig@lines\@secondoftwo
+\newcommand{\signaturepage}{%
+  \@ifstar{\let\if@bd@sig@lines\@firstoftwo\bd@sig@page}%
+    {\let\if@bd@sig@lines\@secondoftwo\bd@sig@page}}
+\newcommand{\bd@sig@page}{%
+%    \end{macrocode}
+%  \label{p:sigpage-comm-sign-length}We first find the widest entry
+%  for a committee member; this is the length of the signature lines for
+%  the committee.
+%    \begin{macrocode}
+    \bd@upd@signline@lngth{\@advisor, Chair}
+    \let\do\bd@upd@signline@lngth\@committee
+%    \end{macrocode}
+%  We remove page numbering and typeset the introduction text.
+%    \begin{macrocode}
+    \thispagestyle{empty}%
+    \begin{flushleft}%
+      \vspace*{.15in}%
+      This dissertation, directed and approved by \@author's
+      committee, has been accepted and approved by the Graduate
+      Faculty of Brandeis University in partial fulfillment of the
+      requirements for the degree of:
+      \vspace*{0.25in}%
+      \begin{flushright}%
+        \centerline{\bfseries DOCTOR OF PHILOSOPHY}%
+        \par
+        \parbox{3.6in}{%
+          \vspace{.8in}%
+          \if@bd@sig@lines{\bd@signline{2.9in}}{}%
+          \@dean, Dean of Arts and Sciences}%
+      \end{flushright}%
+      \vspace*{0.4in}%
+%    \end{macrocode}
+%  The preamble stores the list of committee members in
+%  \cmd{\@committee} with each reader 
+%  enclosed in \cmd{\do}\{\meta{reader}\}.  We list the committee
+%  (with their possible signature lines) by setting \cmd{\do} be
+%  \cmd{\bd@sig@page@item}.
+%    \begin{macrocode}
+      Dissertation Committee:
+      \par
+      \bd@sig@page@item{\@advisor, Chair}%
+      {\let\do\bd@sig@page@item\@committee}%
+    \end{flushleft}
+    \clearpage}
+%    \end{macrocode}
+% \end{macro}^^A \if@bd@sig@lines
+% \end{macro}^^A \bd@sig@page
+% \end{macro}^^A \signaturepage
+%
+% \begin{macro}{\bd@sig@page@item}
+%   \mcmd{\bd@sig@page@item}\marg{member} typesets \meta{member} as a
+%   committee member.  It uses \cmd{\if@bd@sig@lines} to decide
+%   whether to add signature lines.
+%    \begin{macrocode}
+\newcommand{\bd@sig@page@item}[1]{%
+  \if@bd@sig@lines{%
+     \penalty10000\vskip.6in minus 1in% 
+     \bd@signline{\bd@comm@signline@lngth}}%
+   {\par}%
+  #1}
+%    \end{macrocode}
+% \end{macro}^^A \bd@sig@page@item 
+%
+% \subsection{Signature Line}
+% 
+% The following macros manages signature lines.  We start with
+% \cmd{\bd@signline} to typeset a signature line.
+% \begin{macro}{\bd@signline}
+%   \mcmd{\bd@signline}\marg{witdh} produces a line of width \meta{width} for signatures.
+%    \begin{macrocode}
+\newcommand{\bd@signline}[1]{%
+  \rule[.5\baselineskip]{#1}{0.4pt}\hskip-#1\relax\ignorespaces}
+%    \end{macrocode}
+% \end{macro}^^A \bd@signline
+%
+% \begin{macro}{\bd@comm@signline@lngth}
+% \begin{macro}{\bd@upd@signline@lngth}
+%   To get the same length on the signature lines for the committee,
+%   we process the committee (see \cmd{\signaturepage} on
+%   p.~\pageref{p:sigpage-comm-sign-length} 
+%    \begin{macrocode}
+\newlength{\bd@comm@signline@lngth}
+\setlength{\bd@comm@signline@lngth}{2.5in}
+\newcommand{\bd@upd@signline@lngth}[1]{%
+  {\setbox0=\hbox{#1}%
+  \ifdim \wd0>\bd@comm@signline@lngth
+    \global\bd@comm@signline@lngth=\wd0
+  \fi}}
+%    \end{macrocode}
+% \end{macro}^^A \bd@upd@signline@lngth
+% \end{macro}^^A bd@comm@signline@lngth
+%
+% \begin{environment}{optionalpage*}
+% \begin{environment}{optionalpage}
+%   These environments are used for optional pages: dedication,
+%   acknowledgments, preface.  They take \meta{title} as their single
+%   argument. 
+%
+%   The unstarred version adds an entry to
+%   the table of contents. 
+%    \begin{macrocode}
+\newenvironment{optionalpage}[1]{%
+  \chapter{#1}}%      
+  {\clearpage}
+\newenvironment{optionalpage*}[1]{%
+  \chapter*{#1}}%      
+  {\clearpage}
+%    \end{macrocode}
+%   We do not use \cmd{\chapter}\ostar as
+%   this has a large space on the top of the page.
+%   The output will be double-spaced, but you can easily change that.  
+% \end{environment}^^A optionalpage
+% \end{environment}^^A optionalpage*
+%
+% \section{Optional Pages}
+% \begin{macro}{\bd@optpage}
+% \begin{macro}{\bd@optpage@i}
+%   \mcmd{\bd@optpage}\ostar\textbf{\cs{\meta{command}}}\marg{title} 
+%   typesets an optional page titled \meta{title} with contents of
+%   \cs{\meta{command}} provided that the expansion of \cs{\meta{command}}
+%   is not-empty.
+%    \begin{macrocode}
+\newcommand{\bd@optpage}{%
+  \@ifstar{\bd@optpage@i{optionalpage*}}{\bd@optpage@i{optionalpage}}}
+%    \end{macrocode}
+%   We test for the optional star to decide on the environment to
+%   use.  Then \cmd{\bd@optpage@i} does the actual typesetting.
+%    \begin{macrocode}
+\newcommand{\bd@optpage@i}[3]{%
+  \ifx\@empty#3
+     \expandafter\@gobble
+  \else
+     \expandafter\@iden
+  \fi
+  {\begin{#1}{#2}#3\end{#1}}}
+%    \end{macrocode}
+% \end{macro}^^A \bd@optpage@i
+% \end{macro}^^A \bd@optpage
+%
+%^^A  \section{Obsolete \package{book} Commands}
+%^^A    Various features of the \package{book} class conflict with the
+%^^A    commands in this class and we disable them
+%    \begin{macrocode}
+%</class>
+%    \end{macrocode}
+% \Finale \sloppy \PrintChanges
+% 
+% \endinput
+% ^^A LocalWords:  minmargins papersubmission
+

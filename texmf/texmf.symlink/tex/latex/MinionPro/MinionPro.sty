@@ -1,0 +1,632 @@
+%%
+%% This is file `MinionPro.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `style')
+%% 
+%% These files are public domain.
+%% 
+   \NeedsTeXFormat{LaTeX2e}
+   \ProvidesPackage{MinionPro}         [2007/03/15 v2.1 MinionPro support for LaTeX]
+\newif\if@Mn@Text@
+\newif\if@Mn@Math@
+\@Mn@Text@true
+\@Mn@Math@true
+\DeclareOption{onlytext}{\@Mn@Text@true\@Mn@Math@false}
+\DeclareOption{onlymath}{\@Mn@Text@false\@Mn@Math@true}
+\newcommand\Mn@minionint@opticals{-NoOpticals}
+\newcommand\Mn@minionint@bold{-Bold}
+\DeclareOption{slides}{%
+  \def\Mn@minionint@opticals{-NoOpticals}%
+  \PassOptionsToPackage{slides}{MinionPro-FontDef}}
+\DeclareOption{noopticals}{%
+  \def\Mn@minionint@opticals{-NoOpticals}%
+  \PassOptionsToPackage{noopticals}{MinionPro-FontDef}}
+\DeclareOption{opticals}{%
+  \def\Mn@minionint@opticals{}%
+  \PassOptionsToPackage{opticals}{MinionPro-FontDef}}
+\DeclareOption{smallfamily}{%
+  \def\Mn@minionint@bold{-Bold}%
+  \PassOptionsToPackage{smallfamily}{MinionPro-FontDef}}
+\DeclareOption{medfamily}{%
+  \def\Mn@minionint@bold{-Semibold}%
+  \PassOptionsToPackage{medfamily}{MinionPro-FontDef}}
+\DeclareOption{fullfamily}{%
+  \def\Mn@minionint@bold{-Semibold}%
+  \PassOptionsToPackage{fullfamily}{MinionPro-FontDef}}
+\DeclareOption{normalsize}{%
+  \PassOptionsToPackage{normalsize}{MinionPro-FontDef}}
+\DeclareOption{nonormalsize}{%
+  \PassOptionsToPackage{nonormalsize}{MinionPro-FontDef}}
+\newcommand\Mn@Text@Fig{OsF}
+\newcommand\Mn@Math@Fig{OsF}
+\newcommand\Mn@Text@Family{MinionPro-\Mn@Text@Fig}
+\newcommand\Mn@Math@Family{MinionPro-\Mn@Math@Fig}
+\newcommand\Mn@Math@TFamily{MinionPro-T\Mn@Math@Fig}
+\newcommand\Mn@Math@LetterShape{it}
+\DeclareOption{textosf}{\def\Mn@Text@Fig{OsF}}
+\DeclareOption{textlf} {\def\Mn@Text@Fig{LF}}
+\DeclareOption{mathosf}{\def\Mn@Math@Fig{OsF}}
+\DeclareOption{mathlf} {\def\Mn@Math@Fig{LF}}
+\DeclareOption{osf}{\ExecuteOptions{textosf,mathosf}}
+\DeclareOption{lf} {\ExecuteOptions{textlf,mathlf}}
+\DeclareOption{mathtabular}{\let\Mn@Math@Family\Mn@Math@TFamily}
+\newcommand\Mn@load@cal{}
+\newcommand\Mn@load@bb{}
+\newcommand\Mn@load@frak{}
+\DeclareOption{mnsy}{
+  \PassOptionsToPackage{mnsy}{MnSymbol}
+  \def\Mn@load@cal{
+    \SetMathAlphabet\mathcal{boldtabular}{OMS}{MnSymbolS}{b}{n}
+  }
+}
+\DeclareOption{cmsy}{
+  \PassOptionsToPackage{cmsy}{MnSymbol}
+  \def\Mn@load@cal{
+    \SetMathAlphabet\mathcal{boldtabular}{OMS}{cmsy}{b}{n}
+  }
+}
+\DeclareOption{abx}{
+  \PassOptionsToPackage{abx}{MnSymbol}
+}
+\DeclareOption{swash}{
+  \def\Mn@load@cal{
+    \DeclareMathAlphabet\mathcal         {T1}{\Mn@Math@Family} {m} {sw}
+    \SetMathAlphabet\mathcal{bold}       {T1}{\Mn@Math@Family} {eb}{sw}
+    \SetMathAlphabet\mathcal{tabular}    {T1}{\Mn@Math@TFamily}{m} {sw}
+    \SetMathAlphabet\mathcal{boldtabular}{T1}{\Mn@Math@TFamily}{eb}{sw}}
+}
+\newcommand\Mn@load@greek{\Mn@greek@Mixed}
+\DeclareOption{frenchmath}{%
+  \def\Mn@load@greek{\Mn@greek@Upright}%
+  \def\Mn@Math@LetterShape{n}}
+\DeclareOption{mixedgreek}{%
+  \def\Mn@load@greek{\Mn@greek@Mixed}}
+\DeclareOption{italicgreek}{%
+  \def\Mn@load@greek{\Mn@greek@Italic}}
+\newcommand\Mn@load@amsbb{
+  \let\mathbb\@undefined
+  \let\Bbbk\@undefined
+  \DeclareMathAlphabet\mathbb{U}{msb}{m}{n}
+  \newcommand\Bbbk{\mathbb{\mathchar"717C}}}
+\newcommand\Mn@load@lucidabb{
+  \let\mathbb\@undefined
+  \let\Bbbk\@undefined
+  \DeclareFontFamily{U}{hlcm}{}
+  \DeclareFontShape{U}{hlcm}{m}{n}{ <->s*[0.92] hlcra }{}
+  \DeclareMathAlphabet\mathbb{U}{hlcm}{m}{n}
+  \newcommand\Bbbk{\mathbb{k}}}
+\newcommand\Mn@load@fourierbb{
+  \let\mathbb\@undefined
+  \let\Bbbk\@undefined
+  \DeclareFontFamily{U}{futm}{}
+  \DeclareFontShape{U}{futm}{m}{n}{ <->s*[0.95] fourier-bb }{}
+  \DeclareMathAlphabet\mathbb{U}{futm}{m}{n}
+  \newcommand\Bbbk{\mathbb{k}}}
+\DeclareOption{amsbb}    {\let\Mn@load@bb\Mn@load@amsbb}
+\DeclareOption{lucidabb} {\let\Mn@load@bb\Mn@load@lucidabb}
+\DeclareOption{fourierbb}{\let\Mn@load@bb\Mn@load@fourierbb}
+\newcommand\Mn@load@integrals{}
+\DeclareOption{minionint}{\def\Mn@load@integrals{\Mn@Decl@Minion@Ints}}
+\DeclareOption{footnotefigures}{%
+  \def\@makefnmark{%
+    \begingroup
+    \normalfont
+    \fontfamily{MinionPro-Extra}\fontencoding{U}\selectfont
+    \@thefnmark
+    \endgroup}}
+\newcommand\Mn@Define@Open@g{}
+\DeclareOption{openg}{%
+  \def\Mn@Define@Open@g{%
+    \mathcode`g="8000%
+    \DeclareMathSymbol{\Mn@g}{\mathalpha}{letters}{`g}%
+    \begingroup
+    \lccode`\~=`\g
+    \lowercase{\gdef~{\ifnum\the\mathgroup=\m@ne \openg \else \Mn@g \fi}}%
+    \endgroup
+  }}
+\newcommand\Mn@Quote@Spacing{}
+\DeclareOption{loosequotes}{%
+  \def\Mn@Quote@Spacing{\Mn@Quote@Spacing@Loose}}
+\ExecuteOptions{amsbb,eufrak}
+\ProcessOptions\relax
+\RequirePackage{MinionPro-FontDef}
+\@ifpackageloaded{textcomp}{}{\RequirePackage{textcomp}}
+
+\if@Mn@Math@
+  \RequirePackage{MnSymbol}[2007/01/21 v1.4]
+  \@ifundefined{mathfrak}{%
+    \RequirePackage{eufrak}%
+    \SetMathAlphabet\EuFrak{boldtabular}{U}{euf}{b}{n}}{}
+\fi
+\if@Mn@Text@
+  \edef\rmdefault{\Mn@Text@Family}
+  \let\ibycusdefault\Mn@Text@Family
+  \def\Mn@Quote@Spacing@Loose{%
+    \@ifpackageloaded{microtype}{}{\RequirePackage[kerning=true]{microtype}}
+    \@ifundefined{SetExtraKerning}{}{
+      \let\Mn@Set@Quote@Spacing\SetExtraKerning}
+  }
+  \newcommand*\Mn@Set@Quote@Spacing[3][]{}
+  \Mn@Quote@Spacing
+  \Mn@Set@Quote@Spacing
+    [ unit = 1em ]
+    { encoding = {OT1,T1,LGR,U,OT2,T2A,T2B,T2C,T5,X2},
+      family   = {MinionPro-OsF,MinionPro-LF,MinionPro-TOsF,MinionPro-TLF},
+      shape    = {n,it} }
+    { \textquotedblleft = {30,30},  \textquotedblright = {30,30},
+      \textquoteleft    = {30,30},  \textquoteright    = {30,30} }
+\fi
+\if@Mn@Math@
+  \DeclareSymbolFont{operators}  {T1} {\Mn@Math@Family}{m} {n}
+  \DeclareSymbolFont{letters}    {OML}{MinionPro-TOsF} {m} {\Mn@Math@LetterShape}
+  \SetSymbolFont{operators}{bold}{T1} {\Mn@Math@Family}{eb}{n}
+  \SetSymbolFont{letters}  {bold}{OML}{MinionPro-TOsF} {eb}{\Mn@Math@LetterShape}
+  \DeclareMathAlphabet\mathbf    {T1} {\Mn@Math@Family}{eb}{n}
+  \DeclareMathAlphabet\mathit    {T1} {\Mn@Math@Family}{m} {it}
+  \SetMathAlphabet\mathit  {bold}{T1} {\Mn@Math@Family}{eb}{it}
+  \DeclareMathVersion{tabular}
+  \SetSymbolFont{operators}{tabular}    {T1} {\Mn@Math@TFamily}{m}{n}
+  \SetSymbolFont{letters}  {tabular}    {OML}{MinionPro-TOsF}  {m}{\Mn@Math@LetterShape}
+  \SetMathAlphabet\mathit  {tabular}    {T1} {\Mn@Math@TFamily}{m}{it}
+
+  \DeclareMathVersion{boldtabular}
+  \SetSymbolFont{operators}{boldtabular}{T1} {\Mn@Math@TFamily}{eb}{n}
+  \SetSymbolFont{letters}  {boldtabular}{OML}{MinionPro-TOsF}  {eb}{\Mn@Math@LetterShape}
+  \SetMathAlphabet\mathit  {boldtabular}{T1} {\Mn@Math@TFamily}{eb}{it}
+  \DeclareMathAccent{\grave}   {\mathalpha}{operators}{0}
+  \DeclareMathAccent{\acute}   {\mathalpha}{operators}{1}
+  \DeclareMathAccent{\hat}     {\mathalpha}{operators}{2}
+  \DeclareMathAccent{\tilde}   {\mathalpha}{operators}{3}
+  \DeclareMathAccent{\ddot}    {\mathalpha}{operators}{4}
+  \DeclareMathAccent{\mathring}{\mathalpha}{operators}{6}
+  \DeclareMathAccent{\check}   {\mathalpha}{operators}{7}
+  \DeclareMathAccent{\breve}   {\mathalpha}{operators}{8}
+  \DeclareMathAccent{\bar}     {\mathalpha}{operators}{9}
+  \DeclareMathAccent{\dot}     {\mathalpha}{operators}{10}
+  \Mn@load@bb
+  \Mn@load@frak
+  \Mn@load@cal
+\fi
+\RequirePackage{fontaxes}[2005/05/04]
+\let\oldstylenums\textfigures
+\if@Mn@Math@
+  \newcommand\Mn@greek@list@upper{}
+  \newcommand\Mn@greek@list@lower{}
+  \let\Mn@greek@list@upper\@gobble
+  \let\Mn@greek@list@lower\@gobble
+  \newcommand\Mn@greek@list{}
+  \newcommand*\Mn@greek@letter[3]{%
+    \expandafter\DeclareMathSymbol
+    \expandafter{\csname it#1\endcsname}{\mathord}{letters}{#2}%
+    \expandafter\DeclareMathSymbol
+    \expandafter{\csname up#1\endcsname}{\mathord}{letters}{#3}%
+    \edef\@tempa{`\@car#1\@nil}%
+    \edef\Mn@greek@list{\expandafter\noexpand\csname
+      Mn@greek@list@\ifnum\uccode\@tempa=\@tempa upper\else lower\fi\endcsname}%
+    \expandafter\edef\Mn@greek@list{\Mn@greek@list,#1}%
+  }
+  \Mn@greek@letter{Gamma}         {'000}{'200}
+  \Mn@greek@letter{Delta}         {'001}{'201}
+  \Mn@greek@letter{Theta}         {'002}{'202}
+  \Mn@greek@letter{Lambda}        {'003}{'203}
+  \Mn@greek@letter{Xi}            {'004}{'204}
+  \Mn@greek@letter{Pi}            {'005}{'205}
+  \Mn@greek@letter{Sigma}         {'006}{'206}
+  \Mn@greek@letter{Upsilon}       {'007}{'207}
+  \Mn@greek@letter{Phi}           {'010}{'210}
+  \Mn@greek@letter{Psi}           {'011}{'211}
+  \Mn@greek@letter{Omega}         {'012}{'212}
+  \Mn@greek@letter{alpha}         {'013}{'213}
+  \Mn@greek@letter{beta}          {'014}{'214}
+  \Mn@greek@letter{gamma}         {'015}{'215}
+  \Mn@greek@letter{delta}         {'016}{'216}
+  \Mn@greek@letter{epsilon}       {'017}{'217}
+  \Mn@greek@letter{zeta}          {'020}{'220}
+  \Mn@greek@letter{eta}           {'021}{'221}
+  \Mn@greek@letter{theta}         {'022}{'222}
+  \Mn@greek@letter{iota}          {'023}{'223}
+  \Mn@greek@letter{kappa}         {'024}{'224}
+  \Mn@greek@letter{lambda}        {'025}{'225}
+  \Mn@greek@letter{mu}            {'026}{'226}
+  \Mn@greek@letter{nu}            {'027}{'227}
+  \Mn@greek@letter{xi}            {'030}{'230}
+  \Mn@greek@letter{pi}            {'031}{'231}
+  \Mn@greek@letter{rho}           {'032}{'232}
+  \Mn@greek@letter{sigma}         {'033}{'233}
+  \Mn@greek@letter{tau}           {'034}{'234}
+  \Mn@greek@letter{upsilon}       {'035}{'235}
+  \Mn@greek@letter{phi}           {'036}{'236}
+  \Mn@greek@letter{chi}           {'037}{'237}
+  \Mn@greek@letter{psi}           {'040}{'240}
+  \Mn@greek@letter{omega}         {'041}{'241}
+  \Mn@greek@letter{varepsilon}    {'042}{'242}
+  \Mn@greek@letter{vartheta}      {'043}{'243}
+  \Mn@greek@letter{varpi}         {'044}{'244}
+  \Mn@greek@letter{varrho}        {'045}{'245}
+  \Mn@greek@letter{varsigma}      {'046}{'246}
+  \Mn@greek@letter{varphi}        {'047}{'247}
+  \Mn@greek@letter{varbeta}       {'260}{'250}
+  \Mn@greek@letter{varkappa}      {'261}{'251}
+  \Mn@greek@letter{backepsilon}   {'262}{'252}
+  \Mn@greek@letter{varbackepsilon}{'263}{'253}
+  \Mn@greek@letter{digamma}       {'264}{'254}
+  \Mn@greek@letter{eth}           {'266}{'256}
+  \newcommand*\Mn@greek@select[2]{%
+    \expandafter\let\expandafter\Mn@greek@list\csname Mn@greek@list@#2\endcsname
+    \@for\@tempa:=\Mn@greek@list\do{%
+      \expandafter\let\csname\@tempa\expandafter\endcsname
+      \csname#1\@tempa\endcsname
+    }%
+  }
+  \newcommand*\Mn@greek@Upright{%
+    \Mn@greek@select{up}{upper}%
+    \Mn@greek@select{up}{lower}%
+  }
+  \newcommand*\Mn@greek@Italic{%
+    \Mn@greek@select{it}{upper}%
+    \Mn@greek@select{it}{lower}%
+  }
+  \newcommand*\Mn@greek@Mixed{%
+    \Mn@greek@select{up}{upper}%
+    \Mn@greek@select{it}{lower}%
+  }
+  \Mn@load@greek
+\fi
+\@ifundefined{pdfglyphtounicode}{}{
+  \pdfglyphtounicode{uniEFD5}{03DD}% uni03DD
+  \pdfglyphtounicode{uniEFED}{02D9}% dotaccent.cap
+  \pdfglyphtounicode{uniEFEE}{02D8}% breve.cap
+  \pdfglyphtounicode{uniEFF1}{02DB}% ogonek.cap
+  \pdfglyphtounicode{uniEFF2}{00B8}% cedilla.cap
+  \pdfglyphtounicode{uniEFF3}{02DA}% ring.cap
+  \pdfglyphtounicode{uniEFF5}{02DC}% tilde.cap
+  \pdfglyphtounicode{uniEFF7}{02C6}% circumflex.cap
+  \pdfglyphtounicode{uniF628}{2030}% perthousand.oldstyle
+  \pdfglyphtounicode{uniF62C}{0028}% parenleft.denominator
+  \pdfglyphtounicode{uniF62D}{0029}% parenright.denominator
+  \pdfglyphtounicode{uniF631}{0028}% parenleft.numerator
+  \pdfglyphtounicode{uniF632}{0029}% parenright.numerator
+  \pdfglyphtounicode{uniF638}{0030}% zero.slash
+  \pdfglyphtounicode{uniF639}{0030}% zero.fitted
+  \pdfglyphtounicode{uniF63A}{0032}% two.fitted
+  \pdfglyphtounicode{uniF63B}{0033}% three.fitted
+  \pdfglyphtounicode{uniF63C}{0034}% four.fitted
+  \pdfglyphtounicode{uniF63D}{0035}% five.fitted
+  \pdfglyphtounicode{uniF63E}{0036}% six.fitted
+  \pdfglyphtounicode{uniF63F}{0037}% seven.fitted
+  \pdfglyphtounicode{uniF640}{0038}% eight.fitted
+  \pdfglyphtounicode{uniF641}{0039}% nine.fitted
+  \pdfglyphtounicode{uniF642}{0025}% percent.oldstyle
+  \pdfglyphtounicode{uniF643}{0030}% zero.taboldstyle
+  \pdfglyphtounicode{uniF644}{0031}% one.taboldstyle
+  \pdfglyphtounicode{uniF645}{0032}% two.taboldstyle
+  \pdfglyphtounicode{uniF646}{0033}% three.taboldstyle
+  \pdfglyphtounicode{uniF647}{0034}% four.taboldstyle
+  \pdfglyphtounicode{uniF648}{0035}% five.taboldstyle
+  \pdfglyphtounicode{uniF649}{0036}% six.taboldstyle
+  \pdfglyphtounicode{uniF64A}{0037}% seven.taboldstyle
+  \pdfglyphtounicode{uniF64B}{0038}% eight.taboldstyle
+  \pdfglyphtounicode{uniF64C}{0039}% nine.taboldstyle
+  \pdfglyphtounicode{uniF64D}{20A1}% colonmonetary.taboldstyle
+  \pdfglyphtounicode{uniF64E}{20AC}% Euro.taboldstyle
+  \pdfglyphtounicode{uniF64F}{0192}% florin.taboldstyle
+  \pdfglyphtounicode{uniF650}{0023}% numbersign.taboldstyle
+  \pdfglyphtounicode{uniF651}{00A3}% sterling.taboldstyle
+  \pdfglyphtounicode{uniF652}{00A5}% yen.taboldstyle
+  \pdfglyphtounicode{uniF653}{0024}% dollar.taboldstyle
+  \pdfglyphtounicode{uniF654}{00A2}% cent.taboldstyle
+  \pdfglyphtounicode{uniF655}{0030}% zero.denominator
+  \pdfglyphtounicode{uniF656}{0031}% one.denominator
+  \pdfglyphtounicode{uniF657}{0032}% two.denominator
+  \pdfglyphtounicode{uniF658}{0033}% three.denominator
+  \pdfglyphtounicode{uniF659}{0034}% four.denominator
+  \pdfglyphtounicode{uniF65A}{0035}% five.denominator
+  \pdfglyphtounicode{uniF65B}{0036}% six.denominator
+  \pdfglyphtounicode{uniF65C}{0037}% seven.denominator
+  \pdfglyphtounicode{uniF65D}{0038}% eight.denominator
+  \pdfglyphtounicode{uniF65E}{0039}% nine.denominator
+  \pdfglyphtounicode{uniF65F}{002C}% comma.denominator
+  \pdfglyphtounicode{uniF660}{002E}% period.denominator
+  \pdfglyphtounicode{uniF661}{0030}% zero.numerator
+  \pdfglyphtounicode{uniF662}{0031}% one.numerator
+  \pdfglyphtounicode{uniF663}{0032}% two.numerator
+  \pdfglyphtounicode{uniF664}{0033}% three.numerator
+  \pdfglyphtounicode{uniF665}{0034}% four.numerator
+  \pdfglyphtounicode{uniF666}{0035}% five.numerator
+  \pdfglyphtounicode{uniF667}{0036}% six.numerator
+  \pdfglyphtounicode{uniF668}{0037}% seven.numerator
+  \pdfglyphtounicode{uniF669}{0038}% eight.numerator
+  \pdfglyphtounicode{uniF66A}{0039}% nine.numerator
+  \pdfglyphtounicode{uniF66B}{002C}% comma.numerator
+  \pdfglyphtounicode{uniF66C}{002E}% period.numerator
+  \pdfglyphtounicode{uniF66D}{0103}% abreve.sc
+  \pdfglyphtounicode{uniF66F}{0105}% aogonek.sc
+  \pdfglyphtounicode{uniF671}{0107}% cacute.sc
+  \pdfglyphtounicode{uniF672}{010D}% ccaron.sc
+  \pdfglyphtounicode{uniF675}{010F}% dcaron.sc
+  \pdfglyphtounicode{uniF676}{0111}% dcroat.sc
+  \pdfglyphtounicode{uniF678}{011B}% ecaron.sc
+  \pdfglyphtounicode{uniF67B}{014B}% eng.sc
+  \pdfglyphtounicode{uniF67C}{0119}% eogonek.sc
+  \pdfglyphtounicode{uniF67D}{011F}% gbreve.sc
+  \pdfglyphtounicode{uniF684}{0133}% ij.sc
+  \pdfglyphtounicode{uniF687}{0129}% itilde.sc
+  \pdfglyphtounicode{uniF68A}{013A}% lacute.sc
+  \pdfglyphtounicode{uniF68B}{013E}% lcaron.sc
+  \pdfglyphtounicode{uniF68E}{0144}% nacute.sc
+  \pdfglyphtounicode{uniF68F}{0148}% ncaron.sc
+  \pdfglyphtounicode{uniF692}{0151}% ohungarumlaut.sc
+  \pdfglyphtounicode{uniF695}{0155}% racute.sc
+  \pdfglyphtounicode{uniF696}{0159}% rcaron.sc
+  \pdfglyphtounicode{uniF698}{015B}% sacute.sc
+  \pdfglyphtounicode{uniF699}{015F}% scedilla.sc
+  \pdfglyphtounicode{uniF69D}{0165}% tcaron.sc
+  \pdfglyphtounicode{uniF69E}{0163}% tcommaaccent.sc
+  \pdfglyphtounicode{uniF6A0}{0171}% uhungarumlaut.sc
+  \pdfglyphtounicode{uniF6A3}{016F}% uring.sc
+  \pdfglyphtounicode{uniF6A4}{0169}% utilde.sc
+  \pdfglyphtounicode{uniF6AA}{1EF3}% ygrave.sc
+  \pdfglyphtounicode{uniF6AB}{017A}% zacute.sc
+  \pdfglyphtounicode{uniF6AC}{017C}% zdotaccent.sc
+  \pdfglyphtounicode{uniF6DC}{0031}% one.fitted
+}
+\def\@for@tok#1:=#2\do#3{%
+  \expandafter\def\expandafter\@fortmp\expandafter{#2}%
+  \ifx\@fortmp\@empty \else
+    \expandafter\@forloop@tok#2\@nil\@nil\@@#1{#3}%
+  \fi}
+\def\@forloop@tok#1#2#3\@@#4#5{%
+  \def#4{#1}%
+  \ifx #4\@nnil \else
+    #5%
+    \def#4{#2}%
+    \ifx #4\@nnil \else
+      #5\@iforloop@tok #3\@@#4{#5}%
+  \fi\fi}
+\def\@iforloop@tok#1#2\@@#3#4{%
+  \def#3{#1}%
+  \ifx #3\@nnil
+    \expandafter\@fornoop
+  \else
+    #4\relax\expandafter\@iforloop@tok
+  \fi
+  #2\@@#3{#4}}
+\newcommand*\Mn@extra@font{%
+  \fontencoding{U}\fontfamily{MinionPro-Extra}\selectfont}
+\newcommand*\@numerator@fig[1]{{\Mn@extra@font\@@numerator@fig{#1}}}
+\newcommand*\@denominator@fig[1]{{\Mn@extra@font\@@denominator@fig{#1}}}
+\newcommand*\@superior@fig[1]{{\Mn@extra@font\@@superior@fig{#1}}}
+\newcommand*\@inferior@fig[1]{{\Mn@extra@font\@@inferior@fig{#1}}}
+\newcommand*\@@numerator@fig[1]{%
+  \@for@tok\@nf@fig:=#1\do{%
+    \ifcase\@nf@fig
+       \char'00%
+    \or\char'01%
+    \or\char'02%
+    \or\char'03%
+    \or\char'04%
+    \or\char'05%
+    \or\char'06%
+    \or\char'07%
+    \or\char'10%
+    \or\char'11%
+    \else
+      \@latex@error{invalid argument to \string\@@numerator@fig}%
+    \fi
+    }}
+\newcommand*\@@denominator@fig[1]{%
+  \@for@tok\@nf@fig:=#1\do{%
+    \ifcase\@nf@fig
+       \char'20%
+    \or\char'21%
+    \or\char'22%
+    \or\char'23%
+    \or\char'24%
+    \or\char'25%
+    \or\char'26%
+    \or\char'27%
+    \or\char'30%
+    \or\char'31%
+    \else
+      \@latex@error{invalid argument to \string\@@denominator@fig}%
+    \fi
+    }}
+\newcommand*\@@superior@fig[1]{%
+  \@for@tok\@nf@fig:=#1\do{%
+    \ifcase\@nf@fig
+       \char'60%
+    \or\char'61%
+    \or\char'62%
+    \or\char'63%
+    \or\char'64%
+    \or\char'65%
+    \or\char'66%
+    \or\char'67%
+    \or\char'70%
+    \or\char'71%
+    \else
+      \@latex@error{invalid argument to \string\@@superior@fig}%
+    \fi
+    }}
+\newcommand*\@@inferior@fig[1]{%
+  \@for@tok\@nf@fig:=#1\do{%
+    \ifcase\@nf@fig
+       \char'100%
+    \or\char'101%
+    \or\char'102%
+    \or\char'103%
+    \or\char'104%
+    \or\char'105%
+    \or\char'106%
+    \or\char'107%
+    \or\char'110%
+    \or\char'111%
+    \else
+      \@latex@error{invalid argument to \string\@@inferior@fig}%
+    \fi
+    }}
+\newcommand*\ensure@text[1]{%
+  \ifmmode
+    \Mn@Text@With@MathVersion{#1}%
+  \else
+    #1%
+  \fi}
+\newcommand*\@smallfrac[2]{%
+  \leavevmode
+  \setbox\@tempboxa
+    \vbox{%
+      \baselineskip\z@skip%
+      \lineskip.25ex%
+      \lineskiplimit-\maxdimen
+      \ialign{\hfil##\hfil\crcr
+              \vbox to 2.13ex{\vss\hbox{\@numerator@fig{#1}}\vskip.68ex}\crcr
+              \leavevmode\leaders\hrule height 1.1ex depth -1.01ex\hfill\crcr
+              \vtop to 1ex{\vbox{}\hbox{\@denominator@fig{#2}}\vss}\crcr
+              \noalign{\vskip-1.47ex}}}%
+  \dp\@tempboxa=0.49ex%
+  \box\@tempboxa}
+\newcommand*\@slantfrac[2]{%
+  {\Mn@extra@font\@@numerator@fig{#1}\kern-0.05em/\kern-0.06em\@@denominator@fig{#2}}}
+\DeclareRobustCommand*\smallfrac[2]{\ensure@text{\kern0.06em\@smallfrac{#1}{#2}\kern0.09em}}
+\DeclareRobustCommand*\slantfrac[2]{\ensure@text{\kern0.06em\@slantfrac{#1}{#2}\kern0.09em}}
+\if@Mn@Math@
+  \let\hbar\undefined
+  \DeclareMathSymbol{\hbar}             {\mathord}{letters}{'265}
+  \DeclareMathSymbol{\uphbar}           {\mathord}{letters}{'255}
+  \DeclareMathSymbol{\partial}          {\mathord}{letters}{'100}
+  \DeclareMathSymbol{\uppartial}        {\mathord}{letters}{'300}
+  \DeclareMathSymbol{\ell}              {\mathord}{letters}{'140}
+  \DeclareMathSymbol{\upell}            {\mathord}{letters}{'340}
+  \DeclareMathSymbol{\slashedzero}      {\mathord}{letters}{'257}
+  \DeclareMathSymbol{\upimath}          {\mathord}{letters}{'373}
+  \DeclareMathSymbol{\upjmath}          {\mathord}{letters}{'374}
+  \DeclareMathSymbol{\varsmallint}      {\mathord}{letters}{'376}
+  \DeclareMathSymbol{\openg}            {\mathalpha}{letters}{'267}
+  \DeclareRobustCommand\lambdabar       {\middlebar\lambda}
+  \DeclareRobustCommand\lambdaslash     {\middleslash\lambda}
+\fi
+\if@Mn@Text@
+  %\def\Qoppa{\reflectbox{P}}
+  %\def\Sampi{\begingroup\fontfamily{cmr}\fontencoding{LGR}\selectfont\char23\endgroup}
+  \let\Stigma\stigma
+
+  % fix \r A
+  \DeclareTextCompositeCommand{\r}{OT1}{A}
+     {\leavevmode\setbox\z@\hbox{!}\dimen@\ht\z@\advance\dimen@-1ex%
+     \ooalign{\hss\raise.67\dimen@\hbox{\char23}\hss\crcr A}}
+
+  \DeclareEncodingSubset{TS1}{MinionPro-LF}  {1}%
+  \DeclareEncodingSubset{TS1}{MinionPro-TLF} {1}%
+  \DeclareEncodingSubset{TS1}{MinionPro-OsF} {1}%
+  \DeclareEncodingSubset{TS1}{MinionPro-TOsF}{1}%
+  \AtBeginDocument{
+    \UndeclareTextCommand{\textvisiblespace}{T1}%
+    \UndeclareTextCommand{\textcompwordmark}{T1}%
+    \UndeclareTextCommand{\textsterling}{T1}%
+    \UndeclareTextCommand{\j}{T1}%
+    \UndeclareTextCommand{\j}{LY1}%
+  }
+\fi
+\if@Mn@Math@
+  \newcommand\Mn@Decl@Minion@Ints{%
+    \DeclareFontFamily{U}{MnSymbolFI}{}
+    \DeclareFontShape{U}{MnSymbolFI}{m}{it}{
+        <-6>  MnSymbolFI\Mn@minionint@opticals5
+       <6-7>  MnSymbolFI\Mn@minionint@opticals6
+       <7-8>  MnSymbolFI\Mn@minionint@opticals7
+       <8-9>  MnSymbolFI\Mn@minionint@opticals8
+       <9-10> MnSymbolFI\Mn@minionint@opticals9
+      <10-12> MnSymbolFI\Mn@minionint@opticals10
+      <12->   MnSymbolFI\Mn@minionint@opticals12
+    }{}
+    \DeclareFontShape{U}{MnSymbolFI}{b}{it}{
+        <-6>  MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals5
+       <6-7>  MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals6
+       <7-8>  MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals7
+       <8-9>  MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals8
+       <9-10> MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals9
+      <10-12> MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals10
+      <12->   MnSymbolFI\Mn@minionint@bold\Mn@minionint@opticals12
+    }{}
+    \DeclareSymbolFont{symbols}  {U}{MnSymbolFI}{m}{it}
+    \SetSymbolFont{symbols}{bold}{U}{MnSymbolFI}{b}{it}
+    \let\varint\tint
+    \let\variint\tiint
+    \let\variiint\tiiint
+    \let\variiiint\tiiiint
+    \let\varidotsint\tidotsint
+    \let\varlandupint\tlandupint
+    \let\varlanddownint\tlanddownint
+    \let\varstrokedint\tstrokedint
+    \let\varoint\toint
+    \let\varoiint\toiint
+    \let\varrcirclerightint\trcirclerightint
+    \let\varlcirclerightint\tlcirclerightint
+    \let\varrcircleleftint\trcircleleftint
+    \let\varlcircleleftint\tlcircleleftint
+    \let\varsumint\tsumint
+    \DeclareMathSymbol\tint            \mathop{symbols}{112}
+    \DeclareMathSymbol\tiint           \mathop{symbols}{114}
+    \DeclareMathSymbol\tiiint          \mathop{symbols}{116}
+    \DeclareMathSymbol\tiiiint         \mathop{symbols}{118}
+    \DeclareMathSymbol\tidotsint       \mathop{symbols}{120}
+    \DeclareMathSymbol\tlandupint      \mathop{symbols}{122}
+    \DeclareMathSymbol\tlanddownint    \mathop{symbols}{124}
+    \DeclareMathSymbol\tstrokedint     \mathop{symbols}{126}
+    \DeclareMathSymbol\toint           \mathop{symbols}{128}
+    \DeclareMathSymbol\toiint          \mathop{symbols}{130}
+    \DeclareMathSymbol\trcirclerightint\mathop{symbols}{132}
+    \DeclareMathSymbol\tlcirclerightint\mathop{symbols}{134}
+    \DeclareMathSymbol\trcircleleftint \mathop{symbols}{136}
+    \DeclareMathSymbol\tlcircleleftint \mathop{symbols}{138}
+    \DeclareMathSymbol\tsumint         \mathop{symbols}{140}
+    \let\intop\tint
+    \let\ointop\toint
+  }
+  \Mn@load@integrals
+\fi
+\if@Mn@Math@
+  \Mn@Define@Open@g
+\fi
+\if@Mn@Text@
+  \def\TeX{T\kern-.1667em\lower.4ex\hbox{E}\kern-.125emX\@}
+  \DeclareRobustCommand{\LaTeX}{L\kern-.32em%
+          {\sbox\z@ T%
+           \vbox to\ht\z@{\hbox{\check@mathfonts
+                                \fontsize\sf@size\z@
+                                \math@fontsfalse\selectfont
+                                A}%
+                          \vss}%
+          }%
+          \kern-.15em%
+          \TeX}
+\fi
+\def\macc@set@skewchar#1{%
+  \begingroup
+  \ifnum\mathgroup=\m@ne \let\@tempa\@ne
+  \else
+    \ifnum\skewchar\textfont\mathgroup=\m@ne \let\@tempa\@ne
+    \else \let\@tempa\mathgroup
+    \fi
+  \fi
+  \count@=\skewchar\textfont\@tempa
+  \ifnum\count@=\m@ne
+    \endgroup
+    \def\macc@skewchar{}
+  \else
+    \advance\count@"7100
+    \edef\@tempa{\endgroup
+      \mathchardef\noexpand\macc@skewchar=\number\count@\relax}%
+    \@tempa
+  \fi
+  #1%
+}
+\if@Mn@Text@
+  \normalfont
+\fi
+%% vim:set ft=tex:
+%%
+%% End of file `MinionPro.sty'.

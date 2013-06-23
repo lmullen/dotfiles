@@ -1,0 +1,52 @@
+% encoding files for MinionPro version 2.000
+% CODINGSCHEME FONTSPECIFIC
+/MinionPro-Base-Encoding-aa [
+% 0x00
+ /Aacute /Acircumflex /Adieresis /Agrave /Aring /Atilde /Ccedilla /Delta
+ /Eacute /Ecircumflex /Edieresis /Egrave /Eth /Gamma /Iacute /Icircumflex
+% 0x10
+ /Idieresis /Igrave /Lambda /Ntilde /Oacute /Ocircumflex /Odieresis /Ograve
+ /Omega /Otilde /Phi /Pi /Psi /Scaron /Sigma /Theta
+% 0x20
+ /f_f_t /exclam /quotedbl /Thorn /Uacute /percent /ampersand /quoteright
+ /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+% 0x30
+ /zero /one /two /three /four /five /six /seven
+ /eight /nine /colon /semicolon /less /equal /greater /question
+% 0x40
+ /at /A /B /C /D /E /F /G
+ /H /I /J /K /L /M /N /O
+% 0x50
+ /P /Q /R /S /T /U /V /W
+ /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+% 0x60
+ /quoteleft /a /b /c /d /e /f /g
+ /h /i /j /k /l /m /n /o
+% 0x70
+ /p /q /r /s /t /u /v /w
+ /x /y /z /braceleft /bar /braceright /asciitilde /Ucircumflex
+% 0x80
+ /Udieresis /Ugrave /Upsilon /Xi /Yacute /Ydieresis /Zcaron /aacute
+ /acircumflex /afii10073 /afii10095 /afii61352 /agrave /atilde /brokenbar /circumflex.cyr
+% 0x90
+ /circumflex.cyrcap /copyright /degree /divide /eacute /ecircumflex /egrave /eight.fitted
+ /eight.oldstyle /eight.taboldstyle /f_f /f_f_i /f_f_l /f_i /f_l /f_t
+% 0xA0
+ /five.fitted /exclamdown /five.oldstyle /five.taboldstyle /fraction /four.fitted /four.oldstyle /section
+ /currency /quotesingle /quotedblleft /guillemotleft /guilsinglleft /guilsinglright /four.taboldstyle /iacute
+% 0xB0
+ /igrave /endash /dagger /daggerdbl /periodcentered /logicalnot /paragraph /bullet
+ /quotesinglbase /quotedblbase /quotedblright /guillemotright /minus /mu /multiply /questiondown
+% 0xC0
+ /nine.fitted /grave /acute /circumflex /tilde /macron /breve /dotaccent
+ /dieresis /nine.oldstyle /ring /cedilla /nine.taboldstyle /hungarumlaut /ogonek /caron
+% 0xD0
+ /emdash /oacute /ocircumflex /ograve /one.fitted /one.oldstyle /one.superior /one.taboldstyle
+ /onehalf /onequarter /otilde /percent.oldstyle /plusminus /registered /seven.fitted /seven.oldstyle
+% 0xE0
+ /seven.taboldstyle /AE /six.fitted /ordfeminine /six.oldstyle /six.taboldstyle /space_uni030F /three.fitted
+ /Lslash /Oslash /OE /ordmasculine /three.oldstyle /three.superior /three.taboldstyle /threequarters
+% 0xF0
+ /trademark /ae /two.fitted /two.oldstyle /two.superior /dotlessi /two.taboldstyle /uacute
+ /ugrave /oslash /oe /germandbls /yacute /zero.fitted /zero.oldstyle /zero.taboldstyle
+] def

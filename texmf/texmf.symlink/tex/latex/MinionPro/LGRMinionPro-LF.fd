@@ -1,0 +1,16 @@
+%%
+%% This is file `LGRMinionPro-LF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `LGR,lf,fd')
+%% 
+%% These files are public domain.
+%% 
+  \ProvidesFile{LGRMinionPro-LF.fd}   [2005/01/23 v2.0 font definitions for LGR/MinionPro-LF.]
+\input{MinionPro-FontDef.sty}%
+       \Mn@DeclareSmallFontFamily       {LGR}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `LGRMinionPro-LF.fd'.

@@ -1,0 +1,16 @@
+%%
+%% This is file `X2MinionPro-LF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `X2,lf,fd')
+%% 
+%% These files are public domain.
+%% 
+   \ProvidesFile{X2MinionPro-LF.fd}    [2005/01/23 v2.0 font definitions for X2/MinionPro-LF.]
+\input{MinionPro-FontDef.sty}%
+        \Mn@DeclareSmallFontFamily       {X2} {MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `X2MinionPro-LF.fd'.

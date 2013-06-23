@@ -1,0 +1,128 @@
+%%
+%% This is file `tabfigures.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% tabfigures.dtx  (with options: `package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from tabfigures.sty.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file tabfigures.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+\ProvidesPackage{tabfigures}
+[2007/05/07 v0.1d Tabular figures (patches)]
+\newcommand*\Tf@@[1]{Tf@@\expandafter\@cdr\string #1\@nil}
+\newcommand*\Tf@[1]{\csname \Tf@@{#1}\endcsname}
+\newcommand*\Tf@name{}
+\newcommand*\Tf@save[1]{%
+  \edef\Tf@name{\expandafter\expandafter\expandafter
+    \noexpand\Tf@{#1}}%
+  \expandafter\newcommand\Tf@name{}%
+  \expandafter\let\Tf@name #1%
+}
+\newcommand*\Tf@def[1]{%
+  \Tf@save{#1}%
+  \def#1%
+}
+\newcommand*\Tf@pname{}
+\newcommand*\Tf@patch@l[1]{%
+  \@ifundefined{l@#1}{}{%
+    \edef\Tf@pname{\expandafter\noexpand\csname l@#1\endcsname}%
+    \expandafter\Tf@save\Tf@pname
+    \expandafter\edef\Tf@pname##1##2{%
+      \noexpand\Tf@
+      \expandafter\noexpand\Tf@pname
+      {##1}{\noexpand\Tf@font ##2}%
+    }%
+  }%
+}
+\newif\ifTf@debug \Tf@debugfalse
+\DeclareOption{debug}{\Tf@debugtrue}
+\DeclareOption{eqno}{%
+  \AtBeginDocument{%
+    \@ifpackageloaded{amsmath}{%
+      \Tf@def\maketag@@@#1{\Tf@\maketag@@@{\Tf@font #1}}%
+    }{%
+      \CheckCommand*\@eqnnum{{\normalfont \normalcolor (\theequation)}}%
+      \def\@eqnnum{{\normalfont \Tf@font \normalcolor (\theequation)}}%
+    }%
+  }%
+}
+\DeclareOption{toc}{%
+  \AtBeginDocument{%
+    \Tf@def\@dottedtocline#1#2#3#4#5{%
+      \Tf@\@dottedtocline{#1}{#2}{#3}{#4}{\Tf@font #5}%
+    }%
+    \Tf@def\numberline#1{%
+      \Tf@\numberline{\Tf@font #1}%
+    }%
+    \Tf@patch@l{part}%
+    \Tf@patch@l{chapter}%
+    \Tf@patch@l{section}%
+    \Tf@patch@l{subsection}%
+    \Tf@patch@l{subsubsection}%
+    \Tf@patch@l{paragraph}%
+    \Tf@patch@l{subparagraph}%
+    \Tf@patch@l{figure}%
+    \Tf@patch@l{table}%
+    \@ifclassloaded{memoir}{%
+      \Tf@def\cftchapterpresnum{\Tf@font \Tf@\cftchapterpresnum}%
+      \Tf@def\cftpartpresnum{\Tf@font \Tf@\cftpartpresnum}%
+    }{}%
+  }%
+}
+\DeclareOption{enum}{%
+  \AtBeginDocument{%
+    \Tf@def\labelenumi{\Tf@font \Tf@\labelenumi}%
+    \Tf@def\labelenumii{\Tf@font \Tf@\labelenumii}%
+    \Tf@def\labelenumiii{\Tf@font \Tf@\labelenumiii}%
+    \Tf@def\labelenumiv{\Tf@font \Tf@\labelenumiv}%
+  }%
+}
+\DeclareOption{bib}{%
+  \AtBeginDocument{%
+    \Tf@def\@biblabel{\Tf@font \Tf@\@biblabel}%
+    \@ifpackageloaded{biblatex}{%
+      \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{\Tf@font #1}}%
+      \DeclareFieldFormat{labelalphawidth}{\mkbibbrackets{\Tf@font #1}}%
+    }{}%
+  }%
+}
+\DeclareOption{lineno}{%
+  \AtBeginDocument{%
+    \@ifpackageloaded{doc}{%
+      \CheckCommand*\theCodelineNo{%
+        \reset@font\scriptsize\arabic{CodelineNo}}%
+      \def\theCodelineNo{%
+        \reset@font\Tf@font\scriptsize\arabic{CodelineNo}}%
+    }{}%
+  }%
+}
+\ProcessOptions\relax
+\newcommand*\Tf@font{\figureversion{tabular}}
+\ifTf@debug
+  \RequirePackage{xcolor}%
+  \colorlet{Tf@debug}{green!50!black}%
+  \renewcommand\Tf@font{\figureversion{tabular}\color{Tf@debug}}%
+\fi
+\AtBeginDocument{%
+  \@ifundefined{figureversion}{%
+    \PackageWarning{tabfigures}{There is no
+      \string\figureversion\space to support tabular figures}%
+    \let\Tf@font\@empty
+  }{}%
+}
+\endinput
+%%
+%% End of file `tabfigures.sty'.

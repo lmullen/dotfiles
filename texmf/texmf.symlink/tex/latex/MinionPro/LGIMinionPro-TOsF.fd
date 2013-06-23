@@ -1,0 +1,16 @@
+%%
+%% This is file `LGIMinionPro-TOsF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `LGI,tosf,fd')
+%% 
+%% These files are public domain.
+%% 
+\ProvidesFile{LGIMinionPro-TOsF.fd} [2005/01/23 v2.0 font definitions for LGI/MinionPro-TOsF.]
+\input{MinionPro-FontDef.sty}%
+       \Mn@DeclareSmallFontFamily       {LGI}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `LGIMinionPro-TOsF.fd'.

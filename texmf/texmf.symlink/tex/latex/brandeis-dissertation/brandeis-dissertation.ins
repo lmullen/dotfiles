@@ -1,0 +1,35 @@
+%% CVSId: $Id: brandeis-dissertation.ins,v 1.1 2004/10/27 00:49:52 turtle Exp $
+%% brandeis-dissertation.ins  (c)2004 Peter Møller Neergaard 
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of the files brandeis-dissertation.dtx and
+% brandeis-dissertation.ins.
+%
+% This file is the driver program used to install the
+% brandeis-dissertation class from the file brandeis-dissertation.dtx.
+%
+% You install the package by running tex on brandeis-dissertation.ins,
+% i.e.,
+%
+%   tex brandeis-dissertation.ins
+%
+% You can then produce the documentation by 
+%
+%   latex brandeis-dissertation.tex
+
+\def\batchfile{brandeis-dissertation.ins}
+\input docstrip
+
+\keepsilent
+
+\generate{%
+   \file{brandeis-dissertation.cls}{\from{brandeis-dissertation.dtx}{class}}
+   \file{brandeis-dissertation.tex}{\from{brandeis-dissertation.dtx}{driver}}}
+

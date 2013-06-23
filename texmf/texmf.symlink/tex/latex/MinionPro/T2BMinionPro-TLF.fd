@@ -1,0 +1,16 @@
+%%
+%% This is file `T2BMinionPro-TLF.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% MinionPro.dtx  (with options: `T2B,tlf,fd')
+%% 
+%% These files are public domain.
+%% 
+ \ProvidesFile{T2BMinionPro-TLF.fd}  [2005/01/23 v2.0 font definitions for T2B/MinionPro-TLF.]
+\input{MinionPro-FontDef.sty}%
+       \Mn@DeclareSmallFontFamily       {T2B}{MinionPro}
+%% vim:set ft=tex:
+%%
+%% End of file `T2BMinionPro-TLF.fd'.
