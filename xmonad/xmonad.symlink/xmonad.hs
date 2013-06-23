@@ -34,5 +34,6 @@ myManageHook = composeAll [
       manageHook gnomeConfig
     , (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
     , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
+    , (className =? "Empathy") --> doFloat
     , (resource =? "Dialog") --> doFloat
   ]
