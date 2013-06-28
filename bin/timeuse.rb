@@ -8,7 +8,7 @@
 require "optparse"
 
 # Default options
-options = {:billable => FALSE, 
+options = {:billable => FALSE, :done => FALSE,
   :log_file => "/home/lmullen/Dropbox/Elements/time-use-journal.txt"}
 
 # Get the options
@@ -20,6 +20,10 @@ ARGV.options do |opts|
   
   opts.on( "-b", "--billable", "Add a BILLABLE flag." ) do
     options[:billable] = TRUE 
+  end 
+
+  opts.on( "-d", "--done", "Add a DONE flag." ) do
+    options[:done] = TRUE 
   end 
 
   opts.separator "Common Options:"
@@ -47,11 +51,13 @@ end
 
 log_time = Time.now.strftime("%F-%H-%M-%S")
 
+# Construct the entry
+entry = log_time
+entry += " BILLABLE" if options[:billable]
+entry += " DONE" if options[:done]
+entry += " " + log_description
+
 # Write to the log_file
 open(options[:log_file], "a") do |file| 
-  if options[:billable]
-    file.puts log_time + " BILLABLE " + log_description
-  else 
-    file.puts log_time + " " + log_description
-  end
+  file.puts entry
 end
