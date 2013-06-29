@@ -19,7 +19,7 @@ myWorkspaces = ["1:text", "2:web", "3:research", "4:research", "5", "6", "7", "8
 myKeys = [
   -- Instead of killing window manager, log out
     ("M-S-q", spawn "gnome-session-quit") 
-  , ("M-S-t", scratchTerm) 
+  , ("M-S-p", scratchTerm) 
   ] 
   where
     scratchTerm = namedScratchpadAction myScratchPads "terminal"
