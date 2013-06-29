@@ -5,9 +5,12 @@ import XMonad.Hooks.ManageHelpers
 
 main = xmonad $ gnomeConfig {       -- We use gnome rather than default
       modMask = mod4Mask            -- Use super key for mod
+    , terminal = myTerminal
     , workspaces = myWorkspaces
     , manageHook = myManageHook 
    } `additionalKeysP` myKeys
+
+myTerminal = "gnome-terminal"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
