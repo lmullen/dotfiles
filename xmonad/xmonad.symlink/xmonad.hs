@@ -34,8 +34,8 @@ myScratchPads = [
     findTerm  = resource    =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
       where
-        h = 0.5       -- height, 50% 
-        w = 0.5       -- width, 50% 
+        h = 0.55      -- height as percent
+        w = 0.55      -- width as percent
         t = (1 - h)/2 -- centered top/bottom
         l = (1 - w)/2 -- centered left/right
 
