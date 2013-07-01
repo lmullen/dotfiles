@@ -20,6 +20,8 @@ myKeys = [
   -- Instead of killing window manager, log out
     ("M-S-q", spawn "gnome-session-quit") 
   , ("M-S-d", spawn "gnome-control-center display") 
+  , ("M-S-n", spawn "nautilus --new-window") 
+  , ("M-S-s", spawn "/usr/bin/sublime-text-2") 
   , ("M-S-p", scratchTerm) 
   , ("M-S-o", scratchBrowser) 
   ] 
