@@ -14,11 +14,12 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:text", "2:web", "3:research", "4:research", "5", "6", "7", "8", "9:misc", "NSP"]
+myWorkspaces = ["1:text", "2:web", "3:research", "4:research", "5", "6", "7", "8:system", "9:misc", "NSP"]
 
 myKeys = [
   -- Instead of killing window manager, log out
     ("M-S-q", spawn "gnome-session-quit") 
+  , ("M-S-d", spawn "gnome-control-center display") 
   , ("M-S-p", scratchTerm) 
   , ("M-S-o", scratchBrowser) 
   ] 
@@ -45,8 +46,8 @@ myScratchPads = [
     findBrowser  = resource =? "qbrowser"
     manageBrowser = customFloating $ W.RationalRect l t w h
       where
-        h = 0.98      -- height as percent
-        w = 0.98     -- width as percent
+        h = 0.94     -- height as percent
+        w = 0.94     -- width as percent
         t = (1 - h)/2 -- centered top/bottom
         l = (1 - w)/2 -- centered left/right
 
