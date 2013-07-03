@@ -5,6 +5,8 @@ pathdirs=(
   /usr/local/sbin
   $HOME/.rbenv/shims
   $HOME/.rbenv/bin
+  $HOME/.pyenv/shims
+  $HOME/.pyenv/bin
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
