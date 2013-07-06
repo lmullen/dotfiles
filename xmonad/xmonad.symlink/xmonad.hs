@@ -12,7 +12,7 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
     , manageHook = myManageHook 
    } `additionalKeysP` myKeys
 
-myTerminal = "gnome-terminal"
+myTerminal = "terminator"
 
 myWorkspaces = ["1:text", "2:web", "3:research", "4:research", "5", "6", "7", "8:system", "9:misc", "NSP"]
 
@@ -36,7 +36,7 @@ myScratchPads = [
     NS "terminal" spawnTerm findTerm manageTerm
   , NS "browser" spawnBrowser findBrowser manageBrowser
   ] where
-    spawnTerm = myTerminal ++ " --disable-factory --hide-menubar --name=scratchpad"
+    spawnTerm =  myTerminal ++ "--disable-factory --hide-menubar --name=scratchpad"
     findTerm  = resource    =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
       where
