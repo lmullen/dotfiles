@@ -36,7 +36,7 @@ myScratchPads = [
     NS "terminal" spawnTerm findTerm manageTerm
   , NS "browser" spawnBrowser findBrowser manageBrowser
   ] where
-    spawnTerm =  myTerminal ++ "--disable-factory --hide-menubar --name=scratchpad"
+    spawnTerm = "gnome-terminal --disable-factory --hide-menubar --name=scratchpad"
     findTerm  = resource    =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
       where
