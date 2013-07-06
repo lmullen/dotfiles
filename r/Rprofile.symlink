@@ -1,22 +1,76 @@
+# Rprofile settings
+
+# Lincoln A. Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
+# MIT License <http://lmullen.mit-license.org/>
+
+# Some settings from these useRs:
+# http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html?m=1
+
+# Load the packages we use most when using R as a REPL
 require(ggplot2)
 require(knitr)
 require(ggmap)
 require(plyr)
-require(lubridate)
+require(lubridate, warn.conflicts = FALSE)
+
+# Set the repository to download packages from
 options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
-options(prompt = "$ ")
-options("help_type" = "html")
+
+# Fill up the width of the terminal and set a nicer prompt
 options("width" = 160)
+options(prompt = "$ ")
+ 
+# Use the HTML help
+options("help_type" = "html")
+
+# Big history (though this doesn't seem to work)
 Sys.setenv(R_HISTSIZE='100000')
 
+# Create a new invisible environment for all the functions to go
+# in so it doesn't clutter the workspace.
+.env <- new.env()
+
+# Read data on clipboard.
+.env$read.cb <- function(...) {
+  ismac <- Sys.info()[1]=="Darwin"
+  if (!ismac) read.table(file="clipboard", ...)
+  else read.table(pipe("pbpaste"), ...)
+}
+
+# List objects and classes (from @_inundata)
+.env$lsa <- function() {
+    obj_type <- function(x) { class(get(x)) }
+    foo=data.frame(sapply(ls(envir=.GlobalEnv),obj_type))
+    foo$object_name=rownames(foo)
+    names(foo)[1]="class"
+    names(foo)[2]="object"
+    return(unrowname(foo))
+}
+
+# List all functions in a package (also from @_inundata)
+.env$lsp <-function(package, all.names = FALSE, pattern) {
+    package <- deparse(substitute(package))
+    ls(
+        pos = paste("package", package, sep = ":"),
+        all.names = all.names,
+        pattern = pattern
+    )
+}
+
+# Attach all the variables above
+attach(.env)
+
+# Load and save history in separate file
 .First <- function() {
+	utils:::loadhistory(file = "~/.Rhistory")
+	cat("\nSuccessfully loaded .Rprofile at", date(), "\n\n")
 }
 
 .Last <- function() {
+  utils:::savehistory(file = "~/.Rhistory")
 }
 
-# Override q() to not save by default.
-# Same as saying q("no")
+# Override q() to not save by default. Same as saying q("no").
 q <- function (save="no", ...) {
   quit(save=save, ...)
 }

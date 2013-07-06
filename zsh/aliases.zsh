@@ -12,7 +12,6 @@ alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 
 # Change application behavior
 # -------------------------------------------------------------------
-alias R="R --no-restore"
 alias chrome="open -a \"Google Chrome\""
 
 # File and system management
