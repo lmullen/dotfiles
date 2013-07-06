@@ -35,16 +35,12 @@ filetype plugin indent on                   " detect filetypes
 set viminfo='300,f1,<300,:500,/500,n~/.viminfo
 
 " Display -------------------------------------------------------------
-syntax on                                   " syntax highlighting
-syntax spell toplevel
-set background=dark
-" set guifont=DejaVu\ Sans\ Mono:h14
-"set term=color_xterm
 set t_Co=256                                " color terminal
-if &t_Co >= 256 || has("gui_running")
-  let g:solarized_termtrans = 1
-  colorscheme solarized
-endif
+syntax enable                                   " syntax highlighting
+set background=dark
+colorscheme solarized
+
+syntax spell toplevel
 set display+=lastline                       " show partial last lines
 set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,nbsp:·          " TextMate style space chars
