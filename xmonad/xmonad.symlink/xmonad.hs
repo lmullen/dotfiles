@@ -22,6 +22,7 @@ myKeys = [
   , ("M-S-d", spawn "gnome-control-center display") 
   , ("M-S-n", spawn "nautilus --new-window") 
   , ("M-S-s", spawn "/usr/bin/sublime-text-2") 
+  , ("M-S-f", spawn "gnome-search-tool")
   , ("M-S-p", scratchTerm) 
   , ("M-S-o", scratchBrowser) 
   ] 
@@ -56,6 +57,7 @@ myScratchPads = [
 myManageHook = composeAll [
     manageHook gnomeConfig
   , (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
+  , (className =? "gnome-search-tool") --> doCenterFloat
   , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
   , (className =? "Empathy") --> doFloat
   , (stringProperty "WM_WINDOW_ROLE" =? "pop-up") --> doCenterFloat
