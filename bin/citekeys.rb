@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 
-# Grep list of citation keys
+# Grep a list of citation keys
 
 # Lincoln Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 # MIT License <http://lmullen.mit-license.org/>
 
 require "optparse"
+require "clipboard"
 
 # Default options
 options = {:keys_file => "/home/lmullen/acad/research/bib/citekeys.txt"}
@@ -41,5 +42,10 @@ rescue TypeError => e
 end
 
 File.open(options[:keys_file], "r") do |file|  
-  puts file.grep(search_string)
+  hits = file.grep(search_string)
+  puts hits
+  if hits.length == 1
+    Clipboard.copy(hits[0].chomp) 
+    puts "Result copied to clipboard."
+  end
 end
