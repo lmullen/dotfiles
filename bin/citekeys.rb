@@ -32,8 +32,13 @@ ARGV.options do |opts|
   end
 end
 
-# The string to search for
-search_string = Regexp.new ARGV[0]
+begin
+  # The string to search for
+  search_string = Regexp.new ARGV[0]
+rescue TypeError => e
+  puts "Please pass a string to search for."
+  exit
+end
 
 File.open(options[:keys_file], "r") do |file|  
   puts file.grep(search_string)
