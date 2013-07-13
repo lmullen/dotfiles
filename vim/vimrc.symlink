@@ -35,8 +35,8 @@ filetype plugin indent on                   " detect filetypes
 set viminfo='300,f1,<300,:500,/500,n~/.viminfo
 
 " Display -------------------------------------------------------------
-set t_Co=256                                " color terminal
-syntax enable                                   " syntax highlighting
+set t_Co=16                                " color terminal
+syntax enable                              " syntax highlighting
 set background=dark
 colorscheme solarized
 
