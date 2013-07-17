@@ -54,4 +54,11 @@ task :uninstall do
   end
 end
 
-task :default => 'install'
+desc "Install cron jobs to hourly, daily, weekly folders"
+task :cron_install do
+  puts "You will have have to use sudo to install cron jobs."
+  # Purge backups
+  `sudo ln -s $PWD/bin/purge-old-downloads.sh /etc/cron.daily/`
+end
+
+task :default => ['install', 'cron_install']
