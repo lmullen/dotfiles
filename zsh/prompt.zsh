@@ -13,7 +13,7 @@ git_dirty() {
   then
     echo ""
   else
-    if [[ $st == "nothing to commit (working directory clean)" ]]
+    if [[ $st == "nothing to commit, working directory clean" ]]
     then
       echo "%{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
     else
@@ -104,7 +104,7 @@ set_prompt () {
 }
 
 # Which prompt to use by default
-busy_prompt=false
+busy_prompt=true
 
 # Flip the switch between prompts
 toggle_prompt () {
