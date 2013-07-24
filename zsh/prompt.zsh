@@ -41,6 +41,12 @@ need_push () {
   fi
 }
 
+has_stash () {
+  if [[ -n "$(git stash list 2>/dev/null)" ]]; then
+    echo ":%{$fg[magenta]%}stash%{$reset_color%}"
+  fi
+}
+
 rb_prompt(){
   if $(which rbenv &> /dev/null)
   then
@@ -85,7 +91,7 @@ directory_name(){
 
 # A full, but slow version of the prompt
 set_busy_prompt () {
-  export PROMPT=$'\n$(directory_name) $(git_dirty)$(need_push) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
+  export PROMPT=$'\n$(directory_name) $(git_dirty)$(has_stash)$(need_push) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
