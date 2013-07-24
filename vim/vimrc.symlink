@@ -23,7 +23,7 @@ set backspace=indent,eol,start              " allow backspacing in insert mode
 set smarttab
 set history=1000                            " remember commands and searches
 set undolevels=1000                         " use many levels of undo
-set visualbell                              " don't beep
+" set visualbell                              " don't beep
 set noerrorbells                            " don't beep
 au FocusLost * :wa                          " save when losing focus
 set mouse=a                                 " use mouse in console
