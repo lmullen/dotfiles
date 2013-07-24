@@ -63,6 +63,8 @@ myManageHook = composeAll [
   , (className =? "gnome-search-tool") --> doCenterFloat
   , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
   , (className =? "Empathy") --> doFloat
+  , (className =? "Deja-dup") --> doCenterFloat
+  , (className =? "Transmission-gtk") --> doCenterFloat
   , (stringProperty "WM_WINDOW_ROLE" =? "pop-up") --> doCenterFloat
   , (resource =? "Dialog") --> doFloat
   ] 
