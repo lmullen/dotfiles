@@ -5,19 +5,23 @@ import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
 --import XMonad.Util.NamedScratchpad
 import XMonad.Hooks.EwmhDesktops
+--import XMonad.Layout.IM
+--import XMonad.Layout.PerWorkspace
+import XMonad.Actions.CycleWindows
 
 main = xmonad $ gnomeConfig {       -- We use gnome rather than default
     modMask           = mod4Mask            -- Use super key for mod
+    , borderWidth     = 2
     , terminal        = myTerminal
     , workspaces      = myWorkspaces
-    , manageHook      = myManageHook 
-    , handleEventHook = fullscreenEventHook
+    , manageHook      = myManageHook  <+> manageHook gnomeConfig
+    , handleEventHook = fullscreenEventHook <+> handleEventHook gnomeConfig
    } `additionalKeysP` myKeys
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:subl", "2:terminal", "3:web", "4:research", 
-  "5:research", "6", "7:todo", "8:nautilus", "9:system"]
+myWorkspaces = ["1:text", "2:web", "3:terminal", "4:research", 
+  "5:research", "6", "7", "8:im", "9:system"]
 
 myKeys = [
   -- Instead of killing window manager, log out
@@ -26,6 +30,8 @@ myKeys = [
   , ("M-S-n", spawn "nautilus --new-window") 
   , ("M-S-s", spawn "gnome-control-center") 
   , ("M-S-f", spawn "gnome-search-tool")
+  , ("M-u",   rotUnfocusedUp)
+  , ("M-i",   rotUnfocusedDown)
   --, ("M-S-p", scratchTerm) 
   --, ("M-S-o", scratchBrowser) 
   ] 
