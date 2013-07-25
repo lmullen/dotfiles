@@ -5,10 +5,15 @@ import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
 --import XMonad.Util.NamedScratchpad
 import XMonad.Hooks.EwmhDesktops
---import XMonad.Layout.IM
---import XMonad.Layout.PerWorkspace
 import XMonad.Actions.CycleWindows
 import XMonad.Actions.CycleWS
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.IM
+import XMonad.Layout.Grid
+import Data.Ratio ((%))
+import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.NoBorders (noBorders)
+import XMonad.Layout.Reflect
 
 main = xmonad $ gnomeConfig {       -- We use gnome rather than default
     modMask           = mod4Mask            -- Use super key for mod
@@ -16,6 +21,7 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
     , terminal        = myTerminal
     , workspaces      = myWorkspaces
     , manageHook      = myManageHook  <+> manageHook gnomeConfig
+    , layoutHook      = myLayoutHook
     , handleEventHook = fullscreenEventHook <+> handleEventHook gnomeConfig
    } `additionalKeysP` myKeys
 
@@ -75,27 +81,46 @@ myManageHook = composeAll [
     (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
   , (className =? "gnome-search-tool")                        --> doCenterFloat
   , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
-  , (className =? "Empathy")                                  --> doFloat
-  , (className =? "Deja-dup")                                 --> doCenterFloat
-  , (className =? "Transmission-gtk")                         --> doCenterFloat
-  , (className =? "Update-manager")                           --> doFloat
   , (stringProperty "WM_WINDOW_ROLE" =? "pop-up")             --> doCenterFloat
   , (resource =? "Dialog")                                    --> doFloat
+  , (className =? "Birdie" <&&> title =? "Preview")           --> doCenterFloat
 
   -- Move certain classes of windows
   , (className =? "sublime-text-2")    --> doShift "1:text"
   , (className =? "Google-chrome")     --> doShift "2:web"
+  , (className =? "Birdie")            --> doShift "2:web"
   , (className =? "Empathy")           --> doShift "8:im"
+  , (stringProperty "WM_WINDOW_ROLE" =? "contact_list")   --> doShift "8:im"
   , (className =? "Synaptic")          --> doShift "9:system"
   , (className =? "Transmission-gtk")  --> doShift "9:system"
+  , (className =? "Update-manager")    --> doShift "9:system"
+  , (className =? "Deja-dup")          --> doShift "9:system"
   , (className =? "Update-manager")    --> doShift "9:system"
   ] 
   --] <+> namedScratchpadManageHook myScratchPads
 
+-- Layouts
 
--- Todo
--- Next and previous workspace keys
--- XMonad.Layout.PerWorkspace: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-PerWorkspace.html
--- http://www.nepherte.be/step-by-step-configuration-of-xmonad/
--- http://superuser.com/questions/192271/tiling-window-managers-and-multi-head-setup-gnome-style-workspace
--- http://pbrisbin.com/posts/xmonads_im_layout
+-- Define default layouts used on most workspaces
+defaultLayouts = tiled ||| Mirror tiled ||| Full
+  where
+    -- default tiling algorithm partitions the screen into two panes
+    tiled   = Tall nmaster delta ratio
+    -- The default number of windows in the master pane
+    nmaster = 1
+    -- Default proportion of screen occupied by master pane
+    ratio   = 1/2
+    -- Percent of screen to increment by when resizing panes
+    delta   = 3/100
+ 
+-- Define layout for specific workspaces
+webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid
+imLayout     = withIM (1%4) (Role "contact_list") Grid
+systemLayout = Grid ||| Full 
+ 
+-- Put all layouts together
+myLayoutHook  = onWorkspace "2:web"     webLayout $
+                onWorkspace "8:im"      imLayout $
+                onWorkspace "9:system"  systemLayout $
+                defaultLayouts
+
