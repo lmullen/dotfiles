@@ -58,14 +58,31 @@ myKeys = [
 --        l = (1 - w)/2 -- centered left/right
 
 myManageHook = composeAll [
-    manageHook gnomeConfig
-  , (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
-  , (className =? "gnome-search-tool") --> doCenterFloat
+  -- Float certain windows
+    (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
+  , (className =? "gnome-search-tool")                        --> doCenterFloat
   , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
-  , (className =? "Empathy") --> doFloat
-  , (className =? "Deja-dup") --> doCenterFloat
-  , (className =? "Transmission-gtk") --> doCenterFloat
-  , (stringProperty "WM_WINDOW_ROLE" =? "pop-up") --> doCenterFloat
-  , (resource =? "Dialog") --> doFloat
+  , (className =? "Empathy")                                  --> doFloat
+  , (className =? "Deja-dup")                                 --> doCenterFloat
+  , (className =? "Transmission-gtk")                         --> doCenterFloat
+  , (className =? "Update-manager")                           --> doFloat
+  , (stringProperty "WM_WINDOW_ROLE" =? "pop-up")             --> doCenterFloat
+  , (resource =? "Dialog")                                    --> doFloat
+
+  -- Move certain classes of windows
+  , (className =? "sublime-text-2")    --> doShift "1:text"
+  , (className =? "Google-chrome")     --> doShift "2:web"
+  , (className =? "Empathy")           --> doShift "8:im"
+  , (className =? "Synaptic")          --> doShift "9:system"
+  , (className =? "Transmission-gtk")  --> doShift "9:system"
+  , (className =? "Update-manager")    --> doShift "9:system"
   ] 
   --] <+> namedScratchpadManageHook myScratchPads
+
+
+-- Todo
+-- Next and previous workspace keys
+-- XMonad.Layout.PerWorkspace: http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Layout-PerWorkspace.html
+-- http://www.nepherte.be/step-by-step-configuration-of-xmonad/
+-- http://superuser.com/questions/192271/tiling-window-managers-and-multi-head-setup-gnome-style-workspace
+-- http://pbrisbin.com/posts/xmonads_im_layout
