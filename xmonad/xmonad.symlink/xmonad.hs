@@ -91,7 +91,6 @@ myManageHook = composeAll [
   , (className =? "Google-chrome")     --> doShift "2:web"
   , (className =? "Birdie")            --> doShift "2:web"
   , (className =? "Empathy")           --> doShift "8:im"
-  , (stringProperty "WM_WINDOW_ROLE" =? "contact_list")   --> doShift "8:im"
   , (className =? "Synaptic")          --> doShift "9:system"
   , (className =? "Transmission-gtk")  --> doShift "9:system"
   , (className =? "Update-manager")    --> doShift "9:system"
@@ -100,14 +99,12 @@ myManageHook = composeAll [
   ] 
   --] <+> namedScratchpadManageHook myScratchPads
 
--- Layouts
-
 -- Define default layouts used on most workspaces
 defaultLayouts = layoutHook gnomeConfig
  
 -- Define layout for specific workspaces
-webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid 
-imLayout     = withIM (1%4) (Role "contact_list") Grid
+webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid ||| Full
+imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
 systemLayout = Grid ||| Full
  
 -- Put all layouts together
@@ -115,4 +112,3 @@ myLayoutHook  = onWorkspace "2:web"     webLayout $
                 onWorkspace "8:im"      imLayout $
                 onWorkspace "9:system"  systemLayout $
                 defaultLayouts
-
