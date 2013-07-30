@@ -28,16 +28,16 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:text", "2:terminal", "3:web", "4", 
+myWorkspaces = ["1:text", "2:terminal", "3:web", "4",
   "5", "6", "7:todo", "8:im", "9:system", "NSP"]
 
 myKeys = [
   -- Instead of killing window manager, log out
-    ("M-S-q",       spawn "gnome-session-quit") 
+    ("M-S-q",       spawn "gnome-session-quit")
   , ("M-q",         spawn "xmonad --recompile && xmonad --restart")
-  , ("M-S-d",       spawn "gnome-control-center display") 
-  , ("M-S-n",       spawn "nautilus --new-window") 
-  , ("M-S-s",       spawn "gnome-control-center") 
+  , ("M-S-d",       spawn "gnome-control-center display")
+  , ("M-S-n",       spawn "nautilus --new-window")
+  , ("M-S-s",       spawn "gnome-control-center")
   , ("M-S-f",       spawn "gnome-search-tool")
   , ("M-u",         rotUnfocusedUp)                         -- Cycle windows
   , ("M-i",         rotUnfocusedDown)
@@ -49,9 +49,8 @@ myKeys = [
   --, ("M-<Up>",      prevScreen)
   , ("M-S-<Right>", shiftTo Next EmptyWS)
   , ("M-S-<Left>",  shiftTo Prev EmptyWS)
-  , ("M-S-t",       scratchTerm) 
-  --, ("M-S-o", scratchBrowser) 
-  ] 
+  , ("M-S-t",       scratchTerm)
+  ]
   where
     scratchTerm = namedScratchpadAction myScratchPads "terminal"
     --scratchBrowser = namedScratchpadAction myScratchPads "browser"
@@ -61,7 +60,6 @@ myKeys = [
 -- http://pbrisbin.com/posts/xmonad_scratchpad
 myScratchPads = [
     NS "terminal" spawnTerm findTerm manageTerm
---  , NS "browser" spawnBrowser findBrowser manageBrowser
   ] where
     spawnTerm = "gnome-terminal --disable-factory --hide-menubar --name=scratchpad"
     findTerm  = resource    =? "scratchpad"
@@ -71,14 +69,6 @@ myScratchPads = [
         w = 0.55      -- width as percent
         t = (1 - h)/2 -- centered top/bottom
         l = (1 - w)/2 -- centered left/right
---    spawnBrowser = "chromium-browser --name=qbrowser"   -- Better if we could use Chrome
---    findBrowser  = resource =? "qbrowser"
---    manageBrowser = customFloating $ W.RationalRect l t w h
---      where
---        h = 0.94     -- height as percent
---        w = 0.94     -- width as percent
---        t = (1 - h)/2 -- centered top/bottom
---        l = (1 - w)/2 -- centered left/right
 
 myManageHook = composeAll [
   -- Float certain windows
@@ -99,17 +89,17 @@ myManageHook = composeAll [
   , (className =? "Deja-dup")          --> doShift "9:system"
   , (className =? "Update-manager")    --> doShift "9:system"
   , (className =? "Rhythmbox")         --> doShift "9:system"
-  --] 
+  --]
   ] <+> namedScratchpadManageHook myScratchPads
 
 -- Define default layouts used on most workspaces
 defaultLayouts = layoutHook gnomeConfig
- 
+
 -- Define layout for specific workspaces
 webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid ||| Full
 imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
-systemLayout = Grid ||| Full 
- 
+systemLayout = Grid ||| Full
+
 -- Put all layouts together
 myLayoutHook  = onWorkspace "3:web"     webLayout $
                 onWorkspace "8:im"      imLayout $
