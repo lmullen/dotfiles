@@ -27,6 +27,6 @@
 [help]
         autocorrect = 1
 [push]
-	      default = matching
+	default = matching
 [init]
-	templatedir = ~/.git_template
+        templatedir = ~/.git-templates
