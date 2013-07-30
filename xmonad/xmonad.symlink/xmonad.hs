@@ -18,7 +18,7 @@ import XMonad.Layout.Reflect
 
 main = xmonad $ gnomeConfig {       -- We use gnome rather than default
     modMask           = mod4Mask            -- Use super key for mod
-    , borderWidth     = 1
+    , borderWidth     = 2
     , terminal        = myTerminal
     , workspaces      = myWorkspaces
     , manageHook      = myManageHook  <+> manageHook gnomeConfig
@@ -28,13 +28,13 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:text", "2:web", "3:terminal", "4:research", 
-  "5:research", "6", "7", "8:im", "9:system"]
+myWorkspaces = ["1:text", "2:terminal", "3:web", "4", 
+  "5", "6", "7:todo", "8:im", "9:system", "NSP"]
 
 myKeys = [
   -- Instead of killing window manager, log out
     ("M-S-q",       spawn "gnome-session-quit") 
-  , ("M-q",         spawn "xmonad --recompile")
+  , ("M-q",         spawn "xmonad --recompile && xmonad --restart")
   , ("M-S-d",       spawn "gnome-control-center display") 
   , ("M-S-n",       spawn "nautilus --new-window") 
   , ("M-S-s",       spawn "gnome-control-center") 
@@ -43,8 +43,10 @@ myKeys = [
   , ("M-i",         rotUnfocusedDown)
   , ("M-<Right>",   nextWS)                               -- Cycle workstations
   , ("M-<Left>",    prevWS)
-  , ("M-<Down>",    nextScreen)
-  , ("M-<Up>",      prevScreen)
+  , ("M-<Up>",      toggleWS)
+  , ("M-<Down>",    toggleWS)
+  --, ("M-<Down>",    nextScreen)
+  --, ("M-<Up>",      prevScreen)
   , ("M-S-<Right>", shiftTo Next EmptyWS)
   , ("M-S-<Left>",  shiftTo Prev EmptyWS)
   , ("M-S-t",       scratchTerm) 
@@ -88,15 +90,15 @@ myManageHook = composeAll [
   , (className =? "Birdie" <&&> title =? "Preview")           --> doCenterFloat
 
   -- Move certain classes of windows
-  , (className =? "sublime-text-2")    --> doShift "1:text"
-  , (className =? "Google-chrome")     --> doShift "2:web"
-  , (className =? "Birdie")            --> doShift "2:web"
+  , (className =? "Google-chrome")     --> doShift "3:web"
+  , (className =? "Birdie")            --> doShift "3:web"
   , (className =? "Empathy")           --> doShift "8:im"
   , (className =? "Synaptic")          --> doShift "9:system"
   , (className =? "Transmission-gtk")  --> doShift "9:system"
   , (className =? "Update-manager")    --> doShift "9:system"
   , (className =? "Deja-dup")          --> doShift "9:system"
   , (className =? "Update-manager")    --> doShift "9:system"
+  , (className =? "Rhythmbox")         --> doShift "9:system"
   --] 
   ] <+> namedScratchpadManageHook myScratchPads
 
@@ -106,10 +108,10 @@ defaultLayouts = layoutHook gnomeConfig
 -- Define layout for specific workspaces
 webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid ||| Full
 imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
-systemLayout = Grid ||| Full
+systemLayout = Grid ||| Full 
  
 -- Put all layouts together
-myLayoutHook  = onWorkspace "2:web"     webLayout $
+myLayoutHook  = onWorkspace "3:web"     webLayout $
                 onWorkspace "8:im"      imLayout $
                 onWorkspace "9:system"  systemLayout $
                 defaultLayouts
