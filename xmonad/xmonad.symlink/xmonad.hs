@@ -34,7 +34,6 @@ myWorkspaces = ["1:text", "2:terminal", "3:web", "4",
 myKeys = [
   -- Instead of killing window manager, log out
     ("M-S-q",       spawn "gnome-session-quit")
-  , ("M-q",         spawn "xmonad --recompile && xmonad --restart")
   , ("M-S-d",       spawn "gnome-control-center display")
   , ("M-S-n",       spawn "nautilus --new-window")
   , ("M-S-s",       spawn "gnome-control-center")
