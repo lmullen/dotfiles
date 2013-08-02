@@ -28,8 +28,8 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:text", "2:terminal", "3:web", "4",
-  "5", "6", "7:todo", "8:im", "9:system", "NSP"]
+myWorkspaces = ["1:terminal", "2:text", "3:web", "4",
+  "5", "6", "7", "8:im", "9:system", "NSP"]
 
 myKeys = [
   -- Instead of killing window manager, log out
