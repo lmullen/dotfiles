@@ -26,6 +26,7 @@ alias findf="find . -type f -iname" # find a file
 alias ip="curl icanhazip.com"       # get current public IP
 alias ll="ls -l -F --color --group-directories-first"
 alias ls="ls -F --color --group-directories-first"
+alias open="xdg-open"
 alias more='more -R'                # give more colors
 alias process="ps aux | grep"
 alias synaptic="sudo synaptic"
