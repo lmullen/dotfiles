@@ -108,7 +108,7 @@ nnoremap k gk
 
 if has('wildmenu')
   set wildmenu                                " tab completion
-  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*/doc/*,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
 endif
 
 nnoremap [q :cprev<CR>
@@ -184,7 +184,7 @@ let g:ctrlp_clear_cache_on_exit = 1         " cache persists across sessions
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_dotfiles = 0                    " ignore dotifles and dotdirs
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|\_site$|^doc$'
+  \ 'dir': '\.git$\|\_site$|doc$'
   \ }
 
 " Commentary.vim ---------------------------------------------------
