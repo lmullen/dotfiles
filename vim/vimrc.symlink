@@ -214,7 +214,7 @@ set guioptions-=R                               " remove scrollbars
                                                 " find the first line 
                                                 " before footnotes
 nnoremap <leader><space> /\v^$\n[\^1\]:<CR>:let @/ = ""<CR>
-set showtabline=2 "always show tabs, even if there is only one
+" set showtabline=2 "always show tabs, even if there is only one
 
 " Highlight two or more spaces at the end of a line, except when typing
 highlight ExtraWhitespace ctermbg=red guibg=red
