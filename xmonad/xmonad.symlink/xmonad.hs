@@ -96,7 +96,12 @@ myManageHook = composeAll [
 defaultLayouts = layoutHook gnomeConfig
 
 -- Define layout for specific workspaces
-webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") Grid ||| Full
+webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") tiled ||| Mirror tiled ||| Full
+  where
+    tiled   = Tall nmaster delta ratio
+    nmaster = 1
+    ratio   = 1/2
+    delta   = 3/100
 imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
 systemLayout = Grid ||| Full
 
