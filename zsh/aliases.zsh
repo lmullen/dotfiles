@@ -12,10 +12,6 @@ alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 
 alias timelog='tail ~/todo/time-use.txt'
 
-# Change application behavior
-# -------------------------------------------------------------------
-alias chrome="open -a \"Google Chrome\""
-
 # File and system management
 # -------------------------------------------------------------------
 alias ack="ack-grep"

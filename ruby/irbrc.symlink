@@ -1,5 +1,7 @@
 #!/usr/bin/ruby
 
+Pry.start || exit rescue LoadError
+
 require 'irb/ext/save-history'
 # require 'irb/completion'
 # require 'interactive_editor'
