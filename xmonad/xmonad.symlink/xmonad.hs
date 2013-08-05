@@ -28,7 +28,7 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:terminal", "2:text", "3:web", "4",
+myWorkspaces = ["1:web", "2", "3", "4",
   "5", "6", "7", "8:im", "9:system", "NSP"]
 
 myKeys = [
@@ -80,8 +80,8 @@ myManageHook = composeAll [
   , (className =? "Birdie" <&&> title =? "Preview")           --> doCenterFloat
 
   -- Move certain classes of windows
-  , (className =? "Google-chrome")     --> doShift "3:web"
-  , (className =? "Birdie")            --> doShift "3:web"
+  , (className =? "Google-chrome")     --> doShift "1:web"
+  , (className =? "Birdie")            --> doShift "1:web"
   , (className =? "Empathy")           --> doShift "8:im"
   , (className =? "Synaptic")          --> doShift "9:system"
   , (className =? "Transmission-gtk")  --> doShift "9:system"
@@ -106,7 +106,7 @@ imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
 systemLayout = Grid ||| Full
 
 -- Put all layouts together
-myLayoutHook  = onWorkspace "3:web"     webLayout $
+myLayoutHook  = onWorkspace "1:web"     webLayout $
                 onWorkspace "8:im"      imLayout $
                 onWorkspace "9:system"  systemLayout $
                 defaultLayouts
