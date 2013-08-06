@@ -1,12 +1,11 @@
 # Project aliases
 # -------------------------------------------------------------------
-alias bib="subl --new-window --project ~/Dropbox/Sublime\ projects/bib.sublime-project"
-alias blog="subl --new-window --project ~/Dropbox/Sublime\ projects/lincolnmullen.com.sublime-project"
-alias demographics="subl --new-window --project ~/Dropbox/Sublime\ projects/Demographics\ of\ Religion.sublime-project"
-alias diss="subl --new-window --project ~/Dropbox/Sublime\ projects/dissertation.sublime-project"
-alias dot="subl --new-window --project ~/Dropbox/Sublime\ projects/dotfiles.sublime-project"
-alias jsr="subl --new-window --project ~/Dropbox/Sublime\ projects/JSR.sublime-project"
-alias research="subl --new-window --project ~/Dropbox/Sublime\ projects/research-notes.sublime-project"
+alias blog="cd ~/dev/lincolnmullen.com && vim -S"
+alias demographics="cd ~/acad/demographics-religion && vim -S"
+alias diss="cd ~/acad/dissertation && vim -S"
+alias dot="cd ~/dev/dotfiles && vim -S"
+alias jsr="cd ~/dev/jsr && vim -S"
+alias research="cd ~/acad/research/wiki/wikidata && vim"
 
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 
