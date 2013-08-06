@@ -4,7 +4,6 @@
 " Pathogen ----------------------------------------------------------
 source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()                      " pathogen loads plugins
-" call pathogen#helptags()                    " pathogen loads help files
 
 " Functions ---------------------------------------------------------
 source $HOME/.vim/functions.vim
@@ -195,6 +194,9 @@ autocmd FileType pandoc set commentstring=<!--\ %s\ -->   "comments for pandoc
 " BibTeX key completion ---------------------------------------------
 set dictionary+=$HOME/acad/research/bib/citekeys.txt
 set complete+=k
+
+" Airline -----------------------------------------------------------
+let g:airline_theme='solarized'
 
 " Temporary ---------------------------------------------------------
 runtime macros/matchit.vim
