@@ -6,10 +6,9 @@ alias diss="cd ~/acad/dissertation && vim -S"
 alias dot="cd ~/dev/dotfiles && vim -S"
 alias jsr="cd ~/dev/jsr && vim -S"
 alias research="cd ~/acad/research/wiki/wikidata && vim"
-
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
-
 alias timelog='tail ~/todo/time-use.txt'
+alias todo='cd ~/todo && vim -S'
 
 # File and system management
 # -------------------------------------------------------------------
