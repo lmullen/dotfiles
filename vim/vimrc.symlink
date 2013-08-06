@@ -251,3 +251,7 @@ map <C-\> gcc
 
 " autocomplete citations
 " inoremap <S-tab> <C-x><C-k>
+"
+" Tagbar --------------------------------------------------------------
+nnoremap <F7> :GundoToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>

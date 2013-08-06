@@ -110,7 +110,7 @@ set_prompt () {
 }
 
 # Which prompt to use by default
-busy_prompt=true
+busy_prompt=false
 
 # Flip the switch between prompts
 toggle_prompt () {

@@ -1,15 +1,14 @@
 pathdirs=(
-  ./bin
-  $ZSH/bin
   /usr/local/bin
   /usr/local/sbin
   $HOME/.rbenv/shims
   $HOME/.rbenv/bin
-  $HOME/.pyenv/shims
-  $HOME/.pyenv/bin
+  # $HOME/.pyenv/shims
+  # $HOME/.pyenv/bin
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
+  $ZSH/bin
 )
 
 for dir in $pathdirs; do

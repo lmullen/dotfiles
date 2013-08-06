@@ -18,6 +18,7 @@ alias cpwd='pwd|tr -d "\n"|pbcopy'  # copy the working directory path
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
+alias git="hub"
 alias ip="curl icanhazip.com"       # get current public IP
 alias ll="ls -l -F --color --group-directories-first"
 alias ls="ls -F --color --group-directories-first"
