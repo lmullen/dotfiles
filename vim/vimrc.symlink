@@ -255,3 +255,9 @@ map <C-\> gcc
 " Tagbar --------------------------------------------------------------
 nnoremap <F7> :GundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
+
+" Vim Panel -----------------------------------------------------------
+let g:VimpanelStorage = $HOME.'/.cache/vimpanel'
+nnoremap <F9> :VimpanelToggleRight<CR>
+
+nnoremap <C-s> :wa<CR>
