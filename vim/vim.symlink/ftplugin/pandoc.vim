@@ -1,5 +1,5 @@
 " Correct text width
-set textwidth=72
+setlocal textwidth=72
 
 " filter text through pandoc to clean markdown, using reference links and atx headers
 setlocal equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --standalone
