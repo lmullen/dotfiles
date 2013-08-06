@@ -43,8 +43,7 @@ colorscheme solarized
 syntax spell toplevel
 set display+=lastline                       " show partial last lines
 set nolist                                  " don't display space chars
-set listchars=tab:▸\ ,eol:¬,nbsp:·          " TextMate style space chars
-" nmap <silent> <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·  " TextMate style space chars
 set scrolloff=5                             " cursor 5 lines from top or bottom
 " set cursorline                              " highlight current line
 set nofoldenable
@@ -147,7 +146,7 @@ source $HOME/.vim/abbreviations.vim         " load abbreviations list
 
 " Text formatting -----------------------------------------------------
 set wrap                                    " soft wrap long lines
-set textwidth=72                            " optimal width
+set textwidth=78                            
 set tabstop=2                               " a tab is four spaces
 set softtabstop=2                           " soft tab is four spaces
 set shiftwidth=2                            " # of spaces for autoindenting

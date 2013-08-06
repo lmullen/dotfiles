@@ -2,6 +2,9 @@
 " Language:		Markdown
 " Maintainer:		Tim Pope <vimNOSPAM@tpope.org>
 
+" Correct text width
+set textwidth=72
+
 if exists("b:did_ftplugin")
   finish
 endif
