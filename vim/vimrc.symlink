@@ -119,8 +119,8 @@ nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
 nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
-nnoremap ]t :tNext<CR>
-nnoremap [t :tPrev<CR>
+nnoremap ]t :tnext<CR>
+nnoremap [t <C-T>
 nnoremap [a :prev<CR>
 nnoremap ]a :next<CR>
 nnoremap [A :first<CR>
