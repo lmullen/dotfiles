@@ -197,6 +197,9 @@ set complete+=k
 " Airline -----------------------------------------------------------
 let g:airline_theme='solarized'
 
+" Format entire file with equalprg ----------------------------------
+nnoremap <silent> <leader>= mpgg=G`p
+
 " Temporary ---------------------------------------------------------
 runtime macros/matchit.vim
 nnoremap <leader># :set number!<CR>
