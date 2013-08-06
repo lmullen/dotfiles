@@ -61,9 +61,6 @@
 [submodule "pandoc/pandoc.symlink/templates"]
 	path = pandoc/pandoc.symlink/templates
 	url = git@github.com:lmullen/pandoc-templates.git
-[submodule "vim/vim.symlink/bundle/nerdtree"]
-	path = vim/vim.symlink/bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
 [submodule "vim/vim.symlink/bundle/ctrlp"]
 	path = vim/vim.symlink/bundle/ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
