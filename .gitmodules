@@ -82,9 +82,6 @@
 [submodule "vim/vim.symlink/bundle/gundo"]
 	path = vim/vim.symlink/bundle/gundo
 	url = git@github.com:sjl/gundo.vim.git
-[submodule "vim/vim.symlink/bundle/vimpanel"]
-	path = vim/vim.symlink/bundle/vimpanel
-	url = git@github.com:mihaifm/vimpanel.git
 [submodule "vim/vim.symlink/bundle/tabular"]
 	path = vim/vim.symlink/bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
