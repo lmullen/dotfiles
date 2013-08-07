@@ -9,6 +9,7 @@ alias research="cd ~/acad/research/wiki/wikidata && vim"
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 alias timelog='tail ~/todo/time-use.txt'
 alias todo='cd ~/todo && vim -S'
+alias omekaclient='cd ~/dev/omeka_client && vim -S'
 
 # File and system management
 # -------------------------------------------------------------------
