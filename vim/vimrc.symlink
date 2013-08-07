@@ -2,8 +2,8 @@
 " Lincoln Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 
 " Pathogen ----------------------------------------------------------
-source $HOME/.vim/bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()                      " pathogen loads plugins
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
 " Functions ---------------------------------------------------------
 source $HOME/.vim/functions.vim
@@ -81,6 +81,7 @@ let mapleader="\\"
 let maplocalleader="\\"
 " nnoremap ; :
 nnoremap K ~
+nnoremap ~ K
                                             " shift-E to end of a word
 nmap E ge
 " change global current directory to the directory of working file
@@ -106,7 +107,7 @@ nnoremap k gk
 
 if has('wildmenu')
   set wildmenu                                " tab completion
-  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*/doc/*,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/* 
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*/doc/*,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/*,*Session.vim*
 endif
 
 nnoremap [q :cprev<CR>
@@ -260,4 +261,4 @@ nnoremap <F8> :TagbarToggle<CR>
 let g:VimpanelStorage = $HOME.'/.cache/vimpanel'
 nnoremap <F9> :VimpanelToggleRight<CR>
 
-nnoremap <C-s> :wa<CR>
+nnoremap <silent> <C-s> :update<CR>
