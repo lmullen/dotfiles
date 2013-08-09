@@ -1,4 +1,0 @@
-# hooks for Mutt
-
-folder-hook =\[Gmail\]\/All.Mail 'set sort=reverse-threads'
-

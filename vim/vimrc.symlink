@@ -107,7 +107,7 @@ nnoremap k gk
 
 if has('wildmenu')
   set wildmenu                                " tab completion
-  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*/doc/*,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/*,*Session.vim*
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/*,*Session.vim*
 endif
 
 nnoremap [q :cprev<CR>
@@ -256,9 +256,5 @@ map <C-\> gcc
 " Tagbar --------------------------------------------------------------
 nnoremap <F7> :GundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
-
-" Vim Panel -----------------------------------------------------------
-let g:VimpanelStorage = $HOME.'/.cache/vimpanel'
-nnoremap <F9> :VimpanelToggleRight<CR>
 
 nnoremap <silent> <C-s> :update<CR>

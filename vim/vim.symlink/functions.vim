@@ -73,7 +73,7 @@ endfunction
 command! -nargs=0 Wiki call CommitToWiki()
 nnoremap _wc :call CommitToWiki()<CR>
 function! CommitToWiki()
-  :silent !cd ~/acad/research/wiki/wikidata && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
+  " :silent !cd ~/acad/research/wiki/wikidata && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
 endfunction
 
 " Make the BibTeX bibliography
@@ -140,5 +140,15 @@ endfunction
 command! -nargs=0 FN call CopyFilename()
 function! CopyFilename()
  let @* = expand("%:r") 
+endfunction
+
+command! -nargs=0 Aeql call AlignOnEqualSign()
+function! AlignOnEqualSign()
+  :Tabularize /=
+endfunction
+
+command! -nargs=0 Ahash call AlignOnHash()
+function! AlignOnHash()
+  :Tabularize /#
 endfunction
 

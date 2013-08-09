@@ -1,141 +1,192 @@
 # Mutt settings for Lincoln Mullen
 
-# ----- Account information -----
+# Help from 
+# http://stevelosh.com/blog/2012/10/the-homely-mutt/
 
-set realname = "Lincoln Mullen"
-set from = "lincoln@lincolnmullen.com"
+# User information
+# -------------------------------------------------------------------
+set realname  = "Lincoln Mullen"
+set from      = "lincoln@lincolnmullen.com"
 alternates "^(lincoln@lincolnmullen\.com)|(lmullen@brandeis\.edu)$"
 
-# use the file with account credentials
-source ~/.mutt/accounts
+# Paths
+# -------------------------------------------------------------------
+set folder           = ~/Gmail                    # mailbox location
+set alias_file       = ~/.mutt/muttrc.aliases     # where to store aliases
+set header_cache     = ~/.cache/mutt/headers      # where to store headers
+set message_cachedir = ~/.cache/mutt/bodies       # where to store bodies
+set certificate_file = ~/.cache/mutt/certificates # where to store certs
+set mailcap_path     = ~/.mutt/mailcap            # entries for filetypes
+set tmpdir           = /tmp/mutt                  # where to keep temp files
+set signature        = ~/.mutt/signature          # my signature file
 
-# ----- Source bindings, hooks, colors -----
-source ~/.mutt/muttrc.bindings
-source ~/.mutt/muttrc.hooks
-source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+# Basic options 
+# -------------------------------------------------------------------
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
 
-# ----- Storage settings -----
-set folder		= "imaps://imap.gmail.com:993"
-set spoolfile	= "+INBOX"
-set postponed	= "+[Gmail]/Drafts"
-set mbox		= "imaps://imap.gmail.com/[Gmail]/All Mail"
-set imap_check_subscribed
-set net_inc		= 1
-set read_inc = 1
-set write_inc = 1
-set time_inc = 1
+# Status Bar 
+# -------------------------------------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header 
+# -------------------------------------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+my_hdr Reply-To: Lincoln Mullen <lincoln@lincolnmullen.com>
+
+# Mailboxes
+# -------------------------------------------------------------------
+set spoolfile = "+INBOX"
+mailboxes        +INBOX \
+                 +archive \
+                 +drafts \
+                 +sent \
+                 +spam \
+                 +trash \
+set mbox      = "+archive"
+set postponed = "+drafts"
+
+# Index View Options ---------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort_alias = alias
+set sort       = threads
+set sort_aux   = last-date-received
+unset sort_re
+set uncollapse_jump                        # don't collapse on an unread message
+
+
+# Key bindings
+# -------------------------------------------------------------------
+# Navigate the index
+bind index gg        first-entry
+bind index G         last-entry
+bind index R         group-reply
+bind index <space>   collapse-thread
+
+# Sync e-mail
+macro index O \
+  "<shell-escape>offlineimap<enter>" \
+  "run offlineimap to sync all mail"
+macro index o \
+  "<shell-escape>offlineimap -qf INBOX<enter>" \
+  "run offlineimap to sync inbox"
+
+# Move messages
+macro index D \
+  "<save-message>+trash<enter>" \
+  "move message to the trash"
+macro index S \
+  "<save-message>+spam<enter>" \
+  "mark message as spam"
+macro index,pager e \
+  "<save-message>+archive<enter>" \
+  "Archive message"
+macro index E \
+  "<tag-pattern>!~F ~R<enter>;<save-message>+archive<enter><sync-mailbox>" \
+  "Archive all read non-flagged messages"
+
+# Saner copy/move dialogs
+macro index C \
+  "<copy-message>?<toggle-mailboxes>" \
+  "copy a message to a mailbox"
+macro index M \
+  "<save-message>?<toggle-mailboxes>" \
+  "move a message to a mailbox"
+
+# Pager view options 
+# -------------------------------------------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager key bindings 
+# -------------------------------------------------------------------
+bind pager gg       top
+bind pager G        bottom
+bind pager R        group-reply
+bind index <tab>    sync-mailbox
+
+# Attachments
+# -------------------------------------------------------------------
+bind attach <return> view-mailcap
+
+# Compose view options 
+# -------------------------------------------------------------------
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# Editor
+# -------------------------------------------------------------------
+set editor      = "vim +:silent +:8"      # use vim and skip to last blank line
+set text_flowed = yes
+
+# Sending mail
+# -------------------------------------------------------------------
+set from          = "lincoln@lincolnmullen.com"
+set sendmail      = "/usr/bin/msmtp -a gmail"
+set sendmail_wait = 0
 unset record
 
-# mailboxes to check
-mailboxes =INBOX =H-AMREL =H-OIEAHC =H-SHEAR =journals =EARAM-L =H-JUDAIC =H-NEWENGLAND =H-SOUTHERN-RELIGION =H-GRAD =H-ANNOUNCE =lists--institutional =lists--tech ![Gmail]/Starred
+# Drafts
+# -------------------------------------------------------------------
+bind index p recall-message
 
-# ----- Send mail settings -----
-#set sendmail		= msmtp
-set sendmail_wait	= -1
+# Search
+# -------------------------------------------------------------------
+bind index N search-opposite
+bind pager N search-opposite
+macro index a \
+  "<limit>all\n" \
+  "show all messages (undo limit)"
 
-# ----- Where to store data -----
+macro index S \
+  "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt -o /home/lmullen/Gmail/temporary/search search -p<enter><change-folder-readonly>+temporary/search<enter>" \
+  "search mail (using notmuch)"
 
-set header_cache		= ~/.cache/mutt/headers
-set message_cachedir	= ~/.cache/mutt/bodies
-set certificate_file	= ~/.cache/mutt/certificates
-set mailcap_path		= ~/.mutt/mailcap
-#set signature			= ~/.mutt/signature
-set tmpdir				= ~/.cache/mutt/tmp
+# Colors
+# -------------------------------------------------------------------
+source ~/.mutt/solarized/mutt-colors-solarized-dark-16.muttrc
 
-# ----- Headers -----
-ignore		*
-unignore	from: to: cc: date: subject:
-unhdr_order	*
-hdr_order	from: to: cc: date: subject:
-#my_hdr Reply-To: Lincoln Mullen <lincoln@lincolnmullen.com>
-
-
-# ----- Writing mail -----
-
-set reverse_name  # send mail from the address it was sent to
-#set editor = "vim +:silent+?^$ +:noh" # use vim and skip to last blank line
-set editor = "vim +:silent +:8" # use vim and skip to last blank line
-set edit_headers			# edit mail headers directly
-set include=yes		# include the original in replies
-set sendmail_wait=-1		# no delays after sending mail
-set use_envelope_from=yes # make the envelope have the same from as the header
-set auto_tag
-unset confirmappend
-set delete
-set mail_check = 300
-set maildir_trash = yes
-folder-hook imaps://imap.gmail.com 'set trash="=[Gmail]/Trash"'
-unset markers
-unset mark_old
-unset move
-set pager_context = 5
-set pager_stop
-set reverse_alias
-set sort_alias = alias			# sort by alias
-set delete=yes			# don't ask before deleting
-set sort=reverse-threads
-set sort_aux=last-date-received
-unset sort_re
-set thorough_search
-set thread_received
-set tilde
-set timeout = 1
-set quit
-set wait_key = no
-auto_view text/html
-alternative_order text/plain text/enriched text/html
-set fast_reply
-set askcc
-set forward_format = "Fwd: %s"
-set forward_quote
-set reply_to
-set sig_on_top
-set user_agent
-set mime_forward=no
-set mime_forward_decode
-set text_flowed=yes
-
-
-# ----- Aliases -----
-
-set alias_file = ~/.mutt/muttrc.aliases 	# alias file
+# Miscellaneous
+# -------------------------------------------------------------------
 source $alias_file				# autoload aliases
+# folder-hook =\[Gmail\]\/All.Mail 'set sort=reverse-threads'
 
-# ----- Reading mail -----
-
-
-# sort by thread, and list the threads by last-date-received
-
-# follow urls with a macro
-macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-
-# ----- Macros -----
-bind editor <space> noop
-macro index,pager e "<save-message>=[Gmail]/All Mail<enter><sync-mailbox>" "Archive message"
-macro index E "<tag-pattern>!~F ~R<enter><save-message>=[Gmail]/All Mail<enter><sync-mailbox>" "Archive all read non-flagged messages"
-macro index Gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro pager Gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index Ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
-macro pager Ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
-macro index Gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
-macro pager Gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
-macro index Gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
-macro pager Gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
-
-# ----- Miscellaneous -----
-
-set nobeep				# who wants beeps?
-
-# ----- Load files -----
-
-
-# ----- Unorganized -----
-set timeout=15
-set sleep_time=0
-#auto_view text/html
-
-# ----- Lists -----
-
+# Lists 
+# -------------------------------------------------------------------
 lists @H-NET.MSU.EDU 
 lists @lists.brandeis.edu 
 lists @googlegroups.com
@@ -166,7 +217,3 @@ subscribe xetex@tug.org
 subscribe xetex-announce@tug.org
 subscribe tufte-latex@googlegroups.com
 
-# ---- Goobook ----
-set query_command="goobook query '%s'"
-bind editor Q complete-query
-macro index,pager A "<pipe-message>goobook add<return>" "add the sender address to Google contacts"

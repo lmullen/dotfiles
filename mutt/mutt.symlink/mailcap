@@ -1,14 +1,20 @@
 # mailcap file for Mutt
 
-# see http://wcm1.web.rice.edu/mutt-tips.html
-# see http://linsec.ca/Using_mutt_on_OS_X#mailcap
+# MS Word documents
+application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
 
-text/html; lynx -dump %s; copiousoutput; nametemplate=%s.html
-text/html; lynx %s
-application/pdf; /Users/lmullen/.mutt/view-attachment.sh %s pdf
-image/jpeg; /Users/lmullen/.mutt/view-attachment.sh %s "-"
-image/png; /Users/lmullen/.mutt/view-attachment.sh %s "-"
-image/gif; /Users/lmullen/.mutt/view-attachment.sh %s "-"
-application/msword; /Users/lmullen/.mutt/view-attachment.sh %s "-"
-application/vnd.openxmlformats-officedocument.wordpressingml.document; /Users/lmullen/.mutt/view-attachment.sh %s "-"
-application/rtf; /Users/lmullen/.mutt/view-attachment.sh %s "-"
+# Images
+image/jpg; ~/.mutt/view_attachment.sh %s jpg
+image/jpeg; ~/.mutt/view_attachment.sh %s jpg
+image/pjpeg; ~/.mutt/view_attachment.sh %s jpg
+image/png; ~/.mutt/view_attachment.sh %s png
+image/gif; ~/.mutt/view_attachment.sh %s gif
+
+# PDFs
+application/pdf; ~/.mutt/view_attachment.sh %s pdf
+
+# HTML
+text/html; ~/.mutt/view_attachment.sh %s html
+
+# Unidentified files
+application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
