@@ -85,3 +85,6 @@
 [submodule "vim/vim.symlink/bundle/tabular"]
 	path = vim/vim.symlink/bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
+[submodule "mutt/mutt.symlink/solarized"]
+	path = mutt/mutt.symlink/solarized
+	url = git@github.com:altercation/mutt-colors-solarized.git
