@@ -61,9 +61,6 @@
 [submodule "pandoc/pandoc.symlink/templates"]
 	path = pandoc/pandoc.symlink/templates
 	url = git@github.com:lmullen/pandoc-templates.git
-[submodule "vim/vim.symlink/bundle/ctrlp"]
-	path = vim/vim.symlink/bundle/ctrlp
-	url = git@github.com:kien/ctrlp.vim.git
 [submodule "vim/vim.symlink/bundle/vim-endwise"]
 	path = vim/vim.symlink/bundle/vim-endwise
 	url = git@github.com:tpope/vim-endwise.git
