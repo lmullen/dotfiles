@@ -7,7 +7,7 @@
 # -------------------------------------------------------------------
 set realname  = "Lincoln Mullen"
 set from      = "lincoln@lincolnmullen.com"
-alternates "^(lincoln@lincolnmullen\.com)|(lmullen@brandeis\.edu)$"
+alternates      "^(lincoln@lincolnmullen\.com)|(lmullen@brandeis\.edu)$"
 
 # Paths
 # -------------------------------------------------------------------
@@ -17,23 +17,24 @@ set header_cache     = ~/.cache/mutt/headers      # where to store headers
 set message_cachedir = ~/.cache/mutt/bodies       # where to store bodies
 set certificate_file = ~/.cache/mutt/certificates # where to store certs
 set mailcap_path     = ~/.mutt/mailcap            # entries for filetypes
-set tmpdir           = /tmp/mutt                  # where to keep temp files
+set tmpdir           = /tmp                       # where to keep temp files
 set signature        = ~/.mutt/signature          # my signature file
 
 # Basic options 
 # -------------------------------------------------------------------
-set wait_key = no        # shut up, mutt
-set mbox_type = Maildir  # mailbox type
-set timeout = 3          # idle time before scanning
-set mail_check = 0       # minimum time between scans
-unset move               # gmail does that
-set delete               # don't ask, just do
-unset confirmappend      # don't ask, just do!
-set quit                 # don't ask, just do!!
-unset mark_old           # read/new is good enough for me
-set beep_new             # bell on new mails
-set pipe_decode          # strip headers and eval mimes when piping
-set thorough_search      # strip headers and eval mimes before searching
+set wait_key = no         # shut up, mutt
+set mbox_type = Maildir   # mailbox type
+set timeout = 3           # idle time before scanning
+set mail_check = 0        # minimum time between scans
+unset move                # gmail does that
+set delete                # don't ask, just do
+unset confirmappend       # don't ask, just do!
+set quit                  # don't ask, just do!!
+set abort_nosubject = yes # don't ask, just do!!!
+unset mark_old            # read/new is good enough for me
+set beep_new              # bell on new mails
+set pipe_decode           # strip headers and eval mimes when piping
+set thorough_search       # strip headers and eval mimes before searching
 
 # Status Bar 
 # -------------------------------------------------------------------
@@ -60,9 +61,10 @@ mailboxes        +INBOX \
 set mbox      = "+archive"
 set postponed = "+drafts"
 
-# Index View Options ---------------------------------
+# Index view options 
+# -------------------------------------------------------------------
 set date_format = "%m/%d"
-set index_format = "[%Z]  %D  %-20.20F  %s"
+set index_format = "%4C: [%Z]  %D  %-20.20F  %s"
 set sort_alias = alias
 set sort       = threads
 set sort_aux   = last-date-received
@@ -168,7 +170,7 @@ bind index p recall-message
 # -------------------------------------------------------------------
 bind index N search-opposite
 bind pager N search-opposite
-macro index a \
+macro index A \
   "<limit>all\n" \
   "show all messages (undo limit)"
 
