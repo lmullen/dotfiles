@@ -28,7 +28,7 @@ setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt AUTOPUSHD        # keep history of directories
-# setopt MENU_COMPLETE    # complete first option automatically
+setopt MENU_COMPLETE    # complete first option automatically
 
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
