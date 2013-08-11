@@ -79,6 +79,8 @@ bind index gg        first-entry
 bind index G         last-entry
 bind index R         group-reply
 bind index <space>   collapse-thread
+bind index J         next-thread
+bind index K         previous-thread
 
 # Sync e-mail
 macro index O \
@@ -89,9 +91,10 @@ macro index o \
   "run offlineimap to sync inbox"
 
 # Move messages
-macro index D \
+macro index d \
   "<save-message>+trash<enter>" \
   "move message to the trash"
+bind index D        delete-thread
 macro index S \
   "<save-message>+spam<enter>" \
   "mark message as spam"
@@ -101,6 +104,11 @@ macro index,pager e \
 macro index E \
   "<tag-pattern>!~F ~R<enter>;<save-message>+archive<enter><sync-mailbox>" \
   "Archive all read non-flagged messages"
+
+# Mark messages as read
+bind index,pager U  read-thread
+bind index       u  toggle-new
+
 
 # Saner copy/move dialogs
 macro index C \
@@ -186,13 +194,13 @@ source ~/.mutt/solarized/mutt-colors-solarized-dark-16.muttrc
 # -------------------------------------------------------------------
 source $alias_file				# autoload aliases
 # folder-hook =\[Gmail\]\/All.Mail 'set sort=reverse-threads'
+auto_view text/html
 
 # Lists 
 # -------------------------------------------------------------------
-lists @H-NET.MSU.EDU 
-lists @lists.brandeis.edu 
-lists @googlegroups.com
-
+subscribe @H-NET.MSU.EDU 
+subscribe @lists.brandeis.edu 
+subscribe @googlegroups.com
 subscribe bcf@lists.brandeis.edu
 subscribe currentgrads@lists.brandeis.edu
 subscribe EARAM-L@listserv.kent.edu
