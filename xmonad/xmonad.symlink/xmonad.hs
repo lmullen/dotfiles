@@ -72,23 +72,25 @@ myScratchPads = [
 myManageHook = composeAll [
   -- Float certain windows
     (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
-  , (className =? "gnome-search-tool")                        --> doCenterFloat
-  , (className =? "sublime-text-2" <&&> title =? "Open File") --> doCenterFloat
-  , (className =? "Sublime_text" <&&> title =? "Open File") --> doCenterFloat
-  , (stringProperty "WM_WINDOW_ROLE" =? "pop-up")             --> doCenterFloat
-  , (resource =? "Dialog")                                    --> doFloat
-  , (className =? "Birdie" <&&> title =? "Preview")           --> doCenterFloat
+  , (className =? "gnome-search-tool")                           --> doCenterFloat
+  , (className =? "Gimp-2.8")                                    --> doFloat
+  , (className =? "sublime-text-2" <&&> title =? "Open File")    --> doCenterFloat
+  , (className =? "Sublime_text" <&&> title =? "Open File")      --> doCenterFloat
+  , (stringProperty "WM_WINDOW_ROLE" =? "pop-up")                --> doCenterFloat
+  , (resource =? "Dialog")                                       --> doFloat
+  , (className =? "Birdie" <&&> title =? "Preview")              --> doCenterFloat
 
   -- Move certain classes of windows
-  , (className =? "Google-chrome")     --> doShift "1:web"
-  , (className =? "Birdie")            --> doShift "1:web"
-  , (className =? "Empathy")           --> doShift "8:im"
-  , (className =? "Synaptic")          --> doShift "9:system"
-  , (className =? "Transmission-gtk")  --> doShift "9:system"
-  , (className =? "Update-manager")    --> doShift "9:system"
-  , (className =? "Deja-dup")          --> doShift "9:system"
-  , (className =? "Update-manager")    --> doShift "9:system"
-  , (className =? "Rhythmbox")         --> doShift "9:system"
+  , (className =? "Google-chrome")                               --> doShift "1:web"
+  , (className =? "Birdie")                                      --> doShift "1:web"
+  , (className =? "Gimp-2.8")                                    --> doShift "6"
+  , (className =? "Empathy")                                     --> doShift "8:im"
+  , (className =? "Synaptic")                                    --> doShift "9:system"
+  , (className =? "Transmission-gtk")                            --> doShift "9:system"
+  , (className =? "Update-manager")                              --> doShift "9:system"
+  , (className =? "Deja-dup")                                    --> doShift "9:system"
+  , (className =? "Update-manager")                              --> doShift "9:system"
+  , (className =? "Rhythmbox")                                   --> doShift "9:system"
   --]
   ] <+> namedScratchpadManageHook myScratchPads
 
