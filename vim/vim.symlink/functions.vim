@@ -4,10 +4,10 @@ function! CleanMarkdown()
   :%s/—/---/ge 
   :%s/–/--/ge
   :%s/…/.../ge
-  :%s/\’/'/ge
-  :%s/\“/"/ge
-  :%s/\‘/'/ge
-  :%s/\”/"/ge
+  :%s/’/'/ge
+  :%s/“/"/ge
+  :%s/‘/'/ge
+  :%s/”/"/ge
   :%s/``/"/ge
   :%s/''/"/ge
 endfunction
@@ -150,5 +150,29 @@ endfunction
 command! -nargs=0 Ahash call AlignOnHash()
 function! AlignOnHash()
   :Tabularize /#
+endfunction
+
+command! -nargs=0 ToggleHJKL call ToggleHJKL() 
+function! ToggleHJKL()
+  if exists("g:ToggleHJKL") 
+    if g:ToggleHJKL == 1
+      map h h
+      map j j
+      map k k
+      map l l
+    else
+      map h <nop>
+      map j <nop>
+      map k <nop>
+      map l <nop>
+      let g:ToggleHJKL = 1
+    endif
+  else 
+    map h <nop>
+    map j <nop>
+    map k <nop>
+    map l <nop>
+    let g:ToggleHJKL = 1
+  endif
 endfunction
 

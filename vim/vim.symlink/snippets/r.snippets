@@ -1,7 +1,7 @@
 # R snippets
 
 snippet #! "#!"
-#!/usr/bin/env Rscript
+#!/usr/bin/env Rscript --vanilla
 endsnippet
 
 snippet png "Save to PNG"
@@ -19,7 +19,8 @@ dev.off()
 endsnippet
 
 snippet csv "Read CSV file"
-${1:data} <- read.csv("${2:filename.csv}", comment.char = "#")
+${1:data} <- read.csv("${2:filename.csv}",
+                      comment.char = "#", stringsAsFactors = F)
 endsnippet
 
 snippet attribution "Load the attribution functions"
@@ -31,4 +32,18 @@ endsnippet
 
 snippet attribution "Call attribution() and credit()"
 attribution("${1:Data:}")
+endsnippet
+
+snippet if "If statement"
+if ($1) {
+  $2
+} 
+endsnippet
+
+snippet fe "File exists"
+file.exists("$1")
+endsnippet
+
+snippet df "Download file"
+download.file("${1:URL}", "${2:destfile}")
 endsnippet

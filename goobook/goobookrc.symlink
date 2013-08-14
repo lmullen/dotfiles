@@ -1,4 +1,3 @@
-# "#" or ";" at the start of a line makes it a comment.
 [DEFAULT]
 # If not given here, email and password is taken from .netrc using
 # machine google.com

@@ -22,7 +22,6 @@ set showmatch                               " show matching parenthesis
 set smarttab
 set history=1000                            " remember commands and searches
 set undolevels=1000                         " use many levels of undo
-" set visualbell                              " don't beep
 set noerrorbells                            " don't beep
 au FocusLost * :wa                          " save when losing focus
 set mouse=a                                 " use mouse in console
@@ -45,7 +44,7 @@ set display+=lastline                       " show partial last lines
 set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·  " TextMate style space chars
 set scrolloff=5                             " cursor 5 lines from top or bottom
-" set cursorline                              " highlight current line
+set cursorline                              " highlight current line
 set nofoldenable
 set foldcolumn=0                            " show where the folds are
 set number
@@ -70,15 +69,15 @@ set smartcase                               " smart about case sensitivity
                                             " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
                                             " use very magic mode
-" cnoremap s/ s/\v
-" cnoremap %s/ %s/\v
-" nnoremap / /\v
-" vnoremap / /\v
-" cnoremap ack Ack
+cnoremap s/ s/\v
+cnoremap %s/ %s/\v
+nnoremap / /\v
+vnoremap / /\v
+cnoremap ack Ack
 
 " Keyboard shortcuts --------------------------------------------------
-let mapleader="\\"
-let maplocalleader="\\"
+" let mapleader="\\"
+" let maplocalleader="\\"
 " nnoremap ; :
 nnoremap K ~
 nnoremap ~ K
@@ -87,7 +86,7 @@ nmap E ge
 " change global current directory to the directory of working file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " change local current directory to the directory of working file
-nnoremap <leader>lcd :lcd %:p:h<CR>:pwd<CR>
+" nnoremap <leader>lcd :lcd %:p:h<CR>:pwd<CR>
                                             " reselect visual after indent
 vnoremap < <gv
 vnoremap > >gv
@@ -97,10 +96,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
                                             " disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
                                             " move by display not logical lines
 nnoremap j gj
 nnoremap k gk
@@ -134,7 +133,7 @@ nnoremap [f ?\V[^\d\+]<CR>
 " Word count ----------------------------------------------------------
 nmap <silent> <leader>wc g<C-G>
                                             " for LaTeX documents
-nmap <silent> <leader>lwc :w<CR> :!detex % \| wc -w<CR>
+" nmap <silent> <leader>lwc :w<CR> :!detex % \| wc -w<CR>
 
 " Spell check ---------------------------------------------------------
 set spelllang=en_us                         " US English
@@ -144,6 +143,7 @@ nnoremap <silent> <leader>sp :set spell!<CR>
 
 " Abbreviations -------------------------------------------------------
 source $HOME/.vim/abbreviations.vim         " load abbreviations list
+command! -nargs=0 Abbr sp $HOME/.vim/abbreviations.vim
 
 " Text formatting -----------------------------------------------------
 set wrap                                    " soft wrap long lines
@@ -188,7 +188,7 @@ let g:ctrlp_custom_ignore = {
 
 " Commentary.vim ---------------------------------------------------
 autocmd FileType apache set commentstring=#\ %s   "comments for Apache
-autocmd FileType R set commentstring=#\ %s        "comments for R
+autocmd FileType r set commentstring=#\ %s        "comments for R
 autocmd FileType pandoc set commentstring=<!--\ %s\ -->   "comments for pandoc
 
 " BibTeX key completion ---------------------------------------------
@@ -197,6 +197,9 @@ set complete+=k
 
 " Airline -----------------------------------------------------------
 let g:airline_theme='solarized'
+let g:airline_enable_syntastic=1
+let g:airline_detect_modified=1
+let g:airline_enable_tagbar=1
 
 " Format entire file with equalprg ----------------------------------
 nnoremap <silent> <leader>= mpgg=G`p
@@ -232,13 +235,13 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
-let g:UltiSnipsNoPythonWarning = 1
+" let g:UltiSnipsNoPythonWarning = 0
 nnoremap <leader>eu :UltiSnipsEdit<CR>
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeHijackNetrw=1
-let NERDTreeShowBookmarks=1
+" map <C-n> :NERDTreeToggle<CR>
+" let NERDTreeHijackNetrw=1
+" let NERDTreeShowBookmarks=1
 
 autocmd BufNewFile,BufRead *.rb set keywordprg=ri
 
@@ -254,7 +257,24 @@ map <C-\> gcc
 " inoremap <S-tab> <C-x><C-k>
 "
 " Tagbar --------------------------------------------------------------
-nnoremap <F7> :GundoToggle<CR>
+" nnoremap <F7> :GundoToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 nnoremap <silent> <C-s> :update<CR>
+
+nnoremap <space> zt
+" Syntastic -----------------------------------------------------------
+let g:syntastic_always_populate_loc_list=1
+
+" Vim-R ---------------------------------------------------------------
+let vimrplugin_screenplugin = 0
+let maplocalleader = "_"
+nmap <localleader>l <Plug>RSendLine
+imap <localleader>l <Plug>RSendLine
+vmap <localleader>l <Plug>RSendLine
+nmap <localleader>s <Plug>RESendSelection
+imap <localleader>s <Plug>RESendSelection
+vmap <localleader>s <Plug>RESendSelection
+nmap <localleader>p <Plug>RSendParagraph
+imap <localleader>p <Plug>RSendParagraph
+vmap <localleader>p <Plug>RSendParagraph
