@@ -1,7 +1,7 @@
 # Project aliases
 # -------------------------------------------------------------------
 alias blog="cd ~/dev/lincolnmullen.com && vim -S"
-alias demographics="cd ~/acad/demographics-religion && vim -S"
+alias demographics="cd ~/dev/demographics-religion && vim -S"
 alias diss="cd ~/acad/dissertation && vim -S"
 alias dot="cd ~/dev/dotfiles && vim -S"
 alias jsr="cd ~/dev/jsr && vim -S"
