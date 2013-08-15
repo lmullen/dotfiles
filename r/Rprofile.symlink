@@ -68,12 +68,16 @@ Sys.setenv(R_HISTSIZE='100000')
 attach(.env)
 
 .First <- function() {
-  # utils:::loadhistory(file = "~/.Rhistory")
-  cat("\nSuccessfully loaded .Rprofile at", date(), "\n\n")
+  if(interactive()) {
+    try(utils:::loadhistory(file = "~/.Rhistory"))
+    cat("\nSuccessfully loaded .Rprofile at", date(), "\n\n")
+  }
 }
 
 .Last <- function() {
-  # utils:::savehistory(file = "~/.Rhistory")
+  if(interactive()) {
+    try(utils:::savehistory(file = "~/.Rhistory"))
+  }
 }
 
 # Override q() to not save by default. Same as saying q("no").
