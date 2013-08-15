@@ -94,3 +94,6 @@
 [submodule "vim/vim.symlink/bundle/vim-r-plugin"]
 	path = vim/vim.symlink/bundle/vim-r-plugin
 	url = git@github.com:vim-scripts/Vim-R-plugin.git
+[submodule "vim/vim.symlink/bundle/ctrlp"]
+	path = vim/vim.symlink/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
