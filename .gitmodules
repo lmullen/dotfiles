@@ -97,3 +97,6 @@
 [submodule "vim/vim.symlink/bundle/ctrlp"]
 	path = vim/vim.symlink/bundle/ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/vim-seek"]
+	path = vim/vim.symlink/bundle/vim-seek
+	url = git@github.com:goldfeld/vim-seek.git
