@@ -6,19 +6,18 @@
 # Some settings from these useRs:
 # http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html?m=1
 
-# Load the packages we use most when using R as a REPL
-library(ggplot2)
-library(knitr)
-library(ggmap)
-library(plyr)
-library(lubridate, warn.conflicts = FALSE)
-library(rgeos)
-library(rgdal)
-
 if(interactive()){
+  # Load the packages we use most when using R as a REPL
   # library(colorout)
   library(setwidth)
   library(vimcom)
+  # library(ggplot2)
+  # library(knitr)
+  # library(ggmap)
+  # library(plyr)
+  # library(lubridate, warn.conflicts = FALSE)
+  # library(rgeos)
+  # library(rgdal)
 }
 
 # Set the repository to download packages from
