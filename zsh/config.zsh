@@ -39,25 +39,25 @@ setopt HIST_REDUCE_BLANKS
 #   like: git comm-[tab]
 setopt complete_aliases
 
-# Vim key bindings and Vim-like line editor
-bindkey -v
-autoload -U   edit-command-line
-zle -N        edit-command-line
-bindkey -M vicmd v edit-command-line
+# # Vim key bindings and Vim-like line editor
+# bindkey -v
+# autoload -U   edit-command-line
+# zle -N        edit-command-line
+# bindkey -M vicmd v edit-command-line
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
+# bindkey '^[^[[D' backward-word
+# bindkey '^[^[[C' forward-word
+# bindkey '^[[5D' beginning-of-line
+# bindkey '^[[5C' end-of-line
+# bindkey '^[[3~' delete-char
+# bindkey '^[^N' newtab
+# bindkey '^?' backward-delete-char
 
-# vi style incremental search
-bindkey '^R' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^P' history-search-backward
-bindkey '^N' history-search-forward  
+# # vi style incremental search
+# bindkey '^R' history-incremental-search-backward
+# bindkey '^S' history-incremental-search-forward
+# bindkey '^P' history-search-backward
+# bindkey '^N' history-search-forward  
 
 unsetopt nomatch
 

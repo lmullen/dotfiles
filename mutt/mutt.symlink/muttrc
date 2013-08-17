@@ -236,3 +236,7 @@ subscribe xetex-announce@tug.org
 subscribe tufte-latex@googlegroups.com
 subscribe qgis-user@lists.osgeo.org
 
+# Navigate mailboxes
+# -------------------------------------------------------------------
+macro index \Cl  "<change-folder>=lists<enter>"  "Go to lists"
+macro index \Ct  "<change-folder>=tech<quote-char> lists<enter>"  "Go to tech lists"
