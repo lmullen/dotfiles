@@ -118,8 +118,10 @@ nnoremap <leader>bg :call ToggleBackground()<cr>
 function! ToggleBackground()
   if &background == "dark"
     set background=light
+    :AirlineTheme tomorrow
   else
     set background=dark
+    :AirlineTheme solarized
   endif
 endfunction
 
@@ -150,6 +152,11 @@ endfunction
 command! -nargs=0 Ahash call AlignOnHash()
 function! AlignOnHash()
   :Tabularize /#
+endfunction
+
+command! -nargs=0 Ar call AlignOnRAssign()
+function! AlignOnRAssign()
+  :Tabularize /<-
 endfunction
 
 command! -nargs=0 ToggleHJKL call ToggleHJKL() 

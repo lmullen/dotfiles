@@ -35,10 +35,7 @@ set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·  " TextMate style space chars
 set scrolloff=5                             " cursor 5 lines from top or bottom
 set cursorline                              " highlight current line
-set nofoldenable
-set foldcolumn=1                            " show where the folds are
 set number
-nnoremap <space> zt
 
 " Status line 
 " -------------------------------------------------------------------
@@ -63,7 +60,7 @@ source $HOME/.vim/functions.vim
 set incsearch                               " show search matches as you type
 set ignorecase
 set smartcase                               " smart about case sensitivity
-set hlsearch                                " highlight search terms
+" set hlsearch                                " highlight search terms
 " clear search highlighting
 nmap <silent> <leader>/ :nohlsearch<CR>
 " use very magic mode explicitly
@@ -72,10 +69,16 @@ cnoremap %s/ %s/\v
 nnoremap / /\v
 vnoremap / /\v
 
+" Folding
+" -------------------------------------------------------------------
+set foldenable
+set foldcolumn=1                            " show where the folds are
+nnoremap <space> za
 
 " Keyboard shortcuts
 " -------------------------------------------------------------------
 nnoremap ~ K
+nnoremap K ~
 nmap E ge
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>lcd :lcd %:p:h<CR>:pwd<CR>
@@ -158,10 +161,9 @@ set formatoptions=tqcwn                     " see :help fo-table
 
 " Vimrc
 " -------------------------------------------------------------------
-command! -nargs=0 Abbr sp $HOME/.vim/abbreviations.vim
-command! -nargs=0 EVimrc sp $MYVIMRC
-command! -nargs=0 SVimrc source $MYVIMRC
-command! -nargs=0 EFunctions sp $HOME/.vim/functions.vim
+command! -nargs=0 Evimrc e $MYVIMRC
+command! -nargs=0 Svimrc source $MYVIMRC
+command! -nargs=0 Efunctions e $HOME/.vim/functions.vim
 set backup                                  " backups and swaps
 set backupdir=$HOME/.cache/vim/backup/
 set directory=$HOME/.cache/vim/swap/
@@ -189,7 +191,7 @@ map <leader>p mc'p=G'c
 " -------------------------------------------------------------------
 let g:ctrlp_open_new_file = 'r'             " open new files in same window
 nmap <C-B> :CtrlPBuffer<CR>
-let g:ctrlp_use_caching = 1
+let g:ctrlp_use_caching = 0
 let g:ctrlp_clear_cache_on_exit = 1         
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_dotfiles = 0                    " ignore dotfiles and dotdirs
