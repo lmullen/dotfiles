@@ -55,9 +55,6 @@
 [submodule "vim/vim.symlink/bundle/supertab"]
 	path = vim/vim.symlink/bundle/supertab
 	url = https://github.com/ervandew/supertab
-[submodule "csl/csl.symlink"]
-	path = csl/csl.symlink
-	url = git@github.com:citation-style-language/styles.git
 [submodule "pandoc/pandoc.symlink/templates"]
 	path = pandoc/pandoc.symlink/templates
 	url = git@github.com:lmullen/pandoc-templates.git
