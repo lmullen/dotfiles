@@ -73,14 +73,15 @@ endfunction
 command! -nargs=0 Wiki call CommitToWiki()
 nnoremap _wc :call CommitToWiki()<CR>
 function! CommitToWiki()
-  " :silent !cd ~/acad/research/wiki/wikidata && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git --no-pager add *.page && git --git-dir=/home/lmullen/acad/research/wiki/wikidata/.git commit -a -m "Automatic commit from Vim" 
+  :silent !cd ~/acad/research && rake wiki
+  :redraw!
 endfunction
 
 " Make the BibTeX bibliography
 command! -nargs=0 Bib call MakeBib()
 nnoremap _bib :call MakeBib()<CR>
 function! MakeBib()
-  :silent !cd ~/acad/research/bib && Rake
+  :silent !cd ~/acad/research && rake bib
   :redraw!
 endfunction
 

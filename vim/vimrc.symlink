@@ -21,10 +21,17 @@ set history=1000                            " remember commands and searches
 set undolevels=100                          " use many levels of undo
 set noerrorbells                            " don't beep
 set mouse=a                                 " use mouse in console
-set clipboard=unnamedplus                   " use system clipboard
+" set clipboard=unnamedplus                   " use system clipboard
 filetype plugin indent on                   " detect filetypes
+set nrformats-=octal
+set shiftround
+set ttimeout
+set ttimeoutlen=50
+set autoread
+set fileformats+=mac
+set tabpagemax=50
 
-" Display 
+" Display
 " -------------------------------------------------------------------
 set t_Co=16                                 " color terminal
 syntax enable                               " syntax highlighting
@@ -34,10 +41,10 @@ set display+=lastline                       " show partial last lines
 set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·  " TextMate style space chars
 set scrolloff=5                             " cursor 5 lines from top or bottom
-set cursorline                              " highlight current line
+" set cursorline                              " highlight current line
 set number
 
-" Status line 
+" Status line
 " -------------------------------------------------------------------
 set laststatus=2                            " always show a status line
 set statusline=""
@@ -99,32 +106,32 @@ nnoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 " paired keymappings
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
-nnoremap [l :lprev<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [L :lfirst<CR>
-nnoremap ]L :llast<CR>
-nnoremap [b :bprev<CR>
-nnoremap ]b :bnext<CR>
-nnoremap ]t :tnext<CR>
-nnoremap [t <C-T>
-nnoremap [a :prev<CR>
-nnoremap ]a :next<CR>
-nnoremap [A :first<CR>
-nnoremap ]A :last<CR>
+" nnoremap [q :cprev<CR>
+" nnoremap ]q :cnext<CR>
+" nnoremap [Q :cfirst<CR>
+" nnoremap ]Q :clast<CR>
+" nnoremap [l :lprev<CR>
+" nnoremap ]l :lnext<CR>
+" nnoremap [L :lfirst<CR>
+" nnoremap ]L :llast<CR>
+" nnoremap [b :bprev<CR>
+" nnoremap ]b :bnext<CR>
+" nnoremap ]t :tnext<CR>
+" nnoremap [t <C-T>
+" nnoremap [a :prev<CR>
+" nnoremap ]a :next<CR>
+" nnoremap [A :first<CR>
+" nnoremap ]A :last<CR>
 nnoremap [<space> O<ESC>j
 nnoremap ]<space> o<ESC>k
-nnoremap ]f /\V[^\d\+]<CR>
-nnoremap [f ?\V[^\d\+]<CR>
+nnoremap ]n /\V[^\d\+]<CR>
+nnoremap [n ?\V[^\d\+]<CR>
 
 " Tab completion
 " -------------------------------------------------------------------
 if has('wildmenu')
   set wildmenu
-  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.pyc,*.rtf,*.swp,*.synctex.gz,*.toc,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/*,*Session.vim*
+  set wildignore+=*.aux,*.bak,*.bbl,*.blg,*.class,*.doc,*.docx,*.dvi,*.fdb_latexmk,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.pdf,*.png,*.pyc,*.Rout,*.rtf,*.swp,*.synctex.gz,*.toc,*.zip,*/.hg/*,*/.svn/*,*.mp3,*/_site/*,*~,.DS_Store,*/public/*,*Session.vim*
 endif
 
 " Word count
@@ -177,15 +184,15 @@ nnoremap <leader><space> /\v^$\n[\^1\]:<CR>:let @/ = ""<CR>
 
 " BibTeX key completion 
 " -------------------------------------------------------------------
-set dictionary+=$HOME/acad/research/bib/citekeys.txt
-set complete+=k
+" set dictionary+=$HOME/acad/research/bib/citekeys.txt
+" set complete+=k
 
 " Formating file
 " -------------------------------------------------------------------
 " Run equalprg on the entire file
 nnoremap <silent> <leader>= mpgg=G`p
 " Run equalprg from the part of the file marked P to the end
-map <leader>p mc'p=G'c
+" map <leader>p mc'p=G'c
 
 " Ctrl-P 
 " -------------------------------------------------------------------
@@ -237,9 +244,20 @@ let g:syntastic_always_populate_loc_list=1
 " Vim-R 
 " -------------------------------------------------------------------
 let vimrplugin_screenplugin = 0
-let maplocalleader = "_"
+let maplocalleader = "\\"
+let vimrplugin_assign = 0
+let vimrplugin_rnowebchurch = 0
+let vimrplugin_r_args = "--no-restore-data --no-save --quiet"
+let g:vimrplugin_insert_mode_cmds = 0
 
 " Temporary
 " -------------------------------------------------------------------
 au FocusLost * :wa                          " save when losing focus (gVim)
-set autoread                                " read a file changed on disk
+set autoread
+
+" " Bubble single lines
+" nmap <C-Up> ddkP
+" nmap <C-Down> ddp
+" " Bubble multiple lines
+" vmap <C-Up> xkP`[V`]
+" vmap <C-Down> xp`[V`]

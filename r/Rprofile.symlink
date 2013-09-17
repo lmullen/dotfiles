@@ -38,31 +38,31 @@ Sys.setenv(R_HISTSIZE='100000')
 .env <- new.env()
 
 # Read data on clipboard.
-.env$read.cb <- function(...) {
-  ismac <- Sys.info()[1]=="Darwin"
-  if (!ismac) read.table(file="clipboard", ...)
-  else read.table(pipe("pbpaste"), ...)
-}
+# .env$read.cb <- function(...) {
+#   ismac <- Sys.info()[1]=="Darwin"
+#   if (!ismac) read.table(file="clipboard", ...)
+#   else read.table(pipe("pbpaste"), ...)
+# }
 
 # List objects and classes (from @_inundata)
-.env$lsa <- function() {
-  obj_type <- function(x) { class(get(x)) }
-  foo=data.frame(sapply(ls(envir=.GlobalEnv),obj_type))
-  foo$object_name=rownames(foo)
-  names(foo)[1]="class"
-  names(foo)[2]="object"
-  return(unrowname(foo))
-}
+# .env$lsa <- function() {
+#   obj_type <- function(x) { class(get(x)) }
+#   foo=data.frame(sapply(ls(envir=.GlobalEnv),obj_type))
+#   foo$object_name=rownames(foo)
+#   names(foo)[1]="class"
+#   names(foo)[2]="object"
+#   return(unrowname(foo))
+# }
 
 # List all functions in a package (also from @_inundata)
-.env$lsp <-function(package, all.names = FALSE, pattern) {
-  package <- deparse(substitute(package))
-  ls(
-     pos = paste("package", package, sep = ":"),
-     all.names = all.names,
-     pattern = pattern
-     )
-}
+# .env$lsp <-function(package, all.names = FALSE, pattern) {
+#   package <- deparse(substitute(package))
+#   ls(
+#      pos = paste("package", package, sep = ":"),
+#      all.names = all.names,
+#      pattern = pattern
+#      )
+# }
 
 # Attach all the variables above
 attach(.env)
@@ -70,7 +70,7 @@ attach(.env)
 .First <- function() {
   if(interactive()) {
     try(utils:::loadhistory(file = "~/.Rhistory"))
-    cat("\nSuccessfully loaded .Rprofile at", date(), "\n\n")
+    cat("\nLoaded .Rprofile at", date(), "\n\n")
   }
 }
 
@@ -86,13 +86,13 @@ q <- function (save="no", ...) {
 }
 
 # A function that tells me which packages are out of date
-check.packages <- function() {
-  if (!is.null(utils::old.packages())) {
-    old_packages <- utils::old.packages()
-    cat("Notification:", dim(old_packages)[1], "packages are out of date \n")
-    cat(unname(old_packages[, 1]), sep = ",", "\n")
-  }
-  if (is.null(utils::old.packages())) {
-    cat("All packages are current \n")
-  }
-}
+# check.packages <- function() {
+#   if (!is.null(utils::old.packages())) {
+#     old_packages <- utils::old.packages()
+#     cat("Notification:", dim(old_packages)[1], "packages are out of date \n")
+#     cat(unname(old_packages[, 1]), sep = ",", "\n")
+#   }
+#   if (is.null(utils::old.packages())) {
+#     cat("All packages are current \n")
+#   }
+# }

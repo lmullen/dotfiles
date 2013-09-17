@@ -28,8 +28,8 @@ main = xmonad $ gnomeConfig {       -- We use gnome rather than default
 
 myTerminal = "gnome-terminal"
 
-myWorkspaces = ["1:web", "2", "3", "4", "5", "6",
-  "7:todo", "8:im", "9:system", "NSP"]
+myWorkspaces = ["1:web", "2:text", "3:zotero", "4:rstudio",
+                "5", "6", "7:todo", "8:im", "9:system", "NSP"]
 
 myKeys = [
   -- Instead of killing window manager, log out
@@ -83,6 +83,8 @@ myManageHook = composeAll [
   -- Move certain classes of windows
   , (className =? "Google-chrome")                               --> doShift "1:web"
   , (className =? "Birdie")                                      --> doShift "1:web"
+  , (className =? "Zotero")                                      --> doShift "3:zotero"
+  , (className =? "Rstudio")                                     --> doShift "4:rstudio"
   , (className =? "Gimp-2.8")                                    --> doShift "6"
   , (className =? "Empathy")                                     --> doShift "8:im"
   , (className =? "Synaptic")                                    --> doShift "9:system"
@@ -103,7 +105,7 @@ webLayout    = reflectHoriz $ withIM (1%3) (ClassName "Birdie") tiled ||| Mirror
     tiled   = Tall nmaster delta ratio
     nmaster = 1
     ratio   = 1/2
-    delta   = 3/100
+    delta   = 1/100
 imLayout     = withIM (1%4) (Title "Contact List") Grid ||| Full
 systemLayout = Grid ||| Full
 

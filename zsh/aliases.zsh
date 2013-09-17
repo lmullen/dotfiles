@@ -10,6 +10,7 @@ alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 alias timelog='tail ~/todo/time-use.txt'
 alias todo='cd ~/todo && vim -S'
 alias omekaclient='cd ~/dev/omeka_client && vim -S'
+alias notes="cd ~/notes && vim -S"
 
 # File and system management
 # -------------------------------------------------------------------
@@ -29,6 +30,8 @@ alias synaptic="sudo synaptic"
 alias tn="new-todo.rb"
 alias tu="timeuse.rb"
 alias zshreload='source ~/.zshrc'
+alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
+alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(alert_helper)"'
 
 # Gists
 # -------------------------------------------------------------------
