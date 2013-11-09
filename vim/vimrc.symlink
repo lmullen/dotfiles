@@ -240,6 +240,7 @@ nnoremap <F7> :GundoToggle<CR>
 " Syntastic 
 " -------------------------------------------------------------------
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_javascript_checkers=['jshint']
 
 " Vim-R 
 " -------------------------------------------------------------------
@@ -261,3 +262,11 @@ set autoread
 " " Bubble multiple lines
 " vmap <C-Up> xkP`[V`]
 " vmap <C-Down> xp`[V`]
+
+" Ctrl-v for pasting
+"
+imap <C-v> <C-r><C-o>+
+imap <C-c> <CR><Esc>O
+
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'

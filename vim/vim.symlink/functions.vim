@@ -184,3 +184,8 @@ function! ToggleHJKL()
   endif
 endfunction
 
+command! -nargs=0 Todo call Todo()
+function! Todo()
+  :cd ~/todo/
+  :source Session.vim
+endfunction

@@ -74,6 +74,7 @@ myManageHook = composeAll [
     (className =? "Gnome-panel" <&&> title =? "Run Application") --> doCenterFloat
   , (className =? "gnome-search-tool")                           --> doCenterFloat
   , (className =? "Gimp-2.8")                                    --> doFloat
+  , (className =? "Qgis.bin")                                    --> doFloat
   , (className =? "sublime-text-2" <&&> title =? "Open File")    --> doCenterFloat
   , (className =? "Sublime_text" <&&> title =? "Open File")      --> doCenterFloat
   , (stringProperty "WM_WINDOW_ROLE" =? "pop-up")                --> doCenterFloat
@@ -86,6 +87,7 @@ myManageHook = composeAll [
   , (className =? "Zotero")                                      --> doShift "3:zotero"
   , (className =? "Rstudio")                                     --> doShift "4:rstudio"
   , (className =? "Gimp-2.8")                                    --> doShift "6"
+  , (className =? "Qgis.bin")                                    --> doShift "6"
   , (className =? "Empathy")                                     --> doShift "8:im"
   , (className =? "Synaptic")                                    --> doShift "9:system"
   , (className =? "Transmission-gtk")                            --> doShift "9:system"
