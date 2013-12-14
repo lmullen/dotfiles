@@ -6,11 +6,11 @@
 # Some settings from these useRs:
 # http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html?m=1
 
-if(interactive()){
+# if(interactive()){
   # Load the packages we use most when using R as a REPL
   # library(colorout)
-  library(setwidth)
-  library(vimcom)
+  # library(setwidth)
+  # library(vimcom)
   # library(ggplot2)
   # library(knitr)
   # library(ggmap)
@@ -18,10 +18,10 @@ if(interactive()){
   # library(lubridate, warn.conflicts = FALSE)
   # library(rgeos)
   # library(rgdal)
-}
+# }
 
 # Set the repository to download packages from
-options(repos=c("http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
+# options(repos=c("http://cran.rstudio.com", "http://cran.cnr.Berkeley.edu","http://cran.stat.ucla.edu"))
 
 # Fill up the width of the terminal and set a nicer prompt
 options("width" = 160)
@@ -31,11 +31,11 @@ options(prompt = "$ ")
 # options("help_type" = "html")
 
 # Big history 
-Sys.setenv(R_HISTSIZE='100000')
+# Sys.setenv(R_HISTSIZE='100000')
 
 # Create a new invisible environment for all the functions to go
 # in so it doesn't clutter the workspace.
-.env <- new.env()
+# .env <- new.env()
 
 # Read data on clipboard.
 # .env$read.cb <- function(...) {
@@ -65,25 +65,25 @@ Sys.setenv(R_HISTSIZE='100000')
 # }
 
 # Attach all the variables above
-attach(.env)
+# attach(.env)
 
 .First <- function() {
   if(interactive()) {
-    try(utils:::loadhistory(file = "~/.Rhistory"))
+    # try(utils:::loadhistory(file = "~/.Rhistory"))
     cat("\nLoaded .Rprofile at", date(), "\n\n")
   }
 }
 
-.Last <- function() {
-  if(interactive()) {
-    try(utils:::savehistory(file = "~/.Rhistory"))
-  }
-}
+# .Last <- function() {
+#   if(interactive()) {
+#     # try(utils:::savehistory(file = "~/.Rhistory"))
+#   }
+# }
 
 # Override q() to not save by default. Same as saying q("no").
-q <- function (save="no", ...) {
-  quit(save=save, ...)
-}
+# q <- function (save="no", ...) {
+  # quit(save=save, ...)
+# }
 
 # A function that tells me which packages are out of date
 # check.packages <- function() {
