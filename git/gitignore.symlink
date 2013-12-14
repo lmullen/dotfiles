@@ -31,3 +31,7 @@
 doc/
 Session.vim
 vc.tex
+*.RData
+*.Rproj
+.gitignore
+*.~*

@@ -689,8 +689,7 @@ alias synaptic="sudo synaptic"
 alias tn="new-todo.rb"
 alias tu="timeuse.rb"
 alias zshreload='source ~/.zshrc'
-alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
-alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(alert_helper)"'
+alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 
 # Gists
 # -------------------------------------------------------------------
