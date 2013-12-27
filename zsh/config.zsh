@@ -690,6 +690,7 @@ alias tn="new-todo.rb"
 alias tu="timeuse.rb"
 alias zshreload='source ~/.zshrc'
 alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
+alias scanlocal='nmap -sP 192.168.1.0/24'
 
 # Gists
 # -------------------------------------------------------------------
