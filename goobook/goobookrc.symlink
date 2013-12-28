@@ -1,9 +1,0 @@
-[DEFAULT]
-# If not given here, email and password is taken from .netrc using
-# machine google.com
-email: lincoln@lincolnmullen.com
-# The following are optional, defaults are shown
-cache_filename: ~/.goobook_cache
-cache_expiry_hours: 24
-filter_groupless_contacts: yes
-
