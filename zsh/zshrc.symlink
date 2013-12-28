@@ -1,31 +1,21 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/dev/dotfiles
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export CLICOLOR=true
 
 # get some color
 export TERM="xterm-256color"
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/dev
-
-# your writing folder that we can `a [tab]` to
 export WRITING=~/acad
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export PS1='%m:%3~$(git_info_for_prompt)%# '
-else
-  export PS1='%3~$(git_info_for_prompt)%# '
-fi
-
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export CLICOLOR=true
-
 fpath=($ZSH/zsh/functions $fpath)
-
 autoload -U $ZSH/zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000
+SAVEHIST=1000
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
@@ -53,7 +43,7 @@ setopt complete_aliases
 # Vim key bindings and Vim-like line editor
 bindkey -v
 autoload -U   edit-command-line
-zle -N        edit-command-line
+# zle -N        edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # bindkey '^[^[[D' backward-word
@@ -85,7 +75,7 @@ alias gcam='git commit -a -m'
 alias gcm='git commit -m'
 alias gco='git checkout'
 alias gd='git diff'
-# alias gl='git pull --prune'
+alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gp='git push origin HEAD'
 # alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
@@ -102,64 +92,64 @@ autoload colors zsh/terminfo && colors
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 
-git_branch() {
-  echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
+# git_branch() {
+#   echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+# }
 
-git_dirty() {
-  st=$(/usr/bin/git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
-    echo ""
-  else
-    if [[ $st == "nothing to commit, working directory clean" ]]
-    then
-      echo "%{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
-    else
-      echo "%{$fg[red]%}$(git_prompt_info)%{$reset_color%}"
-    fi
-  fi
-}
+# git_dirty() {
+#   st=$(/usr/bin/git status 2>/dev/null | tail -n 1)
+#   if [[ $st == "" ]]
+#   then
+#     echo ""
+#   else
+#     if [[ $st == "nothing to commit, working directory clean" ]]
+#     then
+#       echo "%{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
+#     else
+#       echo "%{$fg[red]%}$(git_prompt_info)%{$reset_color%}"
+#     fi
+#   fi
+# }
 
-git_prompt_info () {
- ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
-}
+# git_prompt_info () {
+#  ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
+# # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+#  echo "${ref#refs/heads/}"
+# }
 
-unpushed () {
-  /usr/bin/git cherry -v @{upstream} 2>/dev/null
-}
+# unpushed () {
+#   /usr/bin/git cherry -v @{upstream} 2>/dev/null
+# }
 
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
-    echo ""
-  else
-    echo ":%{$fg[magenta]%}push%{$reset_color%}"
-  fi
-}
+# need_push () {
+#   if [[ $(unpushed) == "" ]]
+#   then
+#     echo ""
+#   else
+#     echo ":%{$fg[magenta]%}push%{$reset_color%}"
+#   fi
+# }
 
-has_stash () {
-  if [[ -n "$(git stash list 2>/dev/null)" ]]; then
-    echo ":%{$fg[magenta]%}stash%{$reset_color%}"
-  fi
-}
+# has_stash () {
+#   if [[ -n "$(git stash list 2>/dev/null)" ]]; then
+#     echo ":%{$fg[magenta]%}stash%{$reset_color%}"
+#   fi
+# }
 
-rb_prompt(){
-  if $(which rbenv &> /dev/null)
-  then
-    rb_v=$(rbenv version |awk '{print $1}')
-    # if [[ $rb_v  == $(rbenv global) ]]
-    # then
-    #   echo ""
-    # else
-      echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
-    # fi
-  else
-    echo ""
-  fi
-  }
+# rb_prompt(){
+#   if $(which rbenv &> /dev/null)
+#   then
+#     rb_v=$(rbenv version |awk '{print $1}')
+#     # if [[ $rb_v  == $(rbenv global) ]]
+#     # then
+#     #   echo ""
+#     # else
+#       echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
+#     # fi
+#   else
+#     echo ""
+#   fi
+#   }
 
 directory_name(){
   echo "%{$fg[blue]%}%~%{$reset_color%}"
@@ -170,11 +160,11 @@ user_machine(){
 }
 
 # A full, but slow version of the prompt
-set_busy_prompt () {
+# set_busy_prompt () {
   # export PROMPT=$'\n$(directory_name) $(git_dirty)$(has_stash)$(need_push) $(rb_prompt)\n%{$fg[red]%}›%{$reset_color%} '
-  export PROMPT=$'\n$(directory_name) $(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
-  RPROMPT='%(?.. %?)'
-}
+  # export PROMPT=$'\n$(directory_name) $(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
+  # RPROMPT='%(?.. %?)'
+# }
 
 # A full but slow prompt that uses zsh-git-prompt from olivierverdier
 # git://github.com/olivierverdier/zsh-git-prompt.git
@@ -191,24 +181,24 @@ set_prompt () {
 }
 
 # Which prompt to use by default
-busy_prompt=false
+# busy_prompt=false
 
 # Flip the switch between prompts
-toggle_prompt () {
-  if [[ $busy_prompt == false ]] then
-    busy_prompt=true
-  else
-    busy_prompt=false
-  fi
-}
+# toggle_prompt () {
+  # if [[ $busy_prompt == false ]] then
+    # busy_prompt=true
+  # else
+    # busy_prompt=false
+  # fi
+# }
 
 # Set the correct prompt
 precmd() {
-  if [[ $busy_prompt == true ]] then
-    set_busy_prompt
-  else
+  # if [[ $busy_prompt == true ]] then
+    # set_busy_prompt
+  # else
     set_prompt
-  fi
+  # fi
   print -Pn "\e]0;%~\a"
 }
 
@@ -217,28 +207,28 @@ precmd() {
 # Stolen from
 #   https://github.com/sstephenson/rbenv/blob/master/completions/rbenv.zsh
 
-if [[ ! -o interactive ]]; then
-    return
-fi
+# if [[ ! -o interactive ]]; then
+    # return
+# fi
 
-compctl -K _rbenv rbenv
+# compctl -K _rbenv rbenv
 
-_rbenv() {
-  local word words completions
-  read -cA words
-  word="${words[2]}"
+# _rbenv() {
+  # local word words completions
+  # read -cA words
+  # word="${words[2]}"
 
-  if [ "${#words}" -eq 2 ]; then
-    completions="$(rbenv commands)"
-  else
-    completions="$(rbenv completions "${word}")"
-  fi
+  # if [ "${#words}" -eq 2 ]; then
+    # completions="$(rbenv commands)"
+  # else
+    # completions="$(rbenv completions "${word}")"
+  # fi
 
-  reply=("${(ps:\n:)completions}")
-}
+  # reply=("${(ps:\n:)completions}")
+# }
 
 # rehash shims
-rbenv rehash 2>/dev/null
+# rbenv rehash 2>/dev/null
 
 # shell thing
 rbenv() {
@@ -265,8 +255,6 @@ pathdirs=(
   /usr/local/sbin
   $HOME/.rbenv/shims
   $HOME/.rbenv/bin
-  $HOME/.pyenv/shims
-  $HOME/.pyenv/bin
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
@@ -332,10 +320,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' insert-tab pending
 
 
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+# if [ -x /usr/bin/dircolors ]; then
+#   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# fi
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
+#
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export PS1='%m:%3~$(git_info_for_prompt)%# '
+# else
+#   export PS1='%3~$(git_info_for_prompt)%# '
+# fi
+
