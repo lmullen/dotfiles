@@ -1,4 +1,0 @@
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-[[ -s "/Users/lmullen/dev/dotfiles/bash/pandoc-completion/pandoc-completion.bash" ]] && source "/Users/lmullen/dev/dotfiles/bash/pandoc-completion/pandoc-completion.bash"
