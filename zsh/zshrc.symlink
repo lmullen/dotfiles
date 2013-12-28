@@ -288,7 +288,6 @@ alias notes="cd ~/notes && gvim -S 2>/dev/null"
 # File and system management
 # -------------------------------------------------------------------
 alias ack="ack-grep"
-alias cpwd='pwd|tr -d "\n"|pbcopy'  # copy the working directory path
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
