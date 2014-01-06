@@ -9,7 +9,7 @@ require "optparse"
 
 # Default options
 options = {
-  :todo_inbox => "/home/lmullen/todo/inbox.txt"
+  :todo_inbox => "/home/lmullen/notes/inbox.txt"
 }
 
 # Get the options
