@@ -28,6 +28,7 @@ alias scanlocal='nmap -sP 192.168.1.0/24'
 alias timelog='tail ~/todo/time-use.txt'
 alias tn="new-todo.rb"
 alias tu="timeuse.rb"
+alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias zshreload='source ~/.zshrc'
 
 # Git 
