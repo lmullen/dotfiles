@@ -1,12 +1,12 @@
 # Projects
 # -------------------------------------------------------------------
-alias blog="cd ~/dev/lincolnmullen.com && gvim -S 2>/dev/null"
-alias diss="cd ~/acad/dissertation && gvim -S 2>/dev/null"
-alias dot="cd ~/dev/dotfiles && gvim -S 2>/dev/null"
-alias jsr="cd ~/dev/jsr && gvim -S 2>/dev/null"
-alias research="cd ~/acad/research/wiki/wikidata && gvim -S 2>/dev/null"
-alias todo="cd ~/todo && gvim -S 2>/dev/null"
-alias notes="cd ~/notes && gvim -S 2>/dev/null"
+alias blog='gvim -S ~/dev/lincolnmullen.com/Session.vim'
+alias diss='gvim -S ~/acad/dissertation/Session.vim'
+alias dot='gvim -S ~/dev/dotfiles/Session.vim'
+alias notes='gvim -S ~/notes/Session.vim'
+alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim' 
+alias todo='gvim -S ~/notes/Session.vim todo.txt'
+alias course='gvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 
 # File and system management
 # -------------------------------------------------------------------
