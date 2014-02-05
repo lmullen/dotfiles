@@ -1,12 +1,13 @@
 # Projects
 # -------------------------------------------------------------------
 alias blog='gvim -S ~/dev/lincolnmullen.com/Session.vim'
+alias course='gvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 alias diss='gvim -S ~/acad/dissertation/Session.vim'
 alias dot='gvim -S ~/dev/dotfiles/Session.vim'
+alias jsr='gvim -S ~/dev/jsr/Session.vim'
 alias notes='gvim -S ~/notes/Session.vim'
 alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim' 
 alias todo='gvim -S ~/notes/Session.vim todo.txt'
-alias course='gvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 
 # File and system management
 # -------------------------------------------------------------------
@@ -21,7 +22,7 @@ alias ip="curl icanhazip.com"       # get current public IP
 alias ll="ls -l -F --color --group-directories-first"
 alias ls="ls -F --color --group-directories-first"
 alias more='more -R'                # give more colors
-alias open="xdg-open"
+alias open="xdg-open 2>/dev/null"
 alias process="ps aux | grep"
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 alias scanlocal='nmap -sP 192.168.1.0/24'
