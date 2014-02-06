@@ -7,7 +7,7 @@ alias dot='gvim -S ~/dev/dotfiles/Session.vim'
 alias jsr='gvim -S ~/dev/jsr/Session.vim'
 alias notes='gvim -S ~/notes/Session.vim'
 alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim' 
-alias todo='gvim -S ~/notes/Session.vim todo.txt'
+# alias todo='gvim -S ~/notes/Session.vim todo.txt'
 
 # File and system management
 # -------------------------------------------------------------------
