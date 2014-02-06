@@ -198,6 +198,10 @@ done
 
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
+# Rbenv
+# -------------------------------------------------------------------
+eval "$(rbenv init -)"
+
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
