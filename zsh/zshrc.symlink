@@ -12,11 +12,14 @@ export WRITING=~/acad
 fpath=($ZSH/zsh/functions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
+# important tools
+export EDITOR='vim'
+export R_PROFILE_USER="~/dev/dotfiles/r/Rprofile.symlink"
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
-# setopt HIST_VERIFY
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
@@ -49,33 +52,20 @@ setopt complete_aliases
 # Vim key bindings and Vim-like line editor
 bindkey -v
 autoload -U   edit-command-line
-# zle -N        edit-command-line
+zle -N        edit-command-line
 bindkey -M vicmd v edit-command-line
-
-# bindkey '^[^[[D' backward-word
-# bindkey '^[^[[C' forward-word
-# bindkey '^[[5D' beginning-of-line
-# bindkey '^[[5C' end-of-line
-# bindkey '^[[3~' delete-char
-# bindkey '^[^N' newtab
-# bindkey '^?' backward-delete-char
 
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
-# bindkey '^P' history-search-backward
-# bindkey '^N' history-search-forward  
 
 unsetopt nomatch
 
 cdpath=( . ~/ )
+autoload colors zsh/terminfo && colors
 
 # Prompt
-
-autoload colors zsh/terminfo && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
-
+# -------------------------------------------------------------------
 
 # git_branch() {
 #   echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
@@ -187,54 +177,8 @@ precmd() {
   print -Pn "\e]0;%~\a"
 }
 
-
-
-# Stolen from
-#   https://github.com/sstephenson/rbenv/blob/master/completions/rbenv.zsh
-
-# if [[ ! -o interactive ]]; then
-    # return
-# fi
-
-# compctl -K _rbenv rbenv
-
-# _rbenv() {
-  # local word words completions
-  # read -cA words
-  # word="${words[2]}"
-
-  # if [ "${#words}" -eq 2 ]; then
-    # completions="$(rbenv commands)"
-  # else
-    # completions="$(rbenv completions "${word}")"
-  # fi
-
-  # reply=("${(ps:\n:)completions}")
-# }
-
-# rehash shims
-# rbenv rehash 2>/dev/null
-
-# shell thing
-rbenv() {
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  shell)
-    eval `rbenv "sh-$command" "$@"`;;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}
-
-
-
-export EDITOR='vim'
-
-
+# Path
+# -------------------------------------------------------------------
 pathdirs=(
   /usr/local/bin
   /usr/local/sbin
@@ -260,19 +204,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
-
-# if [ -x /usr/bin/dircolors ]; then
-#   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-# fi
-
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
-#
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export PS1='%m:%3~$(git_info_for_prompt)%# '
-# else
-#   export PS1='%3~$(git_info_for_prompt)%# '
-# fi
 
-export R_PROFILE_USER="~/dev/dotfiles/r/Rprofile.symlink"
