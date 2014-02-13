@@ -10,6 +10,7 @@
 [alias]
         co = checkout
         count   = !git shortlog -sn
+        praise  = blame
 [color]
         diff = auto
         status = auto
