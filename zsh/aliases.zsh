@@ -14,6 +14,7 @@ alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim'
 alias R="R --no-restore-data --no-save --quiet"
 alias ack="ack-grep"
 alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
+function cs() { cd "$@" && ls; }
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
