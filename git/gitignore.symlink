@@ -1,3 +1,5 @@
+*.RData
+*.Rproj
 *.aux
 *.bbl
 *.bcf
@@ -22,16 +24,15 @@
 *.swp
 *.synctex.gz
 *.toc
+*.zip
+*.~*
 *~
 .DS_Store
 .DS_store
+.gitignore
 .svn
 .tags
 .tags_sorted_by_file
-doc/
 Session.vim
+doc/
 vc.tex
-*.RData
-*.Rproj
-.gitignore
-*.~*
