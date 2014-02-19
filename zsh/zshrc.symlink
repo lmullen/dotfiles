@@ -79,9 +79,9 @@ git_dirty() {
   else
     if [[ $st == "nothing to commit, working directory clean" ]]
     then
-      echo "%{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
+      echo ":%{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
     else
-      echo "%{$fg[red]%}$(git_prompt_info)%{$reset_color%}"
+      echo ":%{$fg[red]%}$(git_prompt_info)%{$reset_color%}"
     fi
   fi
 }
@@ -135,7 +135,7 @@ user_machine(){
 }
 
 set_prompt () {
-  export PROMPT=$'\n$(user_machine):$(directory_name):$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
+  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
