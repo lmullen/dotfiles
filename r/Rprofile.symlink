@@ -42,6 +42,9 @@ Sys.setenv(R_HISTSIZE='100000')
 # in so it doesn't clutter the workspace.
 .env <- new.env()
 
+# Wrapper around object.size to print it with human readable units
+.env$os <- function(object) print(object.size(object), units = "auto")
+
 # Read data on clipboard.
 .env$read.cb <- function(...) {
   ismac <- Sys.info()[1]=="Darwin"
