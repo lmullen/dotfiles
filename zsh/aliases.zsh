@@ -31,6 +31,7 @@ alias timelog='tail ~/todo/time-use.txt'
 alias tn="new-todo.rb"
 alias tu="timeuse.rb"
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
+alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'
 
 # Git 
