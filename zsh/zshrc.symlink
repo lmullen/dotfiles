@@ -61,7 +61,7 @@ bindkey '^S' history-incremental-search-forward
 
 unsetopt nomatch
 
-cdpath=( . ~/ )
+cdpath=( . )
 autoload colors zsh/terminfo && colors
 
 # Prompt
@@ -111,20 +111,20 @@ has_stash () {
   fi
 }
 
-# rb_prompt(){
-#   if $(which rbenv &> /dev/null)
-#   then
-#     rb_v=$(rbenv version |awk '{print $1}')
-#     # if [[ $rb_v  == $(rbenv global) ]]
-#     # then
-#     #   echo ""
-#     # else
-#       echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
-#     # fi
-#   else
-#     echo ""
-#   fi
-#   }
+rb_prompt(){
+  if $(which rbenv &> /dev/null)
+  then
+    rb_v=$(rbenv version |awk '{print $1}')
+    # if [[ $rb_v  == $(rbenv global) ]]
+    # then
+    #   echo ""
+    # else
+      echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
+    # fi
+  else
+    echo ""
+  fi
+  }
 
 directory_name(){
   echo "%{$fg[blue]%}%~%{$reset_color%}"
@@ -136,6 +136,7 @@ user_machine(){
 
 set_prompt () {
   export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
+  # export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 

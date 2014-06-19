@@ -12,6 +12,7 @@
 *.idx
 *.ilg
 *.ind
+*.lof
 *.log
 *.odt
 *.out
@@ -23,12 +24,15 @@
 *.sublime-workspace
 *.swp
 *.synctex.gz
+*.tif
 *.toc
 *.zip
 *.~*
 *~
 .DS_Store
 .DS_store
+.Rhistory
+.dropbox
 .gitignore
 .svn
 .tags

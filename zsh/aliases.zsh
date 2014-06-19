@@ -3,11 +3,12 @@
 alias blog='gvim -S ~/dev/lincolnmullen.com/Session.vim'
 alias course='gvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 alias diss='gvim -S ~/acad/dissertation/Session.vim'
+alias whattime='gvim -S ~/dev/what-time-is-it/Session.vim'
 alias dot='gvim -S ~/dev/dotfiles/Session.vim'
 alias jsr='gvim -S ~/dev/jsr/Session.vim'
 alias notes='gvim -S ~/notes/Session.vim'
 alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim' 
-alias todo='gvim ~/Desktop/*.txt'
+alias todo='gvim ~/acad/research/wiki/wikidata/TODO.page -c "BG"'
 
 # File and system management
 # -------------------------------------------------------------------
@@ -24,12 +25,14 @@ alias ll="ls -l -F --color --group-directories-first"
 alias ls="ls -F --color --group-directories-first"
 alias more='more -R'                # give more colors
 alias open="xdg-open 2>/dev/null"
+# alias opinion="echo >> ~/dev/noopinion/opinions.txt"
+opinion() {
+sed -i "1i$1" ~/dev/noopinion/opinions.txt
+}
 alias process="ps aux | grep"
 alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 alias scanlocal='nmap -sP 192.168.1.0/24'
-alias timelog='tail ~/todo/time-use.txt'
-alias tn="new-todo.rb"
-alias tu="timeuse.rb"
+alias serve='ruby -run -e httpd . -p 4000'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'

@@ -31,3 +31,5 @@
 	default = matching
 [init]
         templatedir = ~/.git-templates
+[credential]
+	helper = cache --timeout=604800

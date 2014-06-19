@@ -10,22 +10,23 @@
 if(interactive()){
 
   # Load the packages we use most when using R as a REPL
-  library(devtools, warn.conflicts = FALSE)
+  suppressMessages(require(devtools))
   library(knitr, warn.conflicts = FALSE)
+  library(setwidth)
   # library(rgeos, warn.conflicts = FALSE)
   # library(rgdal, warn.conflicts = FALSE)
-  library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
-  library(ggmap, warn.conflicts = FALSE)
-  library(plyr, warn.conflicts = FALSE)
-  library(reshape2, warn.conflicts = FALSE)
-  library(lubridate, warn.conflicts = FALSE)
-  library(dplyr, warn.conflicts = FALSE)
+  # library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
+  # library(ggmap, warn.conflicts = FALSE)
+  # library(plyr, warn.conflicts = FALSE)
+  # library(reshape2, warn.conflicts = FALSE)
+  # library(lubridate, warn.conflicts = FALSE)
+  # library(dplyr, warn.conflicts = FALSE)
 
   # Settings recommended for devtools
   # https://github.com/hadley/devtools#other-tips
   options(
     repos = c("http://cran.rstudio.com"),
-    width = 160,
+    # width = 160,
     prompt = "$ ",
     editor = "vim",
     browserNLdisabled = TRUE,
