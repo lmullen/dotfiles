@@ -25,7 +25,7 @@ if(interactive()){
   # Settings recommended for devtools
   # https://github.com/hadley/devtools#other-tips
   options(
-    repos = c("http://cran.rstudio.com"),
+    repos = list(CRAN = "http://cran.rstudio.com"),
     # width = 160,
     prompt = "$ ",
     editor = "vim",
