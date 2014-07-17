@@ -89,7 +89,7 @@ git_dirty() {
 git_prompt_info () {
  ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
+ echo ":%{$fg[magenta]%}${ref#refs/heads/}${reset_color%}"
 }
 
 unpushed () {
@@ -135,7 +135,8 @@ user_machine(){
 }
 
 set_prompt () {
-  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
+  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
+  # export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
   # export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
