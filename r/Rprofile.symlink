@@ -12,7 +12,9 @@ if(interactive()){
   # Load the packages we use most when using R as a REPL
   suppressMessages(require(devtools))
   library(knitr, warn.conflicts = FALSE)
-  library(setwidth)
+  # library(setwidth)
+  library(devtools)
+  library(testthat)
   # library(rgeos, warn.conflicts = FALSE)
   # library(rgdal, warn.conflicts = FALSE)
   # library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
@@ -26,18 +28,23 @@ if(interactive()){
   # https://github.com/hadley/devtools#other-tips
   options(
     repos = list(CRAN = "http://cran.rstudio.com"),
+    menu.graphics = FALSE,
     # width = 160,
-    prompt = "$ ",
+    # prompt = "$ ",
     editor = "vim",
     browserNLdisabled = TRUE,
     deparse.max.lines = 2,
     devtools.name = "Lincoln Mullen",
     devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]"
+
     )
 }
 
 # Big history 
 Sys.setenv(R_HISTSIZE='100000')
+
+Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
+
 
 # Create a new invisible environment for all the functions to go
 # in so it doesn't clutter the workspace.

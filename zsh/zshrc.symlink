@@ -1,3 +1,7 @@
+# Getting Java to work with rStudio
+#
+export LD_LIBRARY_PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/dev/dotfiles
 
@@ -61,7 +65,7 @@ bindkey '^S' history-incremental-search-forward
 
 unsetopt nomatch
 
-cdpath=( . )
+cdpath=( . ~ )
 autoload colors zsh/terminfo && colors
 
 # Prompt
@@ -150,14 +154,12 @@ precmd() {
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
-  /usr/local/bin
-  /usr/local/sbin
-  $HOME/.rbenv/shims
-  $HOME/.rbenv/bin
   /usr/texbin
   /usr/X11/bin
   ~/.cabal/bin
-  $ZSH/bin
+  /usr/local/bin
+  /usr/local/sbin
+  $HOME/.rbenv/shims
 )
 
 for dir in $pathdirs; do
@@ -170,7 +172,7 @@ export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 # Rbenv
 # -------------------------------------------------------------------
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -182,3 +184,6 @@ zstyle ':completion:*' insert-tab pending
 autoload -U compinit
 compinit
 
+
+# added by travis gem
+[ -f /Users/lmullen/.travis/travis.sh ] && source /Users/lmullen/.travis/travis.sh

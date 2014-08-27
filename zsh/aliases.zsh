@@ -1,30 +1,33 @@
 # Projects
 # -------------------------------------------------------------------
-alias blog='gvim -S ~/dev/lincolnmullen.com/Session.vim'
-alias course='gvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
-alias diss='gvim -S ~/acad/dissertation/Session.vim'
-alias whattime='gvim -S ~/dev/what-time-is-it/Session.vim'
-alias dot='gvim -S ~/dev/dotfiles/Session.vim'
-alias jsr='gvim -S ~/dev/jsr/Session.vim'
-alias notes='gvim -S ~/notes/Session.vim'
-alias research='gvim -S ~/acad/research/wiki/wikidata/Session.vim' 
-alias todo='gvim ~/acad/research/wiki/wikidata/TODO.page -c "BG"'
+alias blog='mvim -S ~/dev/lincolnmullen.com/Session.vim'
+alias course='mvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
+alias diss='mvim -S ~/acad/dissertation/Session.vim'
+alias book='mvim -S ~/acad/varieties/Session.vim'
+alias whattime='mvim -S ~/dev/what-time-is-it/Session.vim'
+alias dot='mvim -S ~/dev/dotfiles/Session.vim'
+alias jsr='mvim -S ~/dev/jsr/Session.vim'
+alias notes='mvim -S ~/notes/Session.vim'
+alias research='mvim -S ~/acad/research/wiki/wikidata/Session.vim' 
+alias todo='mvim ~/acad/research/wiki/wikidata/TODO.page -c "BG"'
+alias clio='mvim -S ~/acad/teaching/clio3.2014/Session.vim'
+alias church-state='mvim -S ~/acad/teaching/church-state.2014.syllabus/Session.vim'
 
 # File and system management
 # -------------------------------------------------------------------
-alias R="R --no-restore-data --no-save --quiet"
+# alias R="R --no-restore-data"
 alias ack="ack-grep"
-alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
+# alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
+alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
 function cs() { cd "$@" && ls; }
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
-alias gvim="gvim 2>/dev/null"
+# alias gvim="gvim 2>/dev/null"
 alias ip="curl icanhazip.com"       # get current public IP
-alias ll="ls -l -F --color --group-directories-first"
-alias ls="ls -F --color --group-directories-first"
+alias ls="ls -FG"
 alias more='more -R'                # give more colors
-alias open="xdg-open 2>/dev/null"
+# alias open="xdg-open 2>/dev/null"
 # alias opinion="echo >> ~/dev/noopinion/opinions.txt"
 opinion() {
 sed -i "1i$1" ~/dev/noopinion/opinions.txt
