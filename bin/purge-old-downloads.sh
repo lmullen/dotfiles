@@ -1,5 +1,4 @@
 #!/bin/sh
 
-# trash command is provided by the Ubuntu trash-cli package
 # http://manpages.ubuntu.com/manpages/precise/en/man1/empty-trash.1.html
-find /home/lmullen/Downloads/* -mtime +1 -exec trash {} \;
+find /Users/lmullen/Downloads/* -mtime +2 -exec mv {} /Users/lmullen/.Trash/ \;
