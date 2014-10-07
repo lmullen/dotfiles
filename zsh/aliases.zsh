@@ -15,7 +15,7 @@ alias church-state='mvim -S ~/acad/teaching/church-state.2014.syllabus/Session.v
 
 # File and system management
 # -------------------------------------------------------------------
-# alias R="R --no-restore-data"
+alias R="R --no-restore-data"
 alias ack="ack-grep"
 # alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"

@@ -156,9 +156,9 @@ precmd() {
 pathdirs=(
   /usr/texbin
   /usr/X11/bin
-  ~/.cabal/bin
   /usr/local/bin
   /usr/local/sbin
+  ~/.cabal/bin
   $HOME/.rbenv/shims
 )
 
