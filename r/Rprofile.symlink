@@ -7,13 +7,14 @@
 # http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html?m=1
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
+options(repos = c(CRAN="http://cran.r-project.org"))
+
 if(interactive()){
 
   # Load the packages we use most when using R as a REPL
   suppressMessages(require(devtools))
   library(knitr, warn.conflicts = FALSE)
   # library(setwidth)
-  library(devtools)
   library(testthat)
   # library(rgeos, warn.conflicts = FALSE)
   # library(rgdal, warn.conflicts = FALSE)
@@ -27,7 +28,7 @@ if(interactive()){
   # Settings recommended for devtools
   # https://github.com/hadley/devtools#other-tips
   options(
-    repos = list(CRAN = "http://cran.rstudio.com"),
+    # repos = list(CRAN = "http://cran.rstudio.com"),
     menu.graphics = FALSE,
     # width = 160,
     # prompt = "$ ",
