@@ -14,36 +14,29 @@ if(interactive()){
   # Load the packages we use most when using R as a REPL
   suppressMessages(require(devtools))
   library(knitr, warn.conflicts = FALSE)
-  # library(setwidth)
-  library(testthat)
-  # library(rgeos, warn.conflicts = FALSE)
-  # library(rgdal, warn.conflicts = FALSE)
-  # library(ggplot2, warn.conflicts = FALSE, quietly = TRUE)
-  # library(ggmap, warn.conflicts = FALSE)
-  # library(plyr, warn.conflicts = FALSE)
-  # library(reshape2, warn.conflicts = FALSE)
-  # library(lubridate, warn.conflicts = FALSE)
-  # library(dplyr, warn.conflicts = FALSE)
+  # library(tidyr, warn.conflicts = FALSE)
+  # library(testthat, warn.conflicts = FALSE)
+  # library(mullenMisc, warn.conflicts = FALSE)
+  library(magrittr, warn.conflicts = FALSE)
 
   # Settings recommended for devtools
   # https://github.com/hadley/devtools#other-tips
   options(
-    # repos = list(CRAN = "http://cran.rstudio.com"),
+    repos = c(CRAN = "http://cran.rstudio.com"),
     menu.graphics = FALSE,
-    # width = 160,
-    # prompt = "$ ",
     editor = "vim",
     browserNLdisabled = TRUE,
     deparse.max.lines = 2,
     devtools.name = "Lincoln Mullen",
-    devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]"
-
+    devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
+    max.print = 100
     )
 }
 
 # Big history 
 Sys.setenv(R_HISTSIZE='100000')
 
+# Java
 Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
 
@@ -106,15 +99,3 @@ attach(.env, warn.conflicts = FALSE)
     cat("\nExiting R at", date(), "\n\n")
   }
 }
-
-# A function that tells me which packages are out of date
-# check.packages <- function() {
-#   if (!is.null(utils::old.packages())) {
-#     old_packages <- utils::old.packages()
-#     cat("Notification:", dim(old_packages)[1], "packages are out of date \n")
-#     cat(unname(old_packages[, 1]), sep = ",", "\n")
-#   }
-#   if (is.null(utils::old.packages())) {
-#     cat("All packages are current \n")
-#   }
-# }

@@ -12,6 +12,7 @@ alias research='mvim -S ~/acad/research/wiki/wikidata/Session.vim'
 alias todo='mvim ~/acad/research/wiki/wikidata/TODO.page -c "BG"'
 alias clio='mvim -S ~/acad/teaching/clio3.2014/Session.vim'
 alias church-state='mvim -S ~/acad/teaching/church-state.2014.syllabus/Session.vim'
+alias capitalism='mvim -S ~/acad/teaching/religion-and-capitalism/Session.vim'
 
 # File and system management
 # -------------------------------------------------------------------
