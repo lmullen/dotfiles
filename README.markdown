@@ -2,7 +2,9 @@
 
 Lincoln Mullen | <lincoln@lincolnmullen.com> | <http://lincolnmullen.com>
 
-These are my dotfiles. I useVim, Git, Ruby, R, ZSH, and iTerm 2, mostly.  
+These are my dotfiles. I use Vim, Git, Ruby, R, ZSH, and iTerm 2, mostly. 
+My Vim configuration files are now in a [vimrc](https://github.com/lmullen/vimrc)
+repository.
 
 Undoubtedly there are many things in this repository that I have 
 borrowed from other people, and I've tried to give credit where credit 
