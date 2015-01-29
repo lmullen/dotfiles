@@ -4,6 +4,6 @@
 
 a <- paste(commandArgs(trailingOnly = TRUE), collapse = " ")
 f <- file.path("~", "Dropbox", "acad", "research", "wiki", "wikidata",
-               "Reading journal.page")
-s <- paste0("- ", Sys.Date(), ": [", a, "]()\n")
+               "Reading list.page")
+s <- paste0("-   [", a, "]()\n")
 cat(s, file = f, append = TRUE)
