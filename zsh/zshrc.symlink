@@ -160,6 +160,7 @@ pathdirs=(
   /usr/local/sbin
   ~/.cabal/bin
   $HOME/.rbenv/shims
+  $HOME/dev/dotfiles/bin
 )
 
 for dir in $pathdirs; do
@@ -173,7 +174,7 @@ export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 # Rbenv
 # -------------------------------------------------------------------
 # eval "$(rbenv init -)"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
