@@ -13,7 +13,7 @@ export PROJECTS=~/dev
 export WRITING=~/acad
 
 # functions
-fpath=($ZSH/zsh/functions $fpath)
+fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 # important tools
