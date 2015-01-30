@@ -2,4 +2,4 @@
 
 cd ~/acad/research/wiki/wikidata
 git add *.page
-git commit -m "Automatic commit from shell script"
+git commit -a -m "Automatic commit from shell script"
