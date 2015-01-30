@@ -1,6 +1,7 @@
 # Projects
 # -------------------------------------------------------------------
-alias blog='mvim -S ~/dev/lincolnmullen.com/Session.vim'
+alias blogall='mvim -S ~/dev/lincolnmullen.com/Session.vim'
+alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
 alias course='mvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 alias diss='mvim -S ~/acad/dissertation/Session.vim'
 alias book='mvim -S ~/acad/varieties/Session.vim'
