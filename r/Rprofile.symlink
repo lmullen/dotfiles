@@ -8,6 +8,7 @@
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
 options(repos = c(CRAN="http://cran.r-project.org"))
+.libPaths("~/R/library")
 
 if(interactive()){
 
