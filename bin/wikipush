@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Push wiki to GitHub
+
+cd ~/acad/research/wiki/wikidata
+git push
