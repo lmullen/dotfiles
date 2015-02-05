@@ -3,91 +3,52 @@
 # Lincoln A. Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 # MIT License <http://lmullen.mit-license.org/>
 
-# Some settings from these useRs:
-# http://gettinggeneticsdone.blogspot.com/2013/07/customize-rprofile.html?m=1
-# http://inundata.org/2011/09/29/customizing-your-rprofile/
-
-options(repos = c(CRAN="http://cran.r-project.org"))
+options(repos = c(CRAN = "http://cran.rstudio.com"))
 .libPaths("~/R/library")
+Sys.setenv(R_HISTSIZE='10000')
+Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
 if(interactive()){
 
   # Load the packages we use most when using R as a REPL
-  suppressMessages(require(devtools))
+  suppressMessages(library(devtools))
   library(knitr, warn.conflicts = FALSE)
-  # library(tidyr, warn.conflicts = FALSE)
-  # library(testthat, warn.conflicts = FALSE)
-  # library(mullenMisc, warn.conflicts = FALSE)
   library(magrittr, warn.conflicts = FALSE)
 
-  # Settings recommended for devtools
-  # https://github.com/hadley/devtools#other-tips
-  options(
-    repos = c(CRAN = "http://cran.rstudio.com"),
-    menu.graphics = FALSE,
-    editor = "vim",
-    browserNLdisabled = TRUE,
-    deparse.max.lines = 2,
-    devtools.name = "Lincoln Mullen",
-    devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
-    max.print = 100
-    )
+    # Settings recommended for devtools
+    # https://github.com/hadley/devtools#other-tips
+    options(
+        menu.graphics = FALSE,
+        editor = "vim",
+        browserNLdisabled = TRUE,
+        deparse.max.lines = 2,
+        devtools.name = "Lincoln Mullen",
+        devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
+        max.print = 10
+        )
+
+    # Create a new invisible environment for all the functions to go
+    # in so it doesn't clutter the workspace.
+    .env <- new.env()
+
+    # Wrapper around object.size to print it with human readable units
+    .env$os <- function(object) print(object.size(object), units = "auto")
+
+    # Override q() to not save by default. Same as saying q("no").
+    .env$q <- function (save="no", ...) {
+      quit(save=save, ...)
+    }
+
+  # Open the current working directory in Nautilus/Finder
+  .env$o <- function(...) {
+    if(Sys.info()[1]=="Linux") system("xdg-open .")
+      if(Sys.info()[1]=="Darwin") system("open .")
+  }
+
+  # Attach all the variables above
+  attach(.env, warn.conflicts = FALSE)
+
 }
-
-# Big history 
-Sys.setenv(R_HISTSIZE='100000')
-
-# Java
-Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
-
-
-# Create a new invisible environment for all the functions to go
-# in so it doesn't clutter the workspace.
-.env <- new.env()
-
-# Wrapper around object.size to print it with human readable units
-.env$os <- function(object) print(object.size(object), units = "auto")
-
-# Read data on clipboard.
-.env$read.cb <- function(...) {
-  ismac <- Sys.info()[1]=="Darwin"
-  if (!ismac) read.table(file="clipboard", ...)
-  else read.table(pipe("pbpaste"), ...)
-}
-
-# List objects and classes (from @_inundata)
-.env$lsa <- function() {
-  obj_type <- function(x) { class(get(x)) }
-  foo=data.frame(sapply(ls(envir=.GlobalEnv),obj_type))
-  foo$object_name=rownames(foo)
-  names(foo)[1]="class"
-  names(foo)[2]="object"
-  return(unrowname(foo))
-}
-
-# List all functions in a package (also from @_inundata)
-.env$lsp <-function(package, all.names = FALSE, pattern) {
-  package <- deparse(substitute(package))
-  ls(
-     pos = paste("package", package, sep = ":"),
-     all.names = all.names,
-     pattern = pattern
-     )
-}
-
-# Override q() to not save by default. Same as saying q("no").
-.env$q <- function (save="no", ...) {
-  quit(save=save, ...)
-}
-
-# Open the current working directory in Nautilus/Finder
-.env$o <- function(...) {
-  if(Sys.info()[1]=="Linux") system("xdg-open .")
-  if(Sys.info()[1]=="Darwin") system("open .")
-}
-
-# Attach all the variables above
-attach(.env, warn.conflicts = FALSE)
 
 .First <- function() {
   if(interactive()) {
@@ -100,3 +61,4 @@ attach(.env, warn.conflicts = FALSE)
     cat("\nExiting R at", date(), "\n\n")
   }
 }
+
