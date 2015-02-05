@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+file="$HOME/acad/research/wiki/wikidata/$*.page"
+touch "$file"
