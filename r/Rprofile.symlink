@@ -24,7 +24,7 @@ if(interactive()){
         deparse.max.lines = 2,
         devtools.name = "Lincoln Mullen",
         devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
-        max.print = 10
+        max.print = 100
         )
 
     # Create a new invisible environment for all the functions to go
