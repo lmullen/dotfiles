@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 cd ~/acad/research/wiki/wikidata
-git add *.page
+git add *.page *.txt
 git commit -a -m "Automatic commit from shell script"

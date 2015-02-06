@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-file="$HOME/acad/research/wiki/wikidata/$*.page"
+file="$HOME/acad/research/wiki/wikidata/$*.txt"
 touch "$file"
