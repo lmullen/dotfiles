@@ -3,30 +3,53 @@
 # Lincoln A. Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 # MIT License <http://lmullen.mit-license.org/>
 
-options(repos = c(CRAN = "http://cran.rstudio.com"))
-.libPaths("~/R/library")
+# Helpful tips
+# http://kevinushey.github.io/blog/2015/02/02/rprofile-essentials/
+# https://github.com/hadley/devtools#other-tips
+# http://inundata.org/2011/09/29/customizing-your-rprofile/
+
+options(repos = c(CRAN = "http://cran.rstudio.com"),
+        packrat.default.project.options = list(
+          use.cache = TRUE,
+          print.banner.on.startup = TRUE,
+          vcs.ignore.src = TRUE,
+          local.repos = "~/R/local/"
+          # external.packages = "openNLPmodels.en"
+          ),
+        useFancyQuotes = FALSE,
+        # warnPartialMatchAttr = TRUE,
+        # warnPartialMatchDollar = TRUE,
+        # warnPartialMatchArgs = TRUE,
+        menu.graphics = FALSE,
+        editor = "vim",
+        browserNLdisabled = TRUE,
+        deparse.max.lines = 2,
+        devtools.name = "Lincoln Mullen",
+        devtools.desc= list(
+          Author     = "Lincoln Mullen",
+          Maintainer = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
+          Version    = "0.0.1",
+          License    = "MIT + file LICENSE"),
+        max.print = 100)
+utils::rc.settings(ipck = TRUE)
+
+# .libPaths("~/R/library")
+Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
 Sys.setenv(R_HISTSIZE='10000')
 Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
 if(interactive()){
 
   # Load the packages we use most when using R as a REPL
-  suppressMessages(library(devtools))
+  library(devtools, warn.conflicts = FALSE)
   library(knitr, warn.conflicts = FALSE)
+  library(rmarkdown, warn.conflicts = FALSE)
+  library(dplyr, warn.conflicts = FALSE)
+  library(tidyr, warn.conflicts = FALSE)
   library(magrittr, warn.conflicts = FALSE)
+  library(mullenMisc, warn.conflicts = FALSE)
 
     # Settings recommended for devtools
-    # https://github.com/hadley/devtools#other-tips
-    options(
-        menu.graphics = FALSE,
-        editor = "vim",
-        browserNLdisabled = TRUE,
-        deparse.max.lines = 2,
-        devtools.name = "Lincoln Mullen",
-        devtools.desc.author = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
-        max.print = 100
-        )
-
     # Create a new invisible environment for all the functions to go
     # in so it doesn't clutter the workspace.
     .env <- new.env()
@@ -61,4 +84,6 @@ if(interactive()){
     cat("\nExiting R at", date(), "\n\n")
   }
 }
+
+
 

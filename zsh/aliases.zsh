@@ -19,7 +19,7 @@ alias digitalpastslides='mvim -S ~/acad/teaching/digital-past.slides/Session.vim
 
 # File and system management
 # -------------------------------------------------------------------
-alias R="R -q --no-save --no-restore-data"
+alias R="R --no-save --no-restore-data"
 alias ack="ack-grep"
 # alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"

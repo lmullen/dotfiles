@@ -18,7 +18,7 @@ autoload -U $ZSH/zsh/functions/*(:t)
 
 # important tools
 export EDITOR='vim'
-export R_PROFILE_USER="~/dev/dotfiles/r/Rprofile.symlink"
+# export R_PROFILE_USER="~/dev/dotfiles/r/Rprofile.symlink"
 
 # history
 HISTFILE=~/.zsh_history
@@ -158,7 +158,7 @@ pathdirs=(
   /usr/X11/bin
   /usr/local/bin
   /usr/local/sbin
-  ~/.cabal/bin
+  # ~/.cabal/bin
   $HOME/.rbenv/shims
   $HOME/dev/dotfiles/bin
 )
