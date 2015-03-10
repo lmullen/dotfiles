@@ -1,5 +1,5 @@
 # @hourly   /home/lmullen/acad/dissertation/wordcount.sh
-27 *   *   *   *   offlineimap -u quiet
+# 27 *   *   *   *   offlineimap -u quiet
 # */30 * * * * /home/lmullen/dev/noopinion/noopinionbot.rb >>/home/lmullen/dev/noopinion/noopinionbot.log 2>&1
 # @daily    /home/lmullen/.rbenv/shims/ruby /home/lmullen/dev/bin-private/email-accomplishments.rb >> /home/lmullen/cron-errors.log 2>&1
 # *   */2 *   *   *   /bin/sh /Users/lmullen/dev/converts-control/download-omeka-backup.sh
