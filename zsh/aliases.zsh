@@ -43,6 +43,14 @@ alias serve='ruby -run -e httpd . -p 4000'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'
+shiny() {
+  if [ -z "$1" ]
+  then
+    Rscript -e "shiny::runApp(port = 3838)"
+  else
+    Rscript -e "shiny::runApp(port = $1)"
+  fi
+hi
 
 # Git 
 # -------------------------------------------------------------------
