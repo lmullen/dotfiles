@@ -9,69 +9,68 @@
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
 options(repos = c(CRAN = "http://cran.rstudio.com"),
-        packrat.default.project.options = list(
-          use.cache = TRUE,
-          print.banner.on.startup = TRUE,
-          vcs.ignore.src = TRUE,
-          local.repos = "~/R/local/"
-          # external.packages = "openNLPmodels.en"
-          ),
-        useFancyQuotes = FALSE,
-        # warnPartialMatchAttr = TRUE,
-        # warnPartialMatchDollar = TRUE,
-        # warnPartialMatchArgs = TRUE,
-        menu.graphics = FALSE,
-        editor = "vim",
-        browserNLdisabled = TRUE,
-        deparse.max.lines = 2,
-        devtools.name = "Lincoln Mullen",
-        devtools.desc= list(
-          Author     = "Lincoln Mullen",
-          Maintainer = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
-          Version    = "0.0.1",
-          License    = "MIT + file LICENSE"),
-        max.print = 100)
+    useFancyQuotes = FALSE,
+# warnPartialMatchAttr = TRUE,
+# warnPartialMatchDollar = TRUE,
+# warnPartialMatchArgs = TRUE,
+    menu.graphics = FALSE,
+    editor = "vim",
+    browserNLdisabled = TRUE,
+    deparse.max.lines = 2,
+    devtools.name = "Lincoln Mullen",
+    devtools.desc= list(
+      Author     = "Lincoln Mullen",
+      Maintainer = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
+      License    = "MIT + file LICENSE",
+      Version    = "0.0.1.9000",
+      VignetteBuilder = "knitr",
+      URL        = "",
+      BugReports = ""),
+    max.print = 100)
 utils::rc.settings(ipck = TRUE)
 
-# .libPaths("~/R/library")
-Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
-Sys.setenv(R_HISTSIZE='10000')
-Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
+  # .libPaths("~/R/library")
+  Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
+  Sys.setenv(R_HISTSIZE='10000')
+  Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
-if(interactive()){
+  if(interactive()){
 
-  # Load the packages we use most when using R as a REPL
-  library(devtools, warn.conflicts = FALSE)
-  library(knitr, warn.conflicts = FALSE)
-  library(rmarkdown, warn.conflicts = FALSE)
-  library(dplyr, warn.conflicts = FALSE)
-  library(tidyr, warn.conflicts = FALSE)
-  library(magrittr, warn.conflicts = FALSE)
-  library(mullenMisc, warn.conflicts = FALSE)
-
-    # Settings recommended for devtools
-    # Create a new invisible environment for all the functions to go
-    # in so it doesn't clutter the workspace.
+# Settings recommended for devtools
+# Create a new invisible environment for all the functions to go
+# in so it doesn't clutter the workspace.
     .env <- new.env()
 
-    # Wrapper around object.size to print it with human readable units
-    .env$os <- function(object) print(object.size(object), units = "auto")
+# Wrapper around object.size to print it with human readable units
+      .env$os <- function(object) print(object.size(object), units = "auto")
 
-    # Override q() to not save by default. Same as saying q("no").
+      .env$load_common_packages <- function() {
+# Load the packages we use most when using R as a REPL
+        library(devtools, warn.conflicts = FALSE)
+          library(knitr, warn.conflicts = FALSE)
+          library(rmarkdown, warn.conflicts = FALSE)
+          library(dplyr, warn.conflicts = FALSE)
+          library(tidyr, warn.conflicts = FALSE)
+          library(readr, warn.conflicts = FALSE)
+          library(magrittr, warn.conflicts = FALSE)
+          library(mullenMisc, warn.conflicts = FALSE)
+      }
+
+# Override q() to not save by default. Same as saying q("no").
     .env$q <- function (save="no", ...) {
       quit(save=save, ...)
     }
 
-  # Open the current working directory in Nautilus/Finder
-  .env$o <- function(...) {
-    if(Sys.info()[1]=="Linux") system("xdg-open .")
-      if(Sys.info()[1]=="Darwin") system("open .")
+# Open the current working directory in Nautilus/Finder
+    .env$o <- function(...) {
+      if(Sys.info()[1]=="Linux") system("xdg-open .")
+        if(Sys.info()[1]=="Darwin") system("open .")
+    }
+
+# Attach all the variables above
+    attach(.env, warn.conflicts = FALSE)
+
   }
-
-  # Attach all the variables above
-  attach(.env, warn.conflicts = FALSE)
-
-}
 
 .First <- function() {
   if(interactive()) {
