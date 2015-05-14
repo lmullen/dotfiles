@@ -28,4 +28,4 @@ then
   echo "$proj" > $scriptdir.rproj
 fi
 
-open -a RStudio $scriptdir.rproj
+open $scriptdir.rproj

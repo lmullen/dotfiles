@@ -49,11 +49,12 @@ utils::rc.settings(ipck = TRUE)
         library(devtools, warn.conflicts = FALSE)
           library(knitr, warn.conflicts = FALSE)
           library(rmarkdown, warn.conflicts = FALSE)
-          library(dplyr, warn.conflicts = FALSE)
           library(tidyr, warn.conflicts = FALSE)
           library(readr, warn.conflicts = FALSE)
           library(magrittr, warn.conflicts = FALSE)
+          library(microbenchmark, warn.conflicts = FALSE)
           library(mullenMisc, warn.conflicts = FALSE)
+          library(dplyr, warn.conflicts = FALSE)
       }
 
 # Override q() to not save by default. Same as saying q("no").

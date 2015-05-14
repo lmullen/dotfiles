@@ -5,7 +5,8 @@ alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
 alias course='mvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
 alias diss='mvim -S ~/acad/dissertation/Session.vim'
 alias book='mvim -S ~/acad/varieties/Session.vim'
-alias whattime='mvim -S ~/dev/what-time-is-it/Session.vim'
+alias notebook='mvim -S ~/acad/notebook/wikidata/Session.vim'
+# alias whattime='mvim -S ~/dev/what-time-is-it/Session.vim'
 alias dot='mvim -S ~/dev/dotfiles/Session.vim'
 alias jsr='mvim -S ~/dev/jsr/Session.vim'
 alias notes='mvim -S ~/notes/Session.vim'
@@ -24,6 +25,7 @@ alias ack="ack-grep"
 # alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
 function cs() { cd "$@" && ls; }
+alias dirsize="du -sx ./* 2>/dev/null | sort -n"
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
@@ -37,7 +39,6 @@ opinion() {
 sed -i "1i$1" ~/dev/noopinion/opinions.txt
 }
 alias process="ps aux | grep"
-alias runwiki='cd ~/acad/research/wiki && gitit -f my.conf > /dev/null 2>&1 &'
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='ruby -run -e httpd . -p 4000'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
@@ -50,8 +51,7 @@ shiny() {
   else
     Rscript -e "shiny::runApp(port = $1)"
   fi
-hi
-
+}
 # Git 
 # -------------------------------------------------------------------
 alias ga='git add'
