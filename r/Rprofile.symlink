@@ -10,9 +10,6 @@
 
 options(repos = c(CRAN = "http://cran.rstudio.com"),
     useFancyQuotes = FALSE,
-# warnPartialMatchAttr = TRUE,
-# warnPartialMatchDollar = TRUE,
-# warnPartialMatchArgs = TRUE,
     menu.graphics = FALSE,
     editor = "vim",
     browserNLdisabled = TRUE,
@@ -29,61 +26,44 @@ options(repos = c(CRAN = "http://cran.rstudio.com"),
     max.print = 100)
 utils::rc.settings(ipck = TRUE)
 
-  # .libPaths("~/R/library")
-  Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
-  Sys.setenv(R_HISTSIZE='10000')
-  Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
+Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
+Sys.setenv(R_HISTSIZE='10000')
+Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
-  if(interactive()){
+if(interactive()){
 
-# Settings recommended for devtools
-# Create a new invisible environment for all the functions to go
-# in so it doesn't clutter the workspace.
-    .env <- new.env()
+  # Create a new invisible environment for all the functions to go
+  # in so it doesn't clutter the workspace.
+  .env <- new.env()
 
-# Wrapper around object.size to print it with human readable units
-      .env$os <- function(object) print(object.size(object), units = "auto")
+  # Wrapper around object.size to print it with human readable units
+  .env$os <- function(object) print(object.size(object), units = "auto")
 
-      .env$load_common_packages <- function() {
-# Load the packages we use most when using R as a REPL
-        library(devtools, warn.conflicts = FALSE)
-          library(knitr, warn.conflicts = FALSE)
-          library(rmarkdown, warn.conflicts = FALSE)
-          library(tidyr, warn.conflicts = FALSE)
-          library(readr, warn.conflicts = FALSE)
-          library(magrittr, warn.conflicts = FALSE)
-          library(microbenchmark, warn.conflicts = FALSE)
-          library(mullenMisc, warn.conflicts = FALSE)
-          library(dplyr, warn.conflicts = FALSE)
-      }
-
-# Override q() to not save by default. Same as saying q("no").
-    .env$q <- function (save="no", ...) {
-      quit(save=save, ...)
-    }
-
-# Open the current working directory in Nautilus/Finder
-    .env$o <- function(...) {
-      if(Sys.info()[1]=="Linux") system("xdg-open .")
-        if(Sys.info()[1]=="Darwin") system("open .")
-    }
-
-# Attach all the variables above
-    attach(.env, warn.conflicts = FALSE)
-
+  # Override q() to not save by default. Same as saying q("no").
+  .env$q <- function(save = "no", ...) {
+    quit(save = save, ...)
   }
 
+  # Open the current working directory in Nautilus/Finder
+  .env$o <- function() {
+    if(Sys.info()[1]=="Linux") system("xdg-open .")
+      if(Sys.info()[1]=="Darwin") system("open .")
+  }
+
+  # Attach all the variables above
+  attach(.env, warn.conflicts = FALSE)
+
+}
+
 .First <- function() {
-  if(interactive()) {
+  if (interactive()) {
     cat("\nLoaded .Rprofile at", date(), "\n\n")
   }
 }
 
 .Last <- function() {
-  if(interactive()) {
+  if (interactive()) {
     cat("\nExiting R at", date(), "\n\n")
   }
 }
-
-
 
