@@ -1,3 +1,0 @@
-[submodule "mutt/mutt.symlink/solarized"]
-	path = mutt/mutt.symlink/solarized
-	url = git@github.com:altercation/mutt-colors-solarized.git
