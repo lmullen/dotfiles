@@ -4,9 +4,9 @@ scriptdir=${PWD##*/}
 
 proj="Version: 1.0
 
-RestoreWorkspace: Yes
-SaveWorkspace: Yes
-AlwaysSaveHistory: Default
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Yes
 
 EnableCodeIndexing: Yes
 UseSpacesForTab: Yes
