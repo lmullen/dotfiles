@@ -26,6 +26,7 @@ alias ack="ack-grep"
 alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
 function cs() { cd "$@" && ls; }
 alias dirsize="du -sx ./* 2>/dev/null | sort -n"
+alias ducks='du -cks ~/**/* | sort -rn | head -n 20'
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
