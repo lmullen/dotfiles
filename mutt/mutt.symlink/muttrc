@@ -2,16 +2,19 @@
 
 # Help from 
 # http://stevelosh.com/blog/2012/10/the-homely-mutt/
+# http://wcm1.web.rice.edu/mutt-tips.html
+# https://github.com/altercation/mutt-colors-solarized
+# https://github.com/bubbl/bubb-confs/tree/master/mutt
 
 # User information
 # -------------------------------------------------------------------
 set realname  = "Lincoln Mullen"
 set from      = "lincoln@lincolnmullen.com"
-alternates      "^(lincoln@lincolnmullen\.com)|(lmullen@brandeis\.edu)$"
+alternates      "^(lincoln@lincolnmullen\.com)|(lmullen@gmu\.edu)$"
 
 # Paths
 # -------------------------------------------------------------------
-set folder           = ~/Gmail                    # mailbox location
+set folder           = ~/mail/gmail               # mailbox location
 set alias_file       = ~/.mutt/muttrc.aliases     # where to store aliases
 set header_cache     = ~/.cache/mutt/headers      # where to store headers
 set message_cachedir = ~/.cache/mutt/bodies       # where to store bodies
@@ -51,12 +54,11 @@ my_hdr Reply-To: Lincoln Mullen <lincoln@lincolnmullen.com>
 
 # Mailboxes
 # -------------------------------------------------------------------
-set spoolfile = "+INBOX"
-mailboxes        +INBOX \
+set spoolfile = "+inbox"
+mailboxes        +inbox \
                  +archive \
                  +drafts \
-                 +sent \
-                 "+tech lists"
+                 +sent
 set mbox      = "+archive"
 set postponed = "+drafts"
 
@@ -81,13 +83,19 @@ bind index <space>         collapse-thread
 bind index,pager J         next-unread
 bind index,pager K         previous-unread
 
+# Navigate mailboxes
+macro index gi '=inbox' 'Go to inbox'
+macro index ga '=archive' 'Go to all mail'
+macro index \Cl  "<change-folder>=lists<enter>"  "Go to lists"
+macro index \Ct  "<change-folder>=tech<quote-char> lists<enter>"  "Go to tech lists"
+
 # Sync e-mail
 macro index O \
   "<shell-escape>offlineimap<enter>" \
   "run offlineimap to sync all mail"
-macro index o \
-  "<shell-escape>offlineimap -k Account_Gmail:postsynchook='' -qf INBOX<enter>" \
-  "run offlineimap to sync inbox"
+# macro index o \
+#   "<shell-escape>offlineimap -k Account_Gmail:postsynchook='' -qf INBOX<enter>" \
+#   "run offlineimap to sync inbox"
 
 # Move messages
 # macro index,pager d \
@@ -127,6 +135,7 @@ set markers=no              # no ugly plus signs
 
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
+auto_view text/html
 
 # Pager key bindings 
 # -------------------------------------------------------------------
@@ -160,15 +169,17 @@ set forward_quote                    # include message in forwards
 
 # Editor
 # -------------------------------------------------------------------
-set editor      = "vim +:silent +:8"      # use vim and skip to last blank line
+set editor      = "vim +:silent +:8 --cmd 'let g:goobookrc=\"/Users/lmullen/.goobookrc\"'"      # use vim and skip to last blank line
 set text_flowed = yes
 
 # Sending mail
 # -------------------------------------------------------------------
 set from          = "lincoln@lincolnmullen.com"
-set sendmail      = "/usr/bin/msmtp -a gmail"
+set sendmail      = "/usr/bin/env msmtp -a gmail"
 set sendmail_wait = 0
+set send_charset  = "utf-8"
 unset record
+set copy = no
 
 # Drafts
 # -------------------------------------------------------------------
@@ -194,13 +205,12 @@ source ~/.mutt/solarized/mutt-colors-solarized-dark-16.muttrc
 # -------------------------------------------------------------------
 set query_command="goobook query '%s'"
 macro index,pager A "<pipe-message>goobook add<return>" "add sender to google contacts"
-# bind editor <Tab> complete-query
+bind editor <Tab> complete-query
 
 # Miscellaneous
 # -------------------------------------------------------------------
 source $alias_file				# autoload aliases
 folder-hook +archive 'set sort=reverse-threads'
-auto_view text/html
 set smart_wrap
 macro pager x <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
@@ -236,7 +246,3 @@ subscribe xetex-announce@tug.org
 subscribe tufte-latex@googlegroups.com
 subscribe qgis-user@lists.osgeo.org
 
-# Navigate mailboxes
-# -------------------------------------------------------------------
-macro index \Cl  "<change-folder>=lists<enter>"  "Go to lists"
-macro index \Ct  "<change-folder>=tech<quote-char> lists<enter>"  "Go to tech lists"
