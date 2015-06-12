@@ -24,8 +24,8 @@ BuildType: Makefile
 
 if [ ! -e $scriptdir.rproj ]
 then
-  touch $scriptdir.rproj
-  echo "$proj" > $scriptdir.rproj
+  touch $scriptdir.Rproj
+  echo "$proj" > $scriptdir.Rproj
 fi
 
-open $scriptdir.rproj
+open $scriptdir.Rproj
