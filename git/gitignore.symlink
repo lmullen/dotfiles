@@ -25,7 +25,6 @@
 *.synctex.gz
 *.tif
 *.toc
-*.zip
 *.~*
 *~
 .DS_Store
@@ -37,6 +36,6 @@
 .tags
 .tags_sorted_by_file
 Session.vim
-doc/
 vc.tex
 .Rproj.user
+*.zip
