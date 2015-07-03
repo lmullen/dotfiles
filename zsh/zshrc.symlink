@@ -158,7 +158,7 @@ pathdirs=(
   /usr/X11/bin
   /usr/local/bin
   /usr/local/sbin
-  ~/.cabal/bin
+  # ~/.cabal/bin
   $HOME/.rbenv/shims
   $HOME/dev/dotfiles/bin
 )
@@ -191,7 +191,7 @@ compinit
 [ -f /Users/lmullen/.travis/travis.sh ] && source /Users/lmullen/.travis/travis.sh
 
 # Docker
-export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_HOST=tcp://192.168.59.104:2376
 export DOCKER_CERT_PATH=/Users/lmullen/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
