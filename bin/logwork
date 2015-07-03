@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+import argparse
+import csv
+from datetime import datetime
+import pytz
+
+parser = argparse.ArgumentParser(description='Log work time.')
+parser.add_argument('-t', '--type', nargs='*', required=True)
+parser.add_argument('-p', '--project', nargs='*', default='')
+parser.add_argument('-a', '--action', nargs='*', default='')
+parser.add_argument('-l', '--length', default=30, type=int)
+parser.add_argument('-f', '--file', 
+                    default="/Users/lmullen/Dropbox/work-accomplished.csv")
+
+args = parser.parse_args()
+
+args.type = ' '.join(args.type)
+args.project = ' '.join(args.project)
+args.action = ' '.join(args.action)
+
+tz = pytz.timezone("America/New_York")
+args.time = tz.localize(datetime.now()).isoformat()
+
+with open(args.file, newline='', mode='a') as file:
+    writer = csv.writer(file, lineterminator='\n')
+    writer.writerows([[args.time, args.type, args.project, args.action, 
+                       args.length]])
+
+print("Logged the following record of your work.")
+print("Work type:  " + args.type)
+print("Project:    " + args.project)
+print("Action:     " + args.action)
+print("Length:     " + str(args.length))
+print("Time stamp: " + args.time)
