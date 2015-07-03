@@ -23,10 +23,12 @@ require "csv"
 log_file = "/Users/lmullen/Dropbox/git-log.csv"
 repo = Git.open(Dir.pwd)
 repo_name = Dir.pwd[%r{[\.\-\w]+$}]                       # top directory
-date = repo.log.first.date.iso8601                        
-message = repo.log.first.message.lines.first.strip        # just first line
-branch = repo.log.first.name
+current_commit = repo.log.first
+date = current_commit.date.iso8601                        
+message = current_commit.message.lines.first.strip        # just first line
+branch = current_commit.name
+sha = current_commit.sha
 CSV.open(log_file, "a") do |log|                        
-  log << [date, repo_name, branch, message] 
+  log << [date, repo_name, branch, message, sha] 
 end
 
