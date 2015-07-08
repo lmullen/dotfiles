@@ -158,6 +158,7 @@ pathdirs=(
   /usr/X11/bin
   /usr/local/bin
   /usr/local/sbin
+  /usr/local/opt/coreutils/libexec/gnubin
   # ~/.cabal/bin
   $HOME/.rbenv/shims
   $HOME/dev/dotfiles/bin
@@ -169,7 +170,7 @@ for dir in $pathdirs; do
   fi
 done
 
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 # Rbenv
 # -------------------------------------------------------------------
