@@ -9,7 +9,8 @@
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
 options(
-    repos = c(CRAN = "http://cran.rstudio.com"),
+    repos = c(CRAN = "https://cran.rstudio.com"),
+    download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
     editor = "vim",
