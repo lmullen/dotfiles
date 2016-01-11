@@ -20,7 +20,7 @@ alias digitalpastslides='mvim -S ~/acad/teaching/digital-past.slides/Session.vim
 
 # File and system management
 # -------------------------------------------------------------------
-alias R="R --no-save --no-restore-data"
+alias R="R --no-save --no-restore-data --quiet"
 alias ack="ack-grep"
 # alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
@@ -41,7 +41,7 @@ sed -i "1i$1" ~/dev/noopinion/opinions.txt
 }
 alias process="ps aux | grep"
 alias scanlocal='nmap -sP 192.168.1.0/24'
-alias serve='ruby -run -e httpd . -p 4000'
+alias serve='python -m SimpleHTTPServer 4000'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'
@@ -75,3 +75,4 @@ alias gs='git status -sb'
 # Environment variables
 # -------------------------------------------------------------------
 source "/Users/lmullen/.env.zsh"
+

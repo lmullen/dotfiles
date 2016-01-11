@@ -115,20 +115,20 @@ has_stash () {
   fi
 }
 
-rb_prompt(){
-  if $(which rbenv &> /dev/null)
-  then
-    rb_v=$(rbenv version |awk '{print $1}')
-    # if [[ $rb_v  == $(rbenv global) ]]
-    # then
-    #   echo ""
-    # else
-      echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
-    # fi
-  else
-    echo ""
-  fi
-  }
+# rb_prompt(){
+#   if $(which rbenv &> /dev/null)
+#   then
+#     rb_v=$(rbenv version |awk '{print $1}')
+#     # if [[ $rb_v  == $(rbenv global) ]]
+#     # then
+#     #   echo ""
+#     # else
+#       echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
+#     # fi
+#   else
+#     echo ""
+#   fi
+#   }
 
 directory_name(){
   echo "%{$fg[blue]%}%~%{$reset_color%}"
@@ -161,6 +161,7 @@ pathdirs=(
   /usr/local/opt/coreutils/libexec/gnubin
   # ~/.cabal/bin
   $HOME/.rbenv/shims
+  # $HOME/anaconda/bin
   $HOME/dev/dotfiles/bin
 )
 
@@ -191,13 +192,15 @@ compinit
 # added by travis gem
 [ -f /Users/lmullen/.travis/travis.sh ] && source /Users/lmullen/.travis/travis.sh
 
-# Docker
-export DOCKER_HOST=tcp://192.168.59.104:2376
-export DOCKER_CERT_PATH=/Users/lmullen/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-
 # Python
-# export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=`brew --prefix`/lib/python2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=`brew --prefix`/lib/python3.5/site-packages:$PYTHONPATH
 
 # Go
 export GOPATH=$HOME/go
+
+# Docker
+# eval "$(docker-machine env rdev)"
+
+# Make
+export MAKEFLAGS="-j 4"

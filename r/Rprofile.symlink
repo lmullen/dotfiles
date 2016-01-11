@@ -1,4 +1,4 @@
-# Rprofile settings
+#Rprofile settings
 
 # Lincoln A. Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 # MIT License <http://lmullen.mit-license.org/>
@@ -8,30 +8,39 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
+.libPaths("~/R/library")
+
 options(
-    repos = c(CRAN = "https://cran.rstudio.com"),
+    width = 80,
+    repos = c(
+              # ROPENSCI = "http://packages.ropensci.org",
+              CRAN = "https://cran.rstudio.com"
+              ),
     download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
     editor = "vim",
     browserNLdisabled = TRUE,
     deparse.max.lines = 2,
+    # warnPartialMatchDollar = TRUE,
+    # warnPartialMatchAttr = TRUE,
+    # warnPartialMatchArgs = TRUE,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
-      Author     = "Lincoln Mullen",
-      Maintainer = "Lincoln Mullen <lincoln@lincolnmullen.com> [aut, cre]",
+      "Authors@R" = 'c(person("Lincoln", "Mullen", role = c("aut", "cre"),
+        email = "lincoln@lincolnmullen.com"))',
       License    = "MIT + file LICENSE",
-      Version    = "0.0.1.9000",
+      Version    = "0.0.0.9000",
       VignetteBuilder = "knitr",
       URL        = "",
-      BugReports = "")
-    # max.print = 100
+      BugReports = "",
+      LazyData   = "yes")
     )
 utils::rc.settings(ipck = TRUE)
 
 Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
 Sys.setenv(R_HISTSIZE='10000')
-Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
+# Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
 if(interactive()){
 
@@ -40,7 +49,7 @@ if(interactive()){
   .env <- new.env()
 
   # Wrapper around object.size to print it with human readable units
-  .env$os <- function(object) print(object.size(object), units = "auto")
+  .env$os <- function(object) pryr::object_size(object)
 
   # Override q() to not save by default. Same as saying q("no").
   .env$q <- function(save = "no", ...) {
@@ -52,6 +61,8 @@ if(interactive()){
     if(Sys.info()[1]=="Linux") system("xdg-open .")
       if(Sys.info()[1]=="Darwin") system("open .")
   }
+
+  .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
   # Attach all the variables above
   attach(.env, warn.conflicts = FALSE)
