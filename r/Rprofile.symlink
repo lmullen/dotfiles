@@ -21,10 +21,11 @@ options(
     menu.graphics = FALSE,
     editor = "vim",
     browserNLdisabled = TRUE,
-    deparse.max.lines = 2,
+    # deparse.max.lines = 2,
     # warnPartialMatchDollar = TRUE,
     # warnPartialMatchAttr = TRUE,
     # warnPartialMatchArgs = TRUE,
+    max.print = 1e3,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
       "Authors@R" = 'c(person("Lincoln", "Mullen", role = c("aut", "cre"),

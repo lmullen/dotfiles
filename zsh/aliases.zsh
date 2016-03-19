@@ -28,6 +28,7 @@ function cs() { cd "$@" && ls; }
 alias dirsize="du -sx ./* 2>/dev/null | sort -n"
 alias ducks='du -cks * | sort -rn | head -n 20'
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
+alias dudir='du --max-depth=1 -hc'
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
 # alias gvim="gvim 2>/dev/null"
@@ -35,10 +36,6 @@ alias ip="curl icanhazip.com"       # get current public IP
 alias ls="ls -FG"
 alias more='more -R'                # give more colors
 # alias open="xdg-open 2>/dev/null"
-# alias opinion="echo >> ~/dev/noopinion/opinions.txt"
-opinion() {
-sed -i "1i$1" ~/dev/noopinion/opinions.txt
-}
 alias process="ps aux | grep"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='python -m SimpleHTTPServer 4000'
@@ -68,7 +65,7 @@ alias gi="echo $1 >> .gitignore"
 alias gl='git pull --prune'
 alias glast='git diff HEAD^ HEAD' # diff of last commit
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gp='git push origin HEAD'
+alias gp='git push'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gs='git status -sb'
 
