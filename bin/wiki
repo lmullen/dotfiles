@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-cd ~/acad/research/wiki/wikidata
-git add *.md
-git commit -a -m "Automatic commit from shell script"
