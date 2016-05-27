@@ -26,6 +26,7 @@ options(
     # warnPartialMatchAttr = TRUE,
     # warnPartialMatchArgs = TRUE,
     max.print = 1e3,
+    Ncpus = 6L,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
       "Authors@R" = 'c(person("Lincoln", "Mullen", role = c("aut", "cre"),
