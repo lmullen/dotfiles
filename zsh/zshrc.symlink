@@ -12,6 +12,9 @@ source $ZSH/zsh/aliases.zsh
 export PROJECTS=~/dev
 export WRITING=~/acad
 
+# no Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
 # functions
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
@@ -159,6 +162,7 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/opt/coreutils/libexec/gnubin
+  ~/miniconda3/bin
   # ~/.cabal/bin
   $HOME/.rbenv/shims
   # $HOME/anaconda/bin

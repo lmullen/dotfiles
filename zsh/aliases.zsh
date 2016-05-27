@@ -1,22 +1,9 @@
 # Projects
 # -------------------------------------------------------------------
-alias blogall='mvim -S ~/dev/lincolnmullen.com/Session.vim'
 alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
-alias course='mvim -S ~/acad/teaching/religion-19c-dh/Session.vim'
-alias diss='mvim -S ~/acad/dissertation/Session.vim'
 alias book='mvim -S ~/acad/varieties/Session.vim'
-alias notebook='mvim -S ~/acad/notebook/wikidata/Session.vim'
-# alias whattime='mvim -S ~/dev/what-time-is-it/Session.vim'
 alias dot='mvim -S ~/dev/dotfiles/Session.vim'
-alias jsr='mvim -S ~/dev/jsr/Session.vim'
-alias notes='mvim -S ~/notes/Session.vim'
-alias research='mvim -S ~/acad/research/wiki/wikidata/Session.vim' 
-alias todo='mvim ~/acad/research/wiki/wikidata/TODO.page -c "BG"'
-alias clio='mvim -S ~/acad/teaching/clio3.2014/Session.vim'
-alias church-state='mvim -S ~/acad/teaching/church-state.2014.syllabus/Session.vim'
-alias capitalism='mvim -S ~/acad/teaching/religion-and-capitalism/Session.vim'
-alias digitalpast='mvim -S ~/acad/teaching/digital-past/Session.vim'
-alias digitalpastslides='mvim -S ~/acad/teaching/digital-past.slides/Session.vim'
+alias notebook='mvim -S ~/acad/notebook2/Session.vim' 
 
 # File and system management
 # -------------------------------------------------------------------
@@ -38,7 +25,7 @@ alias more='more -R'                # give more colors
 # alias open="xdg-open 2>/dev/null"
 alias process="ps aux | grep"
 alias scanlocal='nmap -sP 192.168.1.0/24'
-alias serve='python -m SimpleHTTPServer 4000'
+alias serve='Rscript -e "servr::httw()" -b'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'
