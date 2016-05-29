@@ -3,8 +3,8 @@
 [hub]
         protocol = https
 [user]
-	name = Lincoln Mullen
-	email = lincoln@lincolnmullen.com
+        name = Lincoln Mullen
+        email = lincoln@lincolnmullen.com
 [github]
         user = lmullen
 [alias]
@@ -19,8 +19,8 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
-	autocrlf = false
-	eol = lf
+        autocrlf = false
+        eol = lf
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -30,13 +30,8 @@
 [help]
         autocorrect = 1
 [push]
-	default = matching
-[init]
-        templatedir = ~/.git-templates
+        default = matching
 [credential]
-	helper = cache --timeout=604800
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+        helper = cache --timeout=604800
 [merge]
-	tool = vimdiff
+        tool = vimdiff
