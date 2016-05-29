@@ -1,2 +1,0 @@
-#!/bin/bash
-cd /Users/lmullen/acad/notebook && /Users/lmullen/.cabal/bin/gitit -f my.conf &
