@@ -56,5 +56,5 @@ alias gs='git status -sb'
 
 # Environment variables
 # -------------------------------------------------------------------
-source "/Users/lmullen/.env.zsh"
+source "$HOME/.env.zsh"
 
