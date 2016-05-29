@@ -16,7 +16,7 @@ options(
               # ROPENSCI = "http://packages.ropensci.org",
               CRAN = "https://cran.rstudio.com"
               ),
-    # download.file.method = "libcurl",
+    download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
     editor = "vim",
