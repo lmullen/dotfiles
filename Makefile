@@ -6,6 +6,10 @@ git :
 	ln -s $(HOME)/dev/dotfiles/git/gitconfig $(HOME)/.gitconfig 
 	ln -s $(HOME)/dev/dotfiles/git/gitignore $(HOME)/.gitignore
 
-all : git
+R :
+	@echo "Symlinking R dotfiles"
+	ln -s $(HOME)/dev/dotfiles/R/Rprofile.R $(HOME)/.Rprofile 
 
-.PHONY : all default git
+all : git R
+
+.PHONY : all default git R

@@ -1,9 +1,9 @@
-#Rprofile settings
+# Rprofile settings
 
 # Lincoln A. Mullen | lincoln@lincolnmullen.com | http://lincolnmullen.com
 # MIT License <http://lmullen.mit-license.org/>
 
-# Helpful tips
+# Helpful tips and borrowed settings from
 # http://kevinushey.github.io/blog/2015/02/02/rprofile-essentials/
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
@@ -16,7 +16,7 @@ options(
               # ROPENSCI = "http://packages.ropensci.org",
               CRAN = "https://cran.rstudio.com"
               ),
-    download.file.method = "libcurl",
+    # download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
     editor = "vim",
@@ -34,15 +34,14 @@ options(
       License    = "MIT + file LICENSE",
       Version    = "0.0.0.9000",
       VignetteBuilder = "knitr",
-      URL        = "",
-      BugReports = "",
+      URL        = "https://github.com/lmullen/pkgname",
+      BugReports = "https://github.com/lmullen/pkgname/issues",
       LazyData   = "yes")
     )
 utils::rc.settings(ipck = TRUE)
 
 Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
 Sys.setenv(R_HISTSIZE='10000')
-# Sys.setenv(LD_LIBRARY_PATH='/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server')
 
 if(interactive()){
 
