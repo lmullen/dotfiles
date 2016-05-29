@@ -10,6 +10,14 @@ R :
 	@echo "Symlinking R dotfiles"
 	ln -s $(HOME)/dev/dotfiles/R/Rprofile.R $(HOME)/.Rprofile 
 
-all : git R
+latex :
+	@echo "Symlinking LaTeX dotfiles"
+	ln -s $(HOME)/dev/dotfiles/latex/texmf $(HOME)/texmf 
 
-.PHONY : all default git R
+zsh :
+	@echo "Symlinking ZSh dotfiles"
+	ln -s $(HOME)/dev/dotfiles/zsh/zshrc.zsh $(HOME)/.zshrc 
+
+all : git R latex zsh
+
+.PHONY : all default git R latex zsh
