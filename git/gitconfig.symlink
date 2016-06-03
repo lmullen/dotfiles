@@ -40,3 +40,7 @@
 	smudge = git-media-smudge %f
 [merge]
 	tool = vimdiff
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	required = true
+	clean = git-lfs clean -- %f
