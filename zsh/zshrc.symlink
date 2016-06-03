@@ -47,7 +47,7 @@ setopt EXTENDED_HISTORY # add timestamps to history
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
+# setopt IGNORE_EOF
 setopt AUTOPUSHD        # keep history of directories
 setopt AUTO_LIST        # list ambiguous completions automatically
 
