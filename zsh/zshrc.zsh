@@ -1,68 +1,56 @@
-# Getting Java to work with rStudio
-#
-export LD_LIBRARY_PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server
+# ZSH configuration, Lincoln Mullen <lincoln@lincolnmullen.com>
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/dev/dotfiles
-
-# load aliases
 source $ZSH/zsh/aliases.zsh
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/dev
-export WRITING=~/acad
-
-# no Homebrew analytics
-export HOMEBREW_NO_ANALYTICS=1
+# Project directories 
+export PROJECTS=~/dev # c + <tab> for autocomplete
+export WRITING=~/acad # a + <tab> for autocomplete
 
 # functions
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
-# important tools
+# Editor
 export EDITOR='vim'
-# export R_PROFILE_USER="~/dev/dotfiles/r/Rprofile.symlink"
 
-# history
+# History
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY # add timestamps to history
 
-# colors
-export LSCOLORS="exfxcxdxbxegedabagacad"
+# Options
 export CLICOLOR=true
 export TERM="xterm-256color"
-
-# options
+# export LSCOLORS="exfxcxdxbxegedabagacad"
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
-setopt EXTENDED_HISTORY # add timestamps to history
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
 # setopt IGNORE_EOF
 setopt AUTOPUSHD        # keep history of directories
 setopt AUTO_LIST        # list ambiguous completions automatically
-
-
-# don't expand aliases _before_ completion has finished
-#   like: git comm-[tab]
 setopt complete_aliases
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
 
 # Vim key bindings and Vim-like line editor
 bindkey -v
 autoload -U   edit-command-line
 zle -N        edit-command-line
 bindkey -M vicmd v edit-command-line
-
-# vi style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
@@ -73,7 +61,6 @@ autoload colors zsh/terminfo && colors
 
 # Prompt
 # -------------------------------------------------------------------
-
 git_branch() {
   echo $(/usr/bin/git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
@@ -118,21 +105,6 @@ has_stash () {
   fi
 }
 
-# rb_prompt(){
-#   if $(which rbenv &> /dev/null)
-#   then
-#     rb_v=$(rbenv version |awk '{print $1}')
-#     # if [[ $rb_v  == $(rbenv global) ]]
-#     # then
-#     #   echo ""
-#     # else
-#       echo "%{$fg[yellow]%}rb:$rb_v%{$reset_color%}"
-#     # fi
-#   else
-#     echo ""
-#   fi
-#   }
-
 directory_name(){
   echo "%{$fg[blue]%}%~%{$reset_color%}"
 }
@@ -175,36 +147,18 @@ for dir in $pathdirs; do
   fi
 done
 
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-
-# Rbenv
-# -------------------------------------------------------------------
-# eval "$(rbenv init -)"
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# matches case insensitive for lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# pasting with tabs doesn't perform completion
-zstyle ':completion:*' insert-tab pending
+# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
-
-# added by travis gem
-[ -f /Users/lmullen/.travis/travis.sh ] && source /Users/lmullen/.travis/travis.sh
-
-# Python
-# export PYTHONPATH=`brew --prefix`/lib/python2.7/site-packages:$PYTHONPATH
-# export PYTHONPATH=`brew --prefix`/lib/python3.5/site-packages:$PYTHONPATH
-
-# Go
-export GOPATH=$HOME/go
-
-# Docker
-# eval "$(docker-machine env rdev)"
-
 # Make
 export MAKEFLAGS="-j 4"
+
+# Getting Java to work with rStudio
+# export LD_LIBRARY_PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server
+
+# no Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+

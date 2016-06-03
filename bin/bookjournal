@@ -1,9 +1,0 @@
-#!/usr/bin/env Rscript --vanilla
-
-# Append the name of a book as a list item with a link in my wiki
-
-a <- paste(commandArgs(trailingOnly = TRUE), collapse = " ")
-f <- file.path("~", "Dropbox", "acad", "research", "wiki", "wikidata",
-               "Reading journal.page")
-s <- paste0("- ", Sys.Date(), ": [", a, "]()\n")
-cat(s, file = f, append = TRUE)

@@ -8,21 +8,19 @@ alias notebook='mvim -S ~/acad/notebook2/Session.vim'
 # File and system management
 # -------------------------------------------------------------------
 alias R="R --no-save --no-restore-data --quiet"
-alias ack="ack-grep"
-# alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
-alias alert="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
-function cs() { cd "$@" && ls; }
+alias alertu='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
+alias alertm="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
 alias dirsize="du -sx ./* 2>/dev/null | sort -n"
 alias ducks='du -cks * | sort -rn | head -n 20'
 alias duh='du -hs * | sort -h -r'  # Sort files/dirs by size
 alias dudir='du --max-depth=1 -hc'
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
-# alias gvim="gvim 2>/dev/null"
+alias gvim="gvim 2>/dev/null"
 alias ip="curl icanhazip.com"       # get current public IP
 alias ls="ls -FG"
 alias more='more -R'                # give more colors
-# alias open="xdg-open 2>/dev/null"
+alias open="xdg-open 2>/dev/null"
 alias process="ps aux | grep"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='Rscript -e "servr::httw()" -b'
@@ -58,5 +56,5 @@ alias gs='git status -sb'
 
 # Environment variables
 # -------------------------------------------------------------------
-source "/Users/lmullen/.env.zsh"
+source "$HOME/.env.zsh"
 
