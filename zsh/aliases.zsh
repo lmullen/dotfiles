@@ -3,7 +3,7 @@
 alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
 alias book='mvim -S ~/acad/varieties/Session.vim'
 alias dot='mvim -S ~/dev/dotfiles/Session.vim'
-alias notebook='mvim -S ~/acad/notebook2/Session.vim' 
+alias notebook='mvim -S ~/acad/notebook/Session.vim' 
 
 # File and system management
 # -------------------------------------------------------------------
