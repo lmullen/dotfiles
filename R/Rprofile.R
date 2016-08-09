@@ -8,7 +8,7 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
-.libPaths("~/R/library")
+# .libPaths("~/R/library")
 
 options(
     width = 80,
@@ -66,7 +66,7 @@ if(interactive()){
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
   # Attach all the variables above
-  attach(.env, warn.conflicts = FALSE)
+  # attach(.env, warn.conflicts = FALSE)
 
 }
 
