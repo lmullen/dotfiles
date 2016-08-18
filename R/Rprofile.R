@@ -72,7 +72,7 @@ if(interactive()){
 
 .First <- function() {
   if (interactive()) {
-    cat("\nLoaded .Rprofile at", date(), "\n\n")
+    cat("\nLoaded .Rprofile at", base::date(), "\n\n")
   }
 }
 
