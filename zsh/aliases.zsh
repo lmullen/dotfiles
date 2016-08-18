@@ -35,6 +35,8 @@ shiny() {
     Rscript -e "shiny::runApp(port = $1)"
   fi
 }
+# Attach a tmux session if it exists; otherwise start a new one
+tm() { tmux attach-session -t $1 || tmux new-session -s $1 }
 # Git 
 # -------------------------------------------------------------------
 alias ga='git add'
