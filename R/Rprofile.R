@@ -66,19 +66,19 @@ if(interactive()){
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
   # Attach all the variables above
-  attach(.env, warn.conflicts = FALSE)
+  # attach(.env, warn.conflicts = FALSE)
 
 }
 
 .First <- function() {
   if (interactive()) {
-    cat("\nLoaded .Rprofile at", date(), "\n\n")
+    cat("\nLoaded .Rprofile at", base::date(), "\n\n")
   }
 }
 
 .Last <- function() {
   if (interactive()) {
-    cat("\nExiting R at", date(), "\n\n")
+    cat("\nExiting R at", base::date(), "\n\n")
   }
 }
 
