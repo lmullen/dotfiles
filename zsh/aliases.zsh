@@ -3,7 +3,7 @@
 alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
 alias book='mvim -S ~/acad/varieties/Session.vim'
 alias dot='mvim -S ~/dev/dotfiles/Session.vim'
-alias notebook='mvim -S ~/acad/notebook2/Session.vim' 
+alias notebook='mvim -S ~/acad/notebook/Session.vim' 
 
 # File and system management
 # -------------------------------------------------------------------
@@ -20,7 +20,6 @@ alias gvim="gvim 2>/dev/null"
 alias ip="curl icanhazip.com"       # get current public IP
 alias ls="ls -FG"
 alias more='more -R'                # give more colors
-alias open="xdg-open 2>/dev/null"
 alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='Rscript -e "servr::httw()" -b'
@@ -59,4 +58,10 @@ alias gs='git status -sb'
 # Environment variables
 # -------------------------------------------------------------------
 source "$HOME/.env.zsh"
+
+# Linux specific
+# -------------------------------------------------------------------
+if [[ `uname` == 'Linux' ]]; then
+  alias open="xdg-open 2>/dev/null"
+fi
 
