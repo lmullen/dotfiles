@@ -20,8 +20,7 @@ alias gvim="gvim 2>/dev/null"
 alias ip="curl icanhazip.com"       # get current public IP
 alias ls="ls -FG"
 alias more='more -R'                # give more colors
-# alias open="xdg-open 2>/dev/null"
-alias process="ps aux | grep"
+alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='Rscript -e "servr::httw()" -b'
 alias update='sudo apt-get update && sudo apt-get upgrade; alert'
@@ -35,6 +34,8 @@ shiny() {
     Rscript -e "shiny::runApp(port = $1)"
   fi
 }
+# Attach a tmux session if it exists; otherwise start a new one
+tm() { tmux attach-session -t $1 || tmux new-session -s $1 }
 # Git 
 # -------------------------------------------------------------------
 alias ga='git add'
@@ -57,4 +58,10 @@ alias gs='git status -sb'
 # Environment variables
 # -------------------------------------------------------------------
 source "$HOME/.env.zsh"
+
+# Linux specific
+# -------------------------------------------------------------------
+if [[ `uname` == 'Linux' ]]; then
+  alias open="xdg-open 2>/dev/null"
+fi
 

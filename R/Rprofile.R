@@ -8,7 +8,7 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
-.libPaths("~/R/library")
+# .libPaths("~/R/library")
 
 options(
     width = 80,
