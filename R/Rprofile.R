@@ -78,7 +78,7 @@ if(interactive()){
 
 .Last <- function() {
   if (interactive()) {
-    cat("\nExiting R at", date(), "\n\n")
+    cat("\nExiting R at", base::date(), "\n\n")
   }
 }
 
