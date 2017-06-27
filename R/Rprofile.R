@@ -65,8 +65,10 @@ if(interactive()){
 
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
+  .env$print.data.frame <- function(x) { print(tibble::as_tibble(x)) }
+
   # Attach all the variables above
-  # attach(.env, warn.conflicts = FALSE)
+  attach(.env, warn.conflicts = FALSE)
 
 }
 
