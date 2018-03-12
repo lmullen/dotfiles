@@ -1,9 +1,9 @@
 # Projects
 # -------------------------------------------------------------------
-alias blog='mvim ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
-alias book='mvim -S ~/acad/varieties/Session.vim'
-alias dot='mvim -S ~/dev/dotfiles/Session.vim'
-alias notebook='mvim -S ~/acad/notebook/Session.vim' 
+alias blog='$GVIM ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
+alias book='$GVIM -S ~/acad/varieties/Session.vim'
+alias dot='$GVIM -S ~/dev/dotfiles/Session.vim'
+alias notebook='$GVIM -S ~/acad/notebook/Session.vim' 
 
 # File and system management
 # -------------------------------------------------------------------
@@ -61,7 +61,10 @@ source "$HOME/.env.zsh"
 
 # Linux specific
 # -------------------------------------------------------------------
+export GVIM="mvim" # Set MacVim by default; overwrite on Linux
 if [[ `uname` == 'Linux' ]]; then
   alias open="xdg-open 2>/dev/null"
+  export GVIM="gvim"
+  alias mvim="gvim"
 fi
 
