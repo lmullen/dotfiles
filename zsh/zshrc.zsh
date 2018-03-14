@@ -134,7 +134,7 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/opt/coreutils/libexec/gnubin
-  ~/miniconda3/bin
+  # ~/miniconda3/bin
   # ~/.cabal/bin
   $HOME/.rbenv/shims
   # $HOME/anaconda/bin
@@ -162,3 +162,7 @@ export MAKEFLAGS="-j 7"
 # no Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
+# libxml2
+# export LDFLAGS=-L/usr/local/opt/libxml2/lib
+# export CPPFLAGS=-I/usr/local/opt/libxml2/include
+# export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig

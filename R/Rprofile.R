@@ -14,7 +14,7 @@ options(
     width = 80,
     repos = c(
               # ROPENSCI = "http://packages.ropensci.org",
-              CRAN = "https://cran.rstudio.com"
+              CRAN = "https://cloud.r-project.org"
               ),
     download.file.method = "libcurl",
     useFancyQuotes = FALSE,
@@ -25,12 +25,13 @@ options(
     # warnPartialMatchDollar = TRUE,
     # warnPartialMatchAttr = TRUE,
     # warnPartialMatchArgs = TRUE,
-    max.print = 1e3,
+    max.print = 1e2,
     Ncpus = 6L,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
-      "Authors@R" = 'c(person("Lincoln", "Mullen", role = c("aut", "cre"),
-        email = "lincoln@lincolnmullen.com"))',
+      "Authors@R" = 'c(person("Lincoln", "Mullen", 
+      role = c("aut", "cre"), email = "lincoln@lincolnmullen.com",
+      comment = c(ORCID = "0000-0001-5103-6917")))',
       License    = "MIT + file LICENSE",
       Version    = "0.0.0.9000",
       VignetteBuilder = "knitr",
@@ -42,6 +43,10 @@ utils::rc.settings(ipck = TRUE)
 
 Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
 Sys.setenv(R_HISTSIZE='10000')
+Sys.setenv(LDFLAGS='-L/usr/local/opt/libxml2/lib')
+Sys.setenv(CPPFLAGS='-I/usr/local/opt/libxml2/include')
+Sys.setenv(PKG_CONFIG_PATH='/usr/local/opt/libxml2/lib/pkgconfig')
+Sys.setenv(TZ = "America/New_York")
 
 if(interactive()){
 
