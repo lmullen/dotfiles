@@ -154,7 +154,7 @@ autoload -U compinit
 compinit
 
 # Make
-export MAKEFLAGS="-j 4"
+export MAKEFLAGS="-j 7"
 
 # Getting Java to work with rStudio
 # export LD_LIBRARY_PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server
