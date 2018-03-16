@@ -25,7 +25,7 @@ options(
     # warnPartialMatchDollar = TRUE,
     # warnPartialMatchAttr = TRUE,
     # warnPartialMatchArgs = TRUE,
-    max.print = 1e2,
+    # max.print = 1e2,
     Ncpus = 6L,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
