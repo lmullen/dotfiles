@@ -15,6 +15,9 @@ autoload -U $ZSH/zsh/functions/*(:t)
 # Editor
 export EDITOR='vim'
 
+# Go 
+export GOPATH=$HOME/go
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
