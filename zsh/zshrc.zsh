@@ -136,8 +136,9 @@ pathdirs=(
   /usr/local/opt/coreutils/libexec/gnubin
   # ~/miniconda3/bin
   # ~/.cabal/bin
-  $HOME/.rbenv/shims
+  # $HOME/.rbenv/shims
   # $HOME/anaconda/bin
+  $HOME/go/bin
   $HOME/dev/dotfiles/bin
 )
 
