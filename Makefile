@@ -15,9 +15,14 @@ latex :
 	ln -s $(HOME)/dev/dotfiles/latex/texmf $(HOME)/texmf 
 
 zsh :
-	@echo "Symlinking ZSh dotfiles"
+	@echo "Symlinking ZSH dotfiles"
 	ln -s $(HOME)/dev/dotfiles/zsh/zshrc.zsh $(HOME)/.zshrc 
 
-all : git R latex zsh
+neovim :
+	@echo "Symlinking Neovim dotfiles"
+	ln -s $(HOME)/dev/dotfiles/neovim $(HOME)/.config/nvim
 
-.PHONY : all default git R latex zsh
+all : git R latex zsh neovim 
+
+.PHONY : all default git R latex zsh neovim
+
