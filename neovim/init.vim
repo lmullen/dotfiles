@@ -110,8 +110,6 @@ set smartcase
 
 " Keyboard shortcuts
 " -------------------------------------------------------------------
-nnoremap ~ K
-nnoremap K ~
 nmap E ge
 " reselect visual after indent
 vnoremap < <gv
@@ -184,6 +182,8 @@ au BufNewFile,BufFilePRe,BufRead *.markdown,*.md,*.mkd,*.pd,*.pdc,*.pdk,*.pandoc
 nnoremap <leader><space> /\v^$\n[\^1\]:<CR>:let @/ = ""<CR>
 " Convert pandoc buffer to HTML and copy to system clipboard
 autocmd FileType markdown nnoremap <buffer> <C-S-x> :write \| let @+ = system("pandoc -t html " . shellescape(expand("%:p")))<CR>
+autocmd FileType markdown nnoremap ~ K
+autocmd FileType markdown nnoremap K ~
 let g:pandoc#syntax#conceal#use = 0
 
 " CSVs
