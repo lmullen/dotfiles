@@ -39,7 +39,7 @@ set encoding=utf-8
 " set history=1000                            " remember commands and searches
 " set undolevels=100                          " use many levels of undo
 " set noerrorbells                            " don't beep
-" set mouse=a                                 " use mouse in console
+set mouse=a                                 " use mouse in console
 " set nrformats-=octal
 " set shiftround
 " set timeoutlen=250
