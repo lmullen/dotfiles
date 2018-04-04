@@ -2,6 +2,11 @@
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/dev/dotfiles
+
+# Editor
+export EDITOR='nvim'
+
+# Aliases
 source $ZSH/zsh/aliases.zsh
 
 # Project directories 
@@ -12,8 +17,6 @@ export WRITING=~/acad # a + <tab> for autocomplete
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
-# Editor
-export EDITOR='vim'
 
 # Go 
 export GOPATH=$HOME/go

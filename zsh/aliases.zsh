@@ -1,9 +1,6 @@
 # Projects
 # -------------------------------------------------------------------
-alias blog='$GVIM ~/dev/lincolnmullen.com/source/_drafts/*.markdown'
-alias book='$GVIM -S ~/acad/varieties/Session.vim'
-alias dot='$GVIM -S ~/dev/dotfiles/Session.vim'
-alias notebook='$GVIM -S ~/acad/notebook/Session.vim' 
+alias notebook="$EDITOR -S ~/acad/notebook/Session.vim" 
 
 # File and system management
 # -------------------------------------------------------------------
