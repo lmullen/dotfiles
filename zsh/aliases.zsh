@@ -1,3 +1,7 @@
+# Editors
+# -------------------------------------------------------------------
+alias vim='nvim'
+
 # Projects
 # -------------------------------------------------------------------
 alias notebook="$EDITOR -S ~/acad/notebook/Session.vim" 
@@ -58,10 +62,10 @@ source "$HOME/.env.zsh"
 
 # Linux specific
 # -------------------------------------------------------------------
-export GVIM="mvim" # Set MacVim by default; overwrite on Linux
+# export GVIM="mvim" # Set MacVim by default; overwrite on Linux
 if [[ `uname` == 'Linux' ]]; then
   alias open="xdg-open 2>/dev/null"
-  export GVIM="gvim"
-  alias mvim="gvim"
+  # export GVIM="gvim"
+  # alias mvim="gvim"
 fi
 
