@@ -94,7 +94,7 @@ set statusline+=\ %P                        " percent through file
 
 " Functions 
 " -------------------------------------------------------------------
-source $HOME/.vim/functions.vim
+source $HOME/.config/nvim/functions.vim
 
 " Search 
 " -------------------------------------------------------------------
