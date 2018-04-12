@@ -3,12 +3,12 @@
 " Plugins
 " -------------------------------------------------------------------
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'honza/vim-snippets'
-" Plug 'sheerun/vim-polyglot'
 " Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" Plug 'scrooloose/syntastic'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-unimpaired'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -18,10 +18,10 @@ Plug 'fatih/vim-go'
 Plug 'icymind/NeoSolarized'
 Plug 'rking/ag.vim'
 Plug 'robertbasic/vim-hugo-helper'
-" Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 call plug#end()
 
