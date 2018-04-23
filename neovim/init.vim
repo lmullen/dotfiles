@@ -13,6 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'wincent/terminus'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'icymind/NeoSolarized'
@@ -23,6 +24,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'zchee/deoplete-go'
 call plug#end()
 
 " General
