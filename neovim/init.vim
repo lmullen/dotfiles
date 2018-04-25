@@ -3,8 +3,6 @@
 " Plugins
 " -------------------------------------------------------------------
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 " Plug 'scrooloose/syntastic'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'tpope/vim-dispatch'
@@ -15,9 +13,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'wincent/terminus'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
+Plug 'honza/vim-snippets'
 Plug 'icymind/NeoSolarized'
 Plug 'rking/ag.vim'
 Plug 'robertbasic/vim-hugo-helper'
+Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
