@@ -11,6 +11,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'wincent/terminus'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'honza/vim-snippets'
@@ -23,6 +24,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'zchee/deoplete-go'
 call plug#end()
 
 " General
@@ -34,17 +36,18 @@ set encoding=utf-8
 " set hidden
 " set ruler
 " set backspace=indent,eol,start              " allow backspacing in insert mode
-" set showmatch                               " matching parentheses
-" set smarttab
+set showmatch                               " matching parentheses
+set smarttab
+set shiftround
 " set history=1000                            " remember commands and searches
 " set undolevels=100                          " use many levels of undo
 " set noerrorbells                            " don't beep
 set mouse=a                                 " use mouse in console
 " set nrformats-=octal
-" set shiftround
 " set timeoutlen=250
 " set ttimeoutlen=100
-" set autoread
+set autoread
+set autowrite
 au FocusLost * :wa                          " save when losing focus (gVim)
 
 " Display
@@ -232,3 +235,6 @@ let g:ctrlp_custom_ignore = { 'dir': '\.git$\|\_site$' }
 " -------------------------------------------------------------------
 let g:ag_prg="ag --column --smart-case"
 
+" Deoplete
+" -------------------------------------------------------------------
+let g:deoplete#enable_at_startup = 1
