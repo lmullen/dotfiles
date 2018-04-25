@@ -11,7 +11,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'wincent/terminus'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'honza/vim-snippets'
@@ -24,7 +24,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'zchee/deoplete-go'
+" Plug 'zchee/deoplete-go'
 call plug#end()
 
 " General
@@ -237,4 +237,6 @@ let g:ag_prg="ag --column --smart-case"
 
 " Deoplete
 " -------------------------------------------------------------------
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_complete_delay=1000
+
