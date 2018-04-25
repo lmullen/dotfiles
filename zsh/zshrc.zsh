@@ -65,7 +65,7 @@ bindkey '^S' history-incremental-search-forward
 
 unsetopt nomatch
 
-cdpath=( . ~ )
+cdpath=( . ~ ~/dev ~/go/src/github.com/lmullen ~/go/src/github.com/religious-ecologies )
 autoload colors zsh/terminfo && colors
 
 # Prompt
