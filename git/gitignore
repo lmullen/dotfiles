@@ -3,6 +3,7 @@
 *.bbl
 *.bcf
 *.blg
+*.code-workspace
 *.doc
 *.doc
 *.docx
