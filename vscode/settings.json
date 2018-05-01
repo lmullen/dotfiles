@@ -1,0 +1,81 @@
+{
+    "workbench.statusBar.feedback.visible": false,
+    "files.autoSave": "onWindowChange",
+    "files.insertFinalNewline": true,
+    "editor.fontFamily": "PragmataPro, monospace",
+    "editor.fontSize": 16,
+    "editor.tabSize": 2,
+    "editor.snippetSuggestions": "top",
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "editor.minimap.enabled": false,
+    "editor.quickSuggestionsDelay": 100,
+    "workbench.colorTheme": "Visual Studio Light",
+    "go.formatTool": "gofmt",
+    // "git.enableCommitSigning": true,
+    "git.enableSmartCommit": true,
+    "vim.useSystemClipboard": true,
+    "vim.cmdLineInitialColon": true,
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "after": [
+                "~"
+            ]
+        }
+    ],
+    "cSpell.userWords": [
+        "Albers",
+        "Bratt",
+        "CHSS",
+        "CRDH",
+        "Catalano's",
+        "Historia",
+        "Jannelle",
+        "Kellen",
+        "Legg",
+        "Reproducibly",
+        "Zagarri",
+        "aboundaries",
+        "concordia",
+        "datasets",
+        "fontsize",
+        "funders",
+        "historydata",
+        "internetarchive",
+        "karush",
+        "rrchnm",
+        "subfield",
+        "subfields",
+        "textreuse",
+        "us"
+    ],
+    "[markdown]": {
+        "editor.wordWrap": "bounded"
+    },
+    "[html]": {
+        "editor.wordWrap": "on",
+        "editor.wordBasedSuggestions": false
+    }
+}
