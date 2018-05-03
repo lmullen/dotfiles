@@ -27,6 +27,11 @@ vscode-mac :
 	ln -s $(HOME)/dev/dotfiles/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
 	ln -s $(HOME)/dev/dotfiles/vscode/snippets $(HOME)/Library/Application\ Support/Code/User/snippets
 
+vscode-ubuntu :
+	@echo "Symlinking Visual Studio Code settings for Ubuntu"
+	ln -s $(HOME)/dev/dotfiles/vscode/settings.json $(HOME)/.config/Code/User/settings.json
+	ln -s $(HOME)/dev/dotfiles/vscode/snippets $(HOME)/.config/Code/User/snippets
+
 all : git R latex zsh neovim 
 
 .PHONY : all default git R latex zsh neovim
