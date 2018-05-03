@@ -2,6 +2,7 @@
     "workbench.statusBar.feedback.visible": false,
     "files.autoSave": "onWindowChange",
     "files.insertFinalNewline": true,
+    "keyboard.dispatch": "keyCode",
     "editor.fontFamily": "PragmataPro, monospace",
     "editor.fontSize": 16,
     "editor.tabSize": 2,
@@ -79,5 +80,7 @@
     "[html]": {
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
-    }
+    },
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "welcomePage"
 }
