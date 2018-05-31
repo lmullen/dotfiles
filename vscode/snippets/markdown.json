@@ -1,0 +1,7 @@
+{
+    "Title_with_link": {
+        "prefix": "twl",
+        "body": "\"[$1]($2)\"",
+        "description": "Linked title in quotation marks"
+    },
+}
