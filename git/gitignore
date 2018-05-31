@@ -33,6 +33,7 @@
 .DS_store
 .Rhistory
 .Rproj.user
+.drake
 .dropbox
 .gitignore
 .svn

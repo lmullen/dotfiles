@@ -15,7 +15,7 @@
     "go.formatTool": "gofmt",
     // "git.enableCommitSigning": true,
     "git.enableSmartCommit": true,
-    "vim.useSystemClipboard": true,
+    "vim.useSystemClipboard": false,
     "vim.cmdLineInitialColon": true,
     "vim.otherModesKeyBindingsNonRecursive": [
         {
@@ -60,13 +60,16 @@
         "aboundaries",
         "charismaticism",
         "concordia",
+        "cran",
         "dataset",
         "datasets",
         "fontsize",
+        "funder",
         "funders",
         "historydata",
         "internetarchive",
         "karush",
+        "neh's",
         "rrchnm",
         "subfield",
         "subfields",
@@ -79,5 +82,6 @@
     "[html]": {
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
-    }
+    },
+    "extensions.ignoreRecommendations": false
 }
