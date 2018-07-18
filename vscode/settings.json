@@ -18,7 +18,7 @@
     "git.enableSmartCommit": true,
     "vim.useSystemClipboard": false,
     "vim.cmdLineInitialColon": true,
-    "vim.otherModesKeyBindingsNonRecursive": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
                 "j"
@@ -64,14 +64,19 @@
         "cran",
         "dataset",
         "datasets",
+        "exposé",
         "fontsize",
         "funder",
         "funders",
         "historydata",
         "internetarchive",
         "karush",
+        "kenesseth",
+        "krauskopf",
+        "krauskopf's",
         "neh's",
         "rrchnm",
+        "sarna",
         "subfield",
         "subfields",
         "textreuse",
