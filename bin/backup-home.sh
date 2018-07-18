@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-duplicity /home file:///media/lmullen/BACKUP-HOME/
+# Backup RAID array to external 4TB disk
+echo "Backing up home at /home/lmullen to external hard disk"
+mkdir -p /media/lmullen/BACKUP-RAID/HOME
+rsync -avP --delete /home/lmullen/* /media/lmullen/BACKUP-RAID/HOME/
 
