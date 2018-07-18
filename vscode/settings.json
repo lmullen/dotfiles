@@ -82,5 +82,6 @@
         "editor.wordBasedSuggestions": false
     },
     "window.zoomLevel": 1,
-    "workbench.startupEditor": "welcomePage"
+    "workbench.startupEditor": "welcomePage",
+    "explorer.confirmDelete": false
 }
