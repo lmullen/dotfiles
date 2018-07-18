@@ -1,7 +1,7 @@
 # ZSH configuration, Lincoln Mullen <lincoln@lincolnmullen.com>
 
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/dev/dotfiles
+export ZSH=$HOME/dev/lmullen/dotfiles
 
 # Editor
 export EDITOR='nvim'
