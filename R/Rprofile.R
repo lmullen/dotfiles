@@ -26,7 +26,7 @@ options(
     # warnPartialMatchAttr = TRUE,
     # warnPartialMatchArgs = TRUE,
     # max.print = 1e2,
-    Ncpus = 6L,
+    Ncpus = 8L,
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
       "Authors@R" = 'c(person("Lincoln", "Mullen", 
@@ -42,10 +42,10 @@ options(
 utils::rc.settings(ipck = TRUE)
 
 Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
-Sys.setenv(R_HISTSIZE='10000')
-Sys.setenv(LDFLAGS='-L/usr/local/opt/libxml2/lib')
-Sys.setenv(CPPFLAGS='-I/usr/local/opt/libxml2/include')
-Sys.setenv(PKG_CONFIG_PATH='/usr/local/opt/libxml2/lib/pkgconfig')
+Sys.setenv(R_HISTSIZE='1000')
+# Sys.setenv(LDFLAGS='-L/usr/local/opt/libxml2/lib')
+# Sys.setenv(CPPFLAGS='-I/usr/local/opt/libxml2/include')
+# Sys.setenv(PKG_CONFIG_PATH='/usr/local/opt/libxml2/lib/pkgconfig')
 Sys.setenv(TZ = "America/New_York")
 
 if(interactive()){
@@ -70,7 +70,13 @@ if(interactive()){
 
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
-  .env$print.data.frame <- function(x) { print(tibble::as_tibble(x)) }
+  .env$print.data.frame <- function(x) { 
+    if (requireNamespace("tibble", quietly = TRUE)) {
+      tibble:::print.tbl_df(tibble::as_tibble(x)) 
+    } else {
+      print(x)
+    }
+  }
 
   # Attach all the variables above
   attach(.env, warn.conflicts = FALSE)
