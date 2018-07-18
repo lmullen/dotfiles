@@ -5,7 +5,7 @@
 [user]
         name = Lincoln Mullen
         email = lincoln@lincolnmullen.com
-	signingkey = 1A6BE3C95291B92B
+	signingkey = 932CFEF10E57D26B
 [github]
         user = lmullen
 [alias]
@@ -36,3 +36,5 @@
         helper = cache --timeout=604800
 [merge]
         tool = vimdiff
+[commit]
+	gpgsign = true
