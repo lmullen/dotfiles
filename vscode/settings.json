@@ -14,7 +14,7 @@
     "editor.quickSuggestionsDelay": 100,
     "workbench.colorTheme": "Visual Studio Light",
     "go.formatTool": "gofmt",
-    // "git.enableCommitSigning": true,
+    "git.enableCommitSigning": true,
     "git.enableSmartCommit": true,
     "vim.useSystemClipboard": false,
     "vim.cmdLineInitialColon": true,
@@ -89,7 +89,9 @@
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
     },
-    "extensions.ignoreRecommendations": false,
+    "window.zoomLevel": 1,
+    "explorer.confirmDelete": false
+    "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 0,
     "workbench.startupEditor": "welcomePage"
 }
