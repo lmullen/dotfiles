@@ -143,11 +143,8 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/opt/coreutils/libexec/gnubin
-  # ~/miniconda3/bin
-  # ~/.cabal/bin
-  $HOME/.rbenv/shims
-  # $HOME/anaconda/bin
-  $HOME/go/bin
+  # $HOME/go/bin
+  /usr/local/opt/python/libexec/bin
   $HOME/dev/dotfiles/bin
 )
 
