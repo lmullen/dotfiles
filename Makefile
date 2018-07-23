@@ -24,8 +24,8 @@ neovim :
 
 vscode-mac :
 	@echo "Symlinking Visual Studio Code settings for Mac"
-	ln -s $(HOME)/dev/dotfiles/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
-	ln -s $(HOME)/dev/dotfiles/vscode/snippets $(HOME)/Library/Application\ Support/Code/User/snippets
+	ln -s $(HOME)/dev/lmullen/dotfiles/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
+	ln -s $(HOME)/dev/lmullen/dotfiles/vscode/snippets $(HOME)/Library/Application\ Support/Code/User/snippets
 
 vscode-ubuntu :
 	@echo "Symlinking Visual Studio Code settings for Ubuntu"
