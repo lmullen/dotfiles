@@ -65,7 +65,7 @@ bindkey '^S' history-incremental-search-forward
 
 unsetopt nomatch
 
-cdpath=( . ~ ~/dev ~/go/src/github.com/lmullen ~/go/src/github.com/religious-ecologies )
+cdpath=( . ~ ~/dev )
 autoload colors zsh/terminfo && colors
 
 # Prompt
@@ -124,8 +124,6 @@ user_machine(){
 
 set_prompt () {
   export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
-  # export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)$(need_push)\n%{$fg[red]%}›%{$reset_color%} '
-  # export PROMPT=$'\n$(user_machine):$(directory_name)$(git_dirty)$(has_stash)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
@@ -163,13 +161,6 @@ compinit
 # Make
 export MAKEFLAGS="-j 7"
 
-# Getting Java to work with rStudio
-# export LD_LIBRARY_PATH=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/server
-
 # no Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
-# libxml2
-# export LDFLAGS=-L/usr/local/opt/libxml2/lib
-# export CPPFLAGS=-I/usr/local/opt/libxml2/include
-# export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig

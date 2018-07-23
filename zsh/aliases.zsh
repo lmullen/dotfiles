@@ -9,7 +9,6 @@ alias notebook="$EDITOR -S ~/acad/notebook/Session.vim"
 # File and system management
 # -------------------------------------------------------------------
 alias R="R --no-save --no-restore-data --quiet"
-alias alertu='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] Your job is finished"'
 alias alertm="osascript -e 'display notification \"Long running process exited\" with title \"iTerm process\"'"
 alias dirsize="du -sx ./* 2>/dev/null | sort -n"
 alias ducks='du -cks * | sort -rn | head -n 20'
@@ -24,7 +23,6 @@ alias more='more -R'                # give more colors
 alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias serve='Rscript -e "servr::httw()" -b'
-alias update='sudo apt-get update && sudo apt-get upgrade; alert'
 alias xcopy='xclip -selection c -i'
 alias zshreload='source ~/.zshrc'
 shiny() {
@@ -65,7 +63,5 @@ source "$HOME/.env.zsh"
 # export GVIM="mvim" # Set MacVim by default; overwrite on Linux
 if [[ `uname` == 'Linux' ]]; then
   alias open="xdg-open 2>/dev/null"
-  # export GVIM="gvim"
-  # alias mvim="gvim"
 fi
 
