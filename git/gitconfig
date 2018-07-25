@@ -1,11 +1,11 @@
 # gitconfig
 
 [hub]
-        protocol = https
+        protocol = ssh
 [user]
         name = Lincoln Mullen
         email = lincoln@lincolnmullen.com
-	signingkey = 932CFEF10E57D26B
+        signingkey = 932CFEF10E57D26B
 [github]
         user = lmullen
 [alias]
@@ -37,4 +37,4 @@
 [merge]
         tool = vimdiff
 [commit]
-	gpgsign = true
+        gpgsign = true
