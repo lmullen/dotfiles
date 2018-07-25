@@ -90,8 +90,8 @@
         "editor.wordBasedSuggestions": false
     },
     "window.zoomLevel": 1,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "workbench.startupEditor": "welcomePage"
 }
