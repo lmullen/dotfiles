@@ -17,7 +17,6 @@ export WRITING=~/acad # a + <tab> for autocomplete
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
-
 # Go 
 export GOPATH=$HOME/go
 
@@ -141,7 +140,7 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/opt/coreutils/libexec/gnubin
-  # $HOME/go/bin
+  $HOME/go/bin
   /usr/local/opt/python/libexec/bin
   $HOME/dev/dotfiles/bin
 )

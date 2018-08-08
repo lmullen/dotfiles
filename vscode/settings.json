@@ -46,6 +46,7 @@
             ]
         }
     ],
+    "cSpell.spellCheckDelayMs": 800,
     "cSpell.userWords": [
         "Albers",
         "Bratt",
@@ -71,6 +72,7 @@
         "gutjahr",
         "historydata",
         "internetarchive",
+        "judeo",
         "karush",
         "kenesseth",
         "krauskopf",
@@ -97,6 +99,7 @@
     "window.zoomLevel": 1,
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 0,
-    "workbench.startupEditor": "welcomePage"
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "welcomePage",
+    "cSpell.language": "en"
 }
