@@ -46,6 +46,7 @@
             ]
         }
     ],
+    "cSpell.spellCheckDelayMs": 800,
     "cSpell.userWords": [
         "Albers",
         "Bratt",
@@ -68,6 +69,7 @@
         "fontsize",
         "funder",
         "funders",
+        "gutjahr",
         "historydata",
         "internetarchive",
         "judeo",
@@ -76,6 +78,8 @@
         "krauskopf",
         "krauskopf's",
         "neh's",
+        "noll",
+        "noll's",
         "rrchnm",
         "sarna",
         "subfield",
@@ -94,5 +98,6 @@
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 1,
-    "workbench.startupEditor": "welcomePage"
+    "workbench.startupEditor": "welcomePage",
+    "cSpell.language": "en"
 }
