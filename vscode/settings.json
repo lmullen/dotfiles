@@ -69,6 +69,7 @@
         "fontsize",
         "funder",
         "funders",
+        "gmu's",
         "gutjahr",
         "historydata",
         "internetarchive",
@@ -84,10 +85,13 @@
         "rrchnm",
         "salvific",
         "sarna",
+        "scripturalization",
+        "scripturalized",
         "subfield",
         "subfields",
         "textreuse",
-        "us"
+        "us",
+        "wimbush"
     ],
     "[markdown]": {
         "editor.wordWrap": "bounded"
@@ -96,10 +100,12 @@
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
     },
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 1,
     "workbench.startupEditor": "welcomePage",
-    "cSpell.language": "en"
+    "cSpell.language": "en",
+    "explorer.confirmDragAndDrop": false,
+    "editor.tabCompletion": "on"
 }
