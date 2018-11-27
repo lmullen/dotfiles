@@ -46,53 +46,6 @@
             ]
         }
     ],
-    "cSpell.spellCheckDelayMs": 800,
-    "cSpell.userWords": [
-        "Albers",
-        "Bratt",
-        "CHSS",
-        "CRDH",
-        "Catalano's",
-        "Historia",
-        "Jannelle",
-        "Kellen",
-        "Legg",
-        "Reproducibly",
-        "Zagarri",
-        "aboundaries",
-        "charismaticism",
-        "concordia",
-        "cran",
-        "dataset",
-        "datasets",
-        "exposé",
-        "fontsize",
-        "funder",
-        "funders",
-        "gmu's",
-        "gutjahr",
-        "historydata",
-        "internetarchive",
-        "judeo",
-        "karush",
-        "kenesseth",
-        "krauskopf",
-        "krauskopf's",
-        "millenarianism",
-        "neh's",
-        "noll",
-        "noll's",
-        "rrchnm",
-        "salvific",
-        "sarna",
-        "scripturalization",
-        "scripturalized",
-        "subfield",
-        "subfields",
-        "textreuse",
-        "us",
-        "wimbush"
-    ],
     "[markdown]": {
         "editor.wordWrap": "bounded"
     },
@@ -100,12 +53,15 @@
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
     },
-    "window.zoomLevel": 2,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true
+    },
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
     "window.zoomLevel": 1,
     "workbench.startupEditor": "welcomePage",
-    "cSpell.language": "en",
     "explorer.confirmDragAndDrop": false,
-    "editor.tabCompletion": "on"
+    "editor.tabCompletion": "on",
+    "go.docsTool": "gogetdoc"
 }
