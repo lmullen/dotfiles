@@ -140,9 +140,10 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/opt/coreutils/libexec/gnubin
+  /usr/local/clang6/bin 
   $HOME/go/bin
-  /usr/local/opt/python/libexec/bin
-  $HOME/dev/dotfiles/bin
+  # /usr/local/opt/python/libexec/bin
+  # $HOME/dev/dotfiles/bin
 )
 
 for dir in $pathdirs; do
