@@ -4,4 +4,17 @@
         "body": "\"[$1]($2)\"",
         "description": "Linked title in quotation marks"
     },
+    "Book_notes": {
+        "prefix": "book",
+        "body": ["# $2",
+                 "",
+                 "Author: $1",
+                 "Title: $2",
+                 "Year: $3",
+                 "",
+                 "--------------------",
+                 "",
+                 "$0"],
+        "description": "Book notes template"
+    }
 }

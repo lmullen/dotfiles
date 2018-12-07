@@ -9,7 +9,6 @@
     "editor.snippetSuggestions": "top",
     "editor.renderWhitespace": "boundary",
     "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 80,
     "editor.minimap.enabled": false,
     "editor.quickSuggestionsDelay": 100,
     "workbench.colorTheme": "Visual Studio Light",
@@ -81,6 +80,8 @@
         "neh's",
         "noll",
         "noll's",
+        "reconceive",
+        "rosenzweig",
         "rrchnm",
         "salvific",
         "sarna",
@@ -92,14 +93,20 @@
     "[markdown]": {
         "editor.wordWrap": "bounded"
     },
+    "[text]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordBasedSuggestions": false
+    },
     "[html]": {
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
     },
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 1,
     "workbench.startupEditor": "welcomePage",
-    "cSpell.language": "en"
+    "cSpell.language": "en",
+    "editor.tabCompletion": true,
+    "go.autocompleteUnimportedPackages": true,
+    "editor.wordBasedSuggestions": false
 }
