@@ -8,8 +8,6 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
-# .libPaths("~/R/library")
-
 options(
     width = 80,
     repos = c(
@@ -21,10 +19,6 @@ options(
     menu.graphics = FALSE,
     editor = "vim",
     browserNLdisabled = TRUE,
-    # deparse.max.lines = 2,
-    # warnPartialMatchDollar = TRUE,
-    # warnPartialMatchAttr = TRUE,
-    # warnPartialMatchArgs = TRUE,
     # max.print = 1e2,
     Ncpus = 8L,
     devtools.name = "Lincoln Mullen",
@@ -41,11 +35,8 @@ options(
     )
 utils::rc.settings(ipck = TRUE)
 
-Sys.setenv(R_PACKRAT_CACHE_DIR='~/R/packrat/')
-Sys.setenv(R_HISTSIZE='1000')
-# Sys.setenv(LDFLAGS='-L/usr/local/opt/libxml2/lib')
-# Sys.setenv(CPPFLAGS='-I/usr/local/opt/libxml2/include')
-# Sys.setenv(PKG_CONFIG_PATH='/usr/local/opt/libxml2/lib/pkgconfig')
+Sys.setenv(R_PACKRAT_CACHE_DIR = '~/R/packrat/')
+Sys.setenv(R_HISTSIZE = '1000')
 Sys.setenv(TZ = "America/New_York")
 
 if(interactive()){
@@ -65,7 +56,7 @@ if(interactive()){
   # Open the current working directory in Nautilus/Finder
   .env$o <- function() {
     if(Sys.info()[1]=="Linux") system("xdg-open .")
-      if(Sys.info()[1]=="Darwin") system("open .")
+    if(Sys.info()[1]=="Darwin") system("open .")
   }
 
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
