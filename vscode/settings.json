@@ -63,5 +63,7 @@
     "workbench.startupEditor": "welcomePage",
     "explorer.confirmDragAndDrop": false,
     "editor.tabCompletion": "on",
-    "go.docsTool": "gogetdoc"
+    "go.docsTool": "gogetdoc",
+    "workbench.iconTheme": "material-icon-theme",
+    "rewrap.autoWrap.enabled": true
 }
