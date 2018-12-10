@@ -45,54 +45,6 @@
             ]
         }
     ],
-<<<<<<< HEAD
-    "cSpell.spellCheckDelayMs": 800,
-    "cSpell.userWords": [
-        "Albers",
-        "Bratt",
-        "CHSS",
-        "CRDH",
-        "Catalano's",
-        "Historia",
-        "Jannelle",
-        "Kellen",
-        "Legg",
-        "Reproducibly",
-        "Zagarri",
-        "aboundaries",
-        "charismaticism",
-        "concordia",
-        "cran",
-        "dataset",
-        "datasets",
-        "exposé",
-        "fontsize",
-        "funder",
-        "funders",
-        "gutjahr",
-        "historydata",
-        "internetarchive",
-        "judeo",
-        "karush",
-        "kenesseth",
-        "krauskopf",
-        "krauskopf's",
-        "millenarianism",
-        "neh's",
-        "noll",
-        "noll's",
-        "reconceive",
-        "rosenzweig",
-        "rrchnm",
-        "salvific",
-        "sarna",
-        "subfield",
-        "subfields",
-        "textreuse",
-        "us"
-    ],
-=======
->>>>>>> e52224abd6251b94e15afa32ca0725108b41a4a4
     "[markdown]": {
         "editor.wordWrap": "bounded"
     },
@@ -104,28 +56,16 @@
         "editor.wordWrap": "on",
         "editor.wordBasedSuggestions": false
     },
-<<<<<<< HEAD
-    "window.zoomLevel": 0,
-=======
     "[go]": {
         "editor.insertSpaces": false,
         "editor.formatOnSave": true
     },
->>>>>>> e52224abd6251b94e15afa32ca0725108b41a4a4
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
     "workbench.startupEditor": "welcomePage",
-<<<<<<< HEAD
-    "cSpell.language": "en",
-    "editor.tabCompletion": true,
-    "go.autocompleteUnimportedPackages": true,
-    "editor.wordBasedSuggestions": false,
-    "workbench.iconTheme": "material-icon-theme"
-=======
     "explorer.confirmDragAndDrop": false,
     "editor.tabCompletion": "on",
     "go.docsTool": "gogetdoc",
     "workbench.iconTheme": "material-icon-theme",
     "rewrap.autoWrap.enabled": true
->>>>>>> e52224abd6251b94e15afa32ca0725108b41a4a4
 }
