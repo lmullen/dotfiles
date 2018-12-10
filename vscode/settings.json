@@ -108,5 +108,6 @@
     "cSpell.language": "en",
     "editor.tabCompletion": true,
     "go.autocompleteUnimportedPackages": true,
-    "editor.wordBasedSuggestions": false
+    "editor.wordBasedSuggestions": false,
+    "workbench.iconTheme": "material-icon-theme"
 }
