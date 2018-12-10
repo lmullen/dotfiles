@@ -142,6 +142,7 @@ pathdirs=(
   /usr/local/opt/coreutils/libexec/gnubin
   /usr/local/clang6/bin 
   $HOME/go/bin
+  /snap/bin
   # /usr/local/opt/python/libexec/bin
   # $HOME/dev/dotfiles/bin
 )
