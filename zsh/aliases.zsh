@@ -5,6 +5,7 @@ alias vim='nvim'
 # Projects
 # -------------------------------------------------------------------
 # alias notebook="$EDITOR -S ~/acad/notebook/Session.vim" 
+alias blog="code ~/Dropbox/lincolnmullen.com/lincolnmullen.code-workspace"
 alias notebook="code ~/acad/notebook/notebook.code-workspace"
 
 # File and system management
