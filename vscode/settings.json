@@ -4,7 +4,7 @@
     "files.insertFinalNewline": true,
     "keyboard.dispatch": "keyCode",
     "editor.fontFamily": "PragmataPro, monospace",
-    "editor.fontSize": 16,
+    "editor.fontSize": 14,
     "editor.tabSize": 2,
     "editor.snippetSuggestions": "top",
     "editor.renderWhitespace": "boundary",
@@ -67,5 +67,8 @@
     "editor.tabCompletion": "on",
     "go.docsTool": "gogetdoc",
     "workbench.iconTheme": "material-icon-theme",
-    "rewrap.autoWrap.enabled": true
+    "rewrap.autoWrap.enabled": true,
+    "editor.wordWrapColumn": 160,
+    "search.useGlobalIgnoreFiles": true,
+    "window.zoomLevel": 0
 }

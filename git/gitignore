@@ -42,3 +42,5 @@
 .vscode
 Session.vim
 vc.tex
+node_modules/
+dist/
