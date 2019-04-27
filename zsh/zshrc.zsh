@@ -20,6 +20,9 @@ autoload -U $ZSH/zsh/functions/*(:t)
 # Go 
 export GOPATH=$HOME/go
 
+# Ruby
+eval "$(rbenv init -)"
+
 # GPG
 export GPG_TTY=$(tty)
 
@@ -143,9 +146,11 @@ pathdirs=(
   /usr/local/clang6/bin 
   $HOME/go/bin
   /snap/bin
+  ~/.rbenv/shims
   # /usr/local/opt/python/libexec/bin
   # $HOME/dev/dotfiles/bin
 )
+
 
 for dir in $pathdirs; do
   if [ -d $dir ]; then
