@@ -142,7 +142,7 @@ pathdirs=(
   /usr/X11/bin
   /usr/local/bin
   /usr/local/sbin
-  /usr/local/opt/coreutils/libexec/gnubin
+  # /usr/local/opt/coreutils/libexec/gnubin
   /usr/local/clang6/bin 
   $HOME/go/bin
   /snap/bin
