@@ -1,6 +1,0 @@
-# batch change extension (fix from Lri, again)
-# credit: http://brettterpstra.com/2013/03/14/more-command-line-handiness/
-chgext() {
-	for file in *.$1 ; do mv "$file" "${file%.$1}.$2" ; done
-}
-
