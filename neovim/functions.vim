@@ -41,28 +41,6 @@ function! DeleteCurrentBuffer()
   :bp|bd #
 endfunction
 
-" Open the current file in the browser with the file system
-command! -nargs=0 OpenInChromeWithFileSystem call OpenInChromeWithFileSystem()
-function! OpenInChromeWithFileSystem()
-  silent !google-chrome "%:p"
-endfunction
-"
-" Open the current note file in the browser with localhost
-command! -nargs=0 OpenInChromeWithLocalhost call OpenInChromeWithLocalhost()
-function! OpenInChromeWithLocalhost()
-  silent !google-chrome "http://localhost:4000/%"
-endfunction
-
-" Navigate to a Pandoc footnote 
-command! -nargs=* Fn call GoToFootnote(<f-args>)
-function! GoToFootnote(footnote, ...)
-  let definition = ''
-  if a:0 > 0
-    let definition = a:1
-  endif
-  call search('\[\^' . a:footnote . '\]' . definition)
-endfunction
-
 command! -nargs=0 AbbreviateMonths call AbbreviateMonths()
 function! AbbreviateMonths()
   :%s/January/Jan./g
@@ -77,11 +55,5 @@ function! AbbreviateMonths()
   :%s/October/Oct./g
   :%s/November/Nov./g
   :%s/December/Dec./g
-endfunction
-
-" For `test.md`, open the file `test.md.pdf` in the operating system
-command! -nargs=0 PDF call PDF()
-function! PDF()
-  :silent exec "!open ".expand("%:p").".pdf"
 endfunction
 

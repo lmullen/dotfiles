@@ -1,29 +1,22 @@
 # ZSH configuration, Lincoln Mullen <lincoln@lincolnmullen.com>
 
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/dev/lmullen/dotfiles
-
-# Editor
+# Environment variables
 export EDITOR='nvim'
+export PROJECTS=~/dev # c + <tab> for autocomplete
+export ZSH=$HOME/dev/lmullen/dotfiles
+export GOPATH=$HOME/go
+export MAKEFLAGS="-j 7"
+export HOMEBREW_NO_ANALYTICS=1
 
 # Aliases
 source $ZSH/zsh/aliases.zsh
 
-# Project directories 
-export PROJECTS=~/dev # c + <tab> for autocomplete
-export WRITING=~/acad # a + <tab> for autocomplete
-
-# functions
+# Functions
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
-# Go 
-export GOPATH=$HOME/go
 
-# GPG
-export GPG_TTY=$(tty)
-
-# History
+# Options
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -32,11 +25,8 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY # add timestamps to history
-
-# Options
 export CLICOLOR=true
 export TERM="xterm-256color"
-# export LSCOLORS="exfxcxdxbxegedabagacad"
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
@@ -45,7 +35,6 @@ setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
-# setopt IGNORE_EOF
 setopt AUTOPUSHD        # keep history of directories
 setopt AUTO_LIST        # list ambiguous completions automatically
 setopt complete_aliases
@@ -53,7 +42,6 @@ setopt complete_aliases
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
-
 # Vim key bindings and Vim-like line editor
 bindkey -v
 autoload -U   edit-command-line
@@ -61,10 +49,7 @@ zle -N        edit-command-line
 bindkey -M vicmd v edit-command-line
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
-
 unsetopt nomatch
-
-cdpath=( . ~ ~/dev )
 autoload colors zsh/terminfo && colors
 
 # Prompt
@@ -88,17 +73,17 @@ git_dirty() {
   fi
 }
 
-git_prompt_info () {
+git_prompt_info() {
  ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo ":%{$fg[magenta]%}${ref#refs/heads/}${reset_color%}"
 }
 
-unpushed () {
+unpushed() {
   /usr/bin/git cherry -v @{upstream} 2>/dev/null
 }
 
-need_push () {
+need_push() {
   if [[ $(unpushed) == "" ]]
   then
     echo ""
@@ -107,7 +92,7 @@ need_push () {
   fi
 }
 
-has_stash () {
+has_stash() {
   if [[ -n "$(git stash list 2>/dev/null)" ]]; then
     echo ":%{$fg[magenta]%}stash%{$reset_color%}"
   fi
@@ -121,8 +106,16 @@ user_machine(){
   echo "%{$fg[yellow]%}%n@%M%{$reset_color%}"
 }
 
-set_prompt () {
-  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
+python_venv() {
+   if [[ -z $VIRTUAL_ENV ]] then
+     echo ""
+   else
+     echo ":%{$fg[green]%}venv$reset_color%}"
+   fi
+}
+
+set_prompt() {
+  export PROMPT=$'\n$(user_machine):$(directory_name)$(python_venv)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
@@ -135,17 +128,18 @@ precmd() {
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
-  /usr/texbin
+  # /usr/texbin
   /usr/X11/bin
   /usr/local/bin
   /usr/local/sbin
-  /usr/local/opt/coreutils/libexec/gnubin
   /usr/local/clang6/bin 
   $HOME/go/bin
   /snap/bin
+  # ~/.rbenv/shims
   # /usr/local/opt/python/libexec/bin
   # $HOME/dev/dotfiles/bin
 )
+
 
 for dir in $pathdirs; do
   if [ -d $dir ]; then
@@ -153,15 +147,15 @@ for dir in $pathdirs; do
   fi
 done
 
-# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
-# Make
-export MAKEFLAGS="-j 7"
 
-# no Homebrew analytics
-export HOMEBREW_NO_ANALYTICS=1
-
+# Dead to me settings
+# -------------------------
+# Ruby
+# eval "$(rbenv init -)"
+# GPG
+# export GPG_TTY=$(tty)
+# cdpath=( . ~ ~/dev )
