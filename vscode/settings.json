@@ -6,6 +6,7 @@
     "editor.fontFamily": "PragmataPro, monospace",
     "editor.fontSize": 14,
     "editor.tabSize": 2,
+    "editor.rulers": [80,120],
     "editor.snippetSuggestions": "top",
     "editor.renderWhitespace": "boundary",
     "editor.wordWrap": "bounded",
@@ -191,7 +192,7 @@
         "typings",
         "public",
         "static"
-      ],
+    ],
     "html.format.wrapLineLength": 0,
     "markdown.format.wrapLineLength": 0,
     "cSpell.maxNumberOfProblems": 50,
@@ -200,5 +201,23 @@
     "cSpell.showStatus": false,
     "rewrap.wrappingColumn": 80,
     "rewrap.wholeComment": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "files.exclude": {
+        ".vscode/": true,
+        "**/__pycache__": true,
+        "env/": true
+    },
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+    },
+    "python.linting.pylintArgs": [
+        "--errors-only",
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "editor.renderControlCharacters": true
+
+
 }
