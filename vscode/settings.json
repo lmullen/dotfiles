@@ -205,7 +205,8 @@
     "files.exclude": {
         ".vscode/": true,
         "**/__pycache__": true,
-        "env/": true
+        "env/": true,
+        "staticfiles/": true
     },
     "[python]": {
         "editor.insertSpaces": true,
@@ -213,7 +214,7 @@
         "editor.formatOnSave": true,
     },
     "python.linting.pylintArgs": [
-        "--errors-only",
+        // "--errors-only",
         "--load-plugins",
         "pylint_django"
     ],
