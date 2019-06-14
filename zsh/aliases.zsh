@@ -9,7 +9,6 @@ alias alertm="osascript -e 'display notification \"Long running process exited\"
 alias findd="find . -type d -iname" # find a directory
 alias findf="find . -type f -iname" # find a file 
 alias ip="curl icanhazip.com"       # get current public IP
-alias ls="ls -FG"
 alias more='more -R'                # give more colors
 alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
