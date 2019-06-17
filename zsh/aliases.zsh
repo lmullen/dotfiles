@@ -12,6 +12,7 @@ alias ip="curl icanhazip.com"       # get current public IP
 alias more='more -R'                # give more colors
 alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
+alias dfd='df -h -x squashfs -x tmpfs -x devtmpfs'
 
 # Git 
 # -------------------------------------------------------------------
