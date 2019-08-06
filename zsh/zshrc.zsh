@@ -133,6 +133,7 @@ pathdirs=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/clang6/bin 
+  /usr/local/opt/ruby/bin
   $HOME/go/bin
   /snap/bin
   # ~/.rbenv/shims
