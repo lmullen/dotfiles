@@ -2,8 +2,8 @@
 
 # Environment variables
 export EDITOR='nvim'
-export PROJECTS=~/dev # c + <tab> for autocomplete
-export ZSH=$HOME/dev/lmullen/dotfiles
+export PROJECTS=~/github # c + <tab> for autocomplete
+export ZSH=$HOME/github/lmullen/dotfiles
 export GOPATH=$HOME/go
 export MAKEFLAGS="-j 7"
 export HOMEBREW_NO_ANALYTICS=1
