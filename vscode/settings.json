@@ -3,7 +3,7 @@
     "files.autoSave": "onWindowChange",
     "files.insertFinalNewline": true,
     "keyboard.dispatch": "keyCode",
-    "editor.fontFamily": "PragmataPro, monospace",
+    "editor.fontFamily": "IBM Plex Mono, monospace",
     "editor.fontSize": 14,
     "editor.tabSize": 2,
     "editor.rulers": [
@@ -50,7 +50,12 @@
         }
     ],
     "[markdown]": {
-        "editor.wordWrap": "bounded"
+        "editor.wordWrap": "bounded",
+        "editor.wordBasedSuggestions": false,
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "bounded",
+        "editor.wordBasedSuggestions": false,
     },
     "[html]": {
         "editor.wordWrap": "on",
@@ -63,7 +68,7 @@
     "editor.tabCompletion": "on",
     "workbench.iconTheme": "vscode-icons",
     // "rewrap.autoWrap.enabled": true,
-    "editor.wordWrapColumn": 160,
+    "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
     "window.zoomLevel": 0,
     "git.confirmSync": false,
@@ -239,4 +244,6 @@
     "files.eol": "\n",
     "workbench.sideBar.location": "left",
     "python.formatting.provider": "black",
+    "debug.console.fontFamily": "IBM Plex Mono, default",
+    "vsicons.dontShowNewVersionMessage": true,
 }
