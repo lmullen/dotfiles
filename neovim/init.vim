@@ -1,51 +1,25 @@
- " Neovim configuration for Lincoln Mullen
+ " Neovim configuration
 
 " Plugins
 " -------------------------------------------------------------------
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'scrooloose/syntastic'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'tpope/vim-dispatch'
-" Plug 'tpope/vim-fugitive'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
-" Plug 'wincent/terminus'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'fatih/vim-go'
-" Plug 'honza/vim-snippets'
+Plug 'fatih/vim-go'
 Plug 'icymind/NeoSolarized'
-" Plug 'rking/ag.vim'
-" Plug 'robertbasic/vim-hugo-helper'
-" Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-" Plug 'zchee/deoplete-go'
 call plug#end()
 
 " General
 " -------------------------------------------------------------------
 filetype plugin indent on
 set encoding=utf-8
-" set showmode
-" set showcmd
-" set hidden
-" set ruler
-" set backspace=indent,eol,start              " allow backspacing in insert mode
 set showmatch                               " matching parentheses
 set smarttab
 set shiftround
-" set history=1000                            " remember commands and searches
-" set undolevels=100                          " use many levels of undo
-" set noerrorbells                            " don't beep
 set mouse=a                                 " use mouse in console
-" set nrformats-=octal
-" set timeoutlen=250
-" set ttimeoutlen=100
 set autoread
 set autowrite
 au FocusLost * :wa                          " save when losing focus (gVim)
@@ -61,7 +35,6 @@ set display+=lastline                       " show partial last lines
 set scrolloff=0
 " Resize the splits if the vim windows is resized
 autocmd VimResized * :wincmd =
-" set nolist                                  " don't display space chars
 set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·  " TextMate style space chars
 
 " Status line
@@ -71,12 +44,7 @@ set statusline=""
 set statusline+=%t                          " tail/filename
 set statusline+=%m%r%h                      " modified/read only/help
 set statusline+=\ [%Y]                      " line endings/type of file
-" set statusline+=\ %{fugitive#statusline()}  " Git status
 set statusline+=%=                          " left/right separator
-" Syntastic warning
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
 "display a warning if &paste is set
 set statusline+=%#error#
 set statusline+=%{&paste?'[paste]':''}
@@ -104,12 +72,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Folding
-" -------------------------------------------------------------------
-" set nofoldenable
-" set foldcolumn=1
-" nnoremap <space> za
-
 " Keyboard shortcuts
 " -------------------------------------------------------------------
 nmap E ge
@@ -123,10 +85,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap j gj
 nnoremap k gk
-" nnoremap [<space> O<ESC>j
-" nnoremap ]<space> o<ESC>k
-" nnoremap ]N /\V[^\d\+]<CR>
-" nnoremap [N ?\V[^\d\+]<CR>
 " Copying and pasting
 imap <C-v> <C-r><C-o>+
 imap <C-c> <CR><Esc>O
@@ -145,16 +103,11 @@ set spelllang=en_us                         " US English
 set spell                                   " spell check on
 set spellsuggest=10                         " only suggest a few words
 
-" Abbreviations 
-" -------------------------------------------------------------------
-" source $HOME/.vim/abbreviations.vim         " load abbreviations list
-" command! -nargs=0 Abbr sp $HOME/.vim/abbreviations.vim
-
 " Text formatting 
 " -------------------------------------------------------------------
 set wrap                                    " soft wrap long lines
 set linebreak
-set textwidth=78
+set textwidth=80
 set tabstop=2                               " a tab is two spaces
 set softtabstop=2                           " soft tab is two spaces
 set shiftwidth=2                            " # of spaces for autoindenting
@@ -207,19 +160,6 @@ autocmd FileType pandoc set commentstring=<!--\ %s\ -->   "comments for pandoc
 nmap <C-c> gcc
 vmap <C-c> gcc
 
-" UltiSnips
-" -------------------------------------------------------------------
-let g:UltiSnipsEditSplit = 'horizontal'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" Syntastic 
-" -------------------------------------------------------------------
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
 " Ctrl-P 
 " -------------------------------------------------------------------
 let g:ctrlp_open_new_file = 'r'             " open new files in same window
@@ -229,13 +169,4 @@ let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_dotfiles = 0                    " ignore dotfiles and dotdirs
 let g:ctrlp_custom_ignore = { 'dir': '\.git$\|\_site$' }
-
-" Ag
-" -------------------------------------------------------------------
-let g:ag_prg="ag --column --smart-case"
-
-" Deoplete
-" -------------------------------------------------------------------
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_complete_delay=1000
 
