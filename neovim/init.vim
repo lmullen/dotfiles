@@ -53,8 +53,7 @@ au FocusLost * :wa                          " save when losing focus (gVim)
 " Display
 " -------------------------------------------------------------------
 syntax enable
-" set termguicolors
-let g:airline_solarized_bg='dark'
+set termguicolors
 colorscheme NeoSolarized
 set background=dark
 set number
