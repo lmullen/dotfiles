@@ -8,6 +8,8 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
+.libPaths("~/R/library")
+
 options(
     width = 80,
     repos = c(
@@ -20,7 +22,7 @@ options(
     editor = "vim",
     browserNLdisabled = TRUE,
     # max.print = 1e2,
-    Ncpus = 8L,
+    Ncpus = parallel::detectCores(),
     devtools.name = "Lincoln Mullen",
     devtools.desc= list(
       "Authors@R" = 'c(person("Lincoln", "Mullen", 
