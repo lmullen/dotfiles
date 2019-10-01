@@ -1,12 +1,18 @@
-# ZSH configuration, Lincoln Mullen <lincoln@lincolnmullen.com>
+# ZSH configuration
 
 # Environment variables
-export EDITOR='nvim'
-export PROJECTS=~/dev # c + <tab> for autocomplete
-export ZSH=$HOME/dev/lmullen/dotfiles
+if [[ -a "$HOME/.env.zsh" ]]; then
+  source "$HOME/.env.zsh"
+fi
+export EDITOR='vim'
+export PROJECTS=$HOME/github # c + <tab> for autocomplete
+export ZSH=$HOME/github/lmullen/dotfiles
 export GOPATH=$HOME/go
-export MAKEFLAGS="-j 7"
-export HOMEBREW_NO_ANALYTICS=1
+if [[ -v NUMCORES ]]; then
+  export MAKEFLAGS="-j $NUMCORES"
+else
+  export MAKEFLAGS="-j 4"
+fi
 
 # Aliases
 source $ZSH/zsh/aliases.zsh
@@ -14,7 +20,6 @@ source $ZSH/zsh/aliases.zsh
 # Functions
 fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
-
 
 # Options
 HISTFILE=~/.zsh_history
@@ -24,14 +29,10 @@ setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
-setopt EXTENDED_HISTORY # add timestamps to history
 export CLICOLOR=true
 export TERM="xterm-256color"
 setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
 setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
@@ -74,9 +75,9 @@ git_dirty() {
 }
 
 git_prompt_info() {
- ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo ":%{$fg[magenta]%}${ref#refs/heads/}${reset_color%}"
+  ref=$(/usr/bin/git symbolic-ref HEAD 2>/dev/null) || return
+  # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+  echo ":%{$fg[magenta]%}${ref#refs/heads/}${reset_color%}"
 }
 
 unpushed() {
@@ -103,7 +104,7 @@ directory_name(){
 }
 
 user_machine(){
-  echo "%{$fg[yellow]%}%n@%M%{$reset_color%}"
+  echo "%{$fg[yellow]%}%n@%m%{$reset_color%}"
 }
 
 python_venv() {
@@ -115,7 +116,7 @@ python_venv() {
 }
 
 set_prompt() {
-  export PROMPT=$'\n$(user_machine):$(directory_name)$(python_venv)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
+  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
@@ -128,19 +129,9 @@ precmd() {
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
-  # /usr/texbin
-  /usr/X11/bin
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/local/clang6/bin 
-  /usr/local/opt/ruby/bin
+  $PROJECTS/lmullen/dotfiles/bin
   $HOME/go/bin
-  /snap/bin
-  # ~/.rbenv/shims
-  # /usr/local/opt/python/libexec/bin
-  # $HOME/dev/dotfiles/bin
 )
-
 
 for dir in $pathdirs; do
   if [ -d $dir ]; then
@@ -152,11 +143,3 @@ done
 autoload -U compinit
 compinit
 
-
-# Dead to me settings
-# -------------------------
-# Ruby
-# eval "$(rbenv init -)"
-# GPG
-# export GPG_TTY=$(tty)
-# cdpath=( . ~ ~/dev )
