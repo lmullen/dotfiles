@@ -239,4 +239,5 @@
     "files.eol": "\n",
     "workbench.sideBar.location": "left",
     "python.formatting.provider": "black",
+    "vsicons.dontShowNewVersionMessage": true,
 }
