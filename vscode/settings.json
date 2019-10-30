@@ -72,7 +72,7 @@
     // "rewrap.autoWrap.enabled": true,
     "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "git.confirmSync": false,
     "breadcrumbs.enabled": true,
     "html.autoClosingTags": false,
@@ -84,12 +84,15 @@
     "rewrap.wholeComment": false,
     "git.autofetch": true,
     "files.exclude": {
+        ".cache": true,
         ".Rhistory": true,
         ".Rproj.user": true,
         ".vscode/": true,
         "*.Rproj": true,
         "**/__pycache__": true,
+        "dist": true,
         "env/": true,
+        "node_modules": true,
         "process-photos": true,
         "staticfiles/": true
     },
@@ -107,7 +110,7 @@
         "diagnostics": true, // for build and vet errors as you type
         "findReferences": true // for finding in-package references
     },
-    "go.useLanguageServer": false, // formatting only supports LF line endings
+    "go.useLanguageServer": true, // formatting only supports LF line endings
     "[go]": {
         "editor.insertSpaces": false,
         "editor.formatOnSave": true,
@@ -122,4 +125,5 @@
     "vsicons.dontShowNewVersionMessage": true,
     "editor.formatOnSave": true,
     "spellright.notificationClass": "warning",
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }
