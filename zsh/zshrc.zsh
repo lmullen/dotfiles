@@ -129,6 +129,7 @@ precmd() {
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
+  /snap/bin
   $PROJECTS/lmullen/dotfiles/bin
   $HOME/go/bin
 )

@@ -110,7 +110,7 @@
         "diagnostics": true, // for build and vet errors as you type
         "findReferences": true // for finding in-package references
     },
-    "go.useLanguageServer": false, // formatting only supports LF line endings
+    "go.useLanguageServer": true, // formatting only supports LF line endings
     "[go]": {
         "editor.insertSpaces": false,
         "editor.formatOnSave": true,
@@ -125,4 +125,5 @@
     "debug.console.fontFamily": "IBM Plex Mono, default",
     "editor.formatOnSave": true,
     "spellright.notificationClass": "warning",
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }
