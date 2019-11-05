@@ -9,6 +9,7 @@ git :
 R :
 	@echo "Symlinking R dotfiles"
 	ln -s $(HOME)/github/lmullen/dotfiles/R/Rprofile.R $(HOME)/.Rprofile 
+	ln -s $(HOME)/github/lmullen/dotfiles/R/Renviron $(HOME)/.Renviron 
 
 latex :
 	@echo "Symlinking LaTeX dotfiles"
