@@ -92,7 +92,7 @@
         "**/__pycache__": true,
         "dist": true,
         "env/": true,
-        "node_modules": true,
+        "node_modules/": true,
         "process-photos": true,
         "staticfiles/": true
     },
