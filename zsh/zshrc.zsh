@@ -13,6 +13,7 @@ if [[ -v NUMCORES ]]; then
 else
   export MAKEFLAGS="-j 4"
 fi
+export HOMEBREW_NO_ANALYTICS=1
 
 # Aliases
 source $ZSH/zsh/aliases.zsh
