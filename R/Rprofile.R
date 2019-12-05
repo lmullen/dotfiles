@@ -8,14 +8,13 @@
 # https://github.com/hadley/devtools#other-tips
 # http://inundata.org/2011/09/29/customizing-your-rprofile/
 
-.libPaths("~/R/library")
+# Only set this if we are not running in RStudio
+if (Sys.getenv("RSTUDIO") != "1") {
+  options(repositories = c(CRAN = "https://cloud.r-project.org"))
+}
 
 options(
     width = 80,
-    repos = c(
-              # ROPENSCI = "http://packages.ropensci.org",
-              CRAN = "https://cloud.r-project.org"
-              ),
     download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
@@ -37,7 +36,6 @@ options(
     )
 utils::rc.settings(ipck = TRUE)
 
-Sys.setenv(R_PACKRAT_CACHE_DIR = '~/R/packrat/')
 Sys.setenv(R_HISTSIZE = '1000')
 Sys.setenv(TZ = "America/New_York")
 
