@@ -10,7 +10,7 @@
 
 # Only set this if we are not running in RStudio
 if (Sys.getenv("RSTUDIO") != "1") {
-  options(repositories = c(CRAN = "https://cloud.r-project.org"))
+  options(repos = c(CRAN = "https://cloud.r-project.org"))
 }
 
 options(
