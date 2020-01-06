@@ -47,6 +47,7 @@
         "editor.wordBasedSuggestions": false,
         "editor.selectionHighlight": false,
         "editor.occurrencesHighlight": false,
+        "editor.formatOnSave": false
     },
     "[plaintext]": {
         "editor.wordWrap": "bounded",
@@ -67,7 +68,7 @@
     // "rewrap.autoWrap.enabled": true,
     "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "git.confirmSync": false,
     "breadcrumbs.enabled": true,
     "html.format.endWithNewline": true,
@@ -117,10 +118,10 @@
     "vsicons.dontShowNewVersionMessage": true,
     "debug.console.fontFamily": "IBM Plex Mono, default",
     "editor.formatOnSave": true,
-    "spellright.notificationClass": "warning",
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "/bin/zsh",
     "workbench.colorTheme": "Default Light+",
     "editor.multiCursorModifier": "ctrlCmd",
     "html.mirrorCursorOnMatchingTag": false,
+    "pandoc-format.command": "pandoc -t markdown --atx-headers --standalone --wrap=none",
 }

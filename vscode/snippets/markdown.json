@@ -3,5 +3,10 @@
         "prefix": "twl",
         "body": "\"[$1]($2)\"",
         "description": "Linked title in quotation marks"
-    }
+    },
+    "Date": {
+        "prefix": "ddate",
+        "body": "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+        "description": "Current date (ISO-8601)",
+    },
 }
