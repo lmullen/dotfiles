@@ -47,6 +47,7 @@
         "editor.wordBasedSuggestions": false,
         "editor.selectionHighlight": false,
         "editor.occurrencesHighlight": false,
+        "editor.formatOnSave": false
     },
     "[plaintext]": {
         "editor.wordWrap": "bounded",

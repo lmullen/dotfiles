@@ -51,3 +51,4 @@ env/
 .env
 .cache/
 TODO.txt
+*.scriv
