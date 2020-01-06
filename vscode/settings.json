@@ -47,7 +47,8 @@
         "editor.wordBasedSuggestions": false,
         "editor.selectionHighlight": false,
         "editor.occurrencesHighlight": false,
-        "editor.formatOnSave": false
+        "editor.formatOnSave": false,
+        "editor.wordWrapColumn": 80,
     },
     "[plaintext]": {
         "editor.wordWrap": "bounded",
@@ -57,7 +58,7 @@
     },
     "[html]": {
         "editor.wordWrap": "on",
-        "editor.wordBasedSuggestions": false
+        "editor.wordBasedSuggestions": false,
     },
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
@@ -68,7 +69,7 @@
     // "rewrap.autoWrap.enabled": true,
     "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "git.confirmSync": false,
     "breadcrumbs.enabled": true,
     "html.format.endWithNewline": true,
