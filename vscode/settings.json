@@ -121,4 +121,6 @@
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "/bin/zsh",
     "workbench.colorTheme": "Default Light+",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "html.mirrorCursorOnMatchingTag": false,
 }
