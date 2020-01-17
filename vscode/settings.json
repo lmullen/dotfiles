@@ -69,7 +69,7 @@
     // "rewrap.autoWrap.enabled": true,
     "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 2,
+    "window.zoomLevel": 1,
     "git.confirmSync": false,
     "breadcrumbs.enabled": true,
     "html.format.endWithNewline": true,
@@ -89,6 +89,7 @@
         "env/": true,
         "node_modules/": true,
         "process-photos": true,
+        "public/": true,
         "staticfiles/": true
     },
     "[python]": {
