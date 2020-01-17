@@ -40,6 +40,24 @@
             "after": [
                 "~"
             ]
+        },
+        {
+            "before": [
+                "Ctrl+h"
+            ],
+            "after": [
+                "Ctrl+w",
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "Ctrl+l"
+            ],
+            "after": [
+                "Ctrl+w",
+                "l"
+            ]
         }
     ],
     "[markdown]": {
