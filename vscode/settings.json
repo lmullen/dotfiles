@@ -40,6 +40,24 @@
             "after": [
                 "~"
             ]
+        },
+        {
+            "before": [
+                "Ctrl+h"
+            ],
+            "after": [
+                "Ctrl+w",
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "Ctrl+l"
+            ],
+            "after": [
+                "Ctrl+w",
+                "l"
+            ]
         }
     ],
     "[markdown]": {
@@ -47,6 +65,8 @@
         "editor.wordBasedSuggestions": false,
         "editor.selectionHighlight": false,
         "editor.occurrencesHighlight": false,
+        "editor.formatOnSave": false,
+        "editor.wordWrapColumn": 80,
     },
     "[plaintext]": {
         "editor.wordWrap": "bounded",
@@ -56,7 +76,7 @@
     },
     "[html]": {
         "editor.wordWrap": "on",
-        "editor.wordBasedSuggestions": false
+        "editor.wordBasedSuggestions": false,
     },
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
@@ -67,7 +87,7 @@
     // "rewrap.autoWrap.enabled": true,
     "editor.wordWrapColumn": 120,
     "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "git.confirmSync": false,
     "breadcrumbs.enabled": true,
     "html.format.endWithNewline": true,
@@ -87,6 +107,7 @@
         "env/": true,
         "node_modules/": true,
         "process-photos": true,
+        "public/": true,
         "staticfiles/": true
     },
     "[python]": {
@@ -117,8 +138,10 @@
     "vsicons.dontShowNewVersionMessage": true,
     "debug.console.fontFamily": "IBM Plex Mono, default",
     "editor.formatOnSave": true,
-    "spellright.notificationClass": "warning",
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.osx": "/bin/zsh",
     "workbench.colorTheme": "Default Light+",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "html.mirrorCursorOnMatchingTag": false,
+    "pandoc-format.command": "pandoc -t markdown --atx-headers --standalone --wrap=none",
 }
