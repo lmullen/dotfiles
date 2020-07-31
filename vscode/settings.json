@@ -1,128 +1,151 @@
 {
-    "files.autoSave": "onFocusChange",
-    "files.insertFinalNewline": true,
-    "editor.fontFamily": "IBM Plex Mono, monospace",
-    "editor.tabSize": 2,
-    "editor.rulers": [
-        80,
-        120
-    ],
-    "editor.snippetSuggestions": "top",
-    "editor.renderWhitespace": "boundary",
-    "editor.wordWrap": "bounded",
-    "go.formatTool": "gofmt",
-    "git.enableCommitSigning": false,
-    "git.enableSmartCommit": true,
-    "vim.useSystemClipboard": false,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "j"
-            ],
-            "after": [
-                "g",
-                "j"
-            ]
-        },
-        {
-            "before": [
-                "k"
-            ],
-            "after": [
-                "g",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "K"
-            ],
-            "after": [
-                "~"
-            ]
-        }
-    ],
-    "[markdown]": {
-        "editor.wordWrap": "bounded",
-        "editor.wordBasedSuggestions": false,
-        "editor.selectionHighlight": false,
-        "editor.occurrencesHighlight": false,
-        "editor.formatOnSave": false,
-        "editor.wordWrapColumn": 80,
-    },
-    "[plaintext]": {
-        "editor.wordWrap": "bounded",
-        "editor.wordBasedSuggestions": false,
-        "editor.selectionHighlight": false,
-        "editor.occurrencesHighlight": false,
-    },
-    "[html]": {
-        "editor.wordWrap": "on",
-        "editor.wordBasedSuggestions": false,
-    },
-    "explorer.confirmDelete": false,
-    "extensions.ignoreRecommendations": true,
-    "workbench.startupEditor": "welcomePage",
-    "explorer.confirmDragAndDrop": false,
-    "editor.tabCompletion": "on",
-    "workbench.iconTheme": "vscode-icons",
-    // "rewrap.autoWrap.enabled": true,
-    "editor.wordWrapColumn": 120,
-    "search.useGlobalIgnoreFiles": true,
-    "window.zoomLevel": 2,
-    "git.confirmSync": false,
-    "breadcrumbs.enabled": true,
-    "html.format.endWithNewline": true,
-    "html.format.extraLiners": "head, body, main, section, article, header, footer, /html",
-    "html.format.wrapLineLength": 0,
-    "rewrap.wrappingColumn": 80,
-    "rewrap.wholeComment": false,
-    "git.autofetch": true,
-    "files.exclude": {
-        ".cache": true,
-        ".Rhistory": true,
-        ".Rproj.user": true,
-        ".vscode/": true,
-        "*.Rproj": true,
-        "**/__pycache__": true,
-        "dist": true,
-        "env/": true,
-        "node_modules/": true,
-        "process-photos": true,
-        "staticfiles/": true
-    },
-    "[python]": {
-        "editor.insertSpaces": true,
-        "editor.tabSize": 4,
-        "editor.formatOnSave": true,
-    },
-    "python.linting.pylintArgs": [
-        "--load-plugins",
-        "pylint_django"
-    ],
-    "editor.renderControlCharacters": true,
-    "go.languageServerExperimentalFeatures": {
-        "diagnostics": true, // for build and vet errors as you type
-        "findReferences": true // for finding in-package references
-    },
-    "go.useLanguageServer": true, // formatting only supports LF line endings
-    "[go]": {
-        "editor.insertSpaces": false,
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
-    },
-    "files.eol": "\n",
-    "workbench.sideBar.location": "left",
-    "python.formatting.provider": "black",
-    "vsicons.dontShowNewVersionMessage": true,
-    "debug.console.fontFamily": "IBM Plex Mono, default",
+  "breadcrumbs.enabled": true,
+  "debug.console.fontFamily": "IBM Plex Mono, default",
+  "editor.fontFamily": "IBM Plex Mono, monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.snippetSuggestions": "top",
+  "editor.suggest.showWords": false,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordBasedSuggestions": false,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 120,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.exclude": {
+    ".cache": true,
+    ".Rhistory": true,
+    ".Rproj.user": true,
+    ".vscode/": true,
+    "*.Rproj": true,
+    "**/__pycache__": true,
+    "**/node_modules/": true,
+    "build": true,
+    "dist": true,
+    "env/": true,
+    "process-photos": true,
+    "public/": false,
+    "staticfiles/": true
+  },
+  "files.insertFinalNewline": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableCommitSigning": false,
+  "git.enableSmartCommit": true,
+  "go.autocompleteUnimportedPackages": true,
+  "go.languageServerExperimentalFeatures": {
+    "diagnostics": true, // for build and vet errors as you type
+    "findReferences": true // for finding in-package references
+  },
+  "go.useLanguageServer": true, // formatting only supports LF line endings
+  "go.formatTool": "gofmt",
+  "[go]": {
+    "editor.insertSpaces": false,
     "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "terminal.integrated.shell.osx": "/bin/zsh",
-    "workbench.colorTheme": "Default Light+",
-    "editor.multiCursorModifier": "ctrlCmd",
-    "html.mirrorCursorOnMatchingTag": false,
-    "pandoc-format.command": "pandoc -t markdown --atx-headers --standalone --wrap=none",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "html.format.endWithNewline": true,
+  "html.format.extraLiners": "head, body, main, section, article, header, footer, /html",
+  "[html]": {
+    "editor.wordWrap": "on",
+    "editor.wordBasedSuggestions": false,
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.occurrencesHighlight": false,
+    "editor.selectionHighlight": false,
+    "editor.wordBasedSuggestions": false,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "editor.defaultFormatter": "monofon.pandoc-format"
+  },
+  "pandoc-format.command": "pandoc -t markdown --atx-headers --standalone --wrap=none",
+  "[plaintext]": {
+    "editor.occurrencesHighlight": false,
+    "editor.selectionHighlight": false,
+    "editor.wordBasedSuggestions": false,
+    "editor.wordWrap": "bounded"
+  },
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true
+  },
+  "rewrap.wholeComment": false,
+  "rewrap.wrappingColumn": 80,
+  "search.useGlobalIgnoreFiles": true,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "vim.easymotionMarkerFontFamily": "IBM Plex Mono, monospace",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "after": [
+        "~"
+      ]
+    },
+    {
+      "before": [
+        "Ctrl+h"
+      ],
+      "after": [
+        "Ctrl+w",
+        "h"
+      ]
+    },
+    {
+      "before": [
+        "Ctrl+l"
+      ],
+      "after": [
+        "Ctrl+w",
+        "l"
+      ]
+    }
+  ],
+  "vim.useSystemClipboard": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Default Light+",
+  "workbench.fontAliasing": "auto",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "welcomePage",
+  "workbench.tree.indent": 16,
+  "prettier.disableLanguages": [
+    "html"
+  ],
 }
