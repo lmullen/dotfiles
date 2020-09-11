@@ -10,22 +10,24 @@ import dateutil.parser as dp
 import json
 import urllib.parse
 
-teaching_area = "D1CEB2B2-34AA-480A-BE7B-F55F0DE9C79A"  # UUID for teaching area
-class_title = "Computational History"
+teaching_area = "D52A2EC8-D9E6-4BC0-8066-D5CDDEFFEE89"  # UUID for todo area
+class_title = "DH Practicum"
 meeting_dates = [
-        "2020-02-03",
-        "2020-02-10",
-        "2020-02-17",
-        "2020-02-24",
-        "2020-03-02",
-        "2020-03-16",
-        "2020-03-23",
-        "2020-03-30",
-        "2020-04-06",
-        "2020-04-13",
-        "2020-04-20",
-        "2020-04-27",
-        "2020-05-04"
+    "2020-08-25",
+    "2020-09-01",
+    "2020-09-08",
+    "2020-09-15",
+    "2020-09-22",
+    "2020-09-29",
+    "2020-10-06",
+    "2020-10-13",
+    "2020-10-20",
+    "2020-10-27",
+    "2020-11-03",
+    "2020-11-17",
+    "2020-11-24",
+    "2020-12-01",
+    "2020-12-08",
 ]
 meeting_dates.reverse()  # Make them appear in Things in the correct order
 
@@ -44,32 +46,28 @@ def create_meeting(class_date):
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Do the {class_title} readings for next meeting",
-                        "when": earlier.isoformat(),
+                        "title": f"Do the readings for {class_title}",
                         "tags": ["teaching"],
                     },
                 },
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Prepare the worksheet or assignment for following week",
-                        "when": earlier.isoformat(),
+                        "title": f"Create notes for {class_title} meeting",
                         "tags": ["teaching"],
                     },
                 },
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Finish grading previous week assignment",
-                        "when": earlier.isoformat(),
+                        "title": f"Review work from previous meeting of {class_title}",
                         "tags": ["teaching"],
                     },
                 },
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Prepare class notes and demos",
-                        "when": earlier.isoformat(),
+                        "title": f"Look ahead for coordinating for {class_title}",
                         "tags": ["teaching"],
                     },
                 },

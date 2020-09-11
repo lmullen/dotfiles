@@ -138,7 +138,7 @@
   ],
   "vim.useSystemClipboard": false,
   "vsicons.dontShowNewVersionMessage": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "workbench.colorTheme": "Default Light+",
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": "vscode-icons",
@@ -148,4 +148,6 @@
   "prettier.disableLanguages": [
     "html"
   ],
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.formatting.provider": "black",
 }
