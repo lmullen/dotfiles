@@ -10,23 +10,32 @@ import dateutil.parser as dp
 import json
 import urllib.parse
 
-teaching_area = "D1CEB2B2-34AA-480A-BE7B-F55F0DE9C79A"  # UUID for teaching area
-class_title = "Black DH"
+teaching_area = "D52A2EC8-D9E6-4BC0-8066-D5CDDEFFEE89"  # UUID for todo area
+class_title = "DH Practicum"
 meeting_dates = [
-    "2019-09-04",
-    "2019-09-11",
-    "2019-09-18",
-    "2019-10-09",
-    "2019-10-16",
-    "2019-10-23",
+    "2020-08-25",
+    "2020-09-01",
+    "2020-09-08",
+    "2020-09-15",
+    "2020-09-22",
+    "2020-09-29",
+    "2020-10-06",
+    "2020-10-13",
+    "2020-10-20",
+    "2020-10-27",
+    "2020-11-03",
+    "2020-11-17",
+    "2020-11-24",
+    "2020-12-01",
+    "2020-12-08",
 ]
 meeting_dates.reverse()  # Make them appear in Things in the correct order
 
 
 def create_meeting(class_date):
     class_date = datetime.date.fromisoformat(class_date)
-    deadline = class_date - datetime.timedelta(days=1)
-    earlier = class_date - datetime.timedelta(days=6)
+    deadline = class_date
+    earlier = class_date
     project = {
         "type": "project",
         "attributes": {
@@ -37,24 +46,29 @@ def create_meeting(class_date):
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Check availability of {class_title} readings for next meeting",
-                        "when": earlier.isoformat(),
-                        "tags": ["low energy work"],
+                        "title": f"Do the readings for {class_title}",
+                        "tags": ["teaching"],
                     },
                 },
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Read the texts for {class_title} before next meeting",
-                        "when": deadline.isoformat(),
-                        "tags": ["reading"],
+                        "title": f"Create notes for {class_title} meeting",
+                        "tags": ["teaching"],
                     },
                 },
                 {
                     "type": "to-do",
                     "attributes": {
-                        "title": f"Read student precis for {class_title} and prepare points for discussion",
-                        "when": deadline.isoformat(),
+                        "title": f"Review work from previous meeting of {class_title}",
+                        "tags": ["teaching"],
+                    },
+                },
+                {
+                    "type": "to-do",
+                    "attributes": {
+                        "title": f"Look ahead for coordinating for {class_title}",
+                        "tags": ["teaching"],
                     },
                 },
             ],
@@ -68,3 +82,4 @@ def create_meeting(class_date):
 
 for meeting in meeting_dates:
     create_meeting(meeting)
+
