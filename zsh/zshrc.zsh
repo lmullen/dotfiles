@@ -132,6 +132,7 @@ precmd() {
 pathdirs=(
   /snap/bin
   $PROJECTS/lmullen/dotfiles/bin
+  /usr/local/opt/ruby/bin
   $HOME/go/bin
 )
 
