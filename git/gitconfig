@@ -38,5 +38,3 @@
         tool = vimdiff
 [commit]
         gpgsign = false
-[pull]
-	ff = only
