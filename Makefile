@@ -23,12 +23,7 @@ neovim :
 	@echo "Symlinking Neovim dotfiles"
 	ln -s $(HOME)/github/lmullen/dotfiles/neovim $(HOME)/.config/nvim
 
-vscode-mac :
-	@echo "Symlinking Visual Studio Code settings for Mac"
-	ln -s $(HOME)/github/lmullen/dotfiles/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
-	ln -s $(HOME)/github/lmullen/dotfiles/vscode/snippets $(HOME)/Library/Application\ Support/Code/User/snippets
+all : git R latex zsh neovim
 
-all : git R latex zsh neovim vscode-mac
-
-.PHONY : all default git R latex zsh neovim vscode-mac
+.PHONY : all default git R latex zsh neovim
 
