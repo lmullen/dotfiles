@@ -38,3 +38,5 @@
         tool = vimdiff
 [commit]
         gpgsign = false
+[init]
+	defaultBranch = main
