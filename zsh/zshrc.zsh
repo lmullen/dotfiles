@@ -134,6 +134,7 @@ pathdirs=(
   $PROJECTS/lmullen/dotfiles/bin
   /usr/local/opt/ccache/libexec
   /usr/local/opt/ruby/bin
+  /usr/local/lib/ruby/gems/3.0.0/bin
   $HOME/go/bin
 )
 
