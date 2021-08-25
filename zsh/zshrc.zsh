@@ -4,7 +4,7 @@
 if [[ -a "$HOME/.env.zsh" ]]; then
   source "$HOME/.env.zsh"
 fi
-export EDITOR='vim'
+export EDITOR='nvim'
 export PROJECTS=$HOME/github # c + <tab> for autocomplete
 export ZSH=$HOME/github/lmullen/dotfiles
 export GOPATH=$HOME/go
