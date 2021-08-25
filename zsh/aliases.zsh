@@ -12,6 +12,7 @@ alias more='more -R'                # give more colors
 alias process="ps aux | grep -i"
 alias scanlocal='nmap -sP 192.168.1.0/24'
 alias dfd='df -h -x squashfs -x tmpfs -x devtmpfs'
+alias editenv='$EDITOR ~/.env.zsh && source ~/.env.zsh && echo "Reloaded environment variables"'
 
 # Git 
 # -------------------------------------------------------------------
