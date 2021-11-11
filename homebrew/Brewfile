@@ -47,6 +47,7 @@ brew "aspell"
 brew "psqlodbc"
 brew "gnupg"
 brew "qpdf"
+cask "mactex-no-gui"
 cask "xquartz"
 
 ## GUI Apps 
