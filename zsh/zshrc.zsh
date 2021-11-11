@@ -116,8 +116,16 @@ python_venv() {
    fi
 }
 
+production() {
+  if [[ -z $PRODUCTION ]] then
+    echo ""
+  else
+    echo ":%{$fg[green]%}$PRODUCTION-PRODUCTION$reset_color%}"
+  fi
+}
+
 set_prompt() {
-  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)\n%{$fg[red]%}›%{$reset_color%} '
+  export PROMPT=$'\n$(user_machine):$(directory_name)$(git_prompt_info)$(production)\n%{$fg[red]%}›%{$reset_color%} '
   RPROMPT='%(?.. %?)'
 }
 
@@ -148,3 +156,6 @@ done
 autoload -U compinit
 compinit
 
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
