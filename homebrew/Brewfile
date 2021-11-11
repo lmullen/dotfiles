@@ -13,7 +13,6 @@ brew "mas"
 # Programming languages
 # -----------------------------------------------------------------------------
 brew "go"
-brew "julia"
 brew "node"
 brew "python"
 brew "r"
