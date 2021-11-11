@@ -18,17 +18,17 @@ brew "python"
 brew "r"
 brew "ruby"
 
-# CLI Tools or other software desired for end use
+# CLI Tools or other end-use software
 # -----------------------------------------------------------------------------
 brew "awscli"
 brew "caddy"
 brew "ccache"
 brew "cloc"
+brew "doctl"
 brew "gdal"
 brew "gh"
 brew "git"
 brew "git-lfs"
-brew "gnupg"
 brew "golang-migrate"
 brew "hugo"
 brew "jq"
@@ -40,16 +40,13 @@ brew "postgresql@12", restart_service: true
 brew "sqlite"
 brew "wget"
 brew "zsh"
-cask "mactex-no-gui"
 
 # Dependencies for programming languages and the like
 # -----------------------------------------------------------------------------
 brew "aspell"
-brew "hyperscan"
-brew "luajit"
 brew "psqlodbc"
+brew "gnupg"
 brew "qpdf"
-brew "unixodbc"
 cask "xquartz"
 
 ## GUI Apps 
@@ -99,6 +96,6 @@ mas "Soulver 3", id:1508732804
 mas "Xcode", id:497799835
 mas "iMovie", id:408981434
 
-## Fonts
-## -----------------------------------------------------------------------------
+# Fonts
+# -----------------------------------------------------------------------------
 cask "font-ibm-plex"
