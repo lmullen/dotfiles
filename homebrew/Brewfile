@@ -60,6 +60,7 @@ cask "daisydisk"
 cask "db-browser-for-sqlite"
 cask "docker"
 cask "freedom"
+cask "fantastical"
 cask "geekbench"
 cask "grandperspective"
 cask "homebrew/cask-versions/firefox-developer-edition"
@@ -86,7 +87,6 @@ mas "1Blocker", id:1107421413
 mas "Acorn", id:1233861775
 mas "Amphetamine", id:937984704
 mas "Boop", id: 1518425043
-mas "Fantastical", id: 435003921
 mas "GarageBand", id:682658836
 mas "Keynote", id:409183694
 mas "Magnet", id:441258766
