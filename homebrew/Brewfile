@@ -1,0 +1,105 @@
+# Installation dependencies and settings
+# -----------------------------------------------------------------------------
+cask_args appdir: "/Applications"
+
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+
+brew "mas"
+
+# Programming languages
+# -----------------------------------------------------------------------------
+brew "go"
+brew "julia"
+brew "node"
+brew "python"
+brew "r"
+brew "ruby"
+
+# CLI Tools or other software desired for end use
+# -----------------------------------------------------------------------------
+brew "awscli"
+brew "caddy"
+brew "ccache"
+brew "cloc"
+brew "gdal"
+brew "gh"
+brew "git"
+brew "git-lfs"
+brew "gnupg"
+brew "golang-migrate"
+brew "hugo"
+brew "jq"
+brew "mosh"
+brew "neovim"
+brew "nmap"
+brew "pandoc"
+brew "postgresql@12", restart_service: true
+brew "sqlite"
+brew "wget"
+brew "zsh"
+cask "mactex-no-gui"
+
+# Dependencies for programming languages and the like
+# -----------------------------------------------------------------------------
+brew "aspell"
+brew "hyperscan"
+brew "luajit"
+brew "psqlodbc"
+brew "qpdf"
+brew "unixodbc"
+cask "xquartz"
+
+## GUI Apps 
+## -----------------------------------------------------------------------------
+cask "adobe-acrobat-pro"
+cask "audacity"
+cask "backblaze"
+cask "basecamp"
+cask "cakebrew"
+cask "daisydisk"
+cask "db-browser-for-sqlite"
+cask "docker"
+cask "freedom"
+cask "geekbench"
+cask "grandperspective"
+cask "homebrew/cask-versions/firefox-developer-edition"
+cask "iterm2"
+cask "libreoffice"
+cask "microblog"
+cask "microsoft-excel"
+cask "microsoft-word"
+cask "netnewswire"
+cask "obsidian"
+cask "omnifocus"
+cask "postico"
+cask "qgis"
+cask "rstudio"
+cask "scrivener"
+cask "spotify"
+cask "transmission"
+cask "transmit"
+cask "tropy"
+cask "visual-studio-code"
+cask "zoom"
+cask "zotero"
+mas "1Blocker", id:1107421413
+mas "Acorn", id:1233861775
+mas "Amphetamine", id:937984704
+mas "Boop", id: 1518425043
+mas "Fantastical", id: 435003921
+mas "GarageBand", id:682658836
+mas "Keynote", id:409183694
+mas "Magnet", id:441258766
+mas "Save to Pocket", id:1477385213
+mas "Slack", id:803453959
+mas "Soulver 3", id:1508732804
+mas "Xcode", id:497799835
+mas "iMovie", id:408981434
+
+## Fonts
+## -----------------------------------------------------------------------------
+cask "font-ibm-plex"
