@@ -54,6 +54,9 @@ brew "xz"
 cask "mactex-no-gui"
 cask "xquartz"
 
+# Dependencies for specific projects, which should be culled more frequently
+brew "hyperscan" # For Legal Modernism research
+
 ## GUI Apps 
 ## -----------------------------------------------------------------------------
 cask "adobe-acrobat-pro"
