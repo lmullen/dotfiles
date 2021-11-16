@@ -55,6 +55,7 @@ cask "mactex-no-gui"
 cask "xquartz"
 
 # Dependencies for specific projects, which should be culled more frequently
+# -----------------------------------------------------------------------------
 brew "hyperscan" # For Legal Modernism research
 
 ## GUI Apps 
@@ -108,3 +109,4 @@ mas "iMovie", id:408981434
 # Fonts
 # -----------------------------------------------------------------------------
 cask "font-ibm-plex"
+
