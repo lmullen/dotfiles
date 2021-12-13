@@ -138,6 +138,7 @@ precmd() {
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
+  /opt/homebrew/bin
   /snap/bin
   $PROJECTS/lmullen/dotfiles/bin
   /usr/local/opt/ccache/libexec

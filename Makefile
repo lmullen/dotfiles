@@ -21,7 +21,11 @@ zsh :
 
 neovim :
 	@echo "Symlinking Neovim dotfiles"
+	mkdir -p $(HOME)/.config/
 	ln -s $(HOME)/github/lmullen/dotfiles/neovim $(HOME)/.config/nvim
+
+schaff-apps :
+	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Schaff.Brewfile
 
 all : git R latex zsh neovim
 
