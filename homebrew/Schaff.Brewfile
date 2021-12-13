@@ -63,6 +63,7 @@ brew "hyperscan" # For Legal Modernism research
 cask "adobe-acrobat-pro"
 cask "audacity"
 cask "basecamp"
+cask "bartender"
 cask "cakebrew"
 cask "daisydisk"
 cask "db-browser-for-sqlite"
@@ -94,6 +95,7 @@ cask "visual-studio-code"
 cask "zoom"
 cask "zotero"
 mas "1Blocker", id:1365531024
+mas "iStat Menus", id:1319778037
 mas "Acorn", id:1547371478
 mas "Amphetamine", id:937984704
 mas "Boop", id: 1518425043
