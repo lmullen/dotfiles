@@ -38,7 +38,7 @@ brew "mosh"
 brew "neovim"
 brew "nmap"
 brew "pandoc"
-brew "postgresql@12", restart_service: true
+brew "postgresql", restart_service: true
 brew "sqlite"
 brew "wget"
 brew "zsh"
@@ -62,7 +62,6 @@ brew "hyperscan" # For Legal Modernism research
 ## -----------------------------------------------------------------------------
 cask "adobe-acrobat-pro"
 cask "audacity"
-cask "backblaze"
 cask "basecamp"
 cask "cakebrew"
 cask "daisydisk"
@@ -94,8 +93,8 @@ cask "tropy"
 cask "visual-studio-code"
 cask "zoom"
 cask "zotero"
-mas "1Blocker", id:1107421413
-mas "Acorn", id:1233861775
+mas "1Blocker", id:1365531024
+mas "Acorn", id:1547371478
 mas "Amphetamine", id:937984704
 mas "Boop", id: 1518425043
 mas "GarageBand", id:682658836
@@ -103,9 +102,10 @@ mas "Keynote", id:409183694
 mas "Magnet", id:441258766
 mas "Save to Pocket", id:1477385213
 mas "Slack", id:803453959
-mas "Soulver 3", id:1508732804
+mas "Streaks", id:963034692
+# mas "Soulver 3", id:1508732804
 mas "Vinegar - Tube Cleaner", id:1591303229
-mas "Xcode", id:497799835
+# mas "Xcode", id:497799835
 mas "iMovie", id:408981434
 
 # Fonts
