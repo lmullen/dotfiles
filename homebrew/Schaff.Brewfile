@@ -65,13 +65,11 @@ cask "audacity"
 cask "basecamp"
 cask "bartender"
 cask "cakebrew"
-cask "daisydisk"
 cask "db-browser-for-sqlite"
 cask "docker"
 cask "freedom"
 cask "fantastical"
 cask "geekbench"
-cask "grandperspective"
 cask "homebrew/cask-versions/firefox-developer-edition"
 cask "iterm2"
 cask "libreoffice"
@@ -94,19 +92,21 @@ cask "tropy"
 cask "visual-studio-code"
 cask "zoom"
 cask "zotero"
-mas "1Blocker", id:1365531024
+# mas "1Blocker", id:1365531024
 mas "iStat Menus", id:1319778037
 mas "Acorn", id:1547371478
 mas "Amphetamine", id:937984704
 mas "Boop", id: 1518425043
+mas "DaisyDisk", id:411643860
 mas "GarageBand", id:682658836
+mas "GrandPerspective", id:1111570163
 mas "Keynote", id:409183694
 mas "Magnet", id:441258766
 mas "Save to Pocket", id:1477385213
 mas "Slack", id:803453959
 mas "Streaks", id:963034692
 # mas "Soulver 3", id:1508732804
-mas "Vinegar - Tube Cleaner", id:1591303229
+# mas "Vinegar - Tube Cleaner", id:1591303229
 # mas "Xcode", id:497799835
 mas "iMovie", id:408981434
 
