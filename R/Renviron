@@ -1,3 +1,4 @@
 R_LIBS=~/R/library/
+R_LIBS_USER=~/R/library/
 RENV_PATHS_ROOT=~/R/renv
 RENV_CONFIG_USER_PROFILE=TRUE
