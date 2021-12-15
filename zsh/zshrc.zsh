@@ -144,6 +144,7 @@ pathdirs=(
   /usr/local/opt/ccache/libexec
   /usr/local/opt/ruby/bin
   /usr/local/lib/ruby/gems/3.0.0/bin
+  /usr/local/texlive/2021/bin/universal-darwin
   $HOME/go/bin
 )
 
