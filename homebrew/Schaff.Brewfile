@@ -105,7 +105,6 @@ mas "Keynote", id:409183694
 mas "Magnet", id:441258766
 mas "Save to Pocket", id:1477385213
 mas "Slack", id:803453959
-mas "Streaks", id:963034692
 # mas "Soulver 3", id:1508732804
 # mas "Vinegar - Tube Cleaner", id:1591303229
 # mas "Xcode", id:497799835
