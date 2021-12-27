@@ -18,10 +18,6 @@ export HOMEBREW_NO_ANALYTICS=1
 # Aliases
 source $ZSH/zsh/aliases.zsh
 
-# Functions
-fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
-autoload -U $ZSH/zsh/functions/*(:t)
-
 # Options
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -137,6 +133,10 @@ for dir in $pathdirs; do
     PATH=$dir:$PATH
   fi
 done
+
+# Functions and completions
+fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $(brew --prefix)/share/zsh/site-functions $fpath)
+autoload -U $ZSH/zsh/functions/*(:t)
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
