@@ -18,7 +18,7 @@ options(
     download.file.method = "libcurl",
     useFancyQuotes = FALSE,
     menu.graphics = FALSE,
-    editor = "vim",
+    editor = "nvim",
     browserNLdisabled = TRUE,
     # max.print = 1e2,
     Ncpus = parallel::detectCores(),

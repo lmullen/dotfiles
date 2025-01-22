@@ -39,7 +39,6 @@
 .svn
 .tags
 .tags_sorted_by_file
-.vscode
 Session.vim
 vc.tex
 node_modules/

@@ -10,6 +10,8 @@ R :
 	@echo "Symlinking R dotfiles"
 	ln -s $(HOME)/github/lmullen/dotfiles/R/Rprofile.R $(HOME)/.Rprofile 
 	ln -s $(HOME)/github/lmullen/dotfiles/R/Renviron $(HOME)/.Renviron 
+	mkdir -p $(HOME)/.R
+	ln -s $(HOME)/github/lmullen/dotfiles/R/Makevars $(HOME)/.R/Makevars
 
 latex :
 	@echo "Symlinking LaTeX dotfiles"

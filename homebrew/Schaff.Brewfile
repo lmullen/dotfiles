@@ -4,7 +4,6 @@ cask_args appdir: "/Applications"
 
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 
@@ -40,17 +39,18 @@ brew "nmap"
 brew "pandoc"
 brew "postgresql", restart_service: true
 brew "sqlite"
+brew "the_silver_searcher"
 brew "wget"
 brew "zsh"
 
 # Dependencies for programming languages and the like
 # -----------------------------------------------------------------------------
 brew "aspell"
-brew "psqlodbc"
 brew "gcc"
 brew "gnupg"
-brew "qpdf"
 brew "openssl"
+brew "psqlodbc"
+brew "qpdf"
 brew "xz"
 cask "mactex-no-gui"
 cask "xquartz"
@@ -78,6 +78,7 @@ cask "microblog"
 cask "microsoft-auto-update"
 cask "microsoft-excel"
 cask "microsoft-word"
+cask "microsoft-powerpoint"
 cask "netnewswire"
 cask "obsidian"
 cask "omnifocus"
@@ -112,5 +113,8 @@ mas "iMovie", id:408981434
 
 # Fonts
 # -----------------------------------------------------------------------------
-cask "font-ibm-plex"
+brew "font-ibm-plex"
 
+# For fun
+# -----------------------------------------------------------------------------
+cask "inky"

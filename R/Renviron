@@ -2,3 +2,4 @@ R_LIBS=~/R/library/
 R_LIBS_USER=~/R/library/
 RENV_PATHS_ROOT=~/R/renv
 RENV_CONFIG_USER_PROFILE=TRUE
+PATH=/Users/lmullen/go/bin:/usr/local/texlive/2021/bin/universal-darwin:/Users/lmullen/github/lmullen/dotfiles/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin
