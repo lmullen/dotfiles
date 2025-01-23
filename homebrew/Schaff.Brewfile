@@ -40,6 +40,7 @@ brew "pandoc"
 brew "postgresql", restart_service: true
 brew "sqlite"
 brew "the_silver_searcher"
+brew "tree"
 brew "wget"
 brew "zsh"
 
