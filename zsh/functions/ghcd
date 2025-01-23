@@ -1,0 +1,9 @@
+function ghcd() {
+    local proj=$(find ~/github -mindepth 2 -maxdepth 2 -type d -name "$1*")
+    if [[ -n "$proj" ]]; then
+        cd "$proj"
+    else
+        echo "Project $1 not found"
+        return 1
+    fi
+}

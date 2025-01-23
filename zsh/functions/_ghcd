@@ -1,0 +1,8 @@
+#compdef ghcd
+_ghcd() {
+    local -a projects
+    # Use parentheses for command substitution and explicit array creation
+    projects=( ${(f)"$(find ~/github -mindepth 2 -maxdepth 2 -type d -exec basename {} \;)"} )
+    
+    _arguments '1: :($projects)'
+}
