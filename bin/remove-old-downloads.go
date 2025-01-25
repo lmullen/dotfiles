@@ -30,7 +30,7 @@ func main() {
 		Level:     slog.LevelInfo,
 		AddSource: false,
 	}
-	logger := slog.New(slog.NewTextHandler(os.Stdout, opts))
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, opts))
 	slog.SetDefault(logger)
 
 	homeDir, err := os.UserHomeDir()
@@ -58,6 +58,11 @@ func main() {
 			if path != downloadsDir {
 				logger.Info("skipping directory", "name", info.Name())
 			}
+			return nil
+		}
+
+		if info.Name() == ".DS_Store" {
+			logger.Info("skipping file", "name", info.Name())
 			return nil
 		}
 
