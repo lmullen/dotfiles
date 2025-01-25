@@ -115,18 +115,20 @@ precmd() {
   print -Pn "\e]0;%~\a"
 }
 
+
 # Path
 # -------------------------------------------------------------------
 pathdirs=(
   /opt/homebrew/bin
-  /snap/bin
-  $PROJECTS/lmullen/dotfiles/bin
+  #$PROJECTS/lmullen/dotfiles/bin
   /usr/local/opt/ccache/libexec
-  /opt/homebrew/opt/ruby/bin
-  /opt/homebrew/lib/ruby/gems/3.1.0/bin
   /usr/local/texlive/2021/bin/universal-darwin
   $HOME/go/bin
 )
+
+# Homebrew
+# -------------------------------------------------------------------
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 for dir in $pathdirs; do
   if [ -d $dir ]; then
@@ -135,7 +137,7 @@ for dir in $pathdirs; do
 done
 
 # Functions and completions
-fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $(brew --prefix)/share/zsh/site-functions $fpath)
+fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 # initialize autocomplete here, otherwise functions won't be loaded
