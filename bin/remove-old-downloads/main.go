@@ -41,7 +41,7 @@ func main() {
 
 	downloadsDir := filepath.Join(homeDir, "Downloads")
 	now := time.Now()
-	ageThreshold := 24 * time.Hour
+	ageThreshold := 2 * time.Hour
 
 	logger.Info(fmt.Sprintf("checking ~/Downloads folder for files and moving files older than %v to trash", ageThreshold))
 
