@@ -137,10 +137,9 @@ for dir in $pathdirs; do
 done
 
 # Functions and completions
-fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions $fpath)
+fpath=($ZSH/zsh/functions /usr/local/share/zsh-completions /Users/lmullen/.docker/completions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
+autoload -Uz compinit
 compinit
-
