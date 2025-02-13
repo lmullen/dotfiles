@@ -124,6 +124,7 @@ pathdirs=(
   /usr/local/opt/ccache/libexec
   /usr/local/texlive/2021/bin/universal-darwin
   $HOME/go/bin
+  /opt/homebrew/opt/postgresql@17/bin
 )
 
 # Homebrew
