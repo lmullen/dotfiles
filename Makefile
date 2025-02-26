@@ -26,10 +26,14 @@ neovim :
 	mkdir -p $(HOME)/.config/
 	ln -s $(HOME)/github/lmullen/dotfiles/neovim $(HOME)/.config/nvim
 
+ghostty :
+	mkdir -p $(HOME)/.config/ghostty
+	ln -s $(HOME)/github/lmullen/dotfiles/ghostty/config $(HOME)/.config/ghostty/config
+
 schaff-apps :
 	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Schaff.Brewfile
 
 all : git R latex zsh neovim
 
-.PHONY : all default git R latex zsh neovim
+.PHONY : all default git R latex zsh neovim ghostty
 
