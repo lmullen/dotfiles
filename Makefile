@@ -33,7 +33,5 @@ ghostty :
 schaff-apps :
 	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Schaff.Brewfile
 
-all : git R latex zsh neovim
-
 .PHONY : all default git R latex zsh neovim ghostty
 
