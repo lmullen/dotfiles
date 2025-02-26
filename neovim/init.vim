@@ -5,7 +5,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
-Plug 'icymind/NeoSolarized'
+Plug 'projekt0n/github-nvim-theme'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
@@ -27,9 +27,8 @@ au FocusLost * :wa                          " save when losing focus (gVim)
 " Display
 " -------------------------------------------------------------------
 syntax enable
-set notermguicolors
-colorscheme NeoSolarized
-set background=dark
+set termguicolors
+colorscheme github_light_default
 set number
 set display+=lastline                       " show partial last lines
 set scrolloff=0
