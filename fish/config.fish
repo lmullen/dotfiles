@@ -44,3 +44,20 @@ if status is-interactive
     set -g fish_key_bindings fish_vi_key_bindings
 end
 
+# Abbreviations
+abbr --add editenv --position command '$EDITOR ~/.env.fish && source ~/.env.fish && echo "Reloaded environment variables"'
+abbr --add findd --position command find . -type d -iname # find a directory
+abbr --add findf --position command find . -type f -iname # find a file 
+abbr --add ga --position command git add
+abbr --add gc --position command git commit
+abbr --add gca --position command git commit -a
+abbr --add gcam --position command git commit -a -m
+abbr --add gcm --position command git commit -m
+abbr --add gl --position command git pull --ff-only
+abbr --add glog --position command "git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+abbr --add gp --position command git push --all
+abbr --add gs --position command git status -sb
+abbr --add ip --position command curl icanhazip.com       # get current public IP
+abbr --add process --position command "ps aux | grep -i"
+abbr --add scanlocal --position command nmap -sP 192.168.1.0/24
+abbr --add vim --position command nvim
