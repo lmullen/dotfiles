@@ -37,7 +37,7 @@ end
 function fish_mode_prompt; end
 
 # Don't display a greeting
-set -g fish_greeting " "
+set -g fish_greeting ""
 
 # Commands to run in interactive sessions
 if status is-interactive
