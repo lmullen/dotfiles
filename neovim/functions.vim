@@ -26,8 +26,10 @@ command! -nargs=0 BG call ToggleBackground()
 function! ToggleBackground()
   if &background == "dark"
     set background=light
+    colorscheme github_light_default
   else
     set background=dark
+    colorscheme github_dark_default
   endif
 endfunction
 
