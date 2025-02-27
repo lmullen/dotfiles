@@ -9,10 +9,11 @@ source $HOME/.env.fish
 # Prompt
 function fish_prompt --description "Display the main prompt"
   # Get the user and hostname
-  set -l user (set_color green)(prompt_login)(set_color normal)
+  set -l user (set_color green)(whoami)(set_color normal)
+  set -l host (set_color green)(hostname)(set_color normal)
 
   # Get the current working directory, shortened
-  set -l dir (prompt_pwd --full-length-dirs 3)
+  set -l dir (set_color blue)(prompt_pwd --full-length-dirs 3)(set_color normal)
 
   # Set the suffix displayed immediately before user entry
   set -l suffix "›"
@@ -21,7 +22,7 @@ function fish_prompt --description "Display the main prompt"
   end
   set suffix (set_color red)$suffix(set_color normal)
 
-  printf "\n%s:%s\n%s " $user $dir $suffix
+  printf "\n%s@%s:%s\n%s " $user $host $dir $suffix
 end
 
 function fish_right_prompt --description "Display the right prompt" 
