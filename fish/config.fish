@@ -1,7 +1,8 @@
 # PATH
-fish_add_path /usr/local/texlive/2024/bin/universal-darwin
-fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/go/bin
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
+fish_add_path /usr/local/texlive/2024/bin/universal-darwin
 
 # Environment variables
 source $HOME/.env.fish
@@ -45,6 +46,9 @@ set -g fish_greeting ""
 if status is-interactive
     set -g fish_key_bindings fish_vi_key_bindings
 end
+
+# Aliases
+alias R="R --no-save --no-restore-data --quiet"
 
 # Abbreviations
 abbr --add editenv --position command '$EDITOR ~/.env.fish && source ~/.env.fish && echo "Reloaded environment variables"'
