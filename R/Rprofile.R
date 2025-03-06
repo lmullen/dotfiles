@@ -14,33 +14,32 @@ if (Sys.getenv("RSTUDIO") != "1") {
 }
 
 options(
-    width = 80,
-    download.file.method = "libcurl",
-    useFancyQuotes = FALSE,
-    menu.graphics = FALSE,
-    editor = "nvim",
-    browserNLdisabled = TRUE,
-    # max.print = 1e2,
-    Ncpus = parallel::detectCores(),
-    devtools.name = "Lincoln Mullen",
-    devtools.desc= list(
-      "Authors@R" = 'c(person("Lincoln", "Mullen", 
+  width = 80,
+  download.file.method = "libcurl",
+  useFancyQuotes = FALSE,
+  menu.graphics = FALSE,
+  editor = "nvim",
+  browserNLdisabled = TRUE,
+  Ncpus = parallel::detectCores(),
+  devtools.name = "Lincoln Mullen",
+  devtools.desc = list(
+    "Authors@R" = 'c(person("Lincoln", "Mullen",
       role = c("aut", "cre"), email = "lincoln@lincolnmullen.com",
       comment = c(ORCID = "0000-0001-5103-6917")))',
-      License    = "MIT + file LICENSE",
-      Version    = "0.0.0.9000",
-      VignetteBuilder = "knitr",
-      URL        = "https://github.com/lmullen/pkgname",
-      BugReports = "https://github.com/lmullen/pkgname/issues",
-      LazyData   = "yes")
-    )
+    License = "MIT + file LICENSE",
+    Version = "0.0.0.9000",
+    VignetteBuilder = "knitr",
+    URL = "https://github.com/lmullen/pkgname",
+    BugReports = "https://github.com/lmullen/pkgname/issues",
+    LazyData = "yes"
+  )
+)
 utils::rc.settings(ipck = TRUE)
 
-Sys.setenv(R_HISTSIZE = '1000')
+Sys.setenv(R_HISTSIZE = "1000")
 Sys.setenv(TZ = "America/New_York")
 
-if(interactive()){
-
+if (interactive()) {
   # Create a new invisible environment for all the functions to go
   # in so it doesn't clutter the workspace.
   .env <- new.env()
@@ -55,15 +54,15 @@ if(interactive()){
 
   # Open the current working directory in Nautilus/Finder
   .env$o <- function() {
-    if(Sys.info()[1]=="Linux") system("xdg-open .")
-    if(Sys.info()[1]=="Darwin") system("open .")
+    if (Sys.info()[1] == "Linux") system("xdg-open .")
+    if (Sys.info()[1] == "Darwin") system("open .")
   }
 
   .env$pnum <- function(x) prettyNum(x, big.mark = ",")
 
-  .env$print.data.frame <- function(x) { 
+  .env$print.data.frame <- function(x) {
     if (requireNamespace("tibble", quietly = TRUE)) {
-      tibble:::print.tbl_df(tibble::as_tibble(x)) 
+      tibble:::print.tbl_df(tibble::as_tibble(x))
     } else {
       print(x)
     }
@@ -71,7 +70,6 @@ if(interactive()){
 
   # Attach all the variables above
   attach(.env, warn.conflicts = FALSE)
-
 }
 
 .First <- function() {
@@ -85,4 +83,3 @@ if(interactive()){
     cat("\nExiting R at", base::date(), "\n\n")
   }
 }
-
