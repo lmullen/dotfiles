@@ -86,6 +86,68 @@ vim.opt.autoindent = true -- always set autoindenting on
 vim.opt.copyindent = true -- copy prev indentation
 vim.opt.shiftround = true -- use shiftwidth when indenting
 
+-- Keyboard shortcuts
+vim.keymap.set('n', 'j', 'gj', { noremap = true })
+vim.keymap.set('n', 'k', 'gk', { noremap = true })
+vim.keymap.set('n', 'E', 'ge', { noremap = true })
+-- reselect visual after indent
+vim.keymap.set('v', '<', '<gv', { noremap = true })
+vim.keymap.set('v', '>', '>gv', { noremap = true })
+-- Copying and pasting
+vim.keymap.set('i', '<C-v>', '<C-r><C-o>+', { noremap = true })
+vim.keymap.set('i', '<C-c>', '<CR><Esc>O', { noremap = true })
+-- move between splits
+-- vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
+-- vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
+-- vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true })
+-- vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true })
+
+-- Tab completion
+vim.opt.wildmenu = true
+vim.opt.wildignore:append({
+	'*.Rout',
+	'*.aux',
+	'*.bak',
+	'*.bbl',
+	'*.blg',
+	'*.class',
+	'*.doc',
+	'*.docx',
+	'*.dvi',
+	'*.fdb_latexmk',
+	'*.fls',
+	'*.gif',
+	'*.idx',
+	'*.ilg',
+	'*.ind',
+	'*.jpeg',
+	'*.jpg',
+	'*.lof',
+	'*.md.tex',
+	'*.mp3',
+	'*.out',
+	'*.pdf',
+	'*.png',
+	'*.pyc',
+	'*.rtf',
+	'*.svg',
+	'*.swp',
+	'*.synctex.gz',
+	'*.toc',
+	'*.zip',
+	'*/.hg/*',
+	'*/.svn/*',
+	'*/_site-deploy/*',
+	'*/_site-preview/*',
+	'*/_site/*',
+	'*/lib/*',
+	'*/node_modules/*',
+	'*/public/*',
+	'*Session.vim*',
+	'*~',
+	'.DS_Store',
+})
+vim.opt.suffixes:append({ '*.log', '*.zip', '*.pdf' })
 
 -- Auto-save when losing focus
 vim.api.nvim_create_autocmd("FocusLost", {
