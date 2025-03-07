@@ -62,57 +62,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Walk the downloads directory again, but checking only for empty directories
-	// err = filepath.Walk(downloadsDir, visitDir)
-	// if err != nil {
-	// 	slog.Error("failed to walk directory", "error", err)
-	// 	os.Exit(1)
-	// }
-
-}
-
-// visitDir removes only empty directories
-func visitDir(path string, info os.FileInfo, err error) error {
-	if err != nil {
-		slog.Error("failed to access path", "path", path, "error", err)
-		return nil
-	}
-
-	// Be sure to skip the downloads directory and don't delete it
-	if path == downloadsDir {
-		slog.Debug("skipping the downloads directory", "path", path)
-		return nil
-	}
-
-	// Skip files since we will have already checked them
-	if !info.IsDir() {
-		return nil
-	}
-
-	empty, err := dirIsEmpty(path)
-	if err != nil {
-		slog.Error("error checking if directory is empty", "path", path)
-		return nil
-	}
-
-	if !empty {
-		slog.Debug("skipping directory which is not empty", "path", path)
-		return nil
-	}
-
-	if dryRun {
-		slog.Debug("would delete empty directory", "path", path)
-		return nil
-	}
-
-	err = os.Remove(path)
-	if err != nil {
-		slog.Error("failed to delete directory to trash", "path", path, "error", err)
-		return nil
-	}
-	slog.Info("deleted empty directory", "path", path)
-
-	return nil
 }
 
 // visitPath determines what to do with a given file
