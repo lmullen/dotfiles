@@ -49,7 +49,7 @@ func main() {
 	downloadsDir = filepath.Join(homeDir, "Downloads")
 	trashDir = filepath.Join(homeDir, ".Trash")
 
-	slog.Debug("checking for old downloads",
+	slog.Info("checking for old downloads",
 		"downloadsDir", downloadsDir,
 		"trashDir", trashDir,
 		"ageThreshold", ageThreshold.String(),
