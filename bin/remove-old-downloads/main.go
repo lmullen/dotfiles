@@ -10,14 +10,18 @@ import (
 	"time"
 )
 
+// Files modified more recently than this value will not be moved
 const ageThreshold = 1 * time.Hour
 
+// A dry run uses more verbose logs and skips moving any files
+var dryRun bool
+
 func main() {
-	dryRun := flag.Bool("dry-run", false, "Show what would be moved to the trash without actually moving files")
+	flag.BoolVar(&dryRun, "dryrun", false, "Show what would be moved to the trash without actually moving files")
 	flag.Parse()
 
 	loglevel := slog.LevelInfo
-	if *dryRun {
+	if dryRun {
 		loglevel = slog.LevelDebug
 	}
 
@@ -64,7 +68,7 @@ func main() {
 
 		if age > ageThreshold {
 
-			if *dryRun {
+			if dryRun {
 				slog.Info("would move file", attrs...)
 			} else {
 				trashPath := filepath.Join(homeDir, ".Trash", info.Name())
