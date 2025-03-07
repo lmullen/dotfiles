@@ -63,11 +63,11 @@ func main() {
 	}
 
 	// Walk the downloads directory again, but checking only for empty directories
-	err = filepath.Walk(downloadsDir, visitDir)
-	if err != nil {
-		slog.Error("failed to walk directory", "error", err)
-		os.Exit(1)
-	}
+	// err = filepath.Walk(downloadsDir, visitDir)
+	// if err != nil {
+	// 	slog.Error("failed to walk directory", "error", err)
+	// 	os.Exit(1)
+	// }
 
 }
 
