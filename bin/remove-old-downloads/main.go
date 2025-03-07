@@ -13,13 +13,23 @@ import (
 // Files modified more recently than this value will not be moved
 const ageThreshold = 1 * time.Hour
 
+// Set the time for checking how recently a file was modified
+var now = time.Now()
+
 // A dry run uses more verbose logs and skips moving any files
 var dryRun bool
 
+// The path to the ~/Downloads directory
+var downloadsDir string
+
+// The path to the Trash directory
+var trashDir string
+
 func main() {
-	flag.BoolVar(&dryRun, "dryrun", false, "Show what would be moved to the trash without actually moving files")
+	flag.BoolVar(&dryRun, "dry-run", false, "Show what would be moved to the trash without actually moving files")
 	flag.Parse()
 
+	// We will only log files that are moved by default; in a dry run, we will log much more
 	loglevel := slog.LevelInfo
 	if dryRun {
 		loglevel = slog.LevelDebug
@@ -35,61 +45,70 @@ func main() {
 		slog.Error("failed to get home directory", "error", err)
 		os.Exit(1)
 	}
+	downloadsDir = filepath.Join(homeDir, "Downloads")
+	trashDir = filepath.Join(homeDir, ".Trash")
 
-	downloadsDir := filepath.Join(homeDir, "Downloads")
-	now := time.Now()
+	slog.Debug("checking for old downloads",
+		"downloadsDir", downloadsDir,
+		"trashDir", trashDir,
+		"ageThreshold", ageThreshold.String(),
+	)
 
-	slog.Debug(fmt.Sprintf("checking %s folder for files older than %v", downloadsDir, ageThreshold))
-
-	err = filepath.Walk(downloadsDir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			slog.Error("failed to access path", "path", path, "error", err)
-			return nil
-		}
-
-		if info.IsDir() {
-			if path != downloadsDir {
-				slog.Debug("skipping directory", "name", info.Name())
-			}
-			return nil
-		}
-
-		if info.Name() == ".DS_Store" {
-			slog.Debug("skipping file", "name", info.Name())
-			return nil
-		}
-
-		age := now.Sub(info.ModTime())
-		attrs := []any{
-			"name", info.Name(),
-			"size", formatSize(info.Size()),
-			"age", age.String(),
-		}
-
-		if age > ageThreshold {
-
-			if dryRun {
-				slog.Info("would move file", attrs...)
-			} else {
-				trashPath := filepath.Join(homeDir, ".Trash", info.Name())
-				err = os.Rename(path, trashPath)
-				if err != nil {
-					slog.Error("failed to move file to trash", append(attrs, "error", err)...)
-					return nil
-				}
-				slog.Info("moved file to trash", attrs...)
-			}
-		} else {
-			slog.Debug("skipping file", attrs...)
-		}
-		return nil
-	})
-
+	// Walk the downloads directory and decide what to do with the files inside it
+	err = filepath.Walk(downloadsDir, visitPath)
 	if err != nil {
 		slog.Error("failed to walk directory", "error", err)
 		os.Exit(1)
 	}
 
+	// TODO: Remove empty directories as well
+}
+
+// visitPath determines what to do with a given file
+func visitPath(path string, info os.FileInfo, err error) error {
+	if err != nil {
+		slog.Error("failed to access path", "path", path, "error", err)
+		return nil
+	}
+
+	if info.IsDir() {
+		if path != downloadsDir {
+			slog.Debug("skipping directory", "name", info.Name())
+		}
+		return nil
+	}
+
+	if info.Name() == ".DS_Store" {
+		slog.Debug("skipping file", "name", info.Name())
+		return nil
+	}
+
+	age := now.Sub(info.ModTime())
+	attrs := []any{
+		"name", info.Name(),
+		"size", formatSize(info.Size()),
+		"age", age.String(),
+	}
+
+	if age < ageThreshold {
+		slog.Debug("skipping file", attrs...)
+		return nil
+	}
+
+	if dryRun {
+		slog.Info("would move file to trash", attrs...)
+		return nil
+	}
+
+	trashPath := filepath.Join(trashDir, info.Name())
+	err = os.Rename(path, trashPath)
+	if err != nil {
+		slog.Error("failed to move file to trash", append(attrs, "error", err)...)
+		return nil
+	}
+	slog.Info("moved file to trash", attrs...)
+
+	return nil
 }
 
 // formatSize returns a human-readable string for the size of a file
