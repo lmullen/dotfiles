@@ -24,6 +24,7 @@ zsh :
 fish :
 	@echo "Symlinking fish dotfiles"
 	ln -s $(HOME)/github/lmullen/dotfiles/fish/config.fish $(HOME)/.config/fish/config.fish
+	ln -s $(HOME)/github/lmullen/dotfiles/fish/functions $(HOME)/.config/fish/functions
 
 neovim :
 	@echo "Symlinking Neovim dotfiles"
