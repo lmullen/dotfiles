@@ -47,3 +47,5 @@
 	smudge = git-lfs smudge -- %f
 [pull]
 	rebase = false
+[fetch]
+	prune = true
