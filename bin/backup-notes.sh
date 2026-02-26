@@ -15,7 +15,7 @@ fi
 # Create backup directory if it doesn't exist
 mkdir -p "$BACKUP_DIR"
 
-# Create zip archive
-zip -r -q "$BACKUP_FILE" "$NOTES_DIR"
+# Create zip archive using relative paths
+(cd "$(dirname "$NOTES_DIR")" && zip -r -q "$BACKUP_FILE" "$(basename "$NOTES_DIR")" -x "*/.git/*")
 
 echo "Backup created: $BACKUP_FILE"
