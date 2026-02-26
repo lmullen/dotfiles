@@ -4,7 +4,10 @@
 command = /opt/homebrew/bin/fish
 
 # appearance
-theme = light:github-light-default, dark:github-dark-default
+theme = light:Github Light Default, dark:Github Dark Default
 font-family = IBM Plex Mono
 font-size = 16
 font-thicken = true
+
+# ssh
+shell-integration-features = ssh-terminfo,ssh-env

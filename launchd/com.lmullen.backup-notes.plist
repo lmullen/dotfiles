@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.lmullen.backup-notes</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/lmullen/github/lmullen/dotfiles/bin/backup-notes.sh</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>2</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/lmullen/backups/notes/backup-notes.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/lmullen/backups/notes/backup-notes.err</string>
+</dict>
+</plist>

@@ -52,15 +52,10 @@ brew "udunits"
 brew "vale"
 brew "wget"
 brew "yarn"
-# Disk space visualiser
 cask "daisydisk", args: { appdir: "/Applications" }
-# Browser for SQLite databases
 cask "db-browser-for-sqlite", args: { appdir: "/Applications" }
-# App to build and share containerised applications and microservices
 cask "docker-desktop", args: { appdir: "/Applications" }
-# Calendar software
 cask "fantastical", args: { appdir: "/Applications" }
-# Web browser
 cask "firefox@developer-edition", args: { appdir: "/Applications" }
 cask "font-ibm-plex-math"
 cask "font-ibm-plex-mono"
@@ -69,53 +64,29 @@ cask "font-ibm-plex-sans-condensed"
 cask "font-ibm-plex-sans-sc"
 cask "font-ibm-plex-sans-tc"
 cask "font-ibm-plex-serif"
-# Tool to measure the computer system's performance
 cask "geekbench", args: { appdir: "/Applications" }
-# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Graphically shows disk usage within a file system
 cask "grandperspective"
-# Full TeX Live distribution without GUI applications
 cask "mactex-no-gui"
-# Provides updates to various Microsoft products
 cask "microsoft-auto-update", args: { appdir: "/Applications" }
-# Spreadsheet software
 cask "microsoft-excel", args: { appdir: "/Applications" }
-# Presentation software
 cask "microsoft-powerpoint", args: { appdir: "/Applications" }
-# Word processor
 cask "microsoft-word", args: { appdir: "/Applications" }
-# Free and open-source RSS reader
 cask "netnewswire", args: { appdir: "/Applications" }
-# GUI client for PostgreSQL databases
 cask "postico", args: { appdir: "/Applications" }
-# Geographic Information System
 cask "qgis"
-# Environment for statistical computing and graphics
 cask "r-app"
-# Data science software focusing on R and Python
 cask "rstudio", args: { appdir: "/Applications" }
-# Word processing software with a typewriter style
 cask "scrivener", args: { appdir: "/Applications" }
-# Music streaming service
 cask "spotify", args: { appdir: "/Applications" }
-# CSV file editor
 cask "table-tool", args: { appdir: "/Applications" }
-# Open-source BitTorrent client
 cask "transmission", args: { appdir: "/Applications" }
-# File transfer application
 cask "transmit", args: { appdir: "/Applications" }
-# Research photo management
 cask "tropy", args: { appdir: "/Applications" }
-# Open-source code editor
 cask "visual-studio-code", args: { appdir: "/Applications" }
-# Multimedia player
 cask "vlc"
-# Open-source version of the X.Org X Window System
 cask "xquartz", args: { appdir: "/Applications" }
-# Video communication and virtual meeting platform
 cask "zoom", args: { appdir: "/Applications" }
-# Collect, organise, cite, and share research sources
 cask "zotero", args: { appdir: "/Applications" }
 mas "1Blocker", id: 1365531024
 mas "Acorn", id: 1547371478

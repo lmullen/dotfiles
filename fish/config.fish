@@ -4,6 +4,7 @@ fish_add_path /opt/homebrew/opt/postgresql@17/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path $HOME/go/bin
+fish_add_path $HOME/.local/bin
 
 # Environment variables
 source $HOME/.env.fish

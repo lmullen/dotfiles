@@ -39,5 +39,10 @@ ghostty :
 schaff-apps :
 	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Schaff.Brewfile
 
-.PHONY : all default git R latex zsh neovim ghostty fish
+launchd :
+	@echo "Symlinking launchd plists"
+	mkdir -p $(HOME)/Library/LaunchAgents
+	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-notes.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-notes.plist
+
+.PHONY : all default git R latex zsh neovim ghostty fish launchd
 
