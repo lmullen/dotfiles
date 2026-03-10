@@ -46,6 +46,10 @@ vim.opt.number = true
 vim.opt.display:append('lastline') -- show partial last lines
 vim.opt.scrolloff = 0
 
+-- Search settings
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- Statusline
 vim.opt.laststatus = 2                -- always show a status line
 vim.opt.statusline = ""
