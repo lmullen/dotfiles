@@ -4,7 +4,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -72,10 +71,32 @@ func visitPath(path string, info os.FileInfo, err error) error {
 	}
 
 	if info.IsDir() {
-		if path != downloadsDir {
-			slog.Debug("skipping directory", "name", info.Name())
+		// Always descend into the top-level Downloads directory
+		if path == downloadsDir {
+			return nil
 		}
-		return nil
+		// For subdirectories, move old ones to trash as a unit
+		age := now.Sub(info.ModTime())
+		attrs := []any{
+			"name", info.Name(),
+			"age", age.String(),
+		}
+		if age < ageThreshold {
+			slog.Debug("skipping directory", attrs...)
+			return filepath.SkipDir
+		}
+		if dryRun {
+			slog.Info("would move directory to trash", attrs...)
+			return filepath.SkipDir
+		}
+		trashPath := uniqueTrashPath(trashDir, info.Name())
+		err = os.Rename(path, trashPath)
+		if err != nil {
+			slog.Error("failed to move directory to trash", append(attrs, "error", err)...)
+			return filepath.SkipDir
+		}
+		slog.Info("moved directory to trash", attrs...)
+		return filepath.SkipDir
 	}
 
 	if info.Name() == ".DS_Store" {
@@ -100,7 +121,7 @@ func visitPath(path string, info os.FileInfo, err error) error {
 		return nil
 	}
 
-	trashPath := filepath.Join(trashDir, info.Name())
+	trashPath := uniqueTrashPath(trashDir, info.Name())
 	err = os.Rename(path, trashPath)
 	if err != nil {
 		slog.Error("failed to move file to trash", append(attrs, "error", err)...)
@@ -125,17 +146,19 @@ func formatSize(bytes int64) string {
 	return fmt.Sprintf("%.1f %cB", float64(bytes)/float64(div), "KMGTPE"[exp])
 }
 
-// dirIsEmpty checks if a directory has no files
-func dirIsEmpty(path string) (bool, error) {
-	dir, err := os.Open(path)
-	if err != nil {
-		return false, err
+// uniqueTrashPath returns a path in the trash directory that doesn't collide
+// with an existing file. If the name is already taken, it appends a counter.
+func uniqueTrashPath(trashDir, name string) string {
+	trashPath := filepath.Join(trashDir, name)
+	if _, err := os.Stat(trashPath); os.IsNotExist(err) {
+		return trashPath
 	}
-	defer dir.Close()
-
-	_, err = dir.Readdirnames(1)
-	if err == io.EOF {
-		return true, nil
+	ext := filepath.Ext(name)
+	base := name[:len(name)-len(ext)]
+	for i := 1; ; i++ {
+		candidate := filepath.Join(trashDir, fmt.Sprintf("%s %d%s", base, i, ext))
+		if _, err := os.Stat(candidate); os.IsNotExist(err) {
+			return candidate
+		}
 	}
-	return false, err
 }
