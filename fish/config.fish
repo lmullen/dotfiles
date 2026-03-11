@@ -29,14 +29,18 @@ function fish_prompt --description "Display the main prompt"
 end
 
 function fish_right_prompt --description "Display the right prompt"
-    # Display the exit code in red brackets only if it is non-zero
     set -l last_status $status
     set -l stat
     if test $last_status -ne 0
         set stat (set_color red)"[$last_status]"(set_color normal)
     end
-    echo $stat
+    set -l lawdb
+    if test "$LAW_DB_ENV" = "PROD"
+        set lawdb "[🟢 LAW PROD]"
+    end
+    echo $lawdb $stat
 end
+
 
 # Don't display the Vim mode prompt
 function fish_mode_prompt
