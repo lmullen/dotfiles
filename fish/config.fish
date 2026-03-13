@@ -37,7 +37,10 @@ function fish_right_prompt --description "Display the right prompt"
     set -l lawdb
     if test "$LAW_DB_ENV" = "PROD"
         set lawdb "[🟢 LAW PROD]"
+    else if test "$LAW_DB_ENV" = "DEV"
+        set lawdb "[🟡 LAW DEV]"
     end
+
     echo $lawdb $stat
 end
 
