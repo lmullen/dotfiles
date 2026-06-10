@@ -144,3 +144,10 @@ autoload -U $ZSH/zsh/functions/*(:t)
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -Uz compinit
 compinit
+
+# Fish
+# -------------------------------------------------------------------
+if [[ $- == *i* ]] && [[ -z "$FISH_STARTED" ]]; then
+    export FISH_STARTED=1
+    exec /opt/homebrew/bin/fish
+fi
