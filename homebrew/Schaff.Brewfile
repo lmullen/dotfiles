@@ -1,5 +1,3 @@
-tap "homebrew/cask"
-tap "homebrew/core"
 brew "xz"
 brew "grpc"
 brew "apache-arrow"
