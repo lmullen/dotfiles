@@ -6,34 +6,7 @@ require("lazy").setup({
 	{ 'projekt0n/github-nvim-theme', name = "github-theme", lazy = false },
 	{ 'tpope/vim-vinegar' },
 	{ 'numToStr/Comment.nvim' },
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			local configs = require("nvim-treesitter.configs")
-			configs.setup({
-				ensure_installed = {
-					"bash",
-					"c",
-					"diff",
-					"dockerfile",
-					"fish",
-					"go",
-					"html",
-					"javascript",
-					"latex",
-					"lua",
-					"query",
-					"r",
-					"typescript",
-					"vim",
-					"vimdoc",
-				},
-				sync_install = false,
-				highlight = { enable = true },
-				indent = { enable = true },
-			})
-		end
+	{ "nvim-treesitter/nvim-treesitter", highlight = { enable = true }, indent = { enable = true },
 	},
 
 	-- automatically check for plugin updates
