@@ -44,6 +44,7 @@ launchd :
 	@echo "Symlinking launchd plists"
 	mkdir -p $(HOME)/Library/LaunchAgents
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-notes.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-notes.plist
+	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.remove-old-downloads.plist $(HOME)/Library/LaunchAgents/com.lmullen.remove-old-downloads.plist
 
 .PHONY : all default git R latex zsh neovim ghostty fish launchd
 
