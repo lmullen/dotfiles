@@ -1,0 +1,22 @@
+schemaVersion: "1"
+name: lincolnmullen.com
+agent: claude
+workspace: /Users/lmullen/github/lmullen/lincolnmullen.com
+additionalWorkspaces:
+  - path: /Users/lmullen/github/lmullen/projects.lincolnmullen.com
+  - path: /Users/lmullen/github/lmullen/domesday
+  - path: /Users/lmullen/notes/writing/blog-drafts
+    readOnly: true
+kits: 
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
+  - docker.io/sbx/mise-kit:latest
+ports:
+  - sandbox: 1313
+    host: 1313
+  - sandbox: 1314
+    host: 1314
+  - sandbox: 1315
+    host: 1315
+  - sandbox: 1316
+    host: 1316
