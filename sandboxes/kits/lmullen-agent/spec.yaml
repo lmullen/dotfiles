@@ -1,0 +1,128 @@
+# Docker Sandboxes kit (schema v2) that makes an agent act as the GitHub
+# machine account `lmullen-agent`.
+#
+# Layer it onto any agent sandbox at creation time:
+#
+#   sbx run claude --name <sandbox> --kit ./agent-kit
+#
+# It reproduces, as a reusable kit, the settings the legal-modernism sandbox
+# carries by hand (see CLAUDE.md, "Attribution"):
+#
+#   1. Commits are authored and committed by lmullen-agent, through the
+#      GIT_AUTHOR_* / GIT_COMMITTER_* environment variables. Environment
+#      variables outrank every git config file, so the host's ~/.gitconfig
+#      (which names the repository owner) is left untouched and still
+#      labels the owner's own commits correctly.
+#   2. `gh` and HTTPS git operations authenticate as lmullen-agent: the kit
+#      binds the `github` secret and the sandbox proxy injects the token on
+#      the way out. The container only ever holds a `proxy-managed`
+#      sentinel in GH_TOKEN, never the real token.
+#
+# The secret itself is not in the kit (kits never carry secrets). Set it on
+# the host once, with lmullen-agent's token, not the owner's:
+#
+#   sbx secret set github -t "<lmullen-agent token>"
+#
+# See README.md in this directory.
+schemaVersion: "2"
+kind: mixin
+name: lmullen-agent
+version: "0.1.0"
+displayName: lmullen-agent identity
+description: >-
+  Commit and talk to GitHub as the machine account lmullen-agent: sets the
+  git author and committer identity and binds the github secret for gh and
+  HTTPS git.
+sourceURL: https://github.com/chnm/legal-modernism
+licenses:
+  - MIT
+
+# No `requires:` — the kit is agent-agnostic. It works under claude, codex,
+# or any other base agent whose image has git (every Docker template does).
+
+environment:
+  variables:
+    # The four variables that label commits. Exactly what the legal-modernism
+    # sandbox exports from /etc/sandbox-persistent.sh.
+    GIT_AUTHOR_NAME: lmullen-agent
+    GIT_AUTHOR_EMAIL: lincoln+agent@lincolnmullen.com
+    GIT_COMMITTER_NAME: lmullen-agent
+    GIT_COMMITTER_EMAIL: lincoln+agent@lincolnmullen.com
+
+permissions:
+  network:
+    # Every domain a credential injects into must also be allowed here
+    # (SPEC-v2 §5.4.1). The other two are what `gh` and `git` reach for
+    # tarballs and raw files.
+    allow:
+      - github.com
+      - api.github.com
+      - codeload.github.com
+      - raw.githubusercontent.com
+
+credentials:
+  # `github` is the service name `sbx secret set github` binds under. The
+  # declaration mirrors the community github-clone kit, so it composes with
+  # the built-in agents the same way.
+  - service: github
+    description: >-
+      GitHub token for the lmullen-agent machine account, used by gh and by
+      HTTPS git push/pull. Supply it with `sbx secret set github -t <token>`.
+    required: true
+    apiKey:
+      name: GH_TOKEN
+      proxyManaged: true
+      inject:
+        # REST and GraphQL API: `gh api`, `gh pr create`, `gh issue view`...
+        - domain: api.github.com
+          header: Authorization
+          format: "Bearer %s"
+        # The git HTTPS transport: push, fetch, clone.
+        - domain: github.com
+          header: Authorization
+          username: x-access-token
+          format: "%s"
+
+setup:
+  install:
+    # Belt and braces for the Claude template, which sources
+    # /etc/sandbox-persistent.sh before every command (BASH_ENV and
+    # CLAUDE_ENV_FILE point at it). Appending the exports there means the
+    # identity is restated even if a shell is started with a scrubbed
+    # environment. Idempotent: guarded by a marker line, and a no-op on
+    # images that do not have the file.
+    - command: |
+        set -eu
+        f=/etc/sandbox-persistent.sh
+        [ -f "$f" ] || exit 0
+        grep -q '^# lmullen-agent kit' "$f" && exit 0
+        cat >> "$f" <<'EOT'
+        # lmullen-agent kit: commits made in the sandbox are authored and committed by the agent's machine account.
+        export GIT_AUTHOR_NAME=lmullen-agent
+        export GIT_AUTHOR_EMAIL=lincoln+agent@lincolnmullen.com
+        export GIT_COMMITTER_NAME=lmullen-agent
+        export GIT_COMMITTER_EMAIL=lincoln+agent@lincolnmullen.com
+        EOT
+      user: "0"
+      description: Restate the git identity in /etc/sandbox-persistent.sh when the image has one
+
+agentInstructions:
+  # Appended to the agent's profile (CLAUDE.md, AGENTS.md, ...) so the
+  # agent knows whose name it is working under.
+  content: |
+    ## Attribution
+
+    Work you do in this sandbox is attributed to the GitHub machine account
+    `lmullen-agent`, not to the repository owner.
+
+    - **Commits:** `GIT_AUTHOR_*` and `GIT_COMMITTER_*` in the environment
+      make `lmullen-agent <lincoln+agent@lincolnmullen.com>` both author and
+      committer, so commit without `--author`. Do not set `user.name` or
+      `user.email` in any repository's git config or in `~/.gitconfig`: a
+      mounted checkout is the owner's, and that would relabel their commits
+      too. If `git var GIT_AUTHOR_IDENT` names anyone else, stop and tell the
+      user rather than committing.
+    - **GitHub:** `gh` and HTTPS git use a token the sandbox proxy injects,
+      so no `gh auth login` is needed; `gh auth status` reporting "not logged
+      in" is expected. If `gh api user --jq .login` names anyone other than
+      `lmullen-agent`, stop and tell the user rather than posting.
