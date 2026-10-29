@@ -5,6 +5,7 @@ command = /opt/homebrew/bin/fish
 
 # appearance
 theme = light:Github Light Default, dark:Github Dark Default
+# theme = Github Light Default
 font-family = IBM Plex Mono
 font-size = 16
 font-thicken = true
