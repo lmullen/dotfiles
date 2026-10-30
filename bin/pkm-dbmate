@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# dbmate for the PKM database, with the repo's paths and the PKM_ variable
+# baked in. Any dbmate arguments pass through:
+#
+#   pkm-dbmate new add_sources     create db/migrations/<timestamp>_add_sources.sql
+#   pkm-dbmate up                  apply pending migrations, regenerate db/schema.sql
+#   pkm-dbmate status              what is applied, what is pending
+#   pkm-dbmate rollback            undo the most recent migration
+#
+# Needs PKM_DATABASE_URL in the environment, e.g.
+#   postgresql://pkm:<password>@localhost:5678/pkm?sslmode=disable
+set -euo pipefail
+PKM_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../pkm" && pwd)"
+exec dbmate \
+  --env PKM_DATABASE_URL \
+  --migrations-dir "$PKM_DIR/db/migrations" \
+  --schema-file "$PKM_DIR/db/schema.sql" \
+  "$@"

@@ -1,6 +1,7 @@
 # PostgreSQL for personal knowledge management (see README.md).
 #
-#   docker compose up -d        start (first run builds the image and runs init/)
+#   docker compose up -d        start (first run builds the image)
+#   bin/pkm-dbmate up           apply schema migrations (see README)
 #   docker compose down         stop; data persists in the pkm_pgdata volume
 #   docker compose down -v      stop AND delete all data
 #
@@ -30,8 +31,6 @@ services:
       # Mounting the parent dir (not .../data) is what the image expects and
       # leaves room for in-place pg_upgrade later.
       - pgdata:/var/lib/postgresql
-      # SQL in init/ runs once, on first start against an empty volume.
-      - ./init:/docker-entrypoint-initdb.d:ro
       # Host directory where bin/backup-pkm.sh has pg_dump write its files.
       - ${PKM_BACKUP_DIR:-/Users/lmullen/backups/pkm}:/backups
     healthcheck:
