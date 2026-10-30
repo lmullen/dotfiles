@@ -8,6 +8,7 @@ fish_add_path /opt/homebrew/opt/postgresql@17/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path $HOME/go/bin
+fish_add_path $HOME/.docker/bin
 fish_add_path $HOME/.local/bin
 fish_add_path /Applications/Obsidian.app/Contents/MacOS/
 
