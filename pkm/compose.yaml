@@ -1,6 +1,6 @@
 # PostgreSQL for personal knowledge management (see README.md).
 #
-#   docker compose up -d        start (first run pulls the image and runs init/)
+#   docker compose up -d        start (first run builds the image and runs init/)
 #   docker compose down         stop; data persists in the pkm_pgdata volume
 #   docker compose down -v      stop AND delete all data
 #
@@ -12,7 +12,8 @@ name: pkm
 
 services:
   db:
-    image: postgres:18
+    build: .
+    image: pkm-db:18
     container_name: pkm-db
     restart: unless-stopped
     environment:
