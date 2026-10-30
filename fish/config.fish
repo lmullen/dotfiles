@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/lmullen/.docker/bin"
+# End of Docker Desktop section.
+
 # PATH
 fish_add_path /usr/local/texlive/2024/bin/universal-darwin
 fish_add_path /opt/homebrew/opt/postgresql@17/bin
