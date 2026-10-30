@@ -1,6 +1,6 @@
 # PostgreSQL for personal knowledge management (see README.md).
 #
-#   docker compose up -d        start (first run builds the image and runs init/)
+#   docker compose up -d        start (first run pulls the image and runs init/)
 #   docker compose down         stop; data persists in the pkm_pgdata volume
 #   docker compose down -v      stop AND delete all data
 #
@@ -12,12 +12,9 @@ name: pkm
 
 services:
   db:
-    build: .
-    image: pkm-db:18
+    image: postgres:18
     container_name: pkm-db
     restart: unless-stopped
-    # pg_stat_statements must be preloaded; CREATE EXTENSION alone is not enough.
-    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     environment:
       POSTGRES_USER: ${PKM_POSTGRES_USER:-pkm}
       POSTGRES_DB: ${PKM_POSTGRES_DB:-pkm}

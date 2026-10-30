@@ -10,24 +10,21 @@ that work on it. The first piece is a PostgreSQL database that Claude Desktop
 | Path | Purpose |
 | --- | --- |
 | `compose.yaml` | PostgreSQL 18 in Docker: data in a named volume, backups bind-mounted from the host |
-| `Dockerfile` | pgvector base image plus PostGIS and hypopg from the PGDG apt repo |
 | `init/*.sql` | Runs once when the data volume is first created (enables extensions) |
 | `../bin/backup-pkm.sh` | Nightly dump and retention, run by `../launchd/com.lmullen.backup-pkm.plist` |
 
 ## Decisions
 
-- **PostgreSQL 18** built from `pgvector/pgvector:pg18` with PostGIS and hypopg
-  added (see `Dockerfile`). Version 18 brings native `uuidv7()`, virtual
-  generated columns, and async I/O. The official `postgis/postgis` image has no
-  arm64 build for 18, so we add PostGIS to the pgvector image instead of the
-  other way round.
-- **Extensions enabled at first start** (`init/01-extensions.sql`): `vector`
-  (embeddings), `postgis` (places), `pg_trgm`, `unaccent`, `fuzzystrmatch`,
-  `citext` (matching names, titles, tags across sources), `btree_gist` (date
-  range constraints), `ltree` (taxonomies), `pg_stat_statements` and `hypopg`
-  (query analysis and index advice for Postgres MCP Pro). All are unused until
-  a table needs them. PostGIS topology, raster, and TIGER geocoder are
-  installed but not enabled.
+- **PostgreSQL 18**, the official `postgres:18` image, unmodified. Version 18
+  brings native `uuidv7()`, virtual generated columns, and async I/O.
+- **Two extensions enabled at first start** (`init/01-extensions.sql`), both
+  bundled with the image: `pg_trgm` and `unaccent`, for fuzzy and
+  accent-insensitive matching of names and titles across sources. Other
+  bundled extensions (`citext`, `fuzzystrmatch`, `btree_gist`, `ltree`,
+  `pg_stat_statements`) are one `CREATE EXTENSION` away. Anything not bundled,
+  such as pgvector or PostGIS, means swapping the image: `pgvector/pgvector:pg18`
+  is a drop-in replacement for embeddings; PostGIS has no arm64 image for 18
+  and would need a small Dockerfile adding it from the PGDG apt repo.
 - **Host port 5678**, bound to `127.0.0.1` only. Homebrew's `postgresql@17`
   keeps 5432 free for itself, and nothing on the LAN can reach the container.
 - **Named Docker volume** `pkm_pgdata`. Reliable on Docker Desktop for Mac;
@@ -68,7 +65,7 @@ your shell.
 
 ```sh
 cd ~/github/lmullen/dotfiles/pkm
-docker compose up -d           # first run builds the image (a minute or two)
+docker compose up -d           # first run pulls the image
 docker compose ps              # wait for "healthy"
 ```
 
@@ -99,7 +96,7 @@ Day to day:
 docker compose up -d       # start (also restarts automatically with Docker Desktop)
 docker compose down        # stop, keep data
 docker compose logs -f db  # watch the server log
-docker compose build --pull && docker compose up -d   # update to the latest 18.x
+docker compose pull && docker compose up -d   # update to the latest 18.x
 ```
 
 ## Claude Desktop
@@ -243,7 +240,7 @@ archive, is `pg_restore -f pkm.sql pkm-....dump`; no database needed.
 
 ## Major version upgrades
 
-Minor updates (18.1 to 18.2) are `docker compose build --pull && docker compose up -d`.
+Minor updates (18.1 to 18.2) are `docker compose pull && docker compose up -d`.
 A major upgrade (18 to 19) needs either dump-and-restore into a fresh volume or
 `pg_upgrade`; the volume is mounted at `/var/lib/postgresql` rather than the
 old `/var/lib/postgresql/data` so that the official image's upgrade path works.
