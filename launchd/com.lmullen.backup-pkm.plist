@@ -11,6 +11,14 @@
         <string>/Users/lmullen/github/lmullen/dotfiles/bin/backup-pkm.sh</string>
     </array>
 
+    <!-- launchd does not see your shell. Keep this equal to the PKM_BACKUP_DIR
+         that docker compose was started with, and to the log paths below. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PKM_BACKUP_DIR</key>
+        <string>/Users/lmullen/backups/pkm</string>
+    </dict>
+
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key>

@@ -6,21 +6,19 @@
 # most recent months that have one. Everything else is deleted.
 #
 # pg_dump runs inside the container (so its version always matches the server)
-# and writes straight to /backups, which compose bind-mounts from BACKUP_DIR.
+# and writes straight to /backups, which compose bind-mounts from PKM_BACKUP_DIR.
+#
+# The script talks to the container by name (docker exec pkm-db), not through
+# docker compose, so it needs none of the compose variables. This matters under
+# launchd, which does not see your shell environment. The one variable it does
+# use, PKM_BACKUP_DIR, must match what compose was started with; the plist sets
+# it explicitly.
 #
 # Usage: backup-pkm.sh            dump, then prune
 #        backup-pkm.sh --prune-only
 set -euo pipefail
 
-# Default compose file is ../pkm/compose.yaml relative to this script.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-COMPOSE_FILE="${PKM_COMPOSE_FILE:-$SCRIPT_DIR/../pkm/compose.yaml}"
-# Backup dir: env var, else PKM_BACKUP_DIR from pkm/.env (what compose mounts
-# at /backups), else the default. Keeps script and compose in agreement.
-ENV_FILE="$(dirname "$COMPOSE_FILE")/.env"
-if [ -z "${PKM_BACKUP_DIR:-}" ] && [ -f "$ENV_FILE" ]; then
-  PKM_BACKUP_DIR=$(sed -nE 's/^PKM_BACKUP_DIR=["'"'"']?([^"'"'"']*)["'"'"']?$/\1/p' "$ENV_FILE" | tail -n 1)
-fi
+CONTAINER="${PKM_CONTAINER:-pkm-db}"
 BACKUP_DIR="${PKM_BACKUP_DIR:-$HOME/backups/pkm}"
 KEEP_DAILY="${PKM_KEEP_DAILY:-30}"
 KEEP_MONTHLY="${PKM_KEEP_MONTHLY:-12}"
@@ -60,14 +58,12 @@ if [ "${1:-}" = "--prune-only" ]; then
   exit 0
 fi
 
-compose() { docker compose -f "$COMPOSE_FILE" "$@"; }
-
-# A Docker error here (daemon down, bad compose file) aborts with a nonzero
-# exit under set -e, which launchd records in backup-pkm.err. An empty result
-# just means the container is stopped, which is not an error.
-running=$(compose ps --status running -q db)
-if [ -z "$running" ]; then
-  log "pkm-db container is not running; skipping backup"
+# A Docker daemon error here aborts with a nonzero exit under set -e, which
+# launchd records in backup-pkm.err. A missing or stopped container is not an
+# error; the job simply has nothing to do.
+state=$(docker inspect -f '{{.State.Running}}' "$CONTAINER" 2>/dev/null || true)
+if [ "$state" != "true" ]; then
+  log "$CONTAINER container is not running; skipping backup"
   exit 0
 fi
 
@@ -75,7 +71,7 @@ STAMP=$(date -u +%Y-%m-%dT%H%M%SZ)
 FILE="pkm-$STAMP.dump"
 # Inside the container: /backups is the bind mount of BACKUP_DIR.
 # Write to a temp name so a failed dump never masquerades as a good one.
-compose exec -T db sh -c '
+docker exec "$CONTAINER" sh -c '
   set -e
   pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" -Fc --compress=zstd -f "/backups/'"$FILE"'.tmp"
   mv "/backups/'"$FILE"'.tmp" "/backups/'"$FILE"'"

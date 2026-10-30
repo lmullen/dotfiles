@@ -4,4 +4,3 @@ neovim/.netrwhist
 neovim/spell
 homebrew/*.Brewfile.lock.json
 neovim/lazy-lock.json
-pkm/.env

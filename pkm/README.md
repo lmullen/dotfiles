@@ -11,7 +11,6 @@ that work on it. The first piece is a PostgreSQL database that Claude Desktop
 | --- | --- |
 | `compose.yaml` | PostgreSQL 18 in Docker: data in a named volume, backups bind-mounted from the host |
 | `Dockerfile` | pgvector base image plus PostGIS and hypopg from the PGDG apt repo |
-| `.env.example` | Template for `.env` (gitignored): password, port, backup directory |
 | `init/*.sql` | Runs once when the data volume is first created (enables extensions) |
 | `../bin/backup-pkm.sh` | Nightly dump and retention, run by `../launchd/com.lmullen.backup-pkm.plist` |
 
@@ -34,7 +33,10 @@ that work on it. The first piece is a PostgreSQL database that Claude Desktop
 - **Named Docker volume** `pkm_pgdata`. Reliable on Docker Desktop for Mac;
   survives `docker compose down` and container recreation. Deleted only by
   `docker compose down -v`.
-- **Password in `.env`**, never in the repo.
+- **Configuration lives in the shell environment**, not in a file in the repo.
+  `docker compose` reads the variables from whatever shell runs it, so
+  stopping, starting, or inspecting the stack must happen from a shell that
+  has them. The backup script is deliberately independent of them.
 - **Remote access via `tailscale serve`**, not by binding to other interfaces.
 
 ## Prerequisites
@@ -46,10 +48,26 @@ server versions can never drift apart.
 
 ## Quick start
 
+Compose expects these variables in the environment. Put them wherever you keep
+secrets for your shell; for fish, something like:
+
+```fish
+set -gx PKM_POSTGRES_PASSWORD ...        # required; generate with: openssl rand -base64 24
+set -gx PKM_POSTGRES_USER pkm            # default: pkm
+set -gx PKM_POSTGRES_DB pkm              # default: pkm
+set -gx PKM_PG_PORT 5678                 # default: 5678, host port on 127.0.0.1
+set -gx PKM_BACKUP_DIR /Users/lmullen/backups/pkm   # default shown
+```
+
+All variables carry the `PKM_` prefix so they cannot collide with another
+Postgres service on the machine. Only `PKM_POSTGRES_PASSWORD` is required;
+compose refuses to start without it.
+If you change `PKM_BACKUP_DIR`, change it in
+`launchd/com.lmullen.backup-pkm.plist` as well, since launchd does not see
+your shell.
+
 ```sh
 cd ~/github/lmullen/dotfiles/pkm
-cp .env.example .env
-openssl rand -base64 24        # paste as POSTGRES_PASSWORD in .env
 docker compose up -d           # first run builds the image (a minute or two)
 docker compose ps              # wait for "healthy"
 ```
@@ -66,10 +84,11 @@ From the host with the Homebrew client:
 psql postgresql://pkm:<password>@localhost:5678/pkm
 ```
 
-Or with no password on the command line:
+Or with no password on the command line (works from any shell, since it
+addresses the container by name rather than through compose):
 
 ```sh
-docker compose exec db psql -U pkm pkm
+docker exec -it pkm-db psql -U pkm pkm
 ```
 
 Postico: host `localhost`, port `5678`, user `pkm`, database `pkm`.
@@ -178,7 +197,9 @@ Notes:
 can restore selectively (one table, schema only, data only) and in parallel.
 The dump is produced inside the container, so `pg_dump` always matches the
 server, and lands directly on the host through the `/backups` bind mount. A
-dump is written under a temporary name and renamed only on success.
+dump is written under a temporary name and renamed only on success. The
+script uses `docker exec` on the container by name, so it needs none of the
+compose variables and runs fine from launchd's bare environment.
 
 **Retention**: the 30 newest dumps plus the earliest dump from each of the 12
 most recent months. Older ones are deleted on each run.
@@ -204,11 +225,11 @@ Inspect or restore a dump with the container's tools (the backup directory is
 visible inside as `/backups`):
 
 ```sh
-docker compose exec db pg_restore --list /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
+docker exec pkm-db pg_restore --list /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
 # full restore into the (empty or to-be-replaced) pkm database
-docker compose exec db pg_restore -U pkm -d pkm --clean --if-exists /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
+docker exec pkm-db pg_restore -U pkm -d pkm --clean --if-exists /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
 # one table only
-docker compose exec db pg_restore -U pkm -d pkm -t sources /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
+docker exec pkm-db pg_restore -U pkm -d pkm -t sources /backups/pkm-YYYY-MM-DDTHHMMSSZ.dump
 ```
 
 Or from the host with Homebrew's `pg_restore` (needs version 18 or newer):

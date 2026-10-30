@@ -4,7 +4,9 @@
 #   docker compose down         stop; data persists in the pkm_pgdata volume
 #   docker compose down -v      stop AND delete all data
 #
-# Variables come from ./.env (copy .env.example). POSTGRES_PASSWORD is required.
+# Configuration comes from the environment of the shell running docker compose
+# (see README for the variables, all prefixed PKM_). PKM_POSTGRES_PASSWORD is
+# required; the rest have defaults below.
 
 name: pkm
 
@@ -17,9 +19,9 @@ services:
     # pg_stat_statements must be preloaded; CREATE EXTENSION alone is not enough.
     command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-pkm}
-      POSTGRES_DB: ${POSTGRES_DB:-pkm}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in pkm/.env (copy .env.example)}
+      POSTGRES_USER: ${PKM_POSTGRES_USER:-pkm}
+      POSTGRES_DB: ${PKM_POSTGRES_DB:-pkm}
+      POSTGRES_PASSWORD: ${PKM_POSTGRES_PASSWORD:?PKM_POSTGRES_PASSWORD is not set in this shell}
       POSTGRES_INITDB_ARGS: "--data-checksums"
     ports:
       # Bound to loopback only. Reach it from other machines with
