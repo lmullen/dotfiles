@@ -1,0 +1,46 @@
+# PostgreSQL for personal knowledge management (see README.md).
+#
+#   docker compose up -d        start (first run builds the image and runs init/)
+#   docker compose down         stop; data persists in the pkm_pgdata volume
+#   docker compose down -v      stop AND delete all data
+#
+# Variables come from ./.env (copy .env.example). POSTGRES_PASSWORD is required.
+
+name: pkm
+
+services:
+  db:
+    build: .
+    image: pkm-db:18
+    container_name: pkm-db
+    restart: unless-stopped
+    # pg_stat_statements must be preloaded; CREATE EXTENSION alone is not enough.
+    command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pkm}
+      POSTGRES_DB: ${POSTGRES_DB:-pkm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in pkm/.env (copy .env.example)}
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    ports:
+      # Bound to loopback only. Reach it from other machines with
+      # `tailscale serve` (README) rather than by opening this up.
+      - "127.0.0.1:${PKM_PG_PORT:-5678}:5432"
+    volumes:
+      # Postgres 18 images keep PGDATA under /var/lib/postgresql/18/docker.
+      # Mounting the parent dir (not .../data) is what the image expects and
+      # leaves room for in-place pg_upgrade later.
+      - pgdata:/var/lib/postgresql
+      # SQL in init/ runs once, on first start against an empty volume.
+      - ./init:/docker-entrypoint-initdb.d:ro
+      # Host directory where bin/backup-pkm.sh has pg_dump write its files.
+      - ${PKM_BACKUP_DIR:-/Users/lmullen/backups/pkm}:/backups
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  pgdata:
+    name: pkm_pgdata

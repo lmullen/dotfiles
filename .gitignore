@@ -2,5 +2,6 @@ vim/vim.symlink/.netrwhist
 .Rproj.user
 neovim/.netrwhist
 neovim/spell
-homebrew/Schaff.Brewfile.lock.json
+homebrew/*.Brewfile.lock.json
 neovim/lazy-lock.json
+pkm/.env

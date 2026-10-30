@@ -40,11 +40,15 @@ ghostty :
 schaff-apps :
 	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Schaff.Brewfile
 
+gaustad-apps :
+	brew bundle install --file=$(HOME)/github/lmullen/dotfiles/homebrew/Gaustad.Brewfile
+
 launchd :
 	@echo "Symlinking launchd plists"
 	mkdir -p $(HOME)/Library/LaunchAgents
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-notes.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-notes.plist
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.remove-old-downloads.plist $(HOME)/Library/LaunchAgents/com.lmullen.remove-old-downloads.plist
+	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-pkm.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-pkm.plist
 
-.PHONY : all default git R latex zsh neovim ghostty fish launchd
+.PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps
 
