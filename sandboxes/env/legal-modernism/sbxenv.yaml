@@ -6,6 +6,13 @@ kits:
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
   - docker.io/sbx/mise:latest
+# Passed from the host's LAW_CLAUDE at creation via `--env-arg` (see Makefile).
+args:
+  LAW_CLAUDE:
+    required: true
+    description: Value of the host's LAW_CLAUDE environment variable
+env:
+  LAW_CLAUDE: "${{ env.args.LAW_CLAUDE }}"
 ports:
   - sandbox: 4313
     host: 4313
