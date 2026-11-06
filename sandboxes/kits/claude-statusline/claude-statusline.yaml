@@ -6,7 +6,7 @@
 schemaVersion: "3"
 kind: mixin
 # The kit's own version, not the version of anything it installs.
-version: "2.0.0"
+version: "2.1.0"
 displayName: Claude Code Status Line (legal-modernism)
 description: Adds a one-line Claude Code status line to a Docker Sandbox (sandbox name, model, project/branch, 5-hour session usage with time to reset). Ships /usr/local/bin/claude-statusline and sets the statusLine key in ~/.claude/settings.json, merging so every other setting is preserved (an existing statusLine is intentionally replaced, since installing this status line is the point of the kit).
 
@@ -42,14 +42,24 @@ capabilities:
             tmp=$(mktemp -p /home/agent/.claude)
             jq '.statusLine = {type: "command", command: "/usr/local/bin/claude-statusline", padding: 0}' "$f" > "$tmp"
             mv "$tmp" "$f"
+            # Compatibility with the v2 location. Project status lines (e.g. a
+            # checkout's .claude/statusline.sh) wrap ~/.claude/statusline.sh to
+            # print this kit's line above their own; without this link they
+            # silently print a blank first line. `ln -sfn` keeps re-runs
+            # idempotent. A regular file already there is left alone.
+            s=/home/agent/.claude/statusline.sh
+            if [ ! -e "$s" ] || [ -L "$s" ]; then
+              ln -sfn /usr/local/bin/claude-statusline "$s"
+              chown -h agent:agent "$s"
+            fi
             # Enumerated, not recursive: ~/.claude holds runtime-managed content
             # this kit doesn't own, so `chown -R` on the parent would take
             # ownership of paths outside the kit's control.
             chown agent:agent /home/agent/.claude "$f"
           user: "0"
           # No `env:`. The hook reads nothing beyond the platform baseline
-          # (PATH and HOME); `$f` and `$tmp` are its own locals.
-          description: Set the statusLine key in ~/.claude/settings.json to /usr/local/bin/claude-statusline (jq merge, so all other keys are preserved; any existing statusLine is replaced by design)
+          # (PATH and HOME); `$f`, `$tmp` and `$s` are its own locals.
+          description: Set the statusLine key in ~/.claude/settings.json to /usr/local/bin/claude-statusline (jq merge, so all other keys are preserved; any existing statusLine is replaced by design), and link ~/.claude/statusline.sh to it for project status lines that wrap the v2 path
 
   # A mixin contributes a body only; `filename:` belongs to the workload.
   - type: com.docker.sandbox/agent-context@1
