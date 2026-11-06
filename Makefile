@@ -50,42 +50,11 @@ launchd :
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.remove-old-downloads.plist $(HOME)/Library/LaunchAgents/com.lmullen.remove-old-downloads.plist
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-pkm.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-pkm.plist
 
-# Create (but do not start) each Docker sandbox declared in sandboxes/env/,
-# skipping any whose name already appears in `sbx ls`.
-SANDBOX_ENVS := $(wildcard $(HOME)/github/lmullen/dotfiles/sandboxes/env/*/sbxenv.yaml)
-
-# Host environment variables to copy into a sandbox when it is created, as
-# <sandbox>:<VARIABLE> pairs. Each is appended as an export to the sandbox's
-# /etc/sandbox-persistent.sh, which the claude workload sources before every
-# command. Creation fails if a listed variable is unset on the host, since a
-# sandbox that already exists is skipped on later runs.
-SANDBOX_HOST_ENV := legal-modernism:LAW_CLAUDE
-
 sandboxes :
-	@echo "Creating Docker sandboxes that do not already exist"
-	@existing="$$(sbx ls -q)" || exit 1; \
-	for env in $(SANDBOX_ENVS); do \
-		name=$$(awk '/^name:/ { print $$2 }' $$env | tr -d "\"'"); \
-		if printf '%s\n' "$$existing" | grep -qxF "$$name"; then \
-			echo "Sandbox $$name already exists; skipping"; \
-			continue; \
-		fi; \
-		for pair in $(SANDBOX_HOST_ENV); do \
-			[ "$${pair%%:*}" = "$$name" ] || continue; \
-			printenv "$${pair#*:}" > /dev/null || { \
-				echo "$${pair#*:} is not set on the host; not creating sandbox $$name" >&2; \
-				exit 1; \
-			}; \
-		done; \
-		echo "Creating sandbox $$name"; \
-		sbx env create $$env || exit 1; \
-		for pair in $(SANDBOX_HOST_ENV); do \
-			[ "$${pair%%:*}" = "$$name" ] || continue; \
-			var="$${pair#*:}"; \
-			echo "Exposing $$var to sandbox $$name"; \
-			sbx exec "$$name" bash -c 'printf "export %s=%q\n" "$$1" "$$2" >> /etc/sandbox-persistent.sh' _ "$$var" "$$(printenv "$$var")" || exit 1; \
-		done; \
-	done
+	@echo "Creating Docker sandboxes"
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/dotfiles/sbxenv.yaml
+	sbx env create --env-arg "LAW_CLAUDE=$(LAW_CLAUDE)" $(HOME)/github/lmullen/dotfiles/sandboxes/env/legal-modernism/sbxenv.yaml
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/lincolnmullen.com/sbxenv.yaml
 
 .PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps sandboxes
 
