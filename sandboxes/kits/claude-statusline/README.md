@@ -90,6 +90,11 @@ docker buildx build . -f claude-statusline.yaml --output type=cacheonly
   Re-running is idempotent. The temp file is created inside `~/.claude` so the
   final `mv` is an atomic same-filesystem rename rather than a cross-device
   copy.
+- **Compatibility link.** The hook also links `~/.claude/statusline.sh` (the
+  v2 location) to `/usr/local/bin/claude-statusline`, unless a regular file is
+  already there. A project whose own `.claude/statusline.sh` calls
+  `~/.claude/statusline.sh` to print this kit's line above its own lines keeps
+  working; without the link that first line silently comes out blank.
 - **`agent-context@1`** adds a short note (`claude-statusline-context.md`) to
   the agent's context so Claude knows what the status line shows.
 - The kit declares no `network-policy@1`: the script opens no socket.
