@@ -10,7 +10,7 @@ additionalWorkspaces:
 kits: 
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
-  - docker.io/sbx/mise-kit:latest
+  - docker.io/sbx/mise:latest
 ports:
   - sandbox: 1313
     host: 1313
