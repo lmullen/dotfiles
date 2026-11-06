@@ -1,0 +1,76 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox the PostgreSQL
+# command-line client: psql, pg_dump, pg_restore and the rest of
+# postgresql-client.
+#
+# psql is an apt package, and apt packages cannot travel in an overlay: they
+# need the composed base's own dpkg database and a shared-library closure
+# (libpq5, libreadline, ...) an overlay cannot carry. So this kit is
+# declaration-only (there is no psql.dockerfile) and installs the package with
+# a lifecycle install hook, run once at sandbox create against the base's own
+# apt sources, with an install-phase network grant for exactly those sources.
+# Docker's playwright and packages-through-sfw kits take the same route for
+# their apt packages and document why.
+#
+# The Go toolchain lives in the sibling go kit, which ships an overlay instead
+# because a Go release tarball is self-contained content.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: PostgreSQL client
+description: >-
+  Installs the PostgreSQL client tools (psql, pg_dump, pg_restore, ...) from
+  the base image's apt sources at sandbox create. Starts no server.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# No `provides:`: the version is whatever the base's apt resolves
+# `postgresql-client` to at create time (17 on Debian trixie), and a provide
+# should state a fact the kit controls.
+#
+# No `requires:`: the hook assumes a Debian-family base with apt on it, which
+# the claude workload is. That floor has no grammar to state it (no base
+# workload provides an entry for apt), so on a base without apt the hook fails
+# sandbox creation loudly rather than leaving psql silently absent.
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # Only the apt hook's hosts, and only during install: `apt-get update`
+      # refreshes every configured source, and the claude workload's sources
+      # are Debian trixie (main, updates, security) on deb.debian.org and
+      # Docker Hardened Images' mirror at dhi.io, both plain http. Install-phase
+      # grants close before the agent starts. No runtime phase: psql reaches
+      # whatever database the project's connection string names, which is the
+      # project's policy to grant, not this kit's.
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # `postgresql-client` is Debian's metapackage for the supported major
+        # (17 on trixie), so a PostgreSQL point release arrives with the base's
+        # apt sources rather than a kit bump. The lists are removed afterwards
+        # as the base image leaves them.
+        #
+        # The hook body reads no variable itself, but the apt-get run behind it
+        # takes the sandbox's forced proxy from the environment. v3 hook
+        # environments are deny-by-default, so the proxy variables have to be
+        # declared or the package fetch fails. apt honors the lowercase names;
+        # both cases are declared since the workload exports both.
+        - command: |
+            set -euo pipefail
+            apt-get update
+            apt-get install -y --no-install-recommends postgresql-client
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install the PostgreSQL client (psql, pg_dump, ...) from the base image's apt sources
+
+  # Appended to the agent's profile so the agent knows the client is present.
+  # A mixin contributes a body only.
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./psql-context.md
