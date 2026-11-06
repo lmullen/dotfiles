@@ -5,6 +5,8 @@ workspace: /Users/lmullen/github/chnm/legal-modernism
 kits: 
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/go
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/psql
   - docker.io/sbx/mise:latest
 ports:
   - sandbox: 4313
