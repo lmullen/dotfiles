@@ -63,6 +63,12 @@ if status is-interactive
     set -g fish_key_bindings fish_vi_key_bindings
 end
 
+# Vi bindings leave ctrl-r unbound; restore the history pager in vi modes
+function fish_user_key_bindings
+    bind -M insert ctrl-r history-pager
+    bind -M default ctrl-r history-pager
+end
+
 # Aliases
 alias R="R --no-save --no-restore-data --quiet"
 
