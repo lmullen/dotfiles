@@ -1,0 +1,34 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3) that sets Claude Code's theme to light.
+#
+# Why: Claude Code's `auto` theme detects the terminal background from the
+# COLORFGBG variable or an OSC 11 query. Neither survives the sandbox's proxied
+# pty, so Claude falls back to dark even when the host terminal (Ghostty) is
+# light. Setting the theme explicitly avoids the detection entirely.
+#
+# Declaration-only: there is no dockerfile, so nothing is built.
+#
+# See README.md in this directory.
+schemaVersion: "3"
+kind: mixin
+version: "0.1.0"
+displayName: Claude Code light theme
+description: Sets "theme" to "light" in ~/.claude.json (jq merge, other keys preserved) so Claude Code does not fall back to dark when it cannot detect the host terminal's background.
+
+requires: ["claude", "deb/jq"]
+
+capabilities:
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        - command: |
+            set -e
+            f=/home/agent/.claude.json
+            [ -f "$f" ] || echo '{}' > "$f"
+            # Temp file in the same dir so the mv is an atomic rename.
+            tmp=$(mktemp -p /home/agent)
+            jq '.theme = "light"' "$f" > "$tmp"
+            mv "$tmp" "$f"
+            chown agent:agent "$f"
+          user: "0"
+          description: Set the theme key in ~/.claude.json to light (jq merge, all other keys preserved)
