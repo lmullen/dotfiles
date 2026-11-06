@@ -54,11 +54,11 @@ launchd :
 # skipping any whose name already appears in `sbx ls`.
 SANDBOX_ENVS := $(wildcard $(HOME)/github/lmullen/dotfiles/sandboxes/env/*/sbxenv.yaml)
 
-# Host environment variables to copy into a sandbox when it is created, as
-# <sandbox>:<VARIABLE> pairs. Each is appended as an export to the sandbox's
-# /etc/sandbox-persistent.sh, which the claude workload sources before every
-# command. Creation fails if a listed variable is unset on the host, since a
-# sandbox that already exists is skipped on later runs.
+# Host environment variables to pass into a sandbox when it is created, as
+# <sandbox>:<VARIABLE> pairs. Each becomes `--env-arg VARIABLE=<host value>`
+# on `sbx env create`, so the sandbox's sbxenv.yaml must declare VARIABLE
+# under args: and map it under env:. Creation fails if a listed variable is
+# unset on the host, since a sandbox that already exists is skipped later.
 SANDBOX_HOST_ENV := legal-modernism:LAW_CLAUDE
 
 sandboxes :
@@ -70,21 +70,19 @@ sandboxes :
 			echo "Sandbox $$name already exists; skipping"; \
 			continue; \
 		fi; \
-		for pair in $(SANDBOX_HOST_ENV); do \
-			[ "$${pair%%:*}" = "$$name" ] || continue; \
-			printenv "$${pair#*:}" > /dev/null || { \
-				echo "$${pair#*:} is not set on the host; not creating sandbox $$name" >&2; \
-				exit 1; \
-			}; \
-		done; \
-		echo "Creating sandbox $$name"; \
-		sbx env create $$env || exit 1; \
+		set --; \
 		for pair in $(SANDBOX_HOST_ENV); do \
 			[ "$${pair%%:*}" = "$$name" ] || continue; \
 			var="$${pair#*:}"; \
-			echo "Exposing $$var to sandbox $$name"; \
-			sbx exec "$$name" bash -c 'printf "export %s=%q\n" "$$1" "$$2" >> /etc/sandbox-persistent.sh' _ "$$var" "$$(printenv "$$var")" || exit 1; \
+			val="$$(printenv "$$var")" || { \
+				echo "$$var is not set on the host; not creating sandbox $$name" >&2; \
+				exit 1; \
+			}; \
+			echo "Passing host $$var to sandbox $$name"; \
+			set -- "$$@" --env-arg "$$var=$$val"; \
 		done; \
+		echo "Creating sandbox $$name"; \
+		sbx env create "$$@" $$env || exit 1; \
 	done
 
 .PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps sandboxes

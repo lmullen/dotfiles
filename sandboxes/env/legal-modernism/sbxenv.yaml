@@ -6,6 +6,14 @@ kits:
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
   - docker.io/sbx/mise:latest
+# Host values passed in at creation with --env-arg (`make sandboxes` passes
+# each from the host variable of the same name; see SANDBOX_HOST_ENV).
+args:
+  LAW_CLAUDE:
+    required: true
+    description: Value of the host's LAW_CLAUDE environment variable
+env:
+  LAW_CLAUDE: "${{ env.args.LAW_CLAUDE }}"
 ports:
   - sandbox: 4313
     host: 4313
