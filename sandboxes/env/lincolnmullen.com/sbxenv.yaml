@@ -9,6 +9,7 @@ additionalWorkspaces:
     readOnly: true
 kits: 
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-light-theme
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
   - docker.io/sbx/mise:latest
 ports:
