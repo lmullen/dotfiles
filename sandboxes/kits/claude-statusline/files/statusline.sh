@@ -3,9 +3,9 @@
 # Reads the status-line JSON object from stdin.
 #
 # This is the status line kept in the legal-modernism repository at
-# .claude/statusline.sh, packaged as a Docker Sandbox kit (see the README.md two
-# directories up) so it can be used in any sandbox, whatever project is checked
-# out there. The kit copies files/home/<rel> to /home/agent/<rel>.
+# .claude/statusline.sh, packaged as a Docker Sandbox kit (see the README.md one
+# directory up) so it can be used in any sandbox, whatever project is checked
+# out there. The kit's overlay installs it as /usr/local/bin/claude-statusline.
 #
 # Sandbox: when SANDBOX_NAME is set (Docker Sandboxes export it), the line opens
 # with the sandbox's name, so sessions in different sandboxes can be told apart.

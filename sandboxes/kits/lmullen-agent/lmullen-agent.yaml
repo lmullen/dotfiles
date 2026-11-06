@@ -1,0 +1,132 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3) that makes an agent act as the GitHub
+# machine account `lmullen-agent`.
+#
+# Layer it onto any agent sandbox at creation time:
+#
+#   sbx run claude --name <sandbox> --kit ./lmullen-agent
+#
+# It reproduces, as a reusable kit, the settings the legal-modernism sandbox
+# carries by hand (see CLAUDE.md, "Attribution"):
+#
+#   1. Commits are authored and committed by lmullen-agent, through the
+#      GIT_AUTHOR_* / GIT_COMMITTER_* environment variables. Environment
+#      variables outrank every git config file, so the host's ~/.gitconfig
+#      (which names the repository owner) is left untouched and still
+#      labels the owner's own commits correctly.
+#   2. `gh` and HTTPS git operations authenticate as lmullen-agent: the kit
+#      binds the `github` secret and the sandbox proxy injects the token on
+#      the way out. The container only ever holds a `proxy-managed`
+#      sentinel in GH_TOKEN, never the real token.
+#
+# The secret itself is not in the kit (kits never carry secrets). Set it on
+# the host once, with lmullen-agent's token, not the owner's:
+#
+#   sbx secret set github -t "<lmullen-agent token>"
+#
+# Migrated from the v2 spec.yaml grammar because Docker Sandboxes v0.51.0
+# resolves the built-in agents to published v3 kits and refuses to compose
+# them with v1 or v2 kits. Deliberate deltas are marked MIGRATION NOTE.
+#
+# See README.md in this directory.
+schemaVersion: "3"
+kind: mixin
+version: "0.2.0"
+displayName: lmullen-agent identity
+description: >-
+  Commit and talk to GitHub as the machine account lmullen-agent: sets the
+  git author and committer identity and binds the github secret for gh and
+  HTTPS git.
+sourceUrl: https://github.com/chnm/legal-modernism
+licenses:
+  - MIT
+
+# No `requires:` — the kit is agent-agnostic. It works under claude, codex,
+# or any other base agent whose image has git (git is on the v3 platform
+# floor, so it needs no declaration).
+#
+# Declaration-only: there is no lmullen-agent.dockerfile, so nothing is built.
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # Every domain a credential injects into must also be allowed in the same
+      # phase. The other two are what `gh` and `git` reach for tarballs and raw
+      # files.
+      #
+      # MIGRATION NOTE: v2's flat list is now the runtime phase only. The one
+      # install hook writes local files and reaches no host, so the absent
+      # install phase grants nothing, correctly.
+      runtime:
+        allow:
+          - github.com
+          - api.github.com
+          - codeload.github.com
+          - raw.githubusercontent.com
+
+  # `github` is the service name `sbx secret set github` binds under.
+  - type: com.docker.sandbox/credential@1
+    # Required, as in v2 (`required: true`): without lmullen-agent's token the
+    # sandbox would push as nobody, or as whatever else is bound, so creation
+    # should fail rather than degrade.
+    description: >-
+      GitHub token for the lmullen-agent machine account, used by gh and by
+      HTTPS git push/pull. Supply it with `sbx secret set github -t <token>`.
+    config:
+      service: github
+      phase: runtime
+      apiKey:
+        name: GH_TOKEN
+        proxyManaged: true
+        # MIGRATION NOTE: v2 injected github.com as HTTP basic with
+        # `username: x-access-token`. v3 decoding is strict, and Docker's own
+        # v3 kits that bind the github service (copilot) inject a bearer
+        # header on both hosts, so this follows them.
+        inject:
+          # REST and GraphQL API: `gh api`, `gh pr create`, `gh issue view`...
+          - {domain: api.github.com, header: Authorization, format: "Bearer %s"}
+          # The git HTTPS transport: push, fetch, clone.
+          - {domain: github.com, header: Authorization, format: "Bearer %s"}
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # MIGRATION NOTE: v2 set the four variables with environment.variables.
+        # v3 has no static env grammar; a mixin's env would have to ride an
+        # image recipe. This kit keeps to a hook instead, writing the exports
+        # where shells pick them up:
+        #
+        #   - /etc/profile.d/lmullen-agent-env.sh, which login shells source on
+        #     any Debian-family base;
+        #   - /etc/sandbox-persistent.sh on the claude workload, which sources
+        #     it before every command (BASH_ENV and CLAUDE_ENV_FILE point at
+        #     it), so Claude's Bash tool and non-login shells see it too.
+        #
+        # Idempotent: the profile.d file is overwritten, and the persistent
+        # file is guarded by a marker line and skipped when absent.
+        - command: |
+            set -eu
+            exports='export GIT_AUTHOR_NAME=lmullen-agent
+            export GIT_AUTHOR_EMAIL=lincoln+agent@lincolnmullen.com
+            export GIT_COMMITTER_NAME=lmullen-agent
+            export GIT_COMMITTER_EMAIL=lincoln+agent@lincolnmullen.com'
+            mkdir -p /etc/profile.d
+            printf '%s\n' "$exports" > /etc/profile.d/lmullen-agent-env.sh
+            chmod 0644 /etc/profile.d/lmullen-agent-env.sh
+            f=/etc/sandbox-persistent.sh
+            [ -f "$f" ] || exit 0
+            grep -q '^# lmullen-agent kit' "$f" && exit 0
+            {
+              echo '# lmullen-agent kit: commits made in the sandbox are authored and committed by the agent'"'"'s machine account.'
+              printf '%s\n' "$exports"
+            } >> "$f"
+          user: "0"
+          # No `env:`: the hook reads only its own locals and the platform
+          # baseline.
+          description: Export the lmullen-agent git identity from /etc/profile.d and, when the image has one, /etc/sandbox-persistent.sh
+
+  # Appended to the agent's profile (CLAUDE.md, AGENTS.md, ...) so the agent
+  # knows whose name it is working under. A mixin contributes a body only.
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./lmullen-agent-context.md
