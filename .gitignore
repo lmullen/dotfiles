@@ -4,3 +4,6 @@ neovim/.netrwhist
 neovim/spell
 homebrew/*.Brewfile.lock.json
 neovim/lazy-lock.json
+
+# Override the global env/ ignore (meant for Python virtualenvs)
+!sandboxes/env/
