@@ -1,0 +1,7 @@
+schemaVersion: "1"
+name: dotfiles
+agent: claude
+workspace: /Users/lmullen/github/lmullen/dotfiles
+kits: 
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent

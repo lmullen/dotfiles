@@ -1,0 +1,17 @@
+schemaVersion: "1"
+name: legal-modernism
+agent: claude
+workspace: /Users/lmullen/github/chnm/legal-modernism
+kits: 
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
+  - docker.io/sbx/mise:latest
+ports:
+  - sandbox: 4313
+    host: 4313
+  - sandbox: 4314
+    host: 4314
+  - sandbox: 4315
+    host: 4315
+  - sandbox: 4316
+    host: 4316
