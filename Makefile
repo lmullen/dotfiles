@@ -50,5 +50,11 @@ launchd :
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.remove-old-downloads.plist $(HOME)/Library/LaunchAgents/com.lmullen.remove-old-downloads.plist
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-pkm.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-pkm.plist
 
-.PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps
+sandboxes :
+	@echo "Creating Docker sandboxes"
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/dotfiles/sbxenv.yaml
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/legal-modernism/sbxenv.yaml
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/lincolnmullen.com/sbxenv.yaml
+
+.PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps sandboxes
 
