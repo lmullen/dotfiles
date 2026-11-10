@@ -1,66 +1,64 @@
 # syntax=docker/sandbox-kit:3
-# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox a Go toolchain.
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox a Go toolchain
+# from the Docker Hardened Images apt repository (dhi.io) the claude workload
+# already has configured. dhi.io carries one package per Go minor line
+# (golang-1.26, golang-1.27, ...); each tracks that line's latest patch
+# release, so a sandbox create gets the newest 1.27.x.
 #
-# Go is content: the official release tarball from dl.google.com is a
-# self-contained tree with nothing create-time in it, so go.dockerfile
-# downloads it on the builder, checks its digest and ships it as an overlay at
-# /usr/local/go. No per-create download, a pinned release in a scannable layer,
-# and a bad release fails the build rather than a sandbox creation.
-# /usr/local/go/bin is already on the claude workload's PATH, so `go` is found
-# with no profile.d or environment plumbing.
+# There is no official Go kit in docker/sbx-kits-contrib (its answer for
+# language toolchains is the mise kit, which these sandboxes no longer use).
 #
-# The PostgreSQL client lives in the sibling psql kit; it takes a different
-# route (an apt install hook) because apt packages cannot travel in an overlay.
+# Like the psql and node kits, this is an apt install hook: apt packages need
+# the composed base's dpkg database and cannot travel in an overlay.
+# Declaration-only, so there is no dockerfile.
+#
+# TO MOVE TO A NEW GO MINOR: change golang-1.27 in the hook and go@1.27 in
+# `provides` together. `apt-cache search --names-only '^golang-1'` inside a
+# sandbox lists what dhi.io has.
 schemaVersion: "3"
 kind: mixin
+version: "2.0.0"
 displayName: Go toolchain
 description: >-
-  Installs a pinned Go release at /usr/local/go (on the claude image's PATH)
-  and allows the Go module proxy and checksum database at runtime so `go mod
-  download`, `go build` and `go test` can fetch dependencies.
+  Installs Go 1.27 (latest patch release) from the dhi.io apt repository at
+  sandbox create, and allows the Go module proxy and checksum database at
+  runtime so `go mod download`, `go build` and `go test` can fetch
+  dependencies.
 sourceUrl: https://github.com/lmullen/dotfiles
 
-# Versioned, so a kit asking for `go >= 1.25` resolves against the release the
-# recipe actually installs. `version:` names the same arg, so the field and the
-# provide cannot end up naming different Gos.
-provides: ["go@${{ kit.args.version }}"]
-version: "${{ kit.args.version }}"
-
-# The Go release, pinned. Override at create with `--kit-arg version=1.27.3`
-# or a kits[] entry's args in sbxenv.yaml. HOW TO BUMP THE DEFAULT: pick the
-# release from https://go.dev/dl/ and edit this default together with the two
-# digests in the pinned-digest table in go.dockerfile. For a release not in
-# that table the recipe falls back to the .sha256 sidecar dl.google.com
-# publishes next to each tarball.
-#
-# `buildArg` makes this a build-phase arg, which is what lets `provides` above
-# reference it (a create-phase `env:` arg cannot be referenced from provides).
-args:
-  version:
-    default: "1.26.10"
-    pattern: '^[0-9]+\.[0-9]+\.[0-9]+$'
-    description: Go release to install from dl.google.com
-    buildArg: GO_VERSION
-
-# No `requires:`: the overlay lands on any glibc base.
+provides: ["go@1.27"]
 
 capabilities:
-  # No install phase: the download runs on the builder, which this policy does
-  # not govern, and the kit has no install hook. An absent phase grants nothing.
-  #
-  # What a Go toolchain reaches at runtime: the module proxy that `go mod
-  # download` and `go build` fetch dependencies from, and the checksum database
-  # that verifies them. Without these a sandbox has `go` and can build nothing
-  # that is not already in the module cache.
   - type: com.docker.sandbox/network-policy@1
     config:
+      # apt during install: `apt-get update` refreshes every configured source.
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+      # What a Go toolchain reaches at runtime: the module proxy and the
+      # checksum database that verifies what it serves.
       runtime:
         allow:
           - proxy.golang.org
           - sum.golang.org
 
-  # Appended to the agent's profile so the agent knows the toolchain is present
-  # and where it lives. A mixin contributes a body only.
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # golang-1.27 installs the tree at /usr/lib/go and links go and gofmt
+        # into /usr/bin. Its Depends (gcc, libc6-dev, binutils) make cgo work.
+        # The proxy variables are declared because v3 hook environments are
+        # deny-by-default and apt needs them to fetch.
+        - command: |
+            set -euo pipefail
+            apt-get update
+            apt-get install -y --no-install-recommends golang-1.27
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install Go 1.27 from the dhi.io apt repository
+
   - type: com.docker.sandbox/agent-context@1
     config:
       contentFile: ./go-context.md

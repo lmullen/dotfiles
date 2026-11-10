@@ -4,9 +4,9 @@
 #
 # Hugo is content: the official release tarball on GitHub is a single binary,
 # so hugo.dockerfile downloads it on the builder, checks it against the
-# release's checksums file and ships it as an overlay at /usr/local/bin/hugo,
-# the same route the go kit takes. Debian's apt `hugo` (0.131 on trixie) is
-# far behind what the sites here use, so apt is not an option.
+# release's checksums file and ships it as an overlay at /usr/local/bin/hugo.
+# There is no official Hugo kit in docker/sbx-kits-contrib, and Debian's apt
+# `hugo` (0.131 on trixie) is far behind what the sites here use.
 #
 # There is deliberately no default version: each site pins its own Hugo, so
 # each sbxenv.yaml that uses this kit must say which, as a kits[] entry's args:

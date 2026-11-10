@@ -3,7 +3,8 @@
 # /usr/local/bin/hugo, on any glibc base.
 #
 # The download needs curl, a CA store and a userland that can run the binary
-# to check its version, so it uses the same template base as the go kit.
+# to check its version, so it uses the template base Docker's own baked
+# overlays use.
 ARG BASE_IMAGE=docker/sandbox-templates:shell-docker
 FROM ${BASE_IMAGE} AS fetch
 

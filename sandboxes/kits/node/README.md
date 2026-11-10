@@ -19,6 +19,13 @@ hook run as root at sandbox create, because apt packages need the composed
 base's dpkg database and cannot travel in an overlay. The apt hosts
 (`deb.debian.org`, `dhi.io`) are open only during that install phase.
 
+Docker's [sbx-kits-contrib](https://github.com/docker/sbx-kits-contrib) has
+no official kit for this.
+Docker's official
+[`playwright`](https://github.com/docker/sbx-kits-contrib/tree/v3/playwright)
+kit assumes the base image has Node, which the claude image does not; this kit
+supplies it.
+
 ## What it installs
 
 | Package | Source | Provides |

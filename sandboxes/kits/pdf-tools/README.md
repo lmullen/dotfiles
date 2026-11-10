@@ -18,6 +18,9 @@ hook run as root at sandbox create, because apt packages need the composed
 base's dpkg database and cannot travel in an overlay. The apt hosts
 (`deb.debian.org`, `dhi.io`) are open only during that install phase.
 
+Docker's [sbx-kits-contrib](https://github.com/docker/sbx-kits-contrib) has
+no official kit for this.
+
 ## What it installs
 
 | Package | Commands |

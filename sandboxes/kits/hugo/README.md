@@ -19,8 +19,8 @@ The official `hugo_extended_<version>_linux-<arch>.tar.gz` from
 [gohugoio/hugo releases](https://github.com/gohugoio/hugo/releases), checked
 against that release's `hugo_<version>_checksums.txt`, shipped as an overlay at
 `/usr/local/bin/hugo`. The build also checks that `hugo version` reports the
-requested version and the extended edition. Like the [`go`](../go) kit, the
-download happens on the builder, so sandbox creation fetches nothing.
+requested version and the extended edition. The download happens on the
+builder, so sandbox creation fetches nothing.
 
 Debian's apt `hugo` is 0.131 on trixie, too old for the sites here, which is
 why this kit does not use apt.
