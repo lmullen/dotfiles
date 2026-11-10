@@ -13,6 +13,9 @@ kits:
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/remote-control
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/node
+  # Docker's official Lighthouse kit, for auditing the site served in the
+  # sandbox. It needs Node, which the node kit above supplies.
+  - docker.io/sbx/lighthouse:latest
   # Pinned to hugo-extended in lincolnmullen.com's .mise.toml.
   - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
     args:
