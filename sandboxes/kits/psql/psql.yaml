@@ -12,8 +12,8 @@
 # Docker's playwright and packages-through-sfw kits take the same route for
 # their apt packages and document why.
 #
-# The Go toolchain lives in the sibling go kit, which ships an overlay instead
-# because a Go release tarball is self-contained content.
+# The Go toolchain lives in the sibling go kit, which installs from apt the
+# same way.
 schemaVersion: "3"
 kind: mixin
 version: "1.0.0"

@@ -8,7 +8,19 @@ kits:
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/go
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/psql
-  - docker.io/sbx/mise:latest
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/remote-control
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/node
+  # Docker's official Playwright kit: headless Chromium plus the playwright
+  # CLI. It needs Node, which the node kit above supplies.
+  - docker.io/sbx/playwright:latest
+  # Docker's official Lighthouse kit, for auditing the site served in the
+  # sandbox. Like playwright, it needs the node kit's Node.
+  - docker.io/sbx/lighthouse:latest
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/pdf-tools
+  # Hugo for website/, pinned to the version in website/Dockerfile.
+  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
+    args:
+      version: "0.161.1"
 # Passed from the host's LAW_CLAUDE at creation via `--env-arg` (see Makefile).
 args:
   LAW_CLAUDE:

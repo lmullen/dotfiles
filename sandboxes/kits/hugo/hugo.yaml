@@ -1,0 +1,49 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox Hugo (extended
+# edition) at a version the sandbox chooses.
+#
+# Hugo is content: the official release tarball on GitHub is a single binary,
+# so hugo.dockerfile downloads it on the builder, checks it against the
+# release's checksums file and ships it as an overlay at /usr/local/bin/hugo.
+# There is no official Hugo kit in docker/sbx-kits-contrib, and Debian's apt
+# `hugo` (0.131 on trixie) is far behind what the sites here use.
+#
+# There is deliberately no default version: each site pins its own Hugo, so
+# each sbxenv.yaml that uses this kit must say which, as a kits[] entry's args:
+#
+#   kits:
+#     - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
+#       args:
+#         version: "0.168.0"
+#
+# or `--kit-arg hugo.version=0.168.0` on the command line.
+schemaVersion: "3"
+kind: mixin
+displayName: Hugo (extended)
+description: >-
+  Installs a pinned Hugo extended release at /usr/local/bin/hugo. The version
+  is a required kit argument, so each sandbox pins the Hugo its site uses.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+provides: ["hugo@${{ kit.args.version }}"]
+version: "${{ kit.args.version }}"
+
+args:
+  version:
+    required: true
+    pattern: '^[0-9]+\.[0-9]+\.[0-9]+$'
+    description: Hugo release to install (extended edition), e.g. 0.168.0
+    buildArg: HUGO_VERSION
+
+# No `requires:`. Hugo extended links against glibc and libstdc++, both of
+# which the claude workload has.
+#
+# No network-policy@1 entry: the download runs on the builder, which the
+# policy does not govern, and `hugo server` / `hugo build` need no outside
+# hosts unless a site fetches Hugo modules or remote resources, which is that
+# project's policy to grant.
+
+capabilities:
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./hugo-context.md

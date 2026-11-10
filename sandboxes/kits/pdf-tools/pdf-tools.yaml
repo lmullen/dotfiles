@@ -1,0 +1,40 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) with command-line tools for reading
+# PDFs and rendering figures: poppler-utils (pdftotext, pdftoppm, pdfinfo, ...)
+# and librsvg2-bin (rsvg-convert, SVG to PNG/PDF).
+#
+# An apt install hook, like the psql kit, because apt packages need the
+# composed base's dpkg database. Declaration-only, so there is no dockerfile.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: PDF and SVG tools
+description: >-
+  Installs poppler-utils (pdftotext, pdftoppm, pdfinfo, ...) and librsvg2-bin
+  (rsvg-convert) from the base image's apt sources at sandbox create.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # Only apt, only during install. The tools work on local files.
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        - command: |
+            set -euo pipefail
+            apt-get update
+            apt-get install -y --no-install-recommends poppler-utils librsvg2-bin
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install poppler-utils and librsvg2-bin from the base image's apt sources
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./pdf-tools-context.md
