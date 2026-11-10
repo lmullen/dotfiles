@@ -1,0 +1,43 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox the most recent
+# stable Go release, whatever it is when the kit is built.
+#
+# The sibling go kit pins a release; this one tracks the newest. Its overlay
+# recipe (go-latest.dockerfile) reads go.dev's release index
+# (https://go.dev/dl/?mode=json), takes the first stable release, downloads
+# that tarball and checks it against the SHA-256 the index publishes, then
+# ships it at /usr/local/go. The index is fetched with an ADD, which BuildKit
+# re-checks on every build, so a new Go release invalidates the cached layer
+# and the next sandbox create picks it up.
+#
+# /usr/local/go/bin is already on the claude workload's PATH, so `go` is found
+# with no profile.d or environment plumbing.
+#
+# Do not use this together with the go kit: both install to /usr/local/go.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: Go toolchain (latest)
+description: >-
+  Installs the newest stable Go release (resolved from go.dev at build time)
+  at /usr/local/go, and allows the Go module proxy and checksum database at
+  runtime so `go mod download`, `go build` and `go test` can fetch
+  dependencies.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# No versioned `provides:`: the release is only known when the overlay builds,
+# and a provide should state a fact the descriptor controls.
+
+capabilities:
+  # No install phase: the download runs on the builder, which this policy does
+  # not govern. Runtime: the module proxy and the checksum database.
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      runtime:
+        allow:
+          - proxy.golang.org
+          - sum.golang.org
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./go-latest-context.md

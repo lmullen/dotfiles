@@ -5,6 +5,8 @@ A [Docker Sandboxes](https://docs.docker.com/ai/sandboxes/)
 `kind: mixin`) that gives a sandbox a **Go toolchain** at a pinned release.
 Its sibling [`psql`](../psql) adds the PostgreSQL client; the legal-modernism
 sandbox uses both.
+For the newest stable release instead of a pin, use
+[`go-latest`](../go-latest) (not both: they install to the same place).
 
 ```text
 go/
