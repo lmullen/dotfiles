@@ -1,0 +1,44 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that starts Claude Code's Remote
+# Control bridge automatically in every session, so a sandboxed session can be
+# followed and driven from claude.ai or the mobile app without typing
+# /remote-control first.
+#
+# The setting is `remoteControlAtStartup: true` at user scope
+# (~/.claude/settings.json), the same key /config's "Enable Remote Control for
+# all sessions" writes. It has to be user scope: Claude Code ignores the key in
+# a checkout's project or local settings ("repo-scoped settings cannot enable
+# Remote Control"), so a repository cannot turn it on for itself.
+#
+# Declaration-only: there is no dockerfile, so nothing is built.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: Claude Code Remote Control at startup
+description: Sets "remoteControlAtStartup" to true in ~/.claude/settings.json (jq merge, other keys preserved) so every Claude Code session in the sandbox starts with Remote Control enabled.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# The hook runs jq under `set -e`; the claude workload provides it.
+requires: ["claude", "deb/jq"]
+
+# No network-policy@1 entry: Remote Control talks to claude.ai, which the
+# claude workload already allows for the session itself.
+
+capabilities:
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        - command: |
+            set -e
+            mkdir -p /home/agent/.claude
+            f=/home/agent/.claude/settings.json
+            [ -f "$f" ] || echo '{}' > "$f"
+            # Temp file in the same dir so the mv is an atomic rename.
+            tmp=$(mktemp -p /home/agent/.claude)
+            jq '.remoteControlAtStartup = true' "$f" > "$tmp"
+            mv "$tmp" "$f"
+            # Enumerated, not recursive: ~/.claude holds content this kit
+            # does not own.
+            chown agent:agent /home/agent/.claude "$f"
+          user: "0"
+          description: Set remoteControlAtStartup to true in ~/.claude/settings.json (jq merge, all other keys preserved)

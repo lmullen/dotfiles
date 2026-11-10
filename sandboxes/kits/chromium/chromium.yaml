@@ -1,0 +1,45 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox Debian's
+# Chromium, for headless screenshots and DevTools-protocol scripting.
+#
+# An apt install hook, like the psql kit, because apt packages need the
+# composed base's dpkg database. Declaration-only, so there is no dockerfile.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: Chromium (headless)
+description: >-
+  Installs Debian's chromium and the Liberation fonts at sandbox create, for
+  headless screenshots and Chrome DevTools Protocol scripting.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # Only apt, only during install. No runtime phase: what pages Chromium
+      # may load is the project's policy to grant (local dev servers need
+      # nothing).
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # --no-install-recommends skips the desktop pieces (udev, upower, a
+        # notification daemon, printing). fonts-liberation is one of those
+        # recommends but is kept: the base image ships no fonts, and pages
+        # specifying Arial/Times/Helvetica render with metric-compatible faces.
+        - command: |
+            set -euo pipefail
+            apt-get update
+            apt-get install -y --no-install-recommends chromium fonts-liberation
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install chromium and fonts-liberation from the base image's apt sources
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./chromium-context.md

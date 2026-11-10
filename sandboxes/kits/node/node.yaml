@@ -1,0 +1,58 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that gives a sandbox Node.js 24 and
+# npm, from the Docker Hardened Images apt repository the claude workload
+# already has configured (dhi.io), which carries versioned Node packages that
+# Debian trixie does not.
+#
+# Like the psql kit, this is an apt install hook rather than an overlay: apt
+# packages need the composed base's dpkg database. Declaration-only, so there
+# is no dockerfile.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: Node.js 24 and npm
+description: >-
+  Installs Node.js 24 (nodejs-24) and npm from the Docker Hardened Images apt
+  repository at sandbox create, and allows the npm registry at runtime.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# Provides the major line the hook pins by package name; the point release is
+# whatever dhi.io resolves `nodejs-24` to at create time.
+provides: ["node@24"]
+
+# No `requires:`: the hook assumes the claude workload's Debian base with its
+# dhi.io apt source, which no provide entry can state. On a base without them
+# the hook fails sandbox creation loudly.
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # apt during install: `apt-get update` refreshes every configured source.
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+      # npm install / npx fetch packages from the public registry.
+      runtime:
+        allow:
+          - registry.npmjs.org
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # `npm` here is the dhi.io package, which depends on any of the
+        # versioned nodejs-NN packages, so it does not drag in Debian's own
+        # nodejs. The proxy variables are declared because v3 hook
+        # environments are deny-by-default and apt needs them to fetch.
+        - command: |
+            set -euo pipefail
+            apt-get update
+            apt-get install -y --no-install-recommends nodejs-24 npm
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install Node.js 24 and npm from the dhi.io apt repository
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./node-context.md

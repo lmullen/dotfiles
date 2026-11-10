@@ -11,7 +11,12 @@ kits:
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-light-theme
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
-  - docker.io/sbx/mise:latest
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/remote-control
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/node
+  # Pinned to hugo-extended in lincolnmullen.com's .mise.toml.
+  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
+    args:
+      version: "0.168.0"
 ports:
   - sandbox: 1313
     host: 1313
