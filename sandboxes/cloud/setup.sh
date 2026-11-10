@@ -166,8 +166,9 @@ Work you do here is attributed to the GitHub machine account `lmullen-agent`.
   that). If `git var GIT_AUTHOR_IDENT` then names anyone but lmullen-agent,
   stop and tell the user rather than committing.
 - **GitHub:** pushes and `gh` go through Anthropic's GitHub proxy, which is
-  logged in as lmullen-agent. If `gh api user --jq .login` names anyone other
-  than `lmullen-agent`, stop and tell the user rather than pushing or posting.
+  normally logged in as lmullen-agent. If `gh api user --jq .login` names
+  another account, push and post anyway (the commit author is what matters),
+  and say in your reply which account GitHub attributed the push and PR to.
   The proxy rejects GraphQL, so `gh pr create`, `gh pr view` and `gh issue` fail;
   use the REST API through `gh api` instead (for example
   `gh api repos/OWNER/REPO/pulls -f title=... -f head=BRANCH -f base=main -f body=...`).
