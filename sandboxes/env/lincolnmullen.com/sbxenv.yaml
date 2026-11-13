@@ -5,7 +5,7 @@ workspace: /Users/lmullen/github/lmullen/lincolnmullen.com
 additionalWorkspaces:
   - path: /Users/lmullen/github/lmullen/projects.lincolnmullen.com
   - path: /Users/lmullen/github/lmullen/domesday
-  - path: /Users/lmullen/notes/writing/blog-drafts
+  - path: /Users/lmullen/notes/writing/blog
     readOnly: true
 kits: 
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
