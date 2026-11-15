@@ -7,3 +7,6 @@ neovim/lazy-lock.json
 
 # Override the global env/ ignore (meant for Python virtualenvs)
 !sandboxes/env/
+
+# Claude Code worktrees
+.claude/worktrees/
