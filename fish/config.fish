@@ -61,6 +61,11 @@ set -g fish_greeting ""
 # Commands to run in interactive sessions
 if status is-interactive
     set -g fish_key_bindings fish_vi_key_bindings
+
+    # Put each project's mise-pinned tool versions first on PATH
+    if type -q mise
+        mise activate fish | source
+    end
 end
 
 # Vi bindings leave ctrl-r unbound; restore the history pager in vi modes
