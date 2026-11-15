@@ -6,7 +6,7 @@ Configuration for a [Claude Code cloud environment](https://code.claude.com/docs
 
 | File | Field | What it does |
 |---|---|---|
-| `setup.sh` | **Setup script** | Installs mise, puts its shims on PATH, installs the project's tools, and sets up the lmullen-agent git identity. See the comments at the top of the script. |
+| `setup.sh` | **Setup script** | Installs tzdata if missing, installs mise, puts its shims on PATH, installs the project's tools, and sets up the lmullen-agent git identity. See the comments at the top of the script. |
 | `env.txt` | **Environment variables** | The lmullen-agent commit identity, and `MISE_TRUSTED_CONFIG_PATHS=/` so mise reads project configs without a trust prompt. |
 | `allowed-domains.txt` | **Allowed domains**, with **Network access** set to **Limited** and **Allow package managers** checked | Hosts mise needs that the default allowlist leaves out. |
 

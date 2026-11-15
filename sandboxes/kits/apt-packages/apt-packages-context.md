@@ -10,5 +10,7 @@ the ones these sandboxes use:
 - `poppler-utils`: `pdftotext`, `pdftoppm`, `pdfinfo`, `pdfimages`. To look at
   a PDF page, `pdftoppm -png -r 100 -f N -l N in.pdf page` and read the PNG.
 - `librsvg2-bin`: `rsvg-convert`, which renders SVG to PNG or PDF.
+- `tzdata`: the time zone database in `/usr/share/zoneinfo`, which Hugo needs
+  for a named `timeZone` such as `America/New_York`.
 
 Language toolchains come from mise, not apt.

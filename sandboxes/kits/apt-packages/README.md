@@ -28,6 +28,7 @@ offer:
 |---|---|
 | `postgresql-client` | mise's `postgres` plugin builds the whole server from source; Debian ships the client prebuilt. |
 | `poppler-utils`, `librsvg2-bin` | Not in mise's registry; they are C programs with a long tail of shared libraries apt already resolves. |
+| `tzdata` | The time zone database (`/usr/share/zoneinfo`), which the claude image lacks. Hugo's release binaries, which mise installs, embed none, so a site that sets `timeZone` fails with `unknown time zone`. |
 
 ## Use
 
