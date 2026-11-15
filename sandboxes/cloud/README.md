@@ -6,7 +6,7 @@ Configuration for a [Claude Code cloud environment](https://code.claude.com/docs
 
 | File | Field | What it does |
 |---|---|---|
-| `setup.sh` | **Setup script** | Installs tzdata if missing, installs mise, puts its shims on PATH, installs the project's tools, and sets up the lmullen-agent git identity. See the comments at the top of the script. |
+| `setup.sh` | **Setup script** | Installs tzdata if missing, installs mise, puts its shims on PATH, installs the project's tools, sets up the lmullen-agent git identity, and gives Claude the Git and GitHub rules. See the comments at the top of the script. |
 | `env.txt` | **Environment variables** | The lmullen-agent commit identity, and `MISE_TRUSTED_CONFIG_PATHS=/` so mise reads project configs without a trust prompt. |
 | `allowed-domains.txt` | **Allowed domains**, with **Network access** set to **Limited** and **Allow package managers** checked | Hosts mise needs that the default allowlist leaves out. |
 
@@ -15,6 +15,17 @@ The setup script can also be fetched instead of pasted:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lmullen/dotfiles/main/sandboxes/cloud/setup.sh | bash
 ```
+
+## Git and GitHub rules
+
+The rules Claude follows for Git and GitHub work (the lmullen-agent identity,
+issues, project boards, branches and worktrees, pull requests) are written
+once, in [`../kits/lmullen-agent/lmullen-agent-context.md`](../kits/lmullen-agent/lmullen-agent-context.md),
+which the Docker sandboxes get through the lmullen-agent kit. The setup script
+downloads that file from this repository's `main` branch and writes it into
+`~/.claude/CLAUDE.md`. The copy is made when the environment's cache is built,
+so rebuild the cache after the rules change. If the download fails, the
+script leaves Claude a pointer to the file and the few rules that matter most.
 
 ## Tools through mise
 

@@ -32,7 +32,11 @@
 #   5. Registers both scripts as SessionStart hooks: the cloud writes the git
 #      identity after this script runs, and a session may be on a different
 #      repository, or a newer pin, than the cached setup saw.
-#   6. Appends the lmullen-agent attribution rules to ~/.claude/CLAUDE.md.
+#   6. Downloads the Git and GitHub rules for Claude (the lmullen-agent
+#      identity, issues, project boards, branches, pull requests) from the
+#      lmullen-agent kit in this repository and writes them into
+#      ~/.claude/CLAUDE.md. The kit's context file is the one source of those
+#      rules, shared with the Docker sandboxes.
 #   7. Appends instructions for working with mise to ~/.claude/CLAUDE.md.
 #   8. Installs tzdata with apt if /usr/share/zoneinfo is missing: Hugo's
 #      release binaries embed no time zone database, so a site that sets a
@@ -234,34 +238,51 @@ PY
 }
 
 # ---------------------------------------------------------------------------
-# 6. Attribution rules for Claude
+# 6. Git and GitHub rules for Claude
 # ---------------------------------------------------------------------------
+# The rules are written once, in the lmullen-agent kit the Docker sandboxes
+# use, and downloaded here rather than repeated. They go into
+# ~/.claude/CLAUDE.md between two marker lines, so a rerun replaces them.
+RULES_URL=https://raw.githubusercontent.com/lmullen/dotfiles/main/sandboxes/kits/lmullen-agent/lmullen-agent-context.md
+RULES_BEGIN='<!-- lmullen-agent rules: begin -->'
+RULES_END='<!-- lmullen-agent rules: end -->'
 add_claude_md() {
-  local f="$HOME/.claude/CLAUDE.md"
+  local f="$HOME/.claude/CLAUDE.md" tmp rules
   mkdir -p "$HOME/.claude"
-  grep -q '^## Attribution (lmullen-agent)' "$f" 2>/dev/null && return 0
-  cat >>"$f" <<'EOF'
+  tmp=$(mktemp -d)
+  rules="$tmp/rules.md"
+  if curl -fsSL --max-time 30 -o "$rules" "$RULES_URL" \
+    && grep -q '^## Git and GitHub (lmullen-agent)' "$rules"; then
+    info "downloaded the Git and GitHub rules"
+  else
+    warn "could not download the Git and GitHub rules from $RULES_URL; leaving a pointer"
+    cat >"$rules" <<EOF
+## Git and GitHub (lmullen-agent)
 
-## Attribution (lmullen-agent)
+The rules for Git and GitHub work could not be downloaded when this
+environment was set up. Before any git or GitHub operation, fetch and read
+them, and follow them:
 
-Work you do here is attributed to the GitHub machine account `lmullen-agent`.
+    curl -fsSL $RULES_URL
 
-- **Commits:** GIT_AUTHOR_* and GIT_COMMITTER_* environment variables make
-  `lmullen-agent <lincoln+agent@lincolnmullen.com>` both author and committer,
-  so commit without `--author`. Never set user.name or user.email in git config.
-  A stale `Claude <noreply@anthropic.com>` identity in any git config file is
-  not the user's: remove it (`~/.claude/hooks/strip-claude-identity.sh` does
-  that). If `git var GIT_AUTHOR_IDENT` then names anyone but lmullen-agent,
-  stop and tell the user rather than committing.
-- **GitHub:** pushes and `gh` go through Anthropic's GitHub proxy, which is
-  normally logged in as lmullen-agent. If `gh api user --jq .login` names
-  another account, push and post anyway (the commit author is what matters),
-  and say in your reply which account GitHub attributed the push and PR to.
-  The proxy rejects GraphQL, so `gh pr create`, `gh pr view` and `gh issue` fail;
-  use the REST API through `gh api` instead (for example
-  `gh api repos/OWNER/REPO/pulls -f title=... -f head=BRANCH -f base=main -f body=...`).
+If that fails too, tell the user, and until they answer keep to this much:
+commit as \`lmullen-agent\` through the GIT_AUTHOR_* and GIT_COMMITTER_*
+environment variables (never set user.name or user.email in git config),
+never push to \`main\`, and send work as a pull request that is linked to an
+issue and has \`lmullen\` as a requested reviewer.
 EOF
-  info "added attribution rules to $f"
+  fi
+  # Drop the block an earlier run wrote, then append the current one.
+  if [ -f "$f" ]; then
+    awk -v b="$RULES_BEGIN" -v e="$RULES_END" \
+      '$0 == b { skip = 1 } !skip { print } $0 == e { skip = 0 }' "$f" >"$tmp/CLAUDE.md"
+  else
+    : >"$tmp/CLAUDE.md"
+  fi
+  { echo "$RULES_BEGIN"; cat "$rules"; echo "$RULES_END"; } >>"$tmp/CLAUDE.md"
+  cat "$tmp/CLAUDE.md" >"$f"
+  rm -rf "$tmp"
+  info "wrote the Git and GitHub rules to $f"
 }
 
 # ---------------------------------------------------------------------------

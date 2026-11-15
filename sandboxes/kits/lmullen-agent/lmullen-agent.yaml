@@ -1,6 +1,7 @@
 # syntax=docker/sandbox-kit:3
 # Docker Sandboxes kit (schema v3) that makes an agent act as the GitHub
-# machine account `lmullen-agent`.
+# machine account `lmullen-agent`, and gives it my rules for working with Git
+# and GitHub (issues, project boards, branches, pull requests, merging).
 #
 # Layer it onto any agent sandbox at creation time:
 #
@@ -19,6 +20,12 @@
 #      the way out. The container only ever holds a `proxy-managed`
 #      sentinel in GH_TOKEN, never the real token.
 #
+#   3. The agent is told how to work: lmullen-agent-context.md is the single
+#      source of the Git and GitHub rules for every repository. The cloud
+#      setup script (../../cloud/setup.sh) fetches the same file, and each
+#      repository's CLAUDE.md keeps only its own facts (its project board,
+#      branch-name constraints, previews).
+#
 # The secret itself is not in the kit (kits never carry secrets). Set it on
 # the host once, with lmullen-agent's token, not the owner's:
 #
@@ -31,12 +38,15 @@
 # See README.md in this directory.
 schemaVersion: "3"
 kind: mixin
-version: "0.2.0"
-displayName: lmullen-agent identity
+version: "0.3.0"
+displayName: lmullen-agent identity and Git/GitHub rules
+# The agent sees this description with a pointer to the context file, not the
+# file itself, so it has to say when the file must be read.
 description: >-
-  Commit and talk to GitHub as the machine account lmullen-agent: sets the
-  git author and committer identity and binds the github secret for gh and
-  HTTPS git.
+  Required reading before any Git or GitHub operation (commit, branch,
+  worktree, push, issue, pull request, project board, merge): the rules for
+  working as the machine account lmullen-agent. Also sets the git author and
+  committer identity and binds the github secret for gh and HTTPS git.
 sourceUrl: https://github.com/chnm/legal-modernism
 licenses:
   - MIT
@@ -125,8 +135,9 @@ capabilities:
           # baseline.
           description: Export the lmullen-agent git identity from /etc/profile.d and, when the image has one, /etc/sandbox-persistent.sh
 
-  # Appended to the agent's profile (CLAUDE.md, AGENTS.md, ...) so the agent
-  # knows whose name it is working under. A mixin contributes a body only.
+  # Offered to the agent through its profile (CLAUDE.md, AGENTS.md, ...): the
+  # identity it works under and the Git and GitHub rules. A mixin contributes
+  # a body only.
   - type: com.docker.sandbox/agent-context@1
     config:
       contentFile: ./lmullen-agent-context.md
