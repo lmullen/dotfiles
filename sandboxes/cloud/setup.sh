@@ -34,6 +34,9 @@
 #      repository, or a newer pin, than the cached setup saw.
 #   6. Appends the lmullen-agent attribution rules to ~/.claude/CLAUDE.md.
 #   7. Appends instructions for working with mise to ~/.claude/CLAUDE.md.
+#   8. Installs tzdata with apt if /usr/share/zoneinfo is missing: Hugo's
+#      release binaries embed no time zone database, so a site that sets a
+#      named timeZone fails without it.
 
 set -u
 
@@ -50,6 +53,27 @@ fi
 
 HOOK="$HOME/.claude/hooks/strip-claude-identity.sh"
 MISE_HOOK="$HOME/.claude/hooks/mise-install.sh"
+
+# ---------------------------------------------------------------------------
+# 8. Time zone database (run first, before mise installs Hugo)
+# ---------------------------------------------------------------------------
+# Hugo's release binaries, which mise installs, embed no time zone data and
+# read it from /usr/share/zoneinfo. Full Ubuntu images ship tzdata; minimal
+# ones do not. Only installs when the directory is missing.
+install_tzdata() {
+  [ -d /usr/share/zoneinfo ] && return 0
+  if ! { [ "$(id -u)" -eq 0 ] || [ -n "$SUDO" ]; }; then
+    warn "no /usr/share/zoneinfo and no root to install tzdata; Hugo sites with a timeZone will fail"
+    return 1
+  fi
+  if $SUDO env DEBIAN_FRONTEND=noninteractive apt-get update -qq >/dev/null 2>&1 \
+    && $SUDO env DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends tzdata >/dev/null 2>&1; then
+    info "installed tzdata"
+  else
+    warn "could not install tzdata; Hugo sites with a timeZone will fail"
+    return 1
+  fi
+}
 
 # ---------------------------------------------------------------------------
 # 1. mise, pinned and checksum-verified
@@ -263,6 +287,7 @@ EOF
   info "added mise rules to $f"
 }
 
+install_tzdata       || true
 install_mise         || true
 configure_shells     || true
 install_mise_hook    || true

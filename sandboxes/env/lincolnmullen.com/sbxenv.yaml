@@ -15,6 +15,11 @@ kits:
   # makes them visible to Claude's Bash tool.
   - docker.io/sbx/mise:latest
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/mise-shims
+  # The time zone database. The site's config.yaml sets timeZone, and Hugo's
+  # release binaries embed no zone data, so `hugo serve` fails without it.
+  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/apt-packages
+    args:
+      packages: "tzdata"
   # Docker's official Lighthouse kit, for auditing the site served in the
   # sandbox. Its install hook adds apt's Node 24 for its own use if there is
   # no node on PATH yet; in shells, mise's node comes first.
