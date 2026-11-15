@@ -67,9 +67,12 @@ section.
   - `Triage` holds ideas that haven't been accepted; `TODO` holds accepted
     work nobody has started. An issue you create for something the user has
     just asked for skips `Triage`.
-  - When you start on an issue, move it to `In progress`.
-  - When you open its pull request, move it to `To review`. On a board with
-    no review column it stays in `In progress`.
+  - When you start on an issue, move it to `In progress`. It stays there
+    while its pull request is open; GitHub also moves an issue there when a
+    pull request is attached to it.
+  - Don't move items into any other column a board has, such as a review
+    column, unless the repository's CLAUDE.md says to. Those are the
+    owner's to use.
   - When the pull request merges, `Closes #<n>` closes the issue and the
     board's workflow moves it to `Done`. If the board didn't, move it.
   - If work stalls or is abandoned, move it back to `TODO` and comment on
