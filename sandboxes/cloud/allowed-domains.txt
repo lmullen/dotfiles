@@ -1,0 +1,2 @@
+dl.google.com
+mise-versions.jdx.dev
