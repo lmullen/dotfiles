@@ -2,13 +2,14 @@
 
 A [Docker Sandboxes](https://docs.docker.com/ai/sandboxes/) kit (schema v3 mixin) that makes
 whatever agent runs in a sandbox act as the GitHub machine account **`lmullen-agent`**: commits
-are authored and committed by it, and `gh` and HTTPS `git` authenticate as it. It packages the
-settings the legal-modernism sandbox carries by hand so they can be applied to any sandbox.
+are authored and committed by it, and `gh` and HTTPS `git` authenticate as it. It also carries
+the rules for how the agent works with Git and GitHub, so they are written once and apply in
+every repository.
 
 ```text
 lmullen-agent/
 ├── lmullen-agent.yaml          # the descriptor (# syntax=docker/sandbox-kit:3)
-├── lmullen-agent-context.md    # the agent-context body
+├── lmullen-agent-context.md    # the Git and GitHub rules (agent-context body)
 └── README.md                   # this file
 ```
 
@@ -22,7 +23,7 @@ It is declaration-only: there is no `lmullen-agent.dockerfile`, so nothing is bu
 | `GIT_AUTHOR_EMAIL`, `GIT_COMMITTER_EMAIL` | `lifecycle@1` install hook writing shell exports | `lincoln+agent@lincolnmullen.com` |
 | GitHub token for `gh` and HTTPS git | `credential@1` binding of the `github` secret (runtime phase, required), injected by the proxy | the token you store with `sbx secret set github` |
 | Network | `network-policy@1`, runtime phase | `github.com`, `api.github.com`, `codeload.github.com`, `raw.githubusercontent.com` |
-| Agent instructions | `agent-context@1` (`lmullen-agent-context.md`) | the attribution rules from CLAUDE.md |
+| Agent instructions | `agent-context@1` (`lmullen-agent-context.md`) | the Git and GitHub rules, below |
 
 Environment variables outrank every git config file, so the host's `~/.gitconfig` (which names
 the repository owner) is untouched and the owner's own commits keep their name. The real token
@@ -39,6 +40,30 @@ every command (`BASH_ENV` and `CLAUDE_ENV_FILE` point at it). Claude's Bash tool
 file on images without one. Unlike v2, the variables are not in the container's own environment,
 so a process that starts no shell (Claude Code itself, `sbx exec` without `bash -l`) does not
 see them.
+
+## The Git and GitHub rules
+
+`lmullen-agent-context.md` is the single source of the rules an agent follows when it works with
+Git and GitHub: the `lmullen-agent` identity, an issue for every change, the project board,
+branches and worktrees, pull requests (one per logical change, written to be squash-merged, with
+`lmullen` as reviewer), merging, and cleanup after a merge. Change the rules in that file and
+nowhere else.
+
+It reaches Claude two ways:
+
+- **Docker sandboxes:** through this kit. The agent's profile lists the kit's `description` with a
+  pointer to the file rather than the file's text, so the description says the file must be read
+  before any Git or GitHub operation. Recreate a sandbox to pick up a change.
+- **Claude Code cloud environments:** `../../cloud/setup.sh` downloads the file from this
+  repository's `main` branch and writes it into `~/.claude/CLAUDE.md`. Rebuild the environment's
+  cache to pick up a change.
+
+A repository's own `CLAUDE.md` holds only what differs between repositories: whether it has a
+project board (owner, number, and whether issues are added automatically), branch-name
+constraints, and preview servers. A repository that names no board has none.
+
+The rules are for Claude Code in sandboxes and cloud environments. They are not linked into
+`~/.claude` on the host, where work is done as the repository owner.
 
 ## One-time setup on the host
 
