@@ -1,0 +1,89 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) with my Claude Code configuration for
+# every sandbox:
+#
+#   - Status line: /usr/local/bin/claude-statusline (sandbox name, model,
+#     project/branch, 5-hour session usage), registered under `statusLine` in
+#     ~/.claude/settings.json. The script ships in the overlay built by
+#     claude-config.dockerfile.
+#   - Remote Control at startup: `remoteControlAtStartup: true` in
+#     ~/.claude/settings.json, the key /config's "Enable Remote Control for all
+#     sessions" writes. It only counts at user scope; Claude Code ignores it in
+#     a project's settings.
+#   - Light theme: `"theme": "light"` in ~/.claude.json. Claude Code's `auto`
+#     theme cannot detect the host terminal's background through the
+#     sandbox's pty, so it falls back to dark in a light Ghostty.
+#
+# Every write is a jq merge that sets only these keys and leaves the rest of
+# each file alone. This kit replaces the claude-statusline, remote-control and
+# claude-light-theme kits.
+#
+# See README.md in this directory.
+schemaVersion: "3"
+kind: mixin
+# The kit's own version, not the version of anything it installs.
+version: "3.0.0"
+displayName: Claude Code configuration (lmullen)
+description: >-
+  My Claude Code settings for a sandbox: a status line (sandbox, model,
+  project/branch, 5-hour usage), Remote Control at startup, and the light
+  theme. Merged into ~/.claude/settings.json and ~/.claude.json with jq, so
+  every other key is preserved.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# The settings are Claude Code's, and the install hook runs jq under `set -e`.
+# The claude workload provides both.
+requires: ["claude", "deb/jq"]
+
+# No network-policy@1 entry: the status line opens no socket, and Remote
+# Control talks to claude.ai, which the claude workload already allows.
+
+capabilities:
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        - command: |
+            set -e
+            home=/home/agent
+            mkdir -p "$home/.claude"
+
+            # merge FILE JQ-FILTER: apply the filter to FILE (created as {} if
+            # missing). The temp file sits next to FILE, so the mv is an
+            # atomic rename rather than a cross-filesystem copy.
+            merge() {
+              [ -f "$1" ] || echo '{}' > "$1"
+              tmp=$(mktemp -p "$(dirname "$1")")
+              jq "$2" "$1" > "$tmp"
+              mv "$tmp" "$1"
+              chown agent:agent "$1"
+            }
+
+            # Status line and Remote Control: user settings. An existing
+            # statusLine is replaced by design.
+            merge "$home/.claude/settings.json" '
+              .statusLine = {type: "command", command: "/usr/local/bin/claude-statusline", padding: 0}
+              | .remoteControlAtStartup = true'
+
+            # Theme: Claude Code keeps it in ~/.claude.json, not settings.json.
+            merge "$home/.claude.json" '.theme = "light"'
+
+            # A project status line (e.g. a checkout's .claude/statusline.sh)
+            # may wrap ~/.claude/statusline.sh to print this line above its
+            # own; without the link it prints a blank first line. A regular
+            # file already there is left alone.
+            s="$home/.claude/statusline.sh"
+            if [ ! -e "$s" ] || [ -L "$s" ]; then
+              ln -sfn /usr/local/bin/claude-statusline "$s"
+              chown -h agent:agent "$s"
+            fi
+
+            # Enumerated, not recursive: ~/.claude holds runtime-managed
+            # content this kit does not own.
+            chown agent:agent "$home/.claude"
+          user: "0"
+          description: Merge statusLine and remoteControlAtStartup into ~/.claude/settings.json and theme into ~/.claude.json (jq, other keys preserved), and link ~/.claude/statusline.sh to the status line script
+
+  # A mixin contributes a body only; `filename:` belongs to the workload.
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./claude-config-context.md

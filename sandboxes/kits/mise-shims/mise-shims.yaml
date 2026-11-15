@@ -1,0 +1,130 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that makes Docker's official mise kit
+# (docker.io/sbx/mise) work in Claude's Bash tool. It names no tools: each
+# project lists its own in its mise.toml / .mise.toml.
+#
+# The official kit ships mise and adds `mise activate bash` to ~/.bashrc.
+# Claude's Bash tool runs non-interactive shells from a snapshot of ~/.bashrc
+# taken when the session starts, which keeps functions and PATH but no other
+# variables. Tested against that setup, the official kit alone:
+#
+#   - finds no tools in a session that started before they were installed,
+#     even after `mise install`, until Claude is restarted;
+#   - after `cd` into another project, runs the first project's version;
+#   - refuses every project config as untrusted, because the snapshot drops
+#     MISE_TRUSTED_CONFIG_PATHS.
+#
+# This kit fixes all three by putting mise's shims, which pick the version for
+# the current directory each time they run, first on PATH at the end of
+# ~/.bashrc (where the snapshot's PATH comes from), and
+# MISE_TRUSTED_CONFIG_PATHS in /etc/sandbox-persistent.sh (sourced before
+# every Bash tool command; its PATH changes are overridden by the snapshot's,
+# but other variables survive). It also runs `mise install` in the workspace
+# at create, so the project's tools, and their shims, exist before the agent
+# starts, and it opens the hosts those installs download from.
+#
+# Declaration-only: there is no dockerfile, so nothing is built.
+#
+# See README.md in this directory.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: mise shims for Claude
+description: >-
+  Puts mise's shims and config trust on the PATH Claude's non-interactive Bash
+  tool uses, and installs the workspace's own mise config at sandbox create.
+  Needs Docker's official mise kit.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# Docker's mise kit provides `mise@<version>`. Requiring it also orders this
+# kit's hooks after that kit's.
+requires: ["mise"]
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # What `mise install` reached for go, node, hugo-extended and dbmate
+      # (checked with MISE_LOG_LEVEL=trace):
+      #   mise-versions.jdx.dev  version lists
+      #   api.github.com         version lists and release lookups
+      #   github.com, objects.githubusercontent.com,
+      #   release-assets.githubusercontent.com
+      #                          release assets (aqua, ubi and github backends)
+      #   nodejs.org             node
+      #   dl.google.com          go
+      # A tool from another source needs its host added to both phases.
+      install:
+        allow:
+          - mise-versions.jdx.dev
+          - api.github.com
+          - github.com
+          - objects.githubusercontent.com
+          - release-assets.githubusercontent.com
+          - nodejs.org
+          - dl.google.com
+      # The official mise kit already allows the GitHub hosts at runtime. These
+      # are the rest of what a shim needs to install a version on first use,
+      # plus the package registries the toolchains themselves use.
+      runtime:
+        allow:
+          - mise-versions.jdx.dev
+          - nodejs.org
+          - dl.google.com
+          - proxy.golang.org
+          - sum.golang.org
+          - registry.npmjs.org
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # Shims and trust for every shell. The snippet is idempotent (the PATH
+        # entry is added once however often it is sourced), so it is safe for
+        # a login shell to read it from both files.
+        - command: |
+            set -eu
+            snippet='# mise-shims kit: mise shims and config trust for every shell, including
+            # the non-interactive ones Claude'"'"'s Bash tool runs.
+            export MISE_TRUSTED_CONFIG_PATHS="/"
+            case ":$PATH:" in
+              *":/home/agent/.local/share/mise/shims:"*) ;;
+              *) export PATH="/home/agent/.local/share/mise/shims:$PATH" ;;
+            esac'
+            mkdir -p /etc/profile.d
+            printf '%s\n' "$snippet" > /etc/profile.d/mise-shims.sh
+            chmod 0644 /etc/profile.d/mise-shims.sh
+            f=/etc/sandbox-persistent.sh
+            [ -f "$f" ] || exit 0
+            grep -q '^# mise-shims kit' "$f" && exit 0
+            printf '\n%s\n' "$snippet" >> "$f"
+          user: "0"
+          description: Put mise's shims on PATH and trust mise configs, in /etc/profile.d and /etc/sandbox-persistent.sh
+
+        # As the agent user. First, shims ahead of `mise activate` in
+        # ~/.bashrc: Claude's Bash tool replays the PATH of a snapshot taken
+        # from ~/.bashrc, which sources /etc/sandbox-persistent.sh before the
+        # official kit's activate line, so activate's directories for the
+        # launch directory would otherwise win over the shims after a `cd`.
+        # This kit requires mise, so this runs after that kit's hook and the
+        # line lands after its activate line.
+        #
+        # Then the workspace's own tools, into ~/.local/share/mise.
+        # Best-effort: on failure the agent can run `mise install` itself.
+        # Other mounted projects are not installed here; once a tool's shim
+        # exists, it installs another project's pinned version the first time
+        # it runs there.
+        - command: |
+            set -eu
+            grep -qF '# mise-shims kit' ~/.bashrc 2>/dev/null ||
+              printf '\n# mise-shims kit: shims ahead of what `mise activate` adds, so the\n# snapshot of this file Claude'"'"'s Bash tool replays picks versions per directory.\nexport PATH="$HOME/.local/share/mise/shims:$PATH"\n' >> ~/.bashrc
+            export MISE_TRUSTED_CONFIG_PATHS=/
+            if [ -n "${WORKSPACE_DIR:-}" ] && [ -d "$WORKSPACE_DIR" ]; then
+              (cd "$WORKSPACE_DIR" && mise install) ||
+                echo "mise-shims: WARNING: mise install in $WORKSPACE_DIR failed; run it in the sandbox" >&2
+            fi
+          user: "1000"
+          env: [WORKSPACE_DIR, HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install the workspace's mise config with mise install
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./mise-shims-context.md

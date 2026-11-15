@@ -3,24 +3,24 @@ name: legal-modernism
 agent: claude
 workspace: /Users/lmullen/github/chnm/legal-modernism
 kits: 
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-light-theme
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-config
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/go
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/psql
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/remote-control
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/node
+  # Toolchains through mise. The versions (Go, dbmate, Hugo) are pinned in
+  # legal-modernism's own mise.toml; mise-shims installs them at create and
+  # makes them visible to Claude's Bash tool.
+  - docker.io/sbx/mise:latest
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/mise-shims
+  # What mise cannot install well comes from apt.
+  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/apt-packages
+    args:
+      packages: "postgresql-client poppler-utils librsvg2-bin"
   # Docker's official Playwright kit: headless Chromium plus the playwright
-  # CLI. It needs Node, which the node kit above supplies.
+  # CLI. Its install hook adds apt's Node 24 for its own use if there is no
+  # node on PATH yet; in shells, mise's node comes first.
   - docker.io/sbx/playwright:latest
   # Docker's official Lighthouse kit, for auditing the site served in the
-  # sandbox. Like playwright, it needs the node kit's Node.
+  # sandbox. Same Node arrangement as playwright.
   - docker.io/sbx/lighthouse:latest
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/pdf-tools
-  # Hugo for website/, pinned to the version in website/Dockerfile.
-  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
-    args:
-      version: "0.161.1"
 # Passed from the host's LAW_CLAUDE at creation via `--env-arg` (see Makefile).
 args:
   LAW_CLAUDE:
