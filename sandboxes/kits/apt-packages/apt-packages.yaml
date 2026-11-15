@@ -1,0 +1,68 @@
+# syntax=docker/sandbox-kit:3
+# Docker Sandboxes kit (schema v3 mixin) that installs the Debian packages
+# named in its `packages` arg from the base image's apt sources at sandbox
+# create.
+#
+# For software mise cannot install well: system libraries and command-line
+# tools that are not language toolchains, such as the PostgreSQL client
+# (postgresql-client), poppler-utils and librsvg2-bin. Language toolchains go
+# through mise (see ../mise-shims) instead.
+#
+# apt packages cannot travel in an overlay: they need the composed base's own
+# dpkg database and shared-library closure. So this is an install hook run as
+# root against the base's apt, the route Docker's playwright and
+# packages-through-sfw kits take. Declaration-only, so there is no dockerfile.
+#
+# It replaces the psql and pdf-tools kits, which were this hook with a fixed
+# package list.
+schemaVersion: "3"
+kind: mixin
+version: "1.0.0"
+displayName: apt packages
+description: >-
+  Installs the Debian packages named in the `packages` arg from the base
+  image's apt sources (deb.debian.org and dhi.io) at sandbox create.
+sourceUrl: https://github.com/lmullen/dotfiles
+
+# No `requires:`: the hook assumes a Debian-family base with apt, which the
+# claude workload is and which no provide entry can state. On a base without
+# apt the hook fails sandbox creation loudly.
+
+args:
+  packages:
+    required: true
+    # Debian package names (optionally =version), separated by spaces.
+    pattern: '^[a-z0-9][a-z0-9+.:=~ -]*$'
+    description: Space-separated Debian packages, e.g. "postgresql-client poppler-utils"
+    env: APT_PACKAGES
+
+capabilities:
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      # Only apt, only during install: `apt-get update` refreshes every source
+      # the claude workload has configured. No runtime phase: what the
+      # packages reach later (a database, say) is the project's policy.
+      install:
+        allow:
+          - deb.debian.org
+          - dhi.io
+
+  - type: com.docker.sandbox/lifecycle@1
+    config:
+      install:
+        # The proxy variables are declared because v3 hook environments are
+        # deny-by-default and apt needs them to fetch.
+        - command: |
+            set -euo pipefail
+            apt-get update
+            # Word splitting is intended: one package per word.
+            # shellcheck disable=SC2086
+            apt-get install -y --no-install-recommends $APT_PACKAGES
+            rm -rf /var/lib/apt/lists/*
+          user: "0"
+          env: [APT_PACKAGES, HTTP_PROXY, HTTPS_PROXY, http_proxy, https_proxy, NO_PROXY, no_proxy]
+          description: Install the packages arg with apt-get
+
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./apt-packages-context.md

@@ -8,18 +8,17 @@ additionalWorkspaces:
   - path: /Users/lmullen/notes/writing/blog
     readOnly: true
 kits: 
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-statusline
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-light-theme
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-config
   - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/remote-control
-  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/node
+  # Toolchains through mise. The versions (Hugo, Node) are pinned in
+  # lincolnmullen.com's own .mise.toml; mise-shims installs them at create and
+  # makes them visible to Claude's Bash tool.
+  - docker.io/sbx/mise:latest
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/mise-shims
   # Docker's official Lighthouse kit, for auditing the site served in the
-  # sandbox. It needs Node, which the node kit above supplies.
+  # sandbox. Its install hook adds apt's Node 24 for its own use if there is
+  # no node on PATH yet; in shells, mise's node comes first.
   - docker.io/sbx/lighthouse:latest
-  # Pinned to hugo-extended in lincolnmullen.com's .mise.toml.
-  - source: /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/hugo
-    args:
-      version: "0.168.0"
 ports:
   - sandbox: 1313
     host: 1313
