@@ -79,6 +79,8 @@ brew "jq"
 brew "libdap"
 # Mac App Store command-line interface
 brew "mas"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Remote terminal application
 brew "mosh"
 # Ambitious Vim-fork focused on extensibility and agility
