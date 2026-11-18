@@ -76,6 +76,7 @@ end
 
 # Aliases
 alias R="R --no-save --no-restore-data --quiet"
+alias lawavail="nc -vz -G 5 10.112.12.120 5432"
 
 # Abbreviations
 abbr --add editenv --position command '$EDITOR ~/.env.fish && source ~/.env.fish && echo "Reloaded environment variables"'
