@@ -49,6 +49,7 @@ launchd :
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-notes.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-notes.plist
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.remove-old-downloads.plist $(HOME)/Library/LaunchAgents/com.lmullen.remove-old-downloads.plist
 	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.backup-pkm.plist $(HOME)/Library/LaunchAgents/com.lmullen.backup-pkm.plist
+	ln -sf $(HOME)/github/lmullen/dotfiles/launchd/com.lmullen.calendar-export.plist $(HOME)/Library/LaunchAgents/com.lmullen.calendar-export.plist
 
 sandboxes :
 	@echo "Creating Docker sandboxes"
