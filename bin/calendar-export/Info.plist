@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Embedded in the binary's __TEXT,__info_plist section by the Makefile.
+     Without a usage description, macOS refuses calendar access outright. -->
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.lmullen.calendar-export</string>
+    <key>CFBundleName</key>
+    <string>calendar-export</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>NSCalendarsFullAccessUsageDescription</key>
+    <string>calendar-export reads your calendars to write them to a JSON file in ~/notes/_assistant.</string>
+</dict>
+</plist>
