@@ -56,6 +56,7 @@ sandboxes :
 	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/dotfiles/sbxenv.yaml
 	sbx env create --env-arg "LAW_CLAUDE=$(LAW_CLAUDE)" $(HOME)/github/lmullen/dotfiles/sandboxes/env/legal-modernism/sbxenv.yaml
 	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/lincolnmullen.com/sbxenv.yaml
+	sbx env create $(HOME)/github/lmullen/dotfiles/sandboxes/env/relec/sbxenv.yaml
 
 .PHONY : all default git R latex zsh neovim ghostty fish launchd schaff-apps gaustad-apps sandboxes
 
