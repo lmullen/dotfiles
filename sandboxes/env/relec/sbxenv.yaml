@@ -1,0 +1,16 @@
+schemaVersion: "1"
+name: relec
+agent: claude
+workspace: /Users/lmullen/github/chnm/relec-scratch
+kits: 
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/claude-config
+  - /Users/lmullen/github/lmullen/dotfiles/sandboxes/kits/lmullen-agent
+ports:
+  - sandbox: 8000
+    host: 8000
+  - sandbox: 8001
+    host: 8001
+  - sandbox: 8002
+    host: 8002
+  - sandbox: 8003
+    host: 8003
