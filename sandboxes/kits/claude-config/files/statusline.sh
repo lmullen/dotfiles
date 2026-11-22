@@ -100,7 +100,6 @@ if [ -n "$usage" ]; then
   fi
 
   resets_prefix=""
-  over_suffix=""
   if [ -n "$resets_at" ]; then
     reset_epoch=$(to_epoch "$resets_at")
     if [ -n "$reset_epoch" ]; then
@@ -111,12 +110,10 @@ if [ -n "$usage" ]; then
       h=$(( left / 3600 ))
       m=$(( (left % 3600) / 60 ))
       resets_prefix=" (resets ${h}h${m}m)"
-      pct_over=$(( (WINDOW - left) * 100 / WINDOW ))
-      over_suffix=" / ${pct_over}% over"
     fi
   fi
 
-  session_segment="${col}session${resets_prefix}: ${pct_used}% used${over_suffix}${reset}"
+  session_segment="${col}session${resets_prefix}: ${pct_used}%${reset}"
 else
   session_segment="${gray}session: n/a${reset}"
 fi
