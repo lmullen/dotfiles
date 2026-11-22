@@ -3,9 +3,9 @@
 # every sandbox:
 #
 #   - Status line: /usr/local/bin/claude-statusline (sandbox name, model,
-#     project/branch, 5-hour session usage), registered under `statusLine` in
-#     ~/.claude/settings.json. The script ships in the overlay built by
-#     claude-config.dockerfile.
+#     project/branch, 5-hour session usage, context window usage), registered
+#     under `statusLine` in ~/.claude/settings.json. The script ships in the
+#     overlay built by claude-config.dockerfile.
 #   - Remote Control at startup: `remoteControlAtStartup: true` in
 #     ~/.claude/settings.json, the key /config's "Enable Remote Control for all
 #     sessions" writes. It only counts at user scope; Claude Code ignores it in
@@ -26,9 +26,9 @@ version: "3.0.0"
 displayName: Claude Code configuration (lmullen)
 description: >-
   My Claude Code settings for a sandbox: a status line (sandbox, model,
-  project/branch, 5-hour usage), Remote Control at startup, and the light
-  theme. Merged into ~/.claude/settings.json and ~/.claude.json with jq, so
-  every other key is preserved.
+  project/branch, 5-hour usage, context usage), Remote Control at startup, and
+  the light theme. Merged into ~/.claude/settings.json and ~/.claude.json with
+  jq, so every other key is preserved.
 sourceUrl: https://github.com/lmullen/dotfiles
 
 # The settings are Claude Code's, and the install hook runs jq under `set -e`.
