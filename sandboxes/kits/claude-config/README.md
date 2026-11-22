@@ -53,7 +53,7 @@ The script is the legal-modernism repository's `.claude/statusline.sh`, made
 portable so every sandbox gets it:
 
 ```
-sbx: legal-modernism  ·  Opus 4.1  ·  legal-modernism/fix-linker  ·  session (resets 3h12m): 24% used / 36% over
+sbx: legal-modernism  ·  Opus 4.1  ·  legal-modernism/fix-linker  ·  session (resets 3h12m): 24% used / 36% over  ·  context: 41%
 ```
 
 - **sandbox** (yellow), from `SANDBOX_NAME`, which Docker Sandboxes export.
@@ -66,6 +66,8 @@ sbx: legal-modernism  ·  Opus 4.1  ·  legal-modernism/fix-linker  ·  session 
   shown alone.
 - **session**, coloured green, yellow or red by how much of the 5-hour quota is
   used, with the time until it resets and how far through the window it is.
+- **context**, how full the context window is, coloured the same way. It reads
+  `n/a` until the session's first response.
 
 `claude-config.dockerfile` is a `FROM scratch` overlay that copies
 `files/statusline.sh` to `/usr/local/bin/claude-statusline` with mode 0755. It

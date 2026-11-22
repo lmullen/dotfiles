@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Code status line: [sandbox ·] model · project/branch · 5-hour session usage
+# Claude Code status line: [sandbox ·] model · project/branch · 5-hour session usage · context window usage
 # Reads the status-line JSON object from stdin.
 #
 # This is the status line kept in the legal-modernism repository at
@@ -25,6 +25,7 @@ model=$(printf '%s' "$input" | jq -r '.model.display_name // "unknown"')
 proj_dir=$(printf '%s' "$input" | jq -r '.workspace.project_dir // .cwd // empty')
 cur_dir=$(printf '%s' "$input" | jq -r '.workspace.current_dir // .cwd // .workspace.project_dir // empty')
 usage=$(printf '%s' "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+context=$(printf '%s' "$input" | jq -r '.context_window.used_percentage // empty')
 resets_at=$(printf '%s' "$input" | jq -r '
   .rate_limits.five_hour.resets_at
   // .rate_limits.five_hour.reset_at
@@ -120,4 +121,19 @@ else
   session_segment="${gray}session: n/a${reset}"
 fi
 
-printf "%b%s%s%s  ·  %b%b" "$sandbox_segment" "$cyan" "$model" "$reset" "$proj_segment" "$session_segment"
+# --- Context window ------------------------------------------------------
+# used_percentage is null until the session's first API response.
+if [ -n "$context" ]; then
+  pct_context=$(printf '%.0f' "$context")
+
+  if   [ "$pct_context" -ge 90 ]; then col=$'\033[31m'   # red
+  elif [ "$pct_context" -ge 70 ]; then col=$'\033[33m'   # yellow
+  else                                 col=$'\033[32m'   # green
+  fi
+
+  context_segment="${col}context: ${pct_context}%${reset}"
+else
+  context_segment="${gray}context: n/a${reset}"
+fi
+
+printf "%b%s%s%s  ·  %b%b  ·  %b" "$sandbox_segment" "$cyan" "$model" "$reset" "$proj_segment" "$session_segment" "$context_segment"
